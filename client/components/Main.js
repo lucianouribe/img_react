@@ -72,7 +72,7 @@ class Main extends Component {
         <div className="row">
           <div className="col s12 m8 offset-m1">
             <ul className="list-of-fishes">
-              {Object.keys(this.state.slideInfo).map(key => <Slider key={key} details={this.state.slideInfo[key]} convertSlide={this.convertSlide} panofotografia={this.panofotografia}/>)}
+              {Object.keys(this.state.slideInfo).map(key => <Slider key={key} details={this.state.slideInfo[key]} convertSlide={this.convertSlide} />)}
             </ul>
           </div>
         </div>

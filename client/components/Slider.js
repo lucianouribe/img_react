@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import Picture from './Picture';
+import Picture from './Picture';
 
 class Slider extends Component {
 
@@ -7,19 +7,17 @@ class Slider extends Component {
     super(props);
 
     this.state = {
-      show: true,
+      show: true
     }
 
     this.toggleCard = this.toggleCard.bind(this);
+    this.showMeThePic = this.showMeThePic.bind(this);
 
   }
-
-
 
   toggleCard() {
     this.setState({ show: !this.state.show });
   }
-
 
   componentDidMount(){
     $('.carousel').carousel({full_width: true});
@@ -71,6 +69,16 @@ class Slider extends Component {
     });
   }
 
+// <div className="carousel-item" data-info={this.props.details.commentsPerPic[0]} id={this.props.details.id[0]}></div>
+
+  showMeThePic() {
+    console.log('hello');
+    for (var i = 0; i < slideInfo.length; i++) {
+      return (<div className="carousel-item" data-info={this.props.details.commentsPerPic[i]} id={this.props.details.id[i]}></div>)
+    }
+  }
+
+
   front() {
     return(
       <div>
@@ -78,11 +86,7 @@ class Slider extends Component {
           <div className="card-image waves-effect waves-block waves-light">
             <div className="prev detalles valign-wrapper"></div>
               <div id="detalles" className="carousel carousel-slider">
-                <div className="carousel-item" data-info={this.props.details.commentsPerPic[0]} id={this.props.details.id[0]}></div>
-                <div className="carousel-item" data-info={this.props.details.commentsPerPic[1]} id={this.props.details.id[1]}></div>
-                <div className="carousel-item" data-info={this.props.details.commentsPerPic[2]} id={this.props.details.id[2]}></div>
-                <div className="carousel-item" data-info={this.props.details.commentsPerPic[3]} id={this.props.details.id[3]}></div>
-                <div className="carousel-item" data-info={this.props.details.commentsPerPic[4]} id={this.props.details.id[4]}></div>
+                {Object.key(this.showMeThePic)}
               </div>
             <div className="letter"></div>
             <div className="next valign-wrapper"></div>

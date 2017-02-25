@@ -39,9 +39,9 @@ class DashButtons extends Component {
           </li>
           <li>
             <div className="collapsible-header"><i className="material-icons">filter_drama</i>Renders</div>
-            <div className="collapsible-body"><a onClick={this.props.renderArq}>Arquitectura</a></div>
-            <div className="collapsible-body"><a onClick={this.props.renderProd}>Productos</a></div>
-            <div className="collapsible-body"><a onClick={this.props.renderAmb}>Ambientes</a></div>
+            <div className="collapsible-body" onClick={this.props.renderArq}><a>Arquitectura</a></div>
+            <div className="collapsible-body" onClick={this.props.renderProd}><a>Productos</a></div>
+            <div className="collapsible-body" onClick={this.props.renderAmb}><a>Ambientes</a></div>
           </li>
           <li>
             <div className="collapsible-header"><i className="material-icons">filter_drama</i>Programming</div>

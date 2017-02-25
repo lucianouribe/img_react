@@ -4,8 +4,8 @@ class Picture extends React.Component {
 
   render() {
     return (
-      <div>
-        hello
+      <div className="pic-compo">
+        
       </div>
     )
   }

@@ -10,9 +10,9 @@ class Dashboard extends Component {
           <Picture className="pic-compo"></Picture>
           <DashButtons
               convertSlide={this.props.convertSlide}
-              renderArq={this.props.renderArq}
+              renderOtr={this.props.renderOtr}
               renderProd={this.props.renderProd}
-              renderAmb={this.props.renderAmb}
+              renderEsp={this.props.renderEsp}
               />
         </aside>
       </div>

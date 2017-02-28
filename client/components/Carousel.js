@@ -9,7 +9,7 @@ class Carousel extends Component {
     this.state = {
       show: true,
       currentSlide: 0,
-      data: this.props.details.id
+      data: this.props.details.image
     }
 
     this.toggleCard = this.toggleCard.bind(this);
@@ -25,15 +25,6 @@ class Carousel extends Component {
 
   componentDidMount(){
     $('.carousel').carousel({full_width: true});
-
-    // $('.next').on('click', function() {
-    //   $('.carousel').carousel('next');
-    // });
-    //
-    // $('.prev').on('click', function() {
-    //   $('.carousel').carousel('prev');
-    // });
-
     // Text of each picture
     $('.carousel-item').on('mouseenter', function() {
       var info = this.dataset.info || "";
@@ -50,15 +41,6 @@ class Carousel extends Component {
 
   componentDidUpdate(){
     $('.carousel').carousel({full_width: true});
-
-    // $('.next').on('click', function() {
-    //   $('.carousel').carousel('next');
-    // });
-    //
-    // $('.prev').on('click', function() {
-    //   $('.carousel').carousel('prev');
-    // });
-
     // Text of each picture
     $('.carousel-item').on('mouseenter', function() {
       var info = this.dataset.info || "";
@@ -74,14 +56,14 @@ class Carousel extends Component {
   }
 
   showMeThePic() {
-    // console.log(this.props.details.id.length);
-    console.log(this.props.details);
     const info = this.props.details
-    const bla = this.state.currentSlide;
-    // for(var i = 0; i < info.id.length; i++) {
-    //   console.log(info.commentsPerPic[i]);
-      return (<div className="carousel-item" data-info={info.commentsPerPic[bla]} id={info.id[bla]}></div>)
-    // }
+    const actualPic = this.state.currentSlide;
+    const aidi = 'D' + (actualPic + 1);
+    const divStyle = {
+      backgroundImage: 'url(' + info.image[actualPic] + ')'
+    };
+    console.log(divStyle)
+    return (<div className="carousel-item" data-info={info.commentsPerPic[actualPic]} id={aidi} style={divStyle}></div>)
   }
 
   toggleNext() {
@@ -105,7 +87,7 @@ class Carousel extends Component {
     var current = this.state.currentSlide;
     var prev = current - 1;
     if (prev < 0) {
-      prev = data.length;
+      prev = data.length - 1;
     }
     console.log(prev);
     this.setState({ currentSlide: prev });
@@ -138,6 +120,13 @@ class Carousel extends Component {
         <div className="card-reveal">
           <span className="card-title grey-text text-darken-4">{this.props.details.name}<i type="button" onClick={this.toggleCard} className="material-icons right">close</i></span>
           <p>{this.props.details.description}</p>
+          <div className="logos">
+            <div className={this.props.details.logo1}></div>
+            <div className={this.props.details.logo2}></div>
+            <div className={this.props.details.logo3}></div>
+            <div className={this.props.details.logo4}></div>
+            <div className={this.props.details.logo5}></div>
+          </div>
         </div>
       </div>
     )

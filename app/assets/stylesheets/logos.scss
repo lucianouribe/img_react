@@ -1,0 +1,22 @@
+.logos {
+  display: inline-flex;
+}
+.logos div {
+  width: 60px;
+  height: 60px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-right: 10px;
+}
+.tridimax {
+  background-image: url(asset_path("tridimax.png"));
+}
+.vray {
+  background-image: url(asset_path("vray.png"));
+}
+.photoshop {
+  background-image: url(asset_path("photoshop.jpg"));
+}
+.illustrator {
+  background-image: url(asset_path("illustrator.png"));
+}

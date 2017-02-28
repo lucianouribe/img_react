@@ -8,34 +8,22 @@ class Main extends Component {
 
   constructor() {
     super();
-    this.convertSlide = this.convertSlide.bind(this);
-    this.renderArq = this.renderArq.bind(this);
+    this.renderOtr = this.renderOtr.bind(this);
     this.renderProd = this.renderProd.bind(this);
-    this.renderAmb = this.renderAmb.bind(this);
+    this.renderEsp = this.renderEsp.bind(this);
 
     this.state = {
       slideInfo: {}
     };
   }
 
-  convertSlide(slide) {
-    console.log("convertSlide")
-    //update slideInfo state
-    const slideInfo = {...this.state.slideInfo};
-    // add in our new fish
-    const num = slide.num;
-    slideInfo[`slide-${num}`] = slide;
-    //set state
-    this.setState({ slideInfo });
-  }
-
-  renderArq(e) {
+  renderOtr(e) {
     e.preventDefault();
-    console.log("this is renderArq")
-    var renderArq = Stuff.slideRenderArq
-    console.log(renderArq)
+    console.log("this is renderOtr")
+    var renderOtr = Stuff.slideRenderOtr
+    console.log(renderOtr)
     this.setState({
-      slideInfo: {renderArq}
+      slideInfo: {renderOtr}
     });
   }
   renderProd(e) {
@@ -47,13 +35,13 @@ class Main extends Component {
       slideInfo: {renderProd}
     });
   }
-  renderAmb(e) {
+  renderEsp(e) {
     e.preventDefault();
-    console.log("this is renderAmb")
-    var renderAmb = Stuff.slideRenderAmb
-    console.log(renderAmb)
+    console.log("this is renderEsp")
+    var renderEsp = Stuff.slideRenderEsp
+    console.log(renderEsp)
     this.setState({
-      slideInfo: {renderAmb}
+      slideInfo: {renderEsp}
     });
   }
 
@@ -64,9 +52,9 @@ class Main extends Component {
         <div className="col s12 m2">
           <Dashboard
               convertSlide={this.convertSlide}
-              renderArq={this.renderArq }
+              renderOtr={this.renderOtr }
               renderProd={this.renderProd }
-              renderAmb={this.renderAmb }
+              renderEsp={this.renderEsp }
           />
         </div>
         <div className="row">

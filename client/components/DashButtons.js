@@ -38,7 +38,7 @@ class DashButtons extends Component {
             <div className="collapsible-body"><a onClick={this.panocombinados}>Combinados</a></div>
           </li>
           <li>
-            <div className="collapsible-header"><i className="material-icons">filter_drama</i>Renders</div>
+            <div className="collapsible-header"><i className="teapot"></i>Renders</div>
             <div className="collapsible-body" onClick={this.props.renderProd}><a>Productos</a></div>
             <div className="collapsible-body" onClick={this.props.renderEsp}><a>Espacios</a></div>
             <div className="collapsible-body" onClick={this.props.renderOtr}><a>Otros</a></div>

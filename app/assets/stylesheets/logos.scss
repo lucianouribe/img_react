@@ -1,3 +1,4 @@
+// Software icons
 .logos {
   display: inline-flex;
 }
@@ -19,4 +20,16 @@
 }
 .illustrator {
   background-image: url(asset_path("illustrator.png"));
+}
+// Collapsible Header Icons
+.teapot {
+  background-image: url(asset_path("teapot_silouete.svg"));
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 40px !important;
+  height: 40px !important;
+}
+.collapsible-header:hover .teapot {
+  background-image: url(asset_path("teapot.png"));
 }

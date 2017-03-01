@@ -48,7 +48,7 @@ class Main extends Component {
   render() {
     return (
       <div>
-      <Navbar />
+        <Navbar />
         <div className="col s12 m2">
           <Dashboard
               convertSlide={this.convertSlide}

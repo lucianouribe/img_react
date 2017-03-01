@@ -11,7 +11,7 @@ class Slider extends Component {
     }
 
     this.toggleCard = this.toggleCard.bind(this);
-    this.showMeThePic = this.showMeThePic.bind(this);
+    // this.showMeThePic = this.showMeThePic.bind(this);
 
   }
 
@@ -73,16 +73,16 @@ class Slider extends Component {
 
 // {Object.key(this.showMeThePic)}
 
-  showMeThePic() {
-    // console.log(this.props.details.id.length);
-    console.log(this.props.details);
-    const info = this.props.details
-
-    for(var i = 0; i < info.id.length; i++) {
-      console.log(info.commentsPerPic[i]);
-      return (<div className="carousel-item" data-info={info.commentsPerPic[i]} id={info.id[i]}></div>)
-    }
-  }
+  // showMeThePic() {
+  //   // console.log(this.props.details.id.length);
+  //   console.log(this.props.details);
+  //   const info = this.props.details
+  //
+  //   for(var i = 0; i < info.id.length; i++) {
+  //     console.log(info.commentsPerPic[i]);
+  //     return (<div className="carousel-item" data-info={info.commentsPerPic[i]} id={info.id[i]}></div>)
+  //   }
+  // }
 
   // const fullNames = inventors.map( inventor => `${inventor.first} ${inventor.last}`);
 
@@ -98,7 +98,9 @@ class Slider extends Component {
           <div className="card-image waves-effect waves-block waves-light">
             <div className="prev detalles valign-wrapper"></div>
               <div id="detalles" className="carousel carousel-slider">
-                { this.showMeThePic(this.props.details)}
+                <div className="carousel-item" data-info={this.props.details.commentsPerPic[0]} id={this.props.details.id[0]}></div>
+                <div className="carousel-item" data-info={this.props.details.commentsPerPic[1]} id={this.props.details.id[1]}></div>
+                <div className="carousel-item" data-info={this.props.details.commentsPerPic[2]} id={this.props.details.id[2]}></div>
               </div>
             <div className="letter"></div>
             <div className="next valign-wrapper"></div>

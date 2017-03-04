@@ -32,7 +32,7 @@ class DashButtons extends Component {
       <div className="dash-buttons">
         <ul className="collapsible" data-collapsible="accordion">
           <li>
-            <div className="collapsible-header"><i className="material-icons">filter_drama</i>Panoramicos 360</div>
+            <div className="collapsible-header"><i className="world"></i>Panoramicos 360</div>
             <div className="collapsible-body"><a onClick={this.panodigital} >Digital</a></div>
             <div className="collapsible-body"><a onClick={this.props.panofotografia}>Fotografia</a></div>
             <div className="collapsible-body"><a onClick={this.panocombinados}>Combinados</a></div>
@@ -51,9 +51,9 @@ class DashButtons extends Component {
           </li>
           <li>
             <div className="collapsible-header"><i className="material-icons">filter_drama</i>Fotografia Productos</div>
-            <div className="collapsible-body"><a>Joyas</a></div>
-            <div className="collapsible-body"><a>Componentes</a></div>
-            <div className="collapsible-body"><a>Cuadros</a></div>
+            <div className="collapsible-body" onClick={this.props.renderJoy}><a>Joyas</a></div>
+            <div className="collapsible-body" onClick={this.props.renderComp}><a>Componentes</a></div>
+            <div className="collapsible-body" onClick={this.props.renderCua}><a>Cuadros</a></div>
           </li>
           <li>
             <div className="collapsible-header"><i className="material-icons">place</i>Fotografia Decorativa</div>

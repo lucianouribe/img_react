@@ -96,15 +96,13 @@ class Home extends Component {
           </div>
         </div>
         <div className="orange-bar"></div>
-        <div className="container third-section">
-        <div>
-          <h4 className='left last'>Mira mi portafolio...</h4>
+        <div className="third-section">
+          <div className="soft col s12 m4 offset-m4">
+            {this.softwares()}
+          </div>
+          <div className="third-stuff col s12 m4">
+          <h4 className='last'>Mira mi portafolio...</h4>
           <Link id="dos" className="ingresa" to='/main'>ingresa</Link>
-        </div>
-          <div className="">
-            <div className="soft right ">
-              {this.softwares()}
-            </div>
           </div>
         </div>
         <div className="wine-bar"></div>

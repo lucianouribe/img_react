@@ -13,6 +13,9 @@ class Dashboard extends Component {
               renderOtr={this.props.renderOtr}
               renderProd={this.props.renderProd}
               renderEsp={this.props.renderEsp}
+              renderJoy={this.props.renderJoy}
+              renderComp={this.props.renderComp}
+              renderCua={this.props.renderCua}
               />
         </aside>
       </div>

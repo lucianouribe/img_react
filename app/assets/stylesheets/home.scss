@@ -9,6 +9,8 @@
 }
 .third-section {
   display: inline-flex;
+  background-color: #723025;
+  width: 100%;
 }
 .slider .slides {
   background: none;
@@ -99,8 +101,10 @@
 }
 //carousel
 .soft {
-  width: 300px;
+  width: 380px;
   height: 450px;
+  // border: 1px solid #000;
+  margin-left: 50px;
 }
 // .soft .card {
 //   width: 300px;
@@ -122,7 +126,7 @@
 }
 .last {
   font-weight: 100;
-  color: #767A86;
+  color: #FDFFFD;
   margin: 50px 100px;
 }
 #dos {
@@ -131,4 +135,7 @@
   font-size: 3rem;
   padding: 30px 60px;
   border-radius: 8px;
+}
+.third-stuff {
+  margin-left: 30%;
 }

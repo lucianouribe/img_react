@@ -11,38 +11,51 @@ class Main extends Component {
     this.renderOtr = this.renderOtr.bind(this);
     this.renderProd = this.renderProd.bind(this);
     this.renderEsp = this.renderEsp.bind(this);
+    this.renderJoy = this.renderJoy.bind(this);
+    this.renderComp = this.renderComp.bind(this);
+    this.renderCua = this.renderCua.bind(this);
+    this.renderSomething = this.renderSomething.bind(this);
 
     this.state = {
       slideInfo: {}
     };
   }
+  
+  renderSomething(info) {
+    this.setState({
+      slideInfo: {info}
+    });
+  }
 
   renderOtr(e) {
     e.preventDefault();
-    console.log("this is renderOtr")
-    var renderOtr = Stuff.slideRenderOtr
-    console.log(renderOtr)
-    this.setState({
-      slideInfo: {renderOtr}
-    });
+    var info = Stuff.slideRenderOtr
+    this.renderSomething(info);
   }
   renderProd(e) {
     e.preventDefault();
-    console.log("this is renderProd")
-    var renderProd = Stuff.slideRenderProd
-    console.log(renderProd)
-    this.setState({
-      slideInfo: {renderProd}
-    });
+    var info = Stuff.slideRenderProd
+    this.renderSomething(info);
   }
   renderEsp(e) {
     e.preventDefault();
-    console.log("this is renderEsp")
-    var renderEsp = Stuff.slideRenderEsp
-    console.log(renderEsp)
-    this.setState({
-      slideInfo: {renderEsp}
-    });
+    var info = Stuff.slideRenderEsp
+    this.renderSomething(info);
+  }
+  renderJoy(e) {
+    e.preventDefault();
+    var info = Stuff.slideRenderEsp
+    this.renderSomething(info);
+  }
+  renderComp(e) {
+    e.preventDefault();
+    var info = Stuff.slideRenderEsp
+    this.renderSomething(info);
+  }
+  renderCua(e) {
+    e.preventDefault();
+    var info = Stuff.slideRenderEsp
+    this.renderSomething(info);
   }
 
   render() {
@@ -55,6 +68,9 @@ class Main extends Component {
               renderOtr={this.renderOtr }
               renderProd={this.renderProd }
               renderEsp={this.renderEsp }
+              renderJoy={this.renderJoy }
+              renderComp={this.renderComp }
+              renderCua={this.renderCua }
           />
         </div>
         <div className="row">

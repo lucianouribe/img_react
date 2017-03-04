@@ -33,3 +33,17 @@
 .collapsible-header:hover .teapot {
   background-image: url(asset_path("teapot.png"));
 }
+.collapsible-header:focus .teapot {
+  background-image: url(asset_path("teapot.png"));
+}
+.world {
+  background-image: url(asset_path("world_silouete.svg"));
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 40px !important;
+  height: 40px !important;
+}
+.collapsible-header:hover .world {
+  background-image: url(asset_path("world_icon.png"));
+}

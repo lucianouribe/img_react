@@ -5,27 +5,11 @@ class DashButtons extends Component {
 
   constructor() {
     super();
-    // this.panodigital = this.panodigital.bind(this);
-    // this.panocombinados = this.panocombinados.bind(this);
   }
 
   componentDidMount() {
     $('.collapsible').collapsible();
   }
-
-  // panodigital(e) {
-  //   e.preventDefault();
-  //   console.log("this is goToSlider")
-  //   const slide = {
-  //     num: 1,
-  //     name: "Panoramicos Digital",
-  //     id: ['D1', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7'],
-  //     commentsPerPic: ["AlteschGletcher | Switzerland", "Road in Bs | Argentina", "I dont Know", "Really, I dont", "How are you"],
-  //     description: "This is what you see behind the bars and blablablalbal"
-  //   }
-  //   console.log(slide)
-  //   this.props.convertSlide(slide);
-  // }
 
   render() {
     return(
@@ -33,9 +17,9 @@ class DashButtons extends Component {
         <ul className="collapsible" data-collapsible="accordion">
           <li>
             <div className="collapsible-header"><i className="world"></i>Panoramicos 360</div>
-            <div className="collapsible-body"><a onClick={this.panodigital} >Digital</a></div>
-            <div className="collapsible-body"><a onClick={this.props.panofotografia}>Fotografia</a></div>
-            <div className="collapsible-body"><a onClick={this.panocombinados}>Combinados</a></div>
+            <div className="collapsible-body" onClick={this.props.panodigital} >Digital</div>
+            <div className="collapsible-body" onClick={this.props.panofotografia}>Fotografia</div>
+            <div className="collapsible-body" onClick={this.props.panocombinados}>Combinados</div>
           </li>
           <li>
             <div className="collapsible-header"><i className="teapot"></i>Renders</div>
@@ -51,18 +35,18 @@ class DashButtons extends Component {
           </li>
           <li>
             <div className="collapsible-header"><i className="material-icons">filter_drama</i>Fotografia Productos</div>
-            <div className="collapsible-body" onClick={this.props.renderJoy}><a>Joyas</a></div>
-            <div className="collapsible-body" onClick={this.props.renderComp}><a>Componentes</a></div>
-            <div className="collapsible-body" onClick={this.props.renderCua}><a>Cuadros</a></div>
+            <div className="collapsible-body" onClick={this.props.fotosJoyas}><a>Joyas</a></div>
+            <div className="collapsible-body" onClick={this.props.fotosComp}><a>Componentes</a></div>
+            <div className="collapsible-body" onClick={this.props.fotosCuadros}><a>Cuadros</a></div>
           </li>
           <li>
             <div className="collapsible-header"><i className="material-icons">place</i>Fotografia Decorativa</div>
-            <div className="collapsible-body"><a>Detalles</a></div>
-            <div className="collapsible-body"><a>Paisajes</a></div>
-            <div className="collapsible-body"><a>Urbano</a></div>
-            <div className="collapsible-body"><a>Texturas</a></div>
-            <div className="collapsible-body"><a>Muelles</a></div>
-            <div className="collapsible-body"><a>Cuadrados</a></div>
+            <div className="collapsible-body" onClick={this.props.fotosDetalles}><a>Detalles</a></div>
+            <div className="collapsible-body" onClick={this.props.fotosPaisajes}><a>Paisajes</a></div>
+            <div className="collapsible-body" onClick={this.props.fotosUrbano}><a>Urbano</a></div>
+            <div className="collapsible-body" onClick={this.props.fotosTexturas}><a>Texturas</a></div>
+            <div className="collapsible-body" onClick={this.props.fotosMuelles}><a>Muelles</a></div>
+            <div className="collapsible-body" onClick={this.props.fotosCuadrados}><a>Cuadrados</a></div>
           </li>
           <li>
             <div className="collapsible-header"><i className="material-icons">whatshot</i>Libros</div>

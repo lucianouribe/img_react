@@ -26,6 +26,8 @@ class Main extends Component {
     this.mainRenderer = this.mainRenderer.bind(this);
     this.panoRenderer = this.panoRenderer.bind(this);
     this.panodigital = this.panodigital.bind(this);
+    this.panofotografia = this.panofotografia.bind(this);
+    this.panoradar = this.panoradar.bind(this);
 
     this.state = {
       slideInfo: {},
@@ -111,7 +113,19 @@ class Main extends Component {
 
   panodigital(e) {
     e.preventDefault();
-    var info = {name: 'Digital 360', address: "http://imagenes360.net"}
+    var info = {name: 'Digital 360', address: "http://imagenes360.net/tresde/"}
+    console.log(info)
+    this.panoRenderer(info);
+  }
+  panofotografia(e) {
+    e.preventDefault();
+    var info = {name: 'Fotografia 360', address: "http://imagenes360.net/panofoto/"}
+    console.log(info)
+    this.panoRenderer(info);
+  }
+  panoradar(e) {
+    e.preventDefault();
+    var info = {name: 'Aplicativo con radar', address: "http://imagenes360.net/radar/"}
     console.log(info)
     this.panoRenderer(info);
   }
@@ -151,6 +165,8 @@ class Main extends Component {
               fotosMuelles={this.fotosMuelles }
               fotosCuadrados={this.fotosCuadrados }
               panodigital={this.panodigital }
+              panofotografia={this.panofotografia }
+              panoradar={this.panoradar }
           />
         </div>
         <div className="row">

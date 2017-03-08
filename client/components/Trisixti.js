@@ -2,10 +2,12 @@ import React from 'react';
 
 class Trisixti extends React.Component {
 
+
+
+
   render() {
     return (
-      <div>
-        <p>{this.props.details.name}</p>
+      <div className="frame">
         <iframe src={this.props.details.address} seamless></iframe>
       </div>
     )

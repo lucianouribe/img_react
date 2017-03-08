@@ -22,6 +22,8 @@ class Dashboard extends Component {
               fotosMuelles={this.props.fotosMuelles}
               fotosCuadrados={this.props.fotosCuadrados}
               panodigital={this.props.panodigital}
+              panofotografia={this.props.panofotografia}
+              panoradar={this.props.panoradar}
               />
         </aside>
       </div>

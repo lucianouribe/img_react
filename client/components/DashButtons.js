@@ -19,7 +19,7 @@ class DashButtons extends Component {
             <div className="collapsible-header"><i className="world"></i>Panoramicos 360</div>
             <div className="collapsible-body" onClick={this.props.panodigital} >Digital</div>
             <div className="collapsible-body" onClick={this.props.panofotografia}>Fotografia</div>
-            <div className="collapsible-body" onClick={this.props.panocombinados}>Combinados</div>
+            <div className="collapsible-body" onClick={this.props.panoradar}>Radar</div>
           </li>
           <li>
             <div className="collapsible-header"><i className="teapot"></i>Renders</div>

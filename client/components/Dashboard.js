@@ -9,21 +9,8 @@ class Dashboard extends Component {
         <aside className="center">
           <Picture className="pic-compo"></Picture>
           <DashButtons
-              renderOtr={this.props.renderOtr}
-              renderProd={this.props.renderProd}
-              renderEsp={this.props.renderEsp}
-              fotosJoyas={this.props.fotosJoyas}
-              fotosComp={this.props.fotosComp}
-              fotosCuadros={this.props.fotosCuadros}
-              fotosDetalles={this.props.fotosDetalles}
-              fotosPaisajes={this.props.fotosPaisajes}
-              fotosUrbano={this.props.fotosUrbano}
-              fotosTexturas={this.props.fotosTexturas}
-              fotosMuelles={this.props.fotosMuelles}
-              fotosCuadrados={this.props.fotosCuadrados}
-              panodigital={this.props.panodigital}
-              panofotografia={this.props.panofotografia}
-              panoradar={this.props.panoradar}
+              infoSpongePanos={this.props.infoSpongePanos}
+              infoSpongeImages={this.props.infoSpongeImages}
               />
         </aside>
       </div>

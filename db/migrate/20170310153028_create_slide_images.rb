@@ -5,7 +5,6 @@ class CreateSlideImages < ActiveRecord::Migration[5.0]
       t.string :image, null: false
       t.string :commentsPerPic
       t.string :role, null: false
-      t.string :logo1
 
       t.timestamps
     end

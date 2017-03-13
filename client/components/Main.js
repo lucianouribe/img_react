@@ -23,11 +23,39 @@ class Main extends Component {
     this.infoSpongeAjax = this.infoSpongeAjax.bind(this);
     this.carruselStateSetter = this.carruselStateSetter.bind(this);
 
+    // crud actions for carrusel
+    this.addItem = this.addItem.bind(this);
+    this.editItem = this.editItem.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
+
+
     this.state = {
       slideInfo: {},
       description: '',
       whichOne: ''
     };
+  }
+
+
+  addItem(name, image, role, commentsPerPic) {
+    console.log('add item');
+    $.ajax({
+      url: '/api/slide_images',
+      type: 'POST',
+      dataType: 'JSON',
+      data: { name, image, role, commentsPerPic }
+    }).done( item => {
+      console.table(item)
+    }).fail( data => {
+      console.log(data)
+    })
+  }
+
+  editItem() {
+    console.log('edit item');
+  }
+  deleteItem() {
+    console.log('delete item');
   }
 
 // static images renderer
@@ -118,7 +146,7 @@ class Main extends Component {
     } else if(this.state.whichOne === "carrusel") {
       return (
         <ul>
-          {Object.keys(this.state.slideInfo).map(key => <Carrusel key={key} details={this.state.slideInfo[key]} description={this.state.description} />)}
+          {Object.keys(this.state.slideInfo).map(item => <Carrusel key={item} details={this.state.slideInfo[item]} description={this.state.description} addItem={this.addItem} editItem={this.editItem} deleteItem={this.deleteItem}/>)}
         </ul>
       );
     }

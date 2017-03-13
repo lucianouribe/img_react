@@ -17,7 +17,6 @@ images.uniq.each do |image_address|
               image: image_address,
               commentsPerPic: Faker::Beer.name,
               role: ['products', 'spaces', 'others'].sample,
-              logo1: ['water', 'air', 'earth', 'fire'].sample,
               )
   unless picture.save
     puts picture.errors.full_messages.to_sentence

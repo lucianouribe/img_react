@@ -1,3 +1,4 @@
+require 'pry'
 class Api::SlideImagesController < ApplicationController
   before_action :set_api_slide_image, only: [:show, :edit, :update, :destroy]
 
@@ -24,23 +25,25 @@ class Api::SlideImagesController < ApplicationController
   # POST /api/slide_images
   # POST /api/slide_images.json
   def create
+    # binding.pry
     @api_slide_image = SlideImage.new(api_slide_image_params)
 
     respond_to do |format|
       if @api_slide_image.save
-        format.json { render :show, status: :created, location: @api_slide_image }
+        format.json { render :show, status: :created }
       else
         format.json { render json: @api_slide_image.errors, status: :unprocessable_entity }
       end
     end
   end
 
+
   # PATCH/PUT /api/slide_images/1
   # PATCH/PUT /api/slide_images/1.json
   def update
     respond_to do |format|
       if @api_slide_image.update(api_slide_image_params)
-        format.json { render :show, status: :ok, location: @api_slide_image }
+        format.json { render :show, status: :ok }
       else
         format.json { render json: @api_slide_image.errors, status: :unprocessable_entity }
       end
@@ -60,11 +63,13 @@ class Api::SlideImagesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_api_slide_image
+      binding.pry
       @api_slide_image = SlideImage.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def api_slide_image_params
-      params.require(:slide_image).permit(:name, :image, :commentsPerPic, :role, :logo1)
+      # binding.pry
+      params.require(:slide_image).permit(:name, :image, :commentsPerPic, :role)
     end
 end

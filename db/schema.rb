@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 20170310153028) do
     t.string   "image",          null: false
     t.string   "commentsPerPic"
     t.string   "role",           null: false
-    t.string   "logo1"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end

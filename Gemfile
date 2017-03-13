@@ -13,6 +13,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'materialize-sass'
 gem 'react-rails'
 gem 'repack'
+gem 'faker'
 
 group :development, :test do
   gem 'pry'

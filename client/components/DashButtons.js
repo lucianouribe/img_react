@@ -17,9 +17,12 @@ class DashButtons extends Component {
     const panofotografia = {name: 'Fotografia 360', address: "http://imagenes360.net/panofoto/"};
     const panodigital = {name: 'Digital 360', address: "http://imagenes360.net/tresde/"};
 
-    const renderProd = Stuff.slideRenderProd;
-    const renderEsp = Stuff.slideRenderEsp;
-    const renderOtr = Stuff.slideRenderOtr;
+    // const renderProd = Stuff.slideRenderProd;
+    // const renderEsp = Stuff.slideRenderEsp;
+    // const renderOtr = Stuff.slideRenderOtr;
+    const productos = 'products';
+    const espacios = 'spaces';
+    const otros = 'others';
 
     const fotosJoyas = Stuff.slideFotosJoyas;
     const fotosComp = Stuff.slideFotosComp;
@@ -44,12 +47,12 @@ class DashButtons extends Component {
           </li>
           <li>
             <div className="collapsible-header"><i className="teapot"></i>Renders</div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeImages(e, renderProd)}><a>Productos</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeImages(e, renderEsp)}><a>Espacios</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeImages(e, renderOtr)}><a>Otros</a></div>
+            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, productos)}><a>Productos</a></div>
+            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, espacios)}><a>Espacios</a></div>
+            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, otros)}><a>Otros</a></div>
           </li>
           <li>
-            <div className="collapsible-header"><i className="material-icons">filter_drama</i>Fotografia Productos</div>
+            <div className="collapsible-header"><i className="bulb"></i>Fotografia Productos</div>
             <div className="collapsible-body" onClick={(e) => this.props.infoSpongeImages(e, fotosJoyas)}><a>Joyas</a></div>
             <div className="collapsible-body" onClick={(e) => this.props.infoSpongeImages(e, fotosComp)}><a>Componentes</a></div>
             <div className="collapsible-body" onClick={(e) => this.props.infoSpongeImages(e, fotosCuadros)}><a>Cuadros</a></div>

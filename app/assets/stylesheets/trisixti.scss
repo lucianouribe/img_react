@@ -1,9 +1,12 @@
 .frame {
   margin: 3rem auto;
   height: 600px !important;
-  border: 1px solid #000;
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 }
 .frame iframe {
   width: 100%;
   height: 100%;
+}
+iframe {
+  border: none;
 }

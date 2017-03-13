@@ -1,0 +1,1 @@
+json.partial! "api_slide_images/api_slide_image", api_slide_image: @api_slide_image

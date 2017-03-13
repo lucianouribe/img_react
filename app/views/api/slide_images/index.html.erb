@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Api Slide Images</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @api_slide_images.each do |api_slide_image| %>
+      <tr>
+        <td><%= link_to 'Show', api_slide_image %></td>
+        <td><%= link_to 'Edit', edit_api_slide_image_path(api_slide_image) %></td>
+        <td><%= link_to 'Destroy', api_slide_image, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Api Slide Image', new_api_slide_image_path %>

@@ -1,7 +1,7 @@
 module.exports = {
 
   slideRenderOtr: {
-    name: "Render Variados",
+    name: "Renders Variados",
     image: [
       'http://imagenes360.net/fotos/renders/otros/otros_01.JPG',
       'http://imagenes360.net/fotos/renders/otros/otros_02.JPG',
@@ -41,7 +41,7 @@ module.exports = {
     logo4: "illustrator"
   },
   slideRenderProd: {
-    name: "Render Productos",
+    name: "Renders Productos",
     image: [
       'http://imagenes360.net/fotos/renders/prod/productos_01.JPG',
       'http://imagenes360.net/fotos/renders/prod/productos_02.JPG',
@@ -93,7 +93,7 @@ module.exports = {
     logo4: "illustrator"
   },
   slideRenderEsp: {
-    name: "Render Espacios",
+    name: "Renders Espacios",
     image: [
       'http://imagenes360.net/fotos/renders/esp/espacios_01.JPG',
       'http://imagenes360.net/fotos/renders/esp/espacios_02.jpg',

@@ -21,7 +21,7 @@ class Main extends Component {
     this.renderPanoramics = this.renderPanoramics.bind(this);
 
     this.infoSpongeAjax = this.infoSpongeAjax.bind(this);
-    this.renderCarrusel = this.renderCarrusel.bind(this);
+    this.carruselStateSetter = this.carruselStateSetter.bind(this);
 
     this.state = {
       slideInfo: {},
@@ -59,6 +59,7 @@ class Main extends Component {
     this.renderImages(info);
   }
 
+// image information receiver, filters and dispatch
   infoSpongeAjax(e, info) {
      e.preventDefault();
      console.log(info)
@@ -67,18 +68,18 @@ class Main extends Component {
        type: 'GET',
        dataType: 'JSON'
      }).done ( data => {
-       console.log('this is the data')
-       // loop the database & pick the correct info
+       // loop the database & pick the specific info
        const theStuffForTheCarrusel = data.filter( filteredData => filteredData.role === info )
-       console.log(theStuffForTheCarrusel);
-       // select only the data with the specified role
-       this.renderCarrusel(theStuffForTheCarrusel, info);
+       console.table(theStuffForTheCarrusel);
+       // dispatch only the data with the specified role
+       this.carruselStateSetter(theStuffForTheCarrusel, info);
      }).fail ( data => {
        console.log(error)
      })
   }
 
-  renderCarrusel(stuff, info) {
+// sets state of the desired info
+  carruselStateSetter(stuff, info) {
     // console.log(stuff);
     // console.log(info);
     let newState;
@@ -100,7 +101,7 @@ class Main extends Component {
     });
   }
 
-// Main renderer
+// Main renderer selector
   mainRenderer(){
     if(this.state.whichOne === "carousel") {
       return (

@@ -18,7 +18,7 @@ module.exports = {
       'http://imagenes360.net/fotos/renders/otros/otros_13.jpg',
       'http://imagenes360.net/fotos/renders/otros/otros_14.jpg'
     ],
-    commentsPerPic: [
+    infopic: [
       "Pirañas | Luces Caústicas",
       "Piraña | Texturas",
       "Piraña",
@@ -64,7 +64,7 @@ module.exports = {
       'http://imagenes360.net/fotos/renders/prod/productos_19.JPG',
       'http://imagenes360.net/fotos/renders/prod/productos_20.JPG'
     ],
-    commentsPerPic: [
+    infopic: [
       "Piraña Berebere | Lámpara",
       "Piraña Berebere | Set Completo",
       "Top Case | Top Case para ATV",
@@ -112,7 +112,7 @@ module.exports = {
       'http://imagenes360.net/fotos/renders/esp/espacios_15.jpg',
       'http://imagenes360.net/fotos/renders/esp/espacios_16.jpg'
     ],
-    commentsPerPic: [
+    infopic: [
       "Apartamento Las Vegas | Salón",
       "Apartamento Las Vegas | Comedor",
       "Apartamento Las Vegas | Vista Superior",
@@ -156,7 +156,7 @@ module.exports = {
       'http://imagenes360.net/fotos/softwares/ajax.jpg',
       'http://imagenes360.net/fotos/softwares/rspec.png'
     ],
-    commentsPerPic: [
+    infopic: [
       "3D-Max | Software Modelado y Renders",
       "V-Ray | Software Renders",
       "Photoshop | Software Tratamiento Imágenes",
@@ -200,7 +200,7 @@ module.exports = {
       'http://imagenes360.net/fotos/renders/prod/productos_19.JPG',
       'http://imagenes360.net/fotos/renders/prod/productos_20.JPG'
     ],
-    commentsPerPic: [
+    infopic: [
       "Piraña Berebere | Lámpara",
       "Piraña Berebere | Set Completo",
       "Top Case | Top Case para ATV",
@@ -252,7 +252,7 @@ module.exports = {
       'http://imagenes360.net/fotos/renders/prod/productos_19.JPG',
       'http://imagenes360.net/fotos/renders/prod/productos_20.JPG'
     ],
-    commentsPerPic: [
+    infopic: [
       "Piraña Berebere | Lámpara",
       "Piraña Berebere | Set Completo",
       "Top Case | Top Case para ATV",
@@ -304,7 +304,7 @@ module.exports = {
       'http://imagenes360.net/fotos/renders/prod/productos_19.JPG',
       'http://imagenes360.net/fotos/renders/prod/productos_20.JPG'
     ],
-    commentsPerPic: [
+    infopic: [
       "Piraña Berebere | Lámpara",
       "Piraña Berebere | Set Completo",
       "Top Case | Top Case para ATV",
@@ -342,7 +342,7 @@ module.exports = {
       'http://imagenes360.net/fotos/renders/prod/productos_19.JPG',
       'http://imagenes360.net/fotos/renders/prod/productos_20.JPG'
     ],
-    commentsPerPic: [
+    infopic: [
       "Bar Móbil",
       "Despertador",
       "Servilletero",
@@ -365,7 +365,7 @@ module.exports = {
       'http://imagenes360.net/fotos/renders/prod/productos_19.JPG',
       'http://imagenes360.net/fotos/renders/prod/productos_20.JPG'
     ],
-    commentsPerPic: [
+    infopic: [
       "Bar Móbil",
       "Despertador",
       "Servilletero",
@@ -386,7 +386,7 @@ module.exports = {
       'http://imagenes360.net/fotos/renders/prod/productos_19.JPG',
       'http://imagenes360.net/fotos/renders/prod/productos_20.JPG'
     ],
-    commentsPerPic: [
+    infopic: [
       "Bar Móbil",
       "Despertador",
       "Servilletero",
@@ -407,7 +407,7 @@ module.exports = {
       'http://imagenes360.net/fotos/renders/prod/productos_19.JPG',
       'http://imagenes360.net/fotos/renders/prod/productos_20.JPG'
     ],
-    commentsPerPic: [
+    infopic: [
       "Bar Móbil",
       "Despertador",
       "Servilletero",
@@ -428,7 +428,7 @@ module.exports = {
       'http://imagenes360.net/fotos/renders/prod/productos_19.JPG',
       'http://imagenes360.net/fotos/renders/prod/productos_20.JPG'
     ],
-    commentsPerPic: [
+    infopic: [
       "Bar Móbil",
       "Despertador",
       "Servilletero",
@@ -449,7 +449,7 @@ module.exports = {
       'http://imagenes360.net/fotos/renders/prod/productos_19.JPG',
       'http://imagenes360.net/fotos/renders/prod/productos_20.JPG'
     ],
-    commentsPerPic: [
+    infopic: [
       "Bar Móbil",
       "Despertador",
       "Servilletero",

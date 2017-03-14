@@ -1,1 +1,0 @@
-json.partial! "api_stuffs/api_stuff", api_stuff: @api_stuff

@@ -12,10 +12,10 @@ images = ["http://pkmncards.com/wp-content/uploads/charizard-legendary-treasures
 "http://pkmncards.com/wp-content/uploads/seismitoad-ex-furious-fists-frf-106-ptcgo-1-312x441@2x.png"]
 
 images.uniq.each do |image_address|
-  picture = SlideImage.new(
+  picture = Carrusel.new(
               name: Faker::Pokemon.name,
               image: image_address,
-              commentsPerPic: Faker::Beer.name,
+              infopic: Faker::Beer.name,
               role: ['products', 'spaces', 'others'].sample,
               )
   unless picture.save

@@ -8,18 +8,25 @@ class Carrusel extends Component {
 
     this.state = {
       show: true,
-      frontState: true,
+      frontState: 'show',
       currentSlide: 0,
       data: this.props.details,
     }
 
+
     this.toggleCard = this.toggleCard.bind(this);
 
     this.frontOptions = this.frontOptions.bind(this);
-    this.frontBack = this.frontBack.bind(this);
-    this.toggleFront = this.toggleFront.bind(this);
+
+    this.addForm = this.addForm.bind(this);
+    this.addItem = this.addItem.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
 
+    this.editItem = this.editItem.bind(this);
+    this.editForm = this.editForm.bind(this);
+    this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
+
+    this.deleteItem = this.deleteItem.bind(this);
 
     this.showMeThePic = this.showMeThePic.bind(this);
     this.toggleNext = this.toggleNext.bind(this);
@@ -32,7 +39,6 @@ class Carrusel extends Component {
   }
 
   componentDidMount(){
-    $('.carousel').carousel({full_width: true});
     // Text of each picture
     $('.carousel-item').on('mouseenter', function() {
       var info = this.dataset.info || "";
@@ -48,7 +54,6 @@ class Carrusel extends Component {
   }
 
   componentDidUpdate(){
-    $('.carousel').carousel({full_width: true});
     // Text of each picture
     $('.carousel-item').on('mouseenter', function() {
       var info = this.dataset.info || "";
@@ -68,7 +73,7 @@ class Carrusel extends Component {
     const actualPic = this.state.currentSlide;
     const id = info[actualPic].id;
 
-    return (<img className="carousel-item" src={info[actualPic].image} data-info={info[actualPic].commentsPerPic} id={id} />)
+    return (<img className="carousel-item" src={info[actualPic].image} data-info={info[actualPic].infopic} id={id} />)
   }
 
   toggleNext() {
@@ -101,22 +106,11 @@ class Carrusel extends Component {
     // console.log(this.state.currentSlide)
   }
 
-  toggleFront() {
-    this.setState({ frontState: !this.state.frontState });
+  addItem() {
+    this.setState({ frontState: 'add' });
   }
 
-  handleSubmit(e) {
-    e.preventDefault();
-    let name = this.refs.name.value;
-    let image = this.refs.address.value;
-    let role = this.refs.role.value;
-    let commentsPerPic = this.refs.commentsPerPic.value;
-    this.props.addItem(name, image, commentsPerPic, role);
-    this.refs.imageForm.reset();
-    this.toggleFront();
-  }
-
-  frontBack() {
+  addForm() {
     return (
       <div>
         <form ref="imageForm" className="input-field">
@@ -125,9 +119,8 @@ class Carrusel extends Component {
             <span className="card-title">
               <input type="text" required ref='name'  placeholder="name" />
             </span>
-            <p><input type="text" ref="role" placeholder="role" required /></p>
             <p><input type="text" ref="address" placeholder="address" /></p>
-            <p><input type="text" ref="commentsPerPic" placeholder="Comments" required /></p>
+            <p><input type="text" ref="infopic" placeholder="Comments" required /></p>
           </div>
           <div className="card-action">
             <div type="submit" className="btn" onClick={this.handleSubmit}>submit</div>
@@ -137,8 +130,101 @@ class Carrusel extends Component {
     );
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    let name = this.refs.name.value;
+    let image = this.refs.address.value;
+    let infopic = this.refs.infopic.value;
+    let role = this.props.details[1].role;
+
+      $.ajax({
+        url: '/api/carrusels',
+        type: 'POST',
+        dataType: 'JSON',
+        data: { carrusel: {name, image, infopic, role} }
+      }).done( image => {
+        console.log(image)
+        this.refs.imageForm.reset();
+        this.setState({
+          data: [...this.state.data, image],
+          frontState: 'show'
+        })
+      }).fail( data => {
+        console.log(data)
+    })
+  }
+
+
+  editItem() {
+    this.setState({ frontState: 'edit' });
+  }
+
+  editForm() {
+    let image = this.props.details[this.state.currentSlide]
+    console.log(image);
+    return (
+      <div>
+        <form ref="imageForm" className="input-field">
+          <h4 className="center title">Add item</h4>
+          <div className="card-content">
+            <span className="card-title">
+              <input type="text" required ref='name'  placeholder="name" defaultValue={image.name}/>
+            </span>
+            <p><input type="text" ref="address" placeholder="address" defaultValue={image.image}/></p>
+            <p><input type="text" ref="infopic" placeholder="Picture Information" required defaultValue={image.infopic} /></p>
+            <p><input type="text" ref="role" placeholder="role" required defaultValue={image.role} /></p>
+          </div>
+          <div className="card-action">
+            <div type="submit" className="btn" onClick={this.handleSubmitEdit}>submit</div>
+          </div>
+        </form>
+      </div>
+    );
+  }
+
+  handleSubmitEdit(e) {
+    e.preventDefault();
+    let id = this.props.details[this.state.currentSlide].id
+    let name = this.refs.name.value;
+    let image = this.refs.address.value;
+    let infopic = this.refs.infopic.value;
+    let role = this.refs.role.value;
+
+      $.ajax({
+        url: `/api/carrusels/${id}`,
+        type: 'PUT',
+        dataType: 'JSON',
+        data: { carrusel: { name, image, infopic, role} }
+      }).done( image => {
+        console.log(image)
+        this.refs.imageForm.reset();
+        this.setState({
+          data: [...this.state.data, image],
+          frontState: 'show'
+        })
+      }).fail( data => {
+        console.log(data)
+    })
+  }
+  
+  deleteItem(e) {
+    e.preventDefault();
+    let id = this.props.details[this.state.currentSlide].id
+      $.ajax({
+        url: `/api/carrusels/${id}`,
+        type: 'DELETE',
+        dataType: 'JSON'
+      }).done( data => {
+        this.setState({
+          currentSlide: 0
+        })
+      }).fail( data => {
+        console.log(data)
+    })
+  }
+
   frontOptions() {
-    if(this.state.frontState) {
+    if(this.state.frontState === 'show') {
       return(
         <div className="card-image waves-effect waves-block waves-light">
           <div className="prev detalles valign-wrapper" onClick={this.togglePrev}></div>
@@ -149,8 +235,10 @@ class Carrusel extends Component {
           <div className="next detalles valign-wrapper" onClick={this.toggleNext}></div>
         </div>
       );
+    } else if (this.state.frontState === 'add') {
+      return(this.addFrom());
     } else {
-      return(this.frontBack());
+      return(this.editForm())
     }
   }
 
@@ -164,9 +252,9 @@ class Carrusel extends Component {
           <div className="card-content">
             <span className="card-title activator grey-text text-darken-4">{this.props.details[actualPic].name}
               <div type="button" onClick={this.toggleCard} className="hamburger right"></div>
-              <div type="button" onClick={this.toggleFront}><i className="small material-icons">add</i></div>
-              <div type="button" onClick={this.props.editItem}><i className="small material-icons">mode_edit</i></div>
-              <div type="button" onClick={this.props.deleteItem}><i className="small material-icons">delete</i></div>
+              <div type="button" onClick={this.addItem}><i className="small material-icons">add</i></div>
+              <div type="button" onClick={this.editItem}><i className="small material-icons">mode_edit</i></div>
+              <div type="button" onClick={this.deleteItem}><i className="small material-icons">delete</i></div>
             </span>
           </div>
         </div>

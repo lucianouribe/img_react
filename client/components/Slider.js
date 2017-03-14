@@ -69,7 +69,7 @@ class Slider extends Component {
     });
   }
 
-// <div className="carousel-item" data-info={this.props.details.commentsPerPic[0]} id={this.props.details.id[0]}></div>
+// <div className="carousel-item" data-info={this.props.details.infopic[0]} id={this.props.details.id[0]}></div>
 
 // {Object.key(this.showMeThePic)}
 
@@ -79,15 +79,15 @@ class Slider extends Component {
   //   const info = this.props.details
   //
   //   for(var i = 0; i < info.id.length; i++) {
-  //     console.log(info.commentsPerPic[i]);
-  //     return (<div className="carousel-item" data-info={info.commentsPerPic[i]} id={info.id[i]}></div>)
+  //     console.log(info.infopic[i]);
+  //     return (<div className="carousel-item" data-info={info.infopic[i]} id={info.id[i]}></div>)
   //   }
   // }
 
   // const fullNames = inventors.map( inventor => `${inventor.first} ${inventor.last}`);
 
 
-// {Object.keys(this.props.details).map(key => <div className="carousel-item" data-info={this.props.details.commentsPerPic[key]} id={this.props.details.id[key]}></div>)}
+// {Object.keys(this.props.details).map(key => <div className="carousel-item" data-info={this.props.details.infopic[key]} id={this.props.details.id[key]}></div>)}
 
 // {console.log(Object.keys(this.props.details.id.length).map(key => key))}
 
@@ -98,9 +98,9 @@ class Slider extends Component {
           <div className="card-image waves-effect waves-block waves-light">
             <div className="prev detalles valign-wrapper"></div>
               <div id="detalles" className="carousel carousel-slider">
-                <div className="carousel-item" data-info={this.props.details.commentsPerPic[0]} id={this.props.details.id[0]}></div>
-                <div className="carousel-item" data-info={this.props.details.commentsPerPic[1]} id={this.props.details.id[1]}></div>
-                <div className="carousel-item" data-info={this.props.details.commentsPerPic[2]} id={this.props.details.id[2]}></div>
+                <div className="carousel-item" data-info={this.props.details.infopic[0]} id={this.props.details.id[0]}></div>
+                <div className="carousel-item" data-info={this.props.details.infopic[1]} id={this.props.details.id[1]}></div>
+                <div className="carousel-item" data-info={this.props.details.infopic[2]} id={this.props.details.id[2]}></div>
               </div>
             <div className="letter"></div>
             <div className="next valign-wrapper"></div>

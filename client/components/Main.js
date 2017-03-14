@@ -24,7 +24,7 @@ class Main extends Component {
     this.carruselStateSetter = this.carruselStateSetter.bind(this);
 
     // crud actions for carrusel
-    this.addItem = this.addItem.bind(this);
+    // this.addItem = this.addItem.bind(this);
     this.editItem = this.editItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
 
@@ -37,19 +37,7 @@ class Main extends Component {
   }
 
 
-  addItem(name, image, role, commentsPerPic) {
-    console.log('add item');
-    $.ajax({
-      url: '/api/slide_images',
-      type: 'POST',
-      dataType: 'JSON',
-      data: { name, image, role, commentsPerPic }
-    }).done( item => {
-      console.table(item)
-    }).fail( data => {
-      console.log(data)
-    })
-  }
+
 
   editItem() {
     console.log('edit item');
@@ -92,7 +80,7 @@ class Main extends Component {
      e.preventDefault();
      console.log(info)
      $.ajax({
-       url: '/api/slide_images',
+       url: '/api/carrusels',
        type: 'GET',
        dataType: 'JSON'
      }).done ( data => {
@@ -146,7 +134,7 @@ class Main extends Component {
     } else if(this.state.whichOne === "carrusel") {
       return (
         <ul>
-          {Object.keys(this.state.slideInfo).map(item => <Carrusel key={item} details={this.state.slideInfo[item]} description={this.state.description} addItem={this.addItem} editItem={this.editItem} deleteItem={this.deleteItem}/>)}
+          {Object.keys(this.state.slideInfo).map(item => <Carrusel key={item} details={this.state.slideInfo[item]} description={this.state.description} />)}
         </ul>
       );
     }

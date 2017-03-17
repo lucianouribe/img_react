@@ -4,12 +4,12 @@ export const refreshLogin = (user = null) => {
       dispatch(setUser(user))
     } else {
       $.ajax({
-        url: '/users/info',
+        url: 'api/users/info',
         type: 'GET',
         dataType: 'JSON'
       }).done( user => {
-        console.log('you have hitted setuser');
-        console.log(user);
+        // console.log('you have hitted setuser');
+        // console.log(user);
         dispatch(setUser(user));
       }).fail( err => {
         console.log(err)
@@ -19,7 +19,7 @@ export const refreshLogin = (user = null) => {
 }
 
 export const logout = (router) => {
-  console.log('logout dispatcher arrived');
+  // console.log('logout dispatcher arrived');
   return (dispatch) => {
     $.ajax({
       url: '/users/sign_out',

@@ -24,7 +24,7 @@ class SignIn extends React.Component {
     }).done( user => {
       console.log('loged in or sign in')
       this.props.dispatch(refreshLogin(user));
-      this.props.history.push("/")
+      this.props.history.push("/main")
     }).fail( err => {
       console.log('something failed with the log in')
       console.log(err);

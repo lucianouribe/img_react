@@ -3,6 +3,7 @@ class Api::UsersController < ApplicationController
 
   def info
     unless current_user
+      binding.pry
       render json: {}
     end
   end

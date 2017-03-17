@@ -9,6 +9,8 @@ class SignUp extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
+
+
   handleSubmit(e) {
     e.preventDefault();
     let { first_name, last_name, email, password, password_confirmation } = this.refs;
@@ -27,11 +29,11 @@ class SignUp extends React.Component {
       data: user,
       dataType: 'JSON'
     }).done( user => {
-      console.log('till here it works');
+      // console.log('till here it works');
       this.props.dispatch(refreshLogin(user));
       this.props.history.push('/');
     }).fail( err => {
-      console.log('something failed in the sign up');
+      // console.log('something failed in the sign up');
       console.log(err);
       this.props.history.push('/');
     });

@@ -82,27 +82,29 @@ class Main extends Component {
 
 // image information receiver, filters and dispatch
   infoSpongeAjax(e, info) {
-     e.preventDefault();
-     console.log(info)
-     $.ajax({
-       url: '/api/carrusels',
-       type: 'GET',
-       dataType: 'JSON'
-     }).done ( data => {
-       // loop the database & pick the specific info
-       const theStuffForTheCarrusel = data.filter( filteredData => filteredData.role === info )
-       console.table(theStuffForTheCarrusel);
-       // dispatch only the data with the specified role
-       this.carruselStateSetter(theStuffForTheCarrusel, info, true);
-     }).fail ( data => {
-       console.log(error)
-     })
+    e.preventDefault();
+      this.setState({reset: true}); // si lo reseteo aca, funciona si esta afuera y adentro (pero la data sigue la del primer clickeado)
+      $.ajax({
+        url: '/api/carrusels',
+        type: 'GET',
+        dataType: 'JSON'
+      }).done ( data => {
+        // loop the database & pick the specific info
+        const theStuffForTheCarrusel = data.filter( filteredData => filteredData.role === info )
+       //  console.table(theStuffForTheCarrusel);
+        // dispatch only the data with the specified role
+        this.carruselStateSetter(theStuffForTheCarrusel, info);
+      }).fail ( data => {
+        console.log(error)
+      })
   }
 
 // sets state of the desired info
-  carruselStateSetter(stuff, info, reset) {
-    // console.log(stuff);
-    // console.log(info);
+  carruselStateSetter(stuff, info) {
+    console.log("stuff");
+    console.log({stuff});
+    console.log("info");
+    console.log(info);
     let newState;
     switch (info) {
         case 'products':
@@ -119,7 +121,7 @@ class Main extends Component {
       slideInfo: { stuff },
       whichOne: "carrusel",
       description: newState,
-      reset: reset,
+      // reset: true // si esta activado funciona desde adentro pero la data sigue con el primer clickeado
     });
   }
 

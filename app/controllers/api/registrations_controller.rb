@@ -1,8 +1,8 @@
 class Api::RegistrationsController < Devise::RegistrationsController
   skip_before_action :verify_authenticity_token
-  before_action :authenticate_user!
-  protect_from_forgery with: :exception
-  clear_respond_to
+  # before_action :authenticate_user! # si se pone skip, ya cuando se hace un sign up, el usuario no entra
+  # protect_from_forgery with: :exception
+  # clear_respond_to
   respond_to :json
 
   private

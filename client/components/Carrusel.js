@@ -36,7 +36,6 @@ class Carrusel extends Component {
 
     this.canSee = this.canSee.bind(this);
     this.menuButtons = this.menuButtons.bind(this);
-    this.makeTheCero = this.makeTheCero.bind(this);
 
   }
 
@@ -58,11 +57,6 @@ class Carrusel extends Component {
       )
     }
   }
-
-  makeTheCero() {
-    this.setState({currentSlide: 0 })
-  }
-
 
   toggleCard() {
     this.setState({ show: !this.state.show });
@@ -88,7 +82,6 @@ class Carrusel extends Component {
   componentDidUpdate(){
     // reset current slide to cero!
     if(this.props.reset == true) {
-      console.log('here')
       this.setState({
         currentSlide: 0
       })
@@ -108,12 +101,8 @@ class Carrusel extends Component {
     });
   }
 
-  componentWillMount() {
-
-  }
 
   showMeThePic() {
-    console.log(this.state.currentSlide)
     const info = this.props.details
     const actualPic = this.state.currentSlide;
     const id = info[actualPic].id;
@@ -123,11 +112,10 @@ class Carrusel extends Component {
 
   toggleNext() {
     // console.log("this is toggle next");
-    // console.log(this.state.data);
-    const data = this.state.data;
-    const current = this.state.currentSlide;
+    var data = this.props.details;
+    var current = this.state.currentSlide;
     // console.log(current)
-    let next = current + 1;
+    var next = current + 1;
     if (next > data.length - 1) {
       next = 0;
     }
@@ -139,8 +127,7 @@ class Carrusel extends Component {
 
   togglePrev() {
     // console.log("this is toggle prev");
-    // console.log(this.state);
-    var data = this.state.data;
+    var data = this.props.details;
     var current = this.state.currentSlide;
     var prev = current - 1;
     if (prev < 0) {
@@ -188,14 +175,19 @@ class Carrusel extends Component {
         type: 'POST',
         dataType: 'JSON',
         data: { carrusel: {name, image, infopic, role} }
-      }).done( image => {
-        console.log(image)
+      }).done( data => {
+        console.log("and hitting here?")
+        console.log(data)
         this.refs.imageForm.reset();
+        this.props.details.push(image)
+        console.log("this.props.details")
+        console.log(this.props.details)
         this.setState({
-          data: [...this.state.data, image],
+          data: [...this.props.details, image],
           frontState: 'show'
         })
       }).fail( data => {
+        console.log("its hitting here?")
         console.log(data)
     })
   }
@@ -207,7 +199,7 @@ class Carrusel extends Component {
 
   editForm() {
     let image = this.props.details[this.state.currentSlide]
-    console.log(image);
+    // console.log(image);
     return (
       <div>
         <form ref="imageForm" className="input-field">
@@ -242,12 +234,13 @@ class Carrusel extends Component {
         dataType: 'JSON',
         data: { carrusel: { name, image, infopic, role} }
       }).done( image => {
-        console.log(image)
+        // console.log(image)
         this.refs.imageForm.reset();
         this.setState({
-          data: [...this.state.data, image],
+          data: [image, ...this.props.details],
           frontState: 'show'
         })
+        console.log(this.state.data);
       }).fail( data => {
         console.log(data)
     })

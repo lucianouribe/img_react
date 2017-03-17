@@ -91,7 +91,7 @@ class Main extends Component {
       }).done ( data => {
         // loop the database & pick the specific info
         const theStuffForTheCarrusel = data.filter( filteredData => filteredData.role === info )
-       //  console.table(theStuffForTheCarrusel);
+        console.table(theStuffForTheCarrusel);
         // dispatch only the data with the specified role
         this.carruselStateSetter(theStuffForTheCarrusel, info);
       }).fail ( data => {
@@ -101,10 +101,6 @@ class Main extends Component {
 
 // sets state of the desired info
   carruselStateSetter(stuff, info) {
-    console.log("stuff");
-    console.log({stuff});
-    console.log("info");
-    console.log(info);
     let newState;
     switch (info) {
         case 'products':
@@ -142,7 +138,7 @@ class Main extends Component {
     } else if(this.state.whichOne === "carrusel") {
       return (
         <ul>
-          {Object.keys(this.state.slideInfo).map(item => <Carrusel key={item} details={this.state.slideInfo[item]} description={this.state.description} reset={this.state.reset} reseter={this.reseter}/>)}
+          {Object.keys(this.state.slideInfo).map(item => <Carrusel key={item} details={this.state.slideInfo[item]} description={this.state.description} reset={this.state.reset} reseter={this.reseter} infoSponge={this.infoSpongeAjax}/>)}
         </ul>
       );
     }
@@ -169,7 +165,8 @@ class Main extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    slideInfo: state.slideInfo
   }
 }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Picture from './Picture';
 import { connect } from 'react-redux';
+// import { carruselStateSetter } from './main';
 
 
 class Carrusel extends Component {
@@ -11,8 +12,8 @@ class Carrusel extends Component {
     this.state = {
       show: true,
       frontState: 'show',
-      data: this.props.details,
-      currentSlide: 0
+      currentSlide: 0,
+      data: this.props.details
     }
 
     this.toggleCard = this.toggleCard.bind(this);
@@ -178,14 +179,12 @@ class Carrusel extends Component {
       }).done( data => {
         console.log("and hitting here?")
         console.log(data)
-        this.refs.imageForm.reset();
-        this.props.details.push(image)
-        console.log("this.props.details")
-        console.log(this.props.details)
+        console.log(role)
         this.setState({
-          data: [...this.props.details, image],
+          data: [data, ...this.state.data],
           frontState: 'show'
         })
+        this.props.infoSponge(e, role)
       }).fail( data => {
         console.log("its hitting here?")
         console.log(data)
@@ -233,14 +232,18 @@ class Carrusel extends Component {
         type: 'PUT',
         dataType: 'JSON',
         data: { carrusel: { name, image, infopic, role} }
-      }).done( image => {
-        // console.log(image)
+      }).done( data => {
         this.refs.imageForm.reset();
         this.setState({
-          data: [image, ...this.props.details],
+          data: [...data, ...this.state.data],
           frontState: 'show'
         })
-        console.log(this.state.data);
+        // let yes = this.state.data;
+        // index = yes.findIndex( o => o.id === action.data.id)
+        // yes[index] = action.data
+        // return [...yes]
+        
+        this.props.infoSponge(e, role)
       }).fail( data => {
         console.log(data)
     })

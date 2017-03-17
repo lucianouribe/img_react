@@ -14,9 +14,19 @@ gem 'materialize-sass'
 gem 'react-rails'
 gem 'repack'
 gem 'faker'
+gem 'devise', '~> 4.2.0'
+gem 'font-awesome-rails'
+# secret stuff
+gem 'dotenv'
+gem 'cloudinary'
+gem 'paperclip-cloudinary'
+gem 'attachinary'
+gem 'paperclip'
 
 group :development, :test do
   gem 'pry'
+  # secret stuff
+  gem 'dotenv-rails'
 end
 
 group :development do

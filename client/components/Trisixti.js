@@ -32,19 +32,23 @@ class Trisixti extends React.Component {
               </div>
             <div className="letter"></div>
           </div>
-          <div className="card-content">
-            <span className="card-title activator grey-text text-darken-4">{this.props.details.name}<div type="button" onClick={this.toggleCard} className="hamburger right"></div></span>
+          <div className="card-info">
+            <h5 className="card-title left">{this.props.details.name}</h5>
+            <span>
+              <i type="button" onClick={this.toggleCard} className="hamburger right"></i>
+            </span>
           </div>
         </div>
       </div>
     )
   }
 
+
   behind() {
     return(
       <div>
         <div className="card-reveal">
-          <span className="card-title grey-text text-darken-4">{this.props.details.name}<i type="button" onClick={this.toggleCard} className="material-icons right">close</i></span>
+          <span className="card-title grey-text text-darken-4"><i type="button" onClick={this.toggleCard} className="close material-icons right">close</i><h5>{this.props.details.name}</h5></span>
           <p>{this.props.details.description}</p>
           <div className="logos">
           <div className={this.props.details.logo1}></div>

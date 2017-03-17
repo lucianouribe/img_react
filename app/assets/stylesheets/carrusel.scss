@@ -1,34 +1,69 @@
-
-.hamburger {
-  background-image: url(asset_path("hamburger.svg"));
-  background-repeat: no-repeat;
-  background-size: 32px;
-  background-position: center;
-  width: 40px !important;
-  height: 40px !important;
-}
-
-.hamburger:hover {
-  background-image: url(asset_path("hamburger_h.svg"));
-}
-
+// carusel size
 .card {
-	margin: 3rem auto !important;
+  margin-top: 3rem;
 }
+// the picture holder
+.carousel {
+
+}
+.carruholder {
+  padding: 0;
+  height: 70vh;
+}
+// the picture itself
+.carruslide {
+  width: auto;
+  height: 70vh;
+}
+// .carruslide img {
+//   width: 100%;
+//   height: 100%;
+// }
+
+@media only screen and (max-width: 600px) {
+  .carruholder {
+    padding: 0;
+    height: 300px !important;
+  }
+  // the picture itself
+  .carruslide {
+    max-width: 600px;
+    max-height: 300px;
+  }
+}
+
 .card-reveal {
   margin-top: 3rem;
   padding: 20px;
   background: #fff;
   box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
 }
-// .card-content {
-// 	height: 100px;
-// }
 
-.card .carousel {
-  // max-width: auto;
-  min-height: 550px	!important;
+// picture options menu (card content)
+.card-info {
+  padding: 10px 30px;
+  height: 70px;
+  width: 100%;
+  display: block;
 }
+.pic-options {
+  margin-left: 15px;
+  margin-top: 10px;
+}
+.card-info .hamburger {
+  margin-top: 10px;
+}
+
+@media only screen and (max-width: 600px) {
+  .card-info {
+    padding: 10px;
+  }
+}
+
+
+
+
+// carrusel functionality, buttons left right
 .next {
 	position: absolute;
 	right: 0;
@@ -41,11 +76,13 @@
 	width: 80px;
 	z-index: 1000 !important;
 }
+
 .next:hover {
 	background-color: rgba(255, 255, 255, 0.3);
 	background-image: url(asset_path("right_o.svg"));
 	transform: scale(1.1);
 }
+
 .prev {
 	position: absolute;
 	left: 0;
@@ -58,23 +95,30 @@
 	width: 80px;
 	z-index: 1000 !important;
 }
+
 .prev:hover {
 	background-color: rgba(255, 255, 255, 0.3);
 	background-image: url(asset_path("left_o.svg"));
 	transform: scale(1.1);
 }
+
+// the info from every picture
 .letter {
 	width: 100%;
 	text-align: center;
 	padding: 15px;
-	background-color: rgba(255, 255, 255, 0.2);
+	background-color: rgba(255, 255, 255, 0.3);
 	position: absolute;
 	bottom: 0;
 	z-index: 900;
 	display: none;
 	pointer-events:none;
+  font-size: 1rem;
+  font-weight: 300;
+  letter-spacing: 1px;
 }
 
+// background picture (actually the image)
 .carousel #D1, #D2, #D3, #D4, #D5, #D6, #D7, #D8, #D9, #D10,
           #D11, #D12, #D13, #D14, #D15, #D16, #D17, #D18, #D19, #D20,
           #D21, #D22, #D23, #D24, #D25, #D26, #D27, #D28, #D29, #D30
@@ -82,4 +126,24 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
+}
+// description
+.card-reveal h5 {
+  margin-top: 10px;
+  color: #767A86;
+}
+
+// add & edit item form
+.input-field {
+  padding-top: 15px;
+}
+.input-field h5 {
+  margin-top: 10px;
+  color: #767A86;
+}
+.close {
+  color: #767A86;
+  cursor: pointer;
+  margin-top: 10px;
+  margin-right: 30px;
 }

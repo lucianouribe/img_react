@@ -1,0 +1,10 @@
+========================
+Gama Colores
+========================
+
+#ff6d00 anaranjado
+#fff blanco
+#000 negro
+#6b6b6b gris
+#8E864B verde
+#9DD0FF azulito

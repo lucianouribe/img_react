@@ -1,17 +1,26 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
+import { connect } from 'react-redux';
 
 
 class App extends React.Component {
 
+  constructor(props) {
+    super(props);
+  }
+
+
   render(){
     return (
       <div>
-          { this.children }
+        { this.props.children }
       </div>
     );
   }
 
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return { user: state.user }
+}
+
+export default connect(mapStateToProps)(App);

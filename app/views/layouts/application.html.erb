@@ -3,19 +3,20 @@
   <head>
     <title>Imagenes 360</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
-  <% if Rails.env.development? %>
-    <script src="http://localhost:3808/webpack-dev-server.js"></script>
-  <% end %>
-</head>
+    <% if Rails.env.development? %>
+      <script src="http://localhost:3808/webpack-dev-server.js"></script>
+    <% end %>
+  </head>
 
   <body>
     <%= yield %>
-  <%= javascript_include_tag *webpack_asset_paths('application') %>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <%= javascript_include_tag *webpack_asset_paths('application') %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-</body>
+  </body>
 </html>

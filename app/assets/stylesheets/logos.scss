@@ -1,4 +1,20 @@
-// Software icons
+// Hamburger
+
+.hamburger {
+  background-image: url(asset_path("hamburger.svg"));
+  background-repeat: no-repeat;
+  background-size: 32px;
+  background-position: center;
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.hamburger:hover {
+  background-image: url(asset_path("hamburger_h.svg"));
+}
+
+// Software Icons
+
 .logos {
   display: inline-flex;
 }
@@ -21,7 +37,9 @@
 .illustrator {
   background-image: url(asset_path("illustrator.png"));
 }
-// Collapsible Header Icons
+
+// Collapsible Dashboard Icons
+
 .teapot {
   background-image: url(asset_path("teapot_silouete.svg"));
   background-repeat: no-repeat;
@@ -30,12 +48,11 @@
   width: 40px !important;
   height: 40px !important;
 }
+
 .collapsible-header:hover .teapot {
   background-image: url(asset_path("teapot.png"));
 }
-.collapsible-header:focus .teapot {
-  background-image: url(asset_path("teapot.png"));
-}
+
 
 .world {
   background-image: url(asset_path("world_silouete.svg"));
@@ -45,6 +62,7 @@
   width: 40px !important;
   height: 40px !important;
 }
+
 .collapsible-header:hover .world {
   background-image: url(asset_path("world_icon.png"));
 }
@@ -57,6 +75,7 @@
   width: 40px !important;
   height: 40px !important;
 }
+
 .collapsible-header:hover .bulb {
   background-image: url(asset_path("bombillo_icon_II.png"));
 }

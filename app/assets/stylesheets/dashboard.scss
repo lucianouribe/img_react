@@ -1,11 +1,21 @@
-.collapsible {
-  margin-top: 0;
-  border: none;
-}
 .dashboard {
   height: 92vh;
   background: rgba(0, 0, 0, 0.3);
 }
+
+@media only screen and (max-width: 992px) {
+  .dashboard {
+    display: none !important;
+  }
+}
+
+// botones dashboard
+.collapsible {
+  margin-top: 0;
+  border: none;
+}
+
+//botones principales (los que tienen iconos)
 .collapsible-header {
   background: rgba(0, 0, 0, 0.3);
   // background: none;
@@ -18,6 +28,8 @@
 .collapsible-header:hover {
   background-color: rgba(255, 255, 255, 0.5);
 }
+
+// botones que aparecen y no tienen iconos
 .collapsible-body {
   margin: 5px !important;
   padding: 5px !important;

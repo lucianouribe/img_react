@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Dashboard from './Dashboard';
 import Carousel from './Carousel';
 import Carrusel from './Carrusel';
@@ -28,16 +29,20 @@ class Main extends Component {
     this.editItem = this.editItem.bind(this);
     this.deleteItem = this.deleteItem.bind(this);
 
+    this.reseter = this.reseter.bind(this);
+
 
     this.state = {
       slideInfo: {},
       description: '',
-      whichOne: ''
+      whichOne: '',
+      reset: true
     };
   }
 
-
-
+  reseter(){
+    this.setState({reset: false})
+  }
 
   editItem() {
     console.log('edit item');
@@ -88,14 +93,14 @@ class Main extends Component {
        const theStuffForTheCarrusel = data.filter( filteredData => filteredData.role === info )
        console.table(theStuffForTheCarrusel);
        // dispatch only the data with the specified role
-       this.carruselStateSetter(theStuffForTheCarrusel, info);
+       this.carruselStateSetter(theStuffForTheCarrusel, info, true);
      }).fail ( data => {
        console.log(error)
      })
   }
 
 // sets state of the desired info
-  carruselStateSetter(stuff, info) {
+  carruselStateSetter(stuff, info, reset) {
     // console.log(stuff);
     // console.log(info);
     let newState;
@@ -113,11 +118,12 @@ class Main extends Component {
     this.setState({
       slideInfo: { stuff },
       whichOne: "carrusel",
-      description: newState
+      description: newState,
+      reset: reset,
     });
   }
 
-// Main renderer selector
+ // Main renderer selector
   mainRenderer(){
     if(this.state.whichOne === "carousel") {
       return (
@@ -134,7 +140,7 @@ class Main extends Component {
     } else if(this.state.whichOne === "carrusel") {
       return (
         <ul>
-          {Object.keys(this.state.slideInfo).map(item => <Carrusel key={item} details={this.state.slideInfo[item]} description={this.state.description} />)}
+          {Object.keys(this.state.slideInfo).map(item => <Carrusel key={item} details={this.state.slideInfo[item]} description={this.state.description} reset={this.state.reset} reseter={this.reseter}/>)}
         </ul>
       );
     }
@@ -144,15 +150,13 @@ class Main extends Component {
     return (
       <div>
         <Navbar />
-        <div className="col s12 m2">
-          <Dashboard
-              infoSpongePanos={this.infoSpongePanos }
-              infoSpongeImages={this.infoSpongeImages }
-              infoSpongeAjax={this.infoSpongeAjax  }
-          />
-        </div>
+        <Dashboard className="row"
+            infoSpongePanos={this.infoSpongePanos }
+            infoSpongeImages={this.infoSpongeImages }
+            infoSpongeAjax={this.infoSpongeAjax  }
+        />
         <div className="row">
-          <div className="col s12 m8 offset-m1">
+          <div className="col s10 m10 l8 offset-l1 offset-m1 offset-s1">
             {this.mainRenderer()}
           </div>
         </div>
@@ -161,4 +165,10 @@ class Main extends Component {
   }
 }
 
-export default Main;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user
+  }
+}
+
+export default connect(mapStateToProps)(Main);

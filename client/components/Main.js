@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Dashboard from './Dashboard';
+import DashButtons from './DashButtons';
 import Carousel from './Carousel';
 import Carrusel from './Carrusel';
 import Trisixti from './Trisixti';
@@ -112,6 +113,33 @@ class Main extends Component {
         case 'others':
             newState = Description.descriptionRenderOtr
           break;
+        case 'fotosJoyas':
+            newState = Description.descriptionFotosJoyas
+          break;
+        case 'fotosComp':
+            newState = Description.descriptionFotosComp
+          break;
+        case 'fotosCuadros':
+            newState = Description.descriptionFotosCuadros
+          break;
+        case 'fotosDetalles':
+            newState = Description.descriptionFotosDetalles
+          break;
+        case 'fotosPaisajes':
+            newState = Description.descriptionFotosPaisajes
+          break;
+        case 'fotosUrbano':
+            newState = Description.descriptionFotosUrbano
+          break;
+        case 'fotosTexturas':
+            newState = Description.descriptionFotosTexturas
+          break;
+        case 'fotosMuelles':
+            newState = Description.descriptionFotosMuelles
+          break;
+        case 'fotosCuadrados':
+            newState = Description.descriptionFotosCuadrados
+          break;
       };
     this.setState({
       slideInfo: { stuff },
@@ -147,7 +175,7 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <Navbar />
+        <Navbar infoSpongeAjax={this.infoSpongeAjax  } infoSpongePanos={this.infoSpongePanos } />
         <Dashboard className="row"
             infoSpongePanos={this.infoSpongePanos }
             infoSpongeImages={this.infoSpongeImages }

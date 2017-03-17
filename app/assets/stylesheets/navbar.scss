@@ -46,3 +46,36 @@ nav li:hover {
 nav .hamburger {
   margin-top: 30%;
 }
+// sidebar
+
+.side-nav {
+  background-color: #ccc;
+  color: #000;
+}
+
+.side-nav li {
+    width: 100%;
+    float: left;
+    line-height: 48px;
+}
+//botones principales (los que tienen iconos)
+.side-nav .collapsible-header {
+  color: #000;
+  font-weight: 100;
+  text-transform: lowercase;
+}
+
+// botones que aparecen y no tienen iconos
+.side-nav .collapsible-body {
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: rgba(255, 255, 255, 0.3);
+}
+.side-nav .collapsible-body a {
+  text-align: center;
+  color: #000 !important;
+  font-weight: 100;
+  text-transform: lowercase;
+}

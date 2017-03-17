@@ -23,17 +23,16 @@ class DashButtons extends Component {
     const espacios = 'spaces';
     const otros = 'others';
 
-    // info from a file
-    const fotosJoyas = Stuff.slideFotosJoyas;
-    const fotosComp = Stuff.slideFotosComp;
-    const fotosCuadros = Stuff.slideFotosCuadros;
+    const fotosJoyas = 'fotosJoyas';
+    const fotosComp = 'fotosComp';
+    const fotosCuadros = 'fotosCuadros';
 
-    const fotosDetalles = Stuff.slideFotosDetalles;
-    const fotosPaisajes = Stuff.slideFotosPaisajes;
-    const fotosUrbano = Stuff.slideFotosUrbano;
-    const fotosTexturas = Stuff.slideFotosTexturas;
-    const fotosMuelles = Stuff.slideFotosMuelles;
-    const fotosCuadrados = Stuff.slideFotosCuadrados;
+    const fotosDetalles = 'fotosDetalles';
+    const fotosPaisajes = 'fotosPaisajes';
+    const fotosUrbano = 'fotosUrbano';
+    const fotosTexturas = 'fotosTexturas';
+    const fotosMuelles = 'fotosMuelles';
+    const fotosCuadrados = 'fotosCuadrados';
 
 
     return(
@@ -53,21 +52,21 @@ class DashButtons extends Component {
           </li>
           <li>
             <div className="collapsible-header"><i className="bulb"></i>Fotografia Productos</div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeImages(e, fotosJoyas)}><a>Joyas</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeImages(e, fotosComp)}><a>Componentes</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeImages(e, fotosCuadros)}><a>Cuadros</a></div>
+            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosJoyas)}><a>Joyas</a></div>
+            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosComp)}><a>Componentes</a></div>
+            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosCuadros)}><a>Cuadros</a></div>
           </li>
           <li>
             <div className="collapsible-header"><i className="material-icons">place</i>Fotografia Decorativa</div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeImages(e, fotosDetalles)}><a>Detalles</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeImages(e, fotosPaisajes)}><a>Paisajes</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeImages(e, fotosUrbano)}><a>Urbano</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeImages(e, fotosTexturas)}><a>Texturas</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeImages(e, fotosMuelles)}><a>Muelles</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeImages(e, fotosCuadrados)}><a>Cuadrados</a></div>
+            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosDetalles)}><a>Detalles</a></div>
+            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosPaisajes)}><a>Paisajes</a></div>
+            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosUrbano)}><a>Urbano</a></div>
+            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosTexturas)}><a>Texturas</a></div>
+            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosMuelles)}><a>Muelles</a></div>
+            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosCuadrados)}><a>Cuadrados</a></div>
           </li>
           <li>
-            <div className="collapsible-header"><i className="material-icons">filter_drama</i>Programming</div>
+            <div className="collapsible-header disabled"><i className="material-icons">filter_drama</i>Programming</div>
             <div className="collapsible-body"><a>What time is it?</a></div>
             <div className="collapsible-body"><a>Batterie</a></div>
             <div className="collapsible-body"><a>Something else</a></div>

@@ -79,3 +79,16 @@
 .collapsible-header:hover .bulb {
   background-image: url(asset_path("bombillo_icon_II.png"));
 }
+.frame_icon {
+  background-image: url(asset_path("frame_icon.svg"));
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-top: 4px;
+  width: 32px !important;
+  height: 32px !important;
+}
+
+.collapsible-header:hover .frame_icon {
+  background-image: url(asset_path("frame_icon.png"));
+}

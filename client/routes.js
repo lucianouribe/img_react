@@ -9,6 +9,7 @@ import Admin from './components/Admin';
 import Home from './components/Home';
 import Main from './components/Main';
 import Navbar from './components/Navbar';
+import Contact from './components/Contact';
 import NoMatch from './components/NoMatch';
 
 const AdminAccess = UserAuthWrapper({
@@ -29,6 +30,7 @@ export default (
       <Route path="navbar" component={Navbar} />
       <Route path="/signup" component={SignUp} />
       <Route path="/signin" component={SignIn} />
+      <Route path="/contact" component={Contact} />
 
       <Route component={AuthenticatedRoutes}>
         <Route component={AdminRoutes}>

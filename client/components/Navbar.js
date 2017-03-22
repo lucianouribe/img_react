@@ -34,7 +34,7 @@ class Navbar extends Component {
         return(
           <div>
             <li><Link to='/'>Home</Link></li>
-            <li><Link to='/home'>Contact</Link></li>
+            <li><Link to='/contact'>Contact</Link></li>
             <li><a style={{ cursor: 'pointer' }} onClick={this.logout}>Logout</a></li>
           </div>
         );
@@ -50,7 +50,7 @@ class Navbar extends Component {
         return(
           <div>
             <li><Link to='/home'>Home</Link></li>
-            <li><Link to='/home'>Contact</Link></li>
+            <li><Link to='/contact'>Contact</Link></li>
             <li><Link to='/signup'>SignUp</Link></li>
             <li><Link to='/signin'>LogIn</Link></li>
           </div>

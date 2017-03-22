@@ -22,6 +22,7 @@ gem 'cloudinary'
 gem 'paperclip-cloudinary'
 gem 'attachinary'
 gem 'paperclip'
+gem 'letter_opener'
 
 group :development, :test do
   gem 'pry'

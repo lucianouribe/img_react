@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   root 'home#index'
 
   devise_for :users, controllers: {
@@ -8,6 +9,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :carrusels
+    post 'contact', to: 'contacts#create'
     get 'users/info'
   end
 

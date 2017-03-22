@@ -47,7 +47,7 @@ class Home extends Component {
           </div>
         </div>
         <div className="grey-bar">
-          <Link className="contacto right" to='/main'>contacto</Link>
+          <Link className="contacto right" to='/contact'>contacto</Link>
         </div>
         <div className="slider second-section row">
           <ul className="slides col s10 m10">

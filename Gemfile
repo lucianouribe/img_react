@@ -23,6 +23,7 @@ gem 'paperclip-cloudinary'
 gem 'attachinary'
 gem 'paperclip'
 gem 'letter_opener'
+gem 'ambethia-smtp-tls'
 
 group :development, :test do
   gem 'pry'

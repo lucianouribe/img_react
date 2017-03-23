@@ -1,4 +1,4 @@
-if Rails.env.development? || Rails.new.test? # it says, only read this in test and development environments
+if Rails.env.development? || Rails.new.test?
   begin
     mail = "#{Rails.root}/config/mail.yml"
     YAML.load_file(mail). each do |key, value|

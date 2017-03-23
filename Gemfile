@@ -35,9 +35,9 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  gem 'capistrano',         require: false
-  gem 'capistrano-rvm',     require: false
-  gem 'capistrano-rails',   require: false
-  gem 'capistrano-bundler', require: false
-  gem 'capistrano3-puma',   require: false
+  gem 'capistrano', '~> 3.8.0',         require: false
+  gem 'capistrano-rvm', '~> 0.1.2',     require: false
+  gem 'capistrano-rails', '~> 1.2.3',   require: false
+  gem 'capistrano-bundler', '~> 1.2.0', require: false
+  gem 'capistrano3-puma', '~> 3.0.2',   require: false
 end

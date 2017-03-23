@@ -258,11 +258,11 @@ PLATFORMS
 
 DEPENDENCIES
   attachinary
-  capistrano
-  capistrano-bundler
-  capistrano-rails
-  capistrano-rvm
-  capistrano3-puma
+  capistrano (~> 3.8.0)
+  capistrano-bundler (~> 1.2.0)
+  capistrano-rails (~> 1.2.3)
+  capistrano-rvm (~> 0.1.2)
+  capistrano3-puma (~> 3.0.2)
   cloudinary
   coffee-rails (~> 4.2)
   devise (~> 4.2.0)

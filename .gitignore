@@ -25,3 +25,4 @@ npm-debug.log
 .ENV
 config/mail.yml
 config/secrets.yml
+config/database.yml

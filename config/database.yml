@@ -83,4 +83,4 @@ production:
   database: postgres
   host: localhost
   username: postgres
-  password: <%= ENV['REACT_WEBSITE_DATABASE_PASSWORD'] %>
+  password: garnagria

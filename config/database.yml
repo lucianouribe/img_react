@@ -82,5 +82,5 @@ production:
   <<: *default
   database: postgres
   host: localhost
-  username: postgres
-  password: 'garnagria'
+  username: luciano
+  password: garnagria

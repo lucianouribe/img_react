@@ -22,6 +22,6 @@ npm-debug.log
 /Main.js
 /Slider.js
 
-.env
+.ENV
 config/mail.yml
 config/secrets.yml

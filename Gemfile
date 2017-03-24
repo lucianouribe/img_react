@@ -18,6 +18,7 @@ gem 'devise', '~> 4.2.0'
 gem 'font-awesome-rails'
 # secret stuff
 gem 'dotenv'
+gem 'dotenv-rails'
 gem 'cloudinary'
 gem 'paperclip-cloudinary'
 gem 'attachinary'

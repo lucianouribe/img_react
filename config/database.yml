@@ -80,7 +80,10 @@ test:
 #
 production:
   <<: *default
-  database: postgres
   host: localhost
+  adapter: postgresql
+  encoding: utf8
+  database: postgres
+  pool: 5
   username: luciano
   password: garnagria

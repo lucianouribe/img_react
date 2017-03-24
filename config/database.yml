@@ -83,4 +83,4 @@ production:
   database: postgres
   host: localhost
   username: postgres
-  password: garnagria
+  password: 'garnagria'

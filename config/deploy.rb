@@ -8,8 +8,8 @@ server '138.197.87.127', port: 22, roles: [:web, :app, :db], primary: true
 set :repo_url,        'git@github.com:lucianouribe/img_react.git'
 set :application,     'imagenes360'
 set :user,            'deploy'
-set :puma_threads,    [4, 16]
-set :puma_workers,    0
+set :puma_threads,    [1, 6]
+set :puma_workers,    1
 
 # Don't change these unless you know what you're doing
 set :pty,             true

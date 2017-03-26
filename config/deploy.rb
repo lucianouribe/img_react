@@ -3,7 +3,7 @@ lock "3.8.0"
 
 
 # Change these
-server '138.197.87.127', port: 80, roles: [:web, :app, :db], primary: true
+server '138.197.87.127', port: 22, roles: [:web, :app, :db], primary: true
 
 set :repo_url,        'git@github.com:lucianouribe/img_react.git'
 set :application,     'imagenes360'

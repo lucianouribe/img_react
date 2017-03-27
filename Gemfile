@@ -29,7 +29,6 @@ gem 'ambethia-smtp-tls'
 group :development, :test do
   gem 'pry'
   # secret stuff
-  gem 'dotenv-rails'
 end
 
 group :development do

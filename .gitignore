@@ -23,6 +23,3 @@ npm-debug.log
 /Slider.js
 
 .ENV
-config/mail.yml
-config/secrets.yml
-config/database.yml

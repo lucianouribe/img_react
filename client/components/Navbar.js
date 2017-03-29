@@ -13,7 +13,6 @@ class Navbar extends Component {
     this.logout = this.logout.bind(this);
     this.navs = this.navs.bind(this);
     this.sideNav = this.sideNav.bind(this);
-
   }
 
   logout(e) {
@@ -25,12 +24,17 @@ class Navbar extends Component {
   componentDidMount() {
     $('.button-collapse').sideNav();
   }
-  // <Link to="/" className="brand-logo"></Link>
-  // <h5 className="dash">Dashboard</h5>
+
+  componentDidUpdate() {
+    $('.collapsible-body').on('click', function() {
+     $('.button-collapse').sideNav('hide');
+    });
+  }
+
 
   navs() {
     switch(this.props.user.role) {
-      case'developer':
+      case'visitor':
         return(
           <div>
             <li><Link to='/'>Home</Link></li>
@@ -43,6 +47,7 @@ class Navbar extends Component {
           <div>
             <li><Link to='/'>Home</Link></li>
             <li><Link to='/main'>Main</Link></li>
+            <li><Link to='/admin'>Admin</Link></li>
             <li><a style={{ cursor: 'pointer' }} onClick={this.logout}>Logout</a></li>
           </div>
         );
@@ -51,7 +56,6 @@ class Navbar extends Component {
           <div>
             <li><Link to='/home'>Home</Link></li>
             <li><Link to='/contact'>Contact</Link></li>
-            <li><Link to='/signup'>SignUp</Link></li>
             <li><Link to='/signin'>LogIn</Link></li>
           </div>
         );
@@ -61,9 +65,10 @@ class Navbar extends Component {
   sideNav(){
     return(
       <div>
-        <li><Link className="collapsible-header" to='/home'>Home</Link></li>
-        <li><Link className="collapsible-header" to='/home'>Contact</Link></li>
+        <li><Link onClick="$('.button-collapse').sideNav('hide');" className="collapsible-header" to='/home'>Home</Link></li>
+        <li><Link onClick="$('.button-collapse').sideNav('hide');" className="collapsible-header" to='/contact'>Contact</Link></li>
         <li><DashButtons id="side-menu" infoSpongeAjax={this.props.infoSpongeAjax} infoSpongePanos={this.props.infoSpongePanos}/></li>
+        <li><Link className="collapsible-header" to='/signin'>Login</Link></li>
       </div>
     )
   }

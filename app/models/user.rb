@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   validates_presence_of :first_name, :last_name
-  validates_inclusion_of :role, in: %w(user admin)
+  validates_inclusion_of :role, in: %w(visitor admin)
 end

@@ -2,6 +2,9 @@ class Api::ContactsController < ApplicationController
   def index
   end
 
+  def new
+  end
+
   def create
     contact = Contact.create(contact_params)
     ContactMailer.new_contact(contact).deliver

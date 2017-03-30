@@ -77,7 +77,7 @@ class Main extends Component {
 // image information receiver
   infoSpongeImages(e, info) {
     e.preventDefault();
-    console.log(info)
+    // console.log(info)
     this.renderImages(info);
   }
 
@@ -92,7 +92,7 @@ class Main extends Component {
       }).done ( data => {
         // loop the database & pick the specific info
         const theStuffForTheCarrusel = data.filter( filteredData => filteredData.role === info )
-        console.table(theStuffForTheCarrusel);
+        // console.table(theStuffForTheCarrusel);
         // dispatch only the data with the specified role
         this.carruselStateSetter(theStuffForTheCarrusel, info);
       }).fail ( data => {

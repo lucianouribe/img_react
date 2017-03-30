@@ -178,9 +178,6 @@ class Carrusel extends Component {
         dataType: 'JSON',
         data: { carrusel: {name, image, infopic, role} }
       }).done( data => {
-        console.log("and hitting success?")
-        console.log(data)
-        console.log(role)
         this.setState({
           data: [data, ...this.state.data],
           frontState: 'show'
@@ -188,7 +185,6 @@ class Carrusel extends Component {
         this.props.infoSponge(e, role)
       }).fail( data => {
         console.log("its hitting fail?")
-        console.log(data)
     })
   }
 

@@ -65,8 +65,8 @@ class Navbar extends Component {
   sideNav(){
     return(
       <div>
-        <li><Link onClick="$('.button-collapse').sideNav('hide');" className="collapsible-header" to='/home'>Home</Link></li>
-        <li><Link onClick="$('.button-collapse').sideNav('hide');" className="collapsible-header" to='/contact'>Contact</Link></li>
+        <li><Link className="collapsible-header" to='/home'>Home</Link></li>
+        <li><Link className="collapsible-header" to='/contact'>Contact</Link></li>
         <li><DashButtons id="side-menu" infoSpongeAjax={this.props.infoSpongeAjax} infoSpongePanos={this.props.infoSpongePanos}/></li>
         <li><Link className="collapsible-header" to='/signin'>Login</Link></li>
       </div>

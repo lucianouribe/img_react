@@ -153,8 +153,9 @@ class Carrusel extends Component {
             <span className="card-title">
               <input type="text" required ref='name'  placeholder="name" />
             </span>
-            <p><input type="text" ref="address" placeholder="address" /></p>
-            <p><input type="text" ref="infopic" placeholder="Comments" required /></p>
+            <p><input type="text" ref="address" placeholder="Paste URL" /></p>
+            <p><input type="text" ref="infopic" placeholder="Comments"  /></p>
+            <p><input type="text" ref="role" placeholder="Role"  /></p>
           </div>
           <div className="card-action">
             <div type="submit" className="btn" onClick={this.handleSubmit}>submit</div>
@@ -169,7 +170,7 @@ class Carrusel extends Component {
     let name = this.refs.name.value;
     let image = this.refs.address.value;
     let infopic = this.refs.infopic.value;
-    let role = this.props.details[1].role;
+    let role = this.refs.role.value;
 
       $.ajax({
         url: '/api/carrusels',
@@ -177,7 +178,7 @@ class Carrusel extends Component {
         dataType: 'JSON',
         data: { carrusel: {name, image, infopic, role} }
       }).done( data => {
-        console.log("and hitting here?")
+        console.log("and hitting success?")
         console.log(data)
         console.log(role)
         this.setState({
@@ -186,7 +187,7 @@ class Carrusel extends Component {
         })
         this.props.infoSponge(e, role)
       }).fail( data => {
-        console.log("its hitting here?")
+        console.log("its hitting fail?")
         console.log(data)
     })
   }
@@ -242,7 +243,7 @@ class Carrusel extends Component {
         // index = yes.findIndex( o => o.id === action.data.id)
         // yes[index] = action.data
         // return [...yes]
-        
+
         this.props.infoSponge(e, role)
       }).fail( data => {
         console.log(data)

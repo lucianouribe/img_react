@@ -49,7 +49,7 @@ nav .hamburger {
 // sidebar
 
 .side-nav {
-  background-color: #ccc;
+  background-color: #fff;
   color: #000;
 }
 
@@ -74,7 +74,7 @@ nav .hamburger {
   background: rgba(255, 255, 255, 0.3);
 }
 .side-nav .collapsible-body a {
-  text-align: center;
+  text-align: center !important;
   color: #000 !important;
   font-weight: 100;
   text-transform: lowercase;

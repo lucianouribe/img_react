@@ -52,6 +52,9 @@
 .collapsible-header:hover .teapot {
   background-image: url(asset_path("teapot.png"));
 }
+.side-nav .teapot {
+  background-image: url(asset_path("teapot_silouete_side.svg"));
+}
 
 
 .world {
@@ -67,6 +70,10 @@
   background-image: url(asset_path("world_icon.png"));
 }
 
+.side-nav .world {
+  background-image: url(asset_path("world_silouete_side.svg"));
+}
+
 .bulb {
   background-image: url(asset_path("bombillo_icon.svg"));
   background-repeat: no-repeat;
@@ -78,6 +85,10 @@
 
 .collapsible-header:hover .bulb {
   background-image: url(asset_path("bombillo_icon_II.png"));
+}
+
+.side-nav .bulb {
+  background-image: url(asset_path("bombillo_icon_side.svg"));
 }
 .frame_icon {
   background-image: url(asset_path("frame_icon.svg"));
@@ -91,4 +102,32 @@
 
 .collapsible-header:hover .frame_icon {
   background-image: url(asset_path("frame_icon.png"));
+}
+
+.side-nav .home-icon {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 40px !important;
+  height: 40px !important;
+  background-image: url(asset_path("home_side.svg"));
+}
+.side-nav .contact-icon {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 40px !important;
+  height: 40px !important;
+  background-image: url(asset_path("home_side.svg"));
+}
+.side-nav .login-icon {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 40px !important;
+  height: 40px !important;
+  background-image: url(asset_path("home_side.svg"));
+}
+.side-nav li > a > i {
+  margin-right:1rem;
 }

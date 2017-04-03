@@ -25,7 +25,7 @@ class Home extends Component {
   }
 
   softwares() {
-    console.log("this is renderSoft")
+    // console.log("this is renderSoft")
     return  (
         <div>
           <ul>

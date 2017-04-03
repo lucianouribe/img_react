@@ -40,9 +40,9 @@ class DashButtons extends Component {
         <ul className="collapsible" data-collapsible="accordion">
           <li>
             <div className="collapsible-header"><i className="world"></i>Panoramicos 360</div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongePanos(e, panodigital)} >Digital</div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongePanos(e, panofotografia)}>Fotografia</div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongePanos(e, panoradar)}>Radar</div>
+            <div className="collapsible-body" onClick={(e) => this.props.infoSpongePanos(e, panodigital)} ><a>Digital</a></div>
+            <div className="collapsible-body" onClick={(e) => this.props.infoSpongePanos(e, panofotografia)}><a>Fotografia</a></div>
+            <div className="collapsible-body" onClick={(e) => this.props.infoSpongePanos(e, panoradar)}><a>Radar</a></div>
           </li>
           <li>
             <div className="collapsible-header"><i className="teapot"></i>Renders</div>
@@ -65,26 +65,26 @@ class DashButtons extends Component {
             <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosMuelles)}><a>Muelles</a></div>
             <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosCuadrados)}><a>Cuadrados</a></div>
           </li>
-          <li>
-            <div className="collapsible-header disabled"><i className="material-icons">filter_drama</i>Programming</div>
-            <div className="collapsible-body"><a>What time is it?</a></div>
-            <div className="collapsible-body"><a>Batterie</a></div>
-            <div className="collapsible-body"><a>Something else</a></div>
-          </li>
-          <li>
-            <div className="collapsible-header"><i className="material-icons">whatshot</i>Libros</div>
-            <div className="collapsible-body"><a>Bitacora del Motoneto</a></div>
-            <div className="collapsible-body"><a>Rutas de Oriente</a></div>
-          </li>
-          <li>
-            <div className="collapsible-header"><i className="material-icons">whatshot</i>Blogs</div>
-            <div className="collapsible-body"><a>Bitacora del Motoneto</a></div>
-            <div className="collapsible-body"><a>Tribunal de Justicia</a></div>
-          </li>
+
         </ul>
       </div>
     )
   }
 }
-
+// <li>
+//   <div className="collapsible-header disabled"><i className="material-icons">filter_drama</i>Programming</div>
+//   <div className="collapsible-body"><a>What time is it?</a></div>
+//   <div className="collapsible-body"><a>Batterie</a></div>
+//   <div className="collapsible-body"><a>Something else</a></div>
+// </li>
+// <li>
+//   <div className="collapsible-header"><i className="material-icons">whatshot</i>Libros</div>
+//   <div className="collapsible-body"><a>Bitacora del Motoneto</a></div>
+//   <div className="collapsible-body"><a>Rutas de Oriente</a></div>
+// </li>
+// <li>
+//   <div className="collapsible-header"><i className="material-icons">whatshot</i>Blogs</div>
+//   <div className="collapsible-body"><a>Bitacora del Motoneto</a></div>
+//   <div className="collapsible-body"><a>Tribunal de Justicia</a></div>
+// </li>
 export default DashButtons;

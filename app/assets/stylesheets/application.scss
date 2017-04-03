@@ -16,15 +16,25 @@ body {
   background-size: 4%;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 800px) {
   body {
-    background-size: 14%;
+    background-size: 10%;
+  }
+  .intro {
+    padding: 15px;
+    font-size: 1.5rem;
+    color: blue;
   }
 }
+
 
 @media only screen and (min-width: 800px) and (max-width: 1200px) {
   body {
     background-size: 8%;
+  }
+  .intro {
+    padding: 15px;
+    font-size: 1.5rem;
   }
 }
 
@@ -62,5 +72,17 @@ h1, h2, h3, h4, h5, h6 {
   color: #FDFFFD;
 }
 .btn-sign {
+  color: #FF6949;
+}
+
+// main introduction
+.intro {
+  padding: 30px;
+  font-weight: 100;
+  font-size: 3rem;
+  color: #6b6b6b;
+}
+.bienvenido {
+  font-weight: 300;
   color: #FF6949;
 }

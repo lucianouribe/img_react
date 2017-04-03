@@ -15,7 +15,7 @@ class Contact extends React.Component {
     }}
     console.log(contact);
     $.ajax({
-      url: '/api/contact',
+      url: '/api/contact_mailer',
       type: 'POST',
       dataType: 'JSON',
       data: contact

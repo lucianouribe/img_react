@@ -36,7 +36,7 @@ class Main extends Component {
     this.state = {
       slideInfo: {},
       description: '',
-      whichOne: '',
+      whichOne: 'intro',
       reset: true
     };
   }
@@ -151,11 +151,14 @@ class Main extends Component {
 
  // Main renderer selector
   mainRenderer(){
-    if(this.state.whichOne === "carousel") {
+    if(this.state.whichOne === "intro") {
       return (
-        <ul>
-          {Object.keys(this.state.slideInfo).map(key => <Carousel key={key} details={this.state.slideInfo[key]} />)}
-        </ul>
+        <div>
+          <div className="card intro">
+            <p className='bienvenido'>Bienvenido!</p>
+            Haz click en el menu para visualizar las imágenes.
+          </div>
+        </div>
       );
     } else if(this.state.whichOne === "trisixti") {
       return (

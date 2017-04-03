@@ -43,14 +43,14 @@ class SignUp extends React.Component {
       data: user,
       dataType: 'JSON'
     }).done( user => {
-      console.log('till here it works');
-      console.log(user);
+      // console.log('till here it works');
+      // console.log(user);
       this.props.dispatch(refreshLogin(user));
       this.props.history.push('/main');
     }).fail( err => {
-      console.log('something failed in the sign up');
-      console.log(user);
-      console.log(err);
+      // console.log('something failed in the sign up');
+      // console.log(user);
+      // console.log(err);
       this.props.history.push('/');
     });
   }

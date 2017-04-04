@@ -1,3 +1,4 @@
+require 'pry'
 class Api::ContactsController < ApplicationController
   def index
   end
@@ -6,6 +7,7 @@ class Api::ContactsController < ApplicationController
   end
 
   def create
+    # binding.pry
     contact = Contact.create(contact_params)
     ContactMailer.new_contact(contact).deliver
   end

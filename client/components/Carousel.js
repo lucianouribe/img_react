@@ -62,7 +62,7 @@ class Carousel extends Component {
     const divStyle = {
       backgroundImage: 'url(' + info.image[actualPic] + ')'
     };
-    console.log(divStyle)
+    // console.log(divStyle)
     return (<div className="carousel-item" data-info={info.infopic[actualPic]} id={aidi} style={divStyle}></div>)
   }
 

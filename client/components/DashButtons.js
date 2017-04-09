@@ -34,6 +34,8 @@ class DashButtons extends Component {
     const fotosMuelles = 'fotosMuelles';
     const fotosCuadrados = 'fotosCuadrados';
 
+    const translate = 'translate';
+
 
     return(
       <div className="dash-buttons">
@@ -65,18 +67,17 @@ class DashButtons extends Component {
             <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosMuelles)}><a>Muelles</a></div>
             <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosCuadrados)}><a>Cuadrados</a></div>
           </li>
-
+          <li>
+            <div className="collapsible-header disabled"><i className="material-icons">filter_drama</i>Programming</div>
+            <div className="collapsible-body" onClick={() => this.props.cardOpener(translate)}><a>Translate</a></div>
+            <div className="collapsible-body"><a>Calculator</a></div>
+            <div className="collapsible-body"><a>Battery</a></div>
+          </li>
         </ul>
       </div>
     )
   }
 }
-// <li>
-//   <div className="collapsible-header disabled"><i className="material-icons">filter_drama</i>Programming</div>
-//   <div className="collapsible-body"><a>What time is it?</a></div>
-//   <div className="collapsible-body"><a>Batterie</a></div>
-//   <div className="collapsible-body"><a>Something else</a></div>
-// </li>
 // <li>
 //   <div className="collapsible-header"><i className="material-icons">whatshot</i>Libros</div>
 //   <div className="collapsible-body"><a>Bitacora del Motoneto</a></div>

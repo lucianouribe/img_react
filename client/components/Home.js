@@ -29,7 +29,7 @@ class Home extends Component {
     return  (
         <div>
           <ul>
-            {Object.keys(this.state.slideInfo).map(key => <Carrusel key={key} details={this.state.slideInfo[key]}  />)}
+            {Object.keys(this.state.slideInfo).map(key => <Carousel key={key} details={this.state.slideInfo[key]}  />)}
           </ul>
         </div>
       );

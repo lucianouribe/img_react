@@ -1,0 +1,29 @@
+.translate {
+  padding: 30px !important;
+  // border: 1px solid #ccc !important;
+  // border-radius: 5px !important;
+}
+
+.translate .input {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-height: 70px;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.translate .btn-translate {
+  margin-bottom: 15px;
+  background-color: #723025;
+}
+
+.translate .answer {
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  min-height: 70px;
+}
+
+.clicked {
+  background-color: #9DD0FF !important;
+}

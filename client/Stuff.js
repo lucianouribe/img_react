@@ -137,6 +137,7 @@ module.exports = {
     logo4: "illustrator"
   },
   slideRenderSoft: {
+    id: 15,
     name: "Tecnologías",
     image: [
       'http://imagenes360.net/fotos/softwares/tridimax.png',

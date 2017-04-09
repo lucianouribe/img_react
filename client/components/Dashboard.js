@@ -12,6 +12,7 @@ class Dashboard extends Component {
               infoSpongePanos={this.props.infoSpongePanos}
               infoSpongeImages={this.props.infoSpongeImages}
               infoSpongeAjax={this.props.infoSpongeAjax}
+              cardOpener={this.props.cardOpener }
               />
         </aside>
       </div>

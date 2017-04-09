@@ -105,7 +105,10 @@ class Carrusel extends Component {
 
   showMeThePic() {
     const info = this.props.details
+    console.log('info')
+    console.log(info)
     const actualPic = this.state.currentSlide;
+    console.log(actualPic)
     const id = info[actualPic].id;
 
     return (<img className="carruslide" src={info[actualPic].image} data-info={info[actualPic].infopic} id={id} />)

@@ -6,6 +6,7 @@ import Carousel from './Carousel';
 import Carrusel from './Carrusel';
 import Trisixti from './Trisixti';
 import Navbar from './Navbar';
+import Translator from './Translator';
 import Description from '../Description';
 
 
@@ -25,12 +26,9 @@ class Main extends Component {
     this.infoSpongeAjax = this.infoSpongeAjax.bind(this);
     this.carruselStateSetter = this.carruselStateSetter.bind(this);
 
-    // crud actions for carrusel
-    // this.addItem = this.addItem.bind(this);
-    this.editItem = this.editItem.bind(this);
-    this.deleteItem = this.deleteItem.bind(this);
-
     this.reseter = this.reseter.bind(this);
+
+    this.cardOpener = this.cardOpener.bind(this);
 
 
     this.state = {
@@ -39,32 +37,27 @@ class Main extends Component {
       whichOne: 'intro',
       reset: true
     };
+
   }
 
+// state reseter
   reseter(){
     this.setState({reset: false})
   }
 
-  editItem() {
-    console.log('edit item');
-  }
-  deleteItem() {
-    console.log('delete item');
-  }
-
 // static images renderer
   renderImages(info) {
+    this.cardOpener('carousel');
     this.setState({
       slideInfo: {info},
-      whichOne: "carousel",
     });
   }
 
 // panoramics renderer
   renderPanoramics(info) {
+    this.cardOpener('trisixti');
     this.setState({
       slideInfo: {info},
-      whichOne: "trisixti"
     });
   }
 
@@ -141,12 +134,20 @@ class Main extends Component {
             newState = Description.descriptionFotosCuadrados
           break;
       };
+
+    this.cardOpener('carrusel')
     this.setState({
       slideInfo: { stuff },
-      whichOne: "carrusel",
       description: newState,
       // reset: true // si esta activado funciona desde adentro pero la data sigue con el primer clickeado
     });
+  }
+
+  // card opener for main renderer
+  cardOpener(info) {
+    this.setState({
+      whichOne: info
+    })
   }
 
  // Main renderer selector
@@ -172,6 +173,10 @@ class Main extends Component {
           {Object.keys(this.state.slideInfo).map(item => <Carrusel key={item} details={this.state.slideInfo[item]} description={this.state.description} reset={this.state.reset} reseter={this.reseter} infoSponge={this.infoSpongeAjax}/>)}
         </ul>
       );
+    } else if(this.state.whichOne === "translate") {
+      return (
+        <Translator />
+      );
     }
   }
 
@@ -183,6 +188,7 @@ class Main extends Component {
             infoSpongePanos={this.infoSpongePanos }
             infoSpongeImages={this.infoSpongeImages }
             infoSpongeAjax={this.infoSpongeAjax  }
+            cardOpener={this.cardOpener }
         />
         <div className="row">
           <div className="col s10 m10 l8 offset-l1 offset-m1 offset-s1">

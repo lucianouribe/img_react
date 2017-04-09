@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     resources :carrusels
     post 'contact', to: 'contacts#create'
     get 'users/info'
+    post 'translator', to: 'translators#translate'
+    get 'translator', to: 'translators#translated'
   end
 
   get '*unmatched_route', to: 'home#index'

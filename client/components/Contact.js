@@ -17,7 +17,7 @@ class Contact extends React.Component {
     $.ajax({
       url: '/api/contact',
       type: 'POST',
-      dataType: 'JSON',
+      dataType: 'HTML',
       data: contact
     }).done( contact => {
       console.log('contact done')

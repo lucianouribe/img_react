@@ -120,7 +120,6 @@
 
 
 //third section (carousel)
-
 .third-section {
   display: inline-flex;
   background-color: #723025;
@@ -222,13 +221,10 @@
   }
   //third-section
   .third-section {
-    min-height: 450px;
-    height: 60vh;
+    min-height: 600px;
   }
 
   .soft .card {
-    min-height: 350px;
-    height: 50vh;
     min-width: 350px;
     width: 100%;
   }

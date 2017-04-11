@@ -1,10 +1,24 @@
 ========================
-Gama Colores
+Gama Colores Vieja
 ========================
 
-#ff6d00 anaranjado
-#fff blanco
-#000 negro
-#6b6b6b gris
-#8E864B verde
-#9DD0FF azulito
+Naranja F   =>  #ff6d00
+Blanco      =>  #fff
+Negro       =>  #000
+Gris        =>  #6b6b6b
+Verde       =>  #8E864B
+
+========================
+Gama Colores Nueva
+========================
+
+Gris        =>  #949CA9
+Gris Oscuro =>  #767A86
+Blancuzco   =>  #FDFFFD
+
+Oscurecedor =>  rgba(0, 0, 0, 0.3)
+Aclarador   =>  rgba(255, 255, 255, 0.5)
+
+Anaranjado  =>  #FF6949
+Azulito     =>  #9DD0FF
+Vinotinto   =>  #723025

@@ -272,12 +272,12 @@ class Carrusel extends Component {
     const actualPic = this.state.currentSlide;
     if(this.state.frontState === 'show') {
       return(
-        <div >
+        <div className="card">
           <div>
             <div id="detalles" className="carousel carruholder center">
               <div className="prev detalles valign-wrapper" onClick={this.togglePrev}></div>
               {this.showMeThePic(this.props.details)}
-              <div className="letter"></div>
+              <div className="letter truncate"></div>
               <div className="next detalles valign-wrapper" onClick={this.toggleNext}></div>
             </div>
           </div>
@@ -313,7 +313,7 @@ class Carrusel extends Component {
     return(
       <div>
         <div className="card-reveal">
-          <span className="card-title grey-text text-darken-4"><i type="button" onClick={this.toggleCard} className="close material-icons right">close</i><h5>{this.props.description.name}</h5></span>
+          <span className="card-title"><i type="button" onClick={this.toggleCard} className="close material-icons right">close</i><h5>{this.props.description.name}</h5></span>
           <p>{this.props.description.description}</p>
           <div className="logos">
             <div className={this.props.description.logo1}></div>

@@ -77,7 +77,8 @@ class Main extends Component {
 // image information receiver, filters and dispatch
   infoSpongeAjax(e, info) {
     e.preventDefault();
-      this.setState({reset: true}); // si lo reseteo aca, funciona si esta afuera y adentro (pero la data sigue la del primer clickeado)
+      //reset state to get a new 0
+      this.setState({reset: true});
       $.ajax({
         url: '/api/carrusels',
         type: 'GET',
@@ -85,7 +86,6 @@ class Main extends Component {
       }).done ( data => {
         // loop the database & pick the specific info
         const theStuffForTheCarrusel = data.filter( filteredData => filteredData.role === info )
-        // console.table(theStuffForTheCarrusel);
         // dispatch only the data with the specified role
         this.carruselStateSetter(theStuffForTheCarrusel, info);
       }).fail ( data => {
@@ -93,7 +93,7 @@ class Main extends Component {
       })
   }
 
-// sets state of the desired info
+  // sets state of the desired info
   carruselStateSetter(stuff, info) {
     let newState;
     switch (info) {
@@ -139,7 +139,6 @@ class Main extends Component {
     this.setState({
       slideInfo: { stuff },
       description: newState,
-      // reset: true // si esta activado funciona desde adentro pero la data sigue con el primer clickeado
     });
   }
 
@@ -150,7 +149,7 @@ class Main extends Component {
     })
   }
 
- // Main renderer selector
+  // Main renderer selector
   mainRenderer(){
     if(this.state.whichOne === "intro") {
       return (
@@ -184,15 +183,15 @@ class Main extends Component {
     return (
       <div>
         <Navbar
-          infoSpongeAjax={this.infoSpongeAjax  }
-          infoSpongePanos={this.infoSpongePanos }
-          cardOpener={this.cardOpener }
+          infoSpongeAjax={ this.infoSpongeAjax  }
+          infoSpongePanos={ this.infoSpongePanos }
+          cardOpener={ this.cardOpener }
         />
         <Dashboard className="row"
-            infoSpongePanos={this.infoSpongePanos }
-            infoSpongeImages={this.infoSpongeImages }
-            infoSpongeAjax={this.infoSpongeAjax  }
-            cardOpener={this.cardOpener }
+            infoSpongePanos={ this.infoSpongePanos }
+            infoSpongeImages={ this.infoSpongeImages }
+            infoSpongeAjax={ this.infoSpongeAjax  }
+            cardOpener={ this.cardOpener }
         />
         <div className="row">
           <div className="col s10 m10 l8 offset-l1 offset-m1 offset-s1">

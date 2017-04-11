@@ -225,13 +225,16 @@
     min-height: 450px;
     height: 60vh;
   }
+
   .soft .card {
     min-height: 350px;
     height: 50vh;
+    min-width: 350px;
     width: 100%;
   }
   .soft .card-reveal{
-    width: 400px;
+    min-width: 350px;
+    width: 350px;
     text-align: justify;
   }
   .soft .card-title {

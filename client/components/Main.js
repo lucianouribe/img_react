@@ -183,7 +183,11 @@ class Main extends Component {
   render() {
     return (
       <div>
-        <Navbar infoSpongeAjax={this.infoSpongeAjax  } infoSpongePanos={this.infoSpongePanos } />
+        <Navbar
+          infoSpongeAjax={this.infoSpongeAjax  }
+          infoSpongePanos={this.infoSpongePanos }
+          cardOpener={this.cardOpener }
+        />
         <Dashboard className="row"
             infoSpongePanos={this.infoSpongePanos }
             infoSpongeImages={this.infoSpongeImages }

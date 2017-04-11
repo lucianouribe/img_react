@@ -68,7 +68,7 @@ class DashButtons extends Component {
             <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosCuadrados)}><a>Cuadrados</a></div>
           </li>
           <li>
-            <div className="collapsible-header disabled"><i className="material-icons">filter_drama</i>Programming</div>
+            <div className="collapsible-header"><i className="bulb"></i>Programming Stuff</div>
             <div className="collapsible-body" onClick={() => this.props.cardOpener(translate)}><a>Translate</a></div>
             <div className="collapsible-body"><a>Calculator</a></div>
             <div className="collapsible-body"><a>Battery</a></div>

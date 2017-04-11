@@ -193,9 +193,12 @@
     background: #9DD0FF;
     background: #949CA9;
     background: linear-gradient(to right, #767A86, #B7C1D1 60%, #767A86);
-
+  }
+  .letreros h3 {
+    font-size: 1rem;
   }
   .grey-bar {
+    min-height: 56px;
     height: 10vh;
   }
   .contacto {
@@ -225,12 +228,12 @@
   }
 
   .soft .card {
-    min-width: 350px;
+    min-width: 300px;
     width: 100%;
   }
   .soft .card-reveal{
-    min-width: 350px;
-    width: 350px;
+    min-width: 300px;
+    width: 340px;
     text-align: justify;
   }
   .soft .card-title {

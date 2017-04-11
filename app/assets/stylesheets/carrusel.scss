@@ -43,9 +43,10 @@
   text-align: justify;
 }
 
-@media only screen and (orientation: portrait) {
-  width: 100% !important;
-  height: auto !important;
+@media all and (orientation:portrait) {
+  .carruholder {
+    height: 40vh;
+  }
 }
 
 @media only screen and (max-width: 800px) {

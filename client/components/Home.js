@@ -53,40 +53,43 @@ class Home extends Component {
           <ul className="slides col s10 m10">
             <li>
               <div className="caption center-align">
-                <h3 className="subtitle">renders digitales, fotografia, panoramicos 360, aplicativos web</h3>
+                <div className="sec-img intro-render"></div>
+              </div>
+              <div className="caption sec-scrp right-align">
+                <h3 className="subtitle">Renders Digitales, Fotografía,</h3>
+                <h3 className="subtitle">Panorámicos 360, Aplicativos web y más!</h3>
               </div>
             </li>
             <li>
               <div className="caption center-align">
-                <div className="slide-render"></div>
+                <div className="sec-img slide-render"></div>
               </div>
-              <div className="caption right-align">
-                <h3 className="subtitle">Renders</h3>
-                <h5 className="subtitle">Productos</h5>
+              <div className="caption sec-scrp right-align">
+                <h3 className="subtitle">Renders Productos</h3>
               </div>
             </li>
             <li>
               <div className="caption left-align">
-                <div className="slide-panos"></div>
+                <div className="sec-img slide-panos"></div>
               </div>
-              <div className="caption right-align">
+              <div className="caption sec-scrp right-align">
                 <h3 className="subtitle">Panoramicos 360</h3>
                 <h5 className="subtitle">arquitectura, espacios</h5>
               </div>
             </li>
             <li>
-              <div className="caption right-align">
-                <div className="slide-foto"></div>
+              <div className="caption center-align">
+                <div className="sec-img slide-rails"></div>
+              </div>
+              <div className="caption sec-scrp right-align">
                 <h3 className="subtitle">Aplicativos web</h3>
-                <h5 className="subtitle">React, Ruby on Rails, JS</h5>
+                <h5 className="subtitle">React, RubyOnRails, JS</h5>
               </div>
             </li>
             <li>
-            <div className="caption center-align">
-              <div className="slide-foto"></div>
-              <h3 className="subtitle">Fotografia</h3>
-              <h5 className="subtitle">decorativa, productos</h5>
-            </div>
+              <div className="caption center-align">
+                <div className="sec-img slide-js"></div>
+              </div>
             </li>
           </ul>
         </div>
@@ -97,12 +100,12 @@ class Home extends Component {
         </div>
         <div className="orange-bar"></div>
         <div className="third-section">
-          <div className="soft col s12 m4 offset-m4">
+          <div className="soft">
             {this.softwares()}
           </div>
-          <div className="third-stuff col s12 m4">
-          <h4 className='last'>Mira mi portafolio...</h4>
-          <Link id="dos" className="ingresa" to='/main'>ingresa</Link>
+          <div className="third-stuff">
+            <h4 className='last'>Mira mi portafolio...</h4>
+            <Link id="dos" className="ingresa" to='/main'>ingresa</Link>
           </div>
         </div>
         <div className="wine-bar"></div>

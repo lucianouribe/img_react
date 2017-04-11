@@ -107,7 +107,7 @@ class Carousel extends Component {
             <div className="next detalles valign-wrapper" onClick={this.toggleNext}></div>
           </div>
           <div className="card-content">
-            <span className="card-title activator grey-text text-darken-4">{this.props.details.name}<div type="button" onClick={this.toggleCard} className="hamburger right"></div></span>
+            <span className="subtitle activator">{this.props.details.name}<div type="button" onClick={this.toggleCard} className="hamburger right"></div></span>
           </div>
         </div>
       </div>
@@ -118,7 +118,7 @@ class Carousel extends Component {
     return(
       <div>
         <div className="card-reveal">
-          <span className="card-title grey-text text-darken-4">{this.props.details.name}<i type="button" onClick={this.toggleCard} className="material-icons right">close</i></span>
+          <span className="subtitle">{this.props.details.name}<i type="button" onClick={this.toggleCard} className="material-icons right">close</i></span>
           <p>{this.props.details.description}</p>
           <div className="logos">
             <div className={this.props.details.logo1}></div>

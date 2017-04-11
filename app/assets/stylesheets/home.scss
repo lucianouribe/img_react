@@ -1,28 +1,8 @@
+// intro
 .first-section {
   height: 500px;
   background: #949CA9;
   background: linear-gradient(to right, #767A86, #B7C1D1 60%, #767A86);
-}
-.second-section {
-  height: 300px;
-  background: #FDFFFD;
-}
-.third-section {
-  display: inline-flex;
-  background-color: #723025;
-  width: 100%;
-}
-.slider .slides {
-  background: none;
-}
-.indicator-item {
-  background-color: #949CA9;
-}
-.indicator-item.active {
-  background-color: #FF6949 !important;
-}
-.row.slider {
-  margin-bottom: 0;
 }
 .logo {
   position: absolute;
@@ -40,11 +20,6 @@
   font-weight: 100;
   margin: 8% auto;
 }
-.subtitle {
-  color: #767A86;
-  font-weight: 100;
-  // margin: 8% auto;
-}
 .ingresa {
   background-color: #FF6949;
   color: #FDFFFD;
@@ -57,6 +32,13 @@
 }
 .ingresa:hover {
   background-color: #9DD0FF;
+}
+
+// grey bar
+
+.grey-bar {
+  height: 100px;
+  background-color: #767A86;
 }
 .contacto {
   // background-color: #FDFFFD;
@@ -73,56 +55,107 @@
   background-color: #FF6949;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
-.slide-render {
+
+//second section (moving scripts)
+
+.second-section {
+  height: 300px;
+  background: #FDFFFD;
+}
+.subtitle {
+  color: #767A86;
+  font-weight: 100;
+}
+.slider .slides {
+  background: none;
+}
+.indicator-item {
+  background-color: #949CA9;
+}
+.indicator-item.active {
+  background-color: #FF6949 !important;
+}
+.row.slider {
+  margin-bottom: 0;
+}
+.sec-img {
   width: 300px;
   height: 300px;
   background-repeat: no-repeat;
   background-size: cover;
+}
+.intro-render {
+  width: 220px;
+  height: 120px;
+  background-image: url(asset_path("logosolo200blanco.png"));
+}
+.slide-render {
   background-image: url(asset_path("slide-render.png"));
 }
 .slide-panos {
-  width: 600px;
-  height: 300px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-image: url(asset_path("slide-panos.jpg"));
+  background-image: url(asset_path("world_icon.png"));
 }
-.grey-bar {
-  height: 100px;
-  background-color: #767A86;
+.slide-rails {
+  background-image: url(asset_path("ruby.png"));
 }
+.slide-js {
+  background-image: url(asset_path("javascript.png"));
+}
+
+// second B s ection (parallax)
+.parallax-container {
+  min-height: 300px;
+  height: 50vh;
+}
+.parallax-container img {
+  min-height: 400px;
+  height: 100vh;
+}
+
+// orange bar
 .orange-bar {
   height: 60px;
   background-color: #FF6949;
 }
-.wine-bar {
-  height: 60px;
+
+
+//third section (carousel)
+
+.third-section {
+  display: inline-flex;
   background-color: #723025;
+  width: 100%;
+  min-height: 500px;
+  height: 60vh;
+  padding: 0 10%;
 }
-//carousel
-.soft {
-  width: 380px;
-  height: 450px;
-  // border: 1px solid #000;
-  margin-left: 50px;
+// the slider
+.soft .card {
+  min-height: 450px;
+  height: 52vh;
+  min-width: 400px;
+  width: 50%;
 }
-// .soft .card {
-//   width: 300px;
-// }
-// .soft .carousel .carousel-item {
-//   height: 300px;
-// }
-// .soft .card-content {
-//   display: none;
-// }
-.soft .card .carousel {
-  min-height: 300px !important;
-  max-height: 300px !important;
-  // background-size: 300px !important;
+.soft .card-image {
+  min-height: 400px;
+  height: 45vh;
+}
+.soft .carousel {
   background-position: top !important;
 }
-.soft.card-image {
-  max-height: 300px;
+.soft .card-content {
+  padding: 7px;
+}
+.subtitle {
+  max-width: 70%;
+  font-size: 2rem;
+  margin: none;
+}
+
+// the button and message
+.third-stuff {
+  margin-left: 30%;
+  min-width: 40%;
 }
 .last {
   font-weight: 100;
@@ -130,14 +163,16 @@
   margin: 50px 100px;
 }
 #dos {
-  // background-color: #723025;
   margin: 40px 0 0 100px;
   font-size: 3rem;
   padding: 30px 60px;
   border-radius: 8px;
 }
-.third-stuff {
-  margin-left: 30%;
+
+// footer
+.wine-bar {
+  height: 40px;
+  background-color: #723025;
 }
 
 @media only screen and (max-width: 800px) {
@@ -163,5 +198,56 @@
   }
   .grey-bar {
     height: 10vh;
+  }
+  .contacto {
+    font-size: 1rem;
+    padding: 8px 15px;
+    margin-right: 30px;
+    margin-top: 3vh;
+    border-radius: 4px;
+    border: 1px solid #FDFFFD;
+  }
+  // second section (moving scripts)
+  .sec-scrp {
+    transform: translateY(260px) translateX(0px) !important;
+  }
+  // second B section (parallax)
+  .parallax-container {
+    min-height: 300px;
+    height: 40vh;
+  }
+  .parallax-container img {
+    min-height: 400px;
+    height: 60vh;
+  }
+  //third-section
+  .third-section {
+    min-height: 450px;
+    height: 60vh;
+  }
+  .soft .card {
+    min-height: 350px;
+    height: 50vh;
+    width: 100%;
+  }
+  .soft .card-reveal{
+    width: 400px;
+    text-align: justify;
+  }
+  .soft .card-title {
+    font-weight: 8px !important;
+  }
+  .soft .card-content {
+    padding: 4px;
+  }
+  .subtitle {
+    font-size: 1.5rem;
+  }
+  .third-stuff {
+    display: none;
+  }
+  //footer
+  .wine-bar {
+    height: 5px;
   }
 }

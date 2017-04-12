@@ -44,7 +44,7 @@ class Translator extends React.Component {
     }).done( data => {
       console.log('its hitting answer')
       console.log(data)
-      this.setState({transInfo: data.outphrase});
+      this.setState({transInfo: data.inphrase});
     }).fail( data => {
       console.log('its hitting answer BUT IN FAIL')
       console.log(data)
@@ -82,7 +82,7 @@ class Translator extends React.Component {
         this.answer();
         this.refs.translateForm.reset();
       }).fail( data => {
-        console.log("its hitting fail");
+        console.log("its hitting fail first part");
         console.log(data);
         this.refs.translateForm.reset();
     })

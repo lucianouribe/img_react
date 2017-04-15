@@ -94,20 +94,21 @@
 .side-nav .bulb {
   background-image: url(asset_path("bombillo_icon_side.svg"));
 }
-.frame_icon {
-  background-image: url(asset_path("frame_icon.svg"));
+.gallery_icon {
+  background-image: url(asset_path("gallery_icon.svg"));
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  margin-top: 4px;
-  width: 32px !important;
-  height: 32px !important;
+  width: 40px !important;
+  height: 40px !important;
 }
 
-.collapsible-header:hover .frame_icon {
-  background-image: url(asset_path("frame_icon.png"));
+.collapsible-header:hover .gallery_icon {
+  background-image: url(asset_path("foto_gallery_icon.png"));
 }
-
+.side-nav .gallery_icon {
+  background-image: url(asset_path("gallery_icon_side.svg"));
+}
 .side-nav .home-icon {
   background-repeat: no-repeat;
   background-size: cover;

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 class Contact extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class Contact extends React.Component {
           <input type="email" required ref='email'  placeholder="email" />
           <textarea type="textarea" required ref='message'  placeholder="message" ></textarea>
           <button type="submit" className="btn">Send</button>
+          <Link type="button" className="btn" to='/main'>Back</Link>
         </form>
       </div>
     )

@@ -4,6 +4,7 @@ class ContactMailer < ApplicationMailer
 
   def new_contact(contact)
     @contact = contact
+    binding.pry
     mail(to: 'lucianouribe@gmail.com', subject: @contact.name)
   end
 

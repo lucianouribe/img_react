@@ -22,4 +22,5 @@ npm-debug.log
 /Main.js
 /Slider.js
 
+config/mail.yml
 .ENV

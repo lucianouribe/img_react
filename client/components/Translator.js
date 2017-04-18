@@ -44,7 +44,7 @@ class Translator extends React.Component {
     }).done( data => {
       console.log('its hitting answer')
       console.log(data)
-      this.setState({transInfo: data.inphrase});
+      this.setState({transInfo: data.outphrase});
     }).fail( data => {
       console.log('its hitting answer BUT IN FAIL')
       console.log(data)

@@ -2,12 +2,14 @@ require 'pry'
 class Api::TranslatorsController < ApplicationController
 
   def translate
-    api_translator_params[:outphrase] = Translator.hello(api_translator_params)
-    @translator = Translator.new(api_translator_params)
+    info = { inphrase: api_translator_params[:inphrase], lang_first: api_translator_params[:lang_first]}
+    new_info = Translator.translate_process(info)
+    @translator = Translator.new(new_info)
     @translator.save
   end
 
   def translated
+    binding.pry
     @translator = Translator.last
     destroy
   end

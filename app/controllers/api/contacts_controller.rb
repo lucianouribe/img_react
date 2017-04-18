@@ -1,9 +1,11 @@
 require 'pry'
 class Api::ContactsController < ApplicationController
   def index
+    binding.pry
   end
 
   def new
+    binding.pry
   end
 
   def create

@@ -9,7 +9,6 @@ class Api::TranslatorsController < ApplicationController
   end
 
   def translated
-    binding.pry
     @translator = Translator.last
     destroy
   end

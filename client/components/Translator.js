@@ -42,12 +42,12 @@ class Translator extends React.Component {
       type: 'GET',
       dataType: 'JSON'
     }).done( data => {
-      console.log('its hitting answer')
-      console.log(data)
+      // console.log('its hitting answer')
+      // console.log(data)
       this.setState({transInfo: data.outphrase});
     }).fail( data => {
-      console.log('its hitting answer BUT IN FAIL')
-      console.log(data)
+      // console.log('its hitting answer BUT IN FAIL')
+      // console.log(data)
     })
   }
 
@@ -77,13 +77,13 @@ class Translator extends React.Component {
         dataType: 'JSON',
         data: { translator: {inphrase, outphrase, lang_first, lang_second }}
       }).done( data => {
-        console.log("its hitting done");
-        console.log(data);
+        // console.log("its hitting done");
+        // console.log(data);
         this.answer();
         this.refs.translateForm.reset();
       }).fail( data => {
-        console.log("its hitting fail first part");
-        console.log(data);
+        // console.log("its hitting fail first part");
+        // console.log(data);
         this.refs.translateForm.reset();
     })
   }

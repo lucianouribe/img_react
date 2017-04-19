@@ -5,6 +5,14 @@ class Contact extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.activate = this.activate.bind(this);
+  }
+
+
+  activate() {
+    return (
+      window.location.href = "/main"
+    )
   }
 
   handleSubmit(e) {
@@ -23,12 +31,14 @@ class Contact extends React.Component {
     }).done( contact => {
       console.log('contact done')
       this.refs.mailForm.reset();
+      this.activate();
     }).fail( err => {
       console.log('something failed with the contact')
       console.log(err);
       this.refs.mailForm.reset();
     });
   }
+
 
   render() {
     return (
@@ -37,8 +47,8 @@ class Contact extends React.Component {
           <input type="text" required ref='name'  placeholder="name" />
           <input type="email" required ref='email'  placeholder="email" />
           <textarea type="textarea" required ref='message'  placeholder="message" ></textarea>
-          <button type="submit" className="btn">Send</button>
-          <Link type="button" className="btn" to='/main'>Back</Link>
+          <button type="submit" className="btn btn-send">Send</button>
+          <Link type="button" className="btn btn-back" to='/main'>Back</Link>
         </form>
       </div>
     )

@@ -176,6 +176,10 @@ class Main extends Component {
       return (
         <Translator />
       );
+    } else if(this.state.whichOne === "contact") {
+      return (
+        <Contact />
+      )
     }
   }
 

@@ -109,7 +109,7 @@ class Translator < ApplicationRecord
       info[:outphrase] = @text_in_array.join
       info
     elsif info[:lang_first] == 'ruso'
-      @cirilico = ['a',  'b',  'v',  'h',  'g',  'd', 'e',  'ye', 'zh', 'z',  'y',  'i', 'yi', 'y',  'k',  'l',  'm',  'n', 'o',  'p',  'r',  's',  't',  'u', 'f',  'kh', 'ts', 'ch', 'sh', 'shch', 'yu', 'ya', '', 'i']
+      @cirilico = ['a',  'b',  'v',  'h',  'g',  'd', 'e',  'ye', 'zh', 'z',  'y',  'i', 'yi', 'y',  'k',  'l',  'm',  'n', 'o',  'p',  'r',  's',  't',  'u', 'f',  'kh', 'ts', 'ch', 'sh', 'shch', 'yu', 'ya', '', 'y']
       @latino = ['а',  'б',  'в',  'г',  'г',  'д', 'е',  'є', 'ж', 'з',  'и',  'і', 'ї', 'й',  'к',  'л',  'м',  'н', 'о',  'п',  'р',  'с',  'т',  'у', 'ф',  'х', 'ц', 'ч', 'ш', 'щ',
       'ю', 'я', 'ь', 'ы']
 

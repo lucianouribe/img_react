@@ -13,6 +13,7 @@ class Navbar extends Component {
     this.logout = this.logout.bind(this);
     this.navs = this.navs.bind(this);
     this.sideNav = this.sideNav.bind(this);
+    this.theDoubt = this.theDoubt.bind(this);
   }
 
   logout(e) {
@@ -62,6 +63,18 @@ class Navbar extends Component {
     }
   }
 
+  theDoubt(){
+    if(this.props.user.role === "admin" || this.props.user.role === "visitor"){
+      return(
+        <li><a style={{ cursor: 'pointer' }} onClick={this.logout}>Logout</a></li>
+      )
+    } else {
+      return (
+        <li><Link className="collapsible-header" to='/signin'><i className="login-icon"></i>Login</Link></li>
+      )
+    }
+  }
+
   sideNav(){
     return(
       <div>
@@ -69,8 +82,7 @@ class Navbar extends Component {
         <li><DashButtons id="side-menu"
         cardOpener={this.props.cardOpener}
         infoSpongeAjax={this.props.infoSpongeAjax} infoSpongePanos={this.props.infoSpongePanos}/></li>
-        <li><Link className="collapsible-header" to='/contact'><i className="contact-icon"></i>Contact</Link></li>
-        <li><Link className="collapsible-header" to='/signin'><i className="login-icon"></i>Login</Link></li>
+        {this.theDoubt()}
       </div>
     )
   }

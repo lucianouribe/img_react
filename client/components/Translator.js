@@ -19,6 +19,7 @@ class Translator extends React.Component {
   }
 
   componentDidMount(){
+    // jquery button clicked effect
     $('.btn-lang').on('click', function(){
       $('.btn-lang').removeClass('clicked');
       $(this).addClass('clicked');
@@ -100,6 +101,15 @@ class Translator extends React.Component {
       case 'lat':
         lang_second = 'latino';
         break;
+      case 'esp':
+        lang_second = 'espanol';
+        break;
+      case 'eng':
+        lang_second = 'english';
+        break;
+      case 'deu':
+        lang_second = 'deutsch';
+        break;
       default:
         lang_second = 'cirilico';
         break;
@@ -132,19 +142,22 @@ class Translator extends React.Component {
     return (
       <div className="card translate">
         <form ref="translateForm" className="input-field">
-          <span className="center title"><h5>Kirilik Translator</h5></span>
-          <div type="button" className="btn btn-lang lat1" onClick={() => this.language(espanol)}>español</div>
-          <div type="button" className="btn btn-lang lat1" onClick={() => this.language(english)}>english</div>
-          <div type="button" className="btn btn-lang lat1" onClick={() => this.language(deutsch)}>deutsch</div>
-          <div type="button" className="btn btn-lang cir1" onClick={() => this.language(ruso)}>ruso</div>
+          <span className="center title"><h5>Transliterator</h5></span>
+          <div type="button" className="btn btn-lang lat1 esp clicked" onClick={() => this.language(espanol)}><p className="btn-name">español</p></div>
+          <div type="button" className="btn btn-lang eng lat1" onClick={() => this.language(english)}><p className="btn-name">english</p></div>
+          <div type="button" className="btn btn-lang deu lat1" onClick={() => this.language(deutsch)}><p className="btn-name">deutsch</p></div>
+          <div type="button" className="btn btn-lang rus cir1" onClick={() => this.language(ruso)}><p className="btn-name">ruso</p></div>
+          <div type="button" className="btn btn-translate right" onClick={this.handleSubmit}><p className="btn-name">transliterate</p></div>
           <textarea className="input" type="text" ref="translateMe" placeholder="Write something"></textarea>
-          <div type="button" className="btn btn-lang2 cir2" onClick={() => this.language2(cirilico)}>cirilico</div>
-          <div type="button" className="btn btn-lang2 lat2" onClick={() => this.language2(latino)}>latino</div>
-          <div type="submit" className="btn btn-translate right" onClick={this.handleSubmit}>translate</div>
+          <div type="button" className="btn btn-lang2 cir2 cir clicked" onClick={() => this.language2(cirilico)}><p className="btn-name">cirilico</p></div>
+          <div type="button" className="btn btn-lang2 lat2 esp" onClick={() => this.language2(espanol)}><p className="btn-name">español</p></div>
+          <div type="button" className="btn btn-lang2 lat2 eng" onClick={() => this.language2(english)}><p className="btn-name">english</p></div>
+          <div type="button" className="btn btn-lang2 lat2 deu" onClick={() => this.language2(deutsch)}><p className="btn-name">deutsch</p></div>
         </form>
         <div className="answer">
           {this.putPlease()}
         </div>
+
       </div>
     )
   }

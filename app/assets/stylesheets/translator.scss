@@ -1,29 +1,106 @@
 .translate {
-  padding: 30px !important;
-  // border: 1px solid #ccc !important;
-  // border-radius: 5px !important;
+  padding: 10px 30px 30px 30px !important;
+}
+
+.translate h5 {
+  margin-bottom: 30px;
 }
 
 .translate .input {
   border: 1px solid #ccc;
   border-radius: 5px;
-  min-height: 70px;
+  min-height: 100px;
   padding: 15px;
   margin-bottom: 20px;
-}
-
-.translate .btn-translate {
-  margin-bottom: 15px;
-  background-color: #723025;
+  margin-top: 20px;
 }
 
 .translate .answer {
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  min-height: 70px;
+  min-height: 100px;
+  margin-top: 20px;
 }
 
 .clicked {
   background-color: #9DD0FF !important;
+}
+
+.translate .btn-name {
+  margin-top: 0 !important;
+}
+
+.translate .btn-translate {
+  background-color: #723025;
+}
+
+@media all and (min-width: 1100px) and (max-width: 1300px) {
+  .translate .btn {
+    font-size: 12px !important;
+    padding: auto 15px;
+    margin: 5px;
+  }
+}
+
+@media all and (min-width: 900px) and (max-width: 1099px) {
+  .translate .btn {
+    font-size: 10px !important;
+    padding: auto 1rem !important;
+    margin: 2px !important;
+  }
+
+}
+@media all and (max-width: 899px) {
+  .translate .btn {
+    margin: 2px !important;
+  }
+
+  .translate .btn-name {
+    visibility: hidden;
+  }
+
+  .translate .btn-lang, .btn-lang2, .btn-translate {
+    padding: 0 !important;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 40px;
+    height: 40px;
+    background-size: 40px;
+  }
+
+  .translate .esp {
+    background-image: url(asset_path("esp.svg"));
+  }
+  .translate .eng {
+    background-image: url(asset_path("eng.svg"));
+  }
+  .translate .deu {
+    background-image: url(asset_path("deu.svg"));
+  }
+  .translate .rus {
+    background-image: url(asset_path("rus.svg"));
+  }
+  .translate .cir {
+    background-image: url(asset_path("cir.svg"));
+  }
+  .translate .btn-translate {
+    background-image: url(asset_path("go.svg"));
+  }
+  .translate .esp:hover {
+    background-image: url(asset_path("esp_o.svg"));
+  }
+  .translate .eng:hover {
+    background-image: url(asset_path("eng_o.svg"));
+  }
+  .translate .deu:hover {
+    background-image: url(asset_path("deu_o.svg"));
+  }
+  .translate .cir:hover {
+    background-image: url(asset_path("cir_o.svg"));
+  }
+  .translate .btn-translate:hover {
+    background-image: url(asset_path("go_o.svg"));
+  }
+
 }

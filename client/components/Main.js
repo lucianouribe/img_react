@@ -198,7 +198,7 @@ class Main extends Component {
             cardOpener={ this.cardOpener }
         />
         <div className="row">
-          <div className="col s10 m10 l8 offset-l1 offset-m1 offset-s1">
+          <div className="col s12 m10 l8 offset-l1 offset-m1">
             {this.mainRenderer()}
           </div>
         </div>

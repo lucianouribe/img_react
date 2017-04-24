@@ -82,6 +82,7 @@ class Navbar extends Component {
         <li><DashButtons id="side-menu"
         cardOpener={this.props.cardOpener}
         infoSpongeAjax={this.props.infoSpongeAjax} infoSpongePanos={this.props.infoSpongePanos}/></li>
+        <li><Link className="collapsible-header" to='/contact'><i className="contact_icon"></i>Contact</Link></li>
         {this.theDoubt()}
       </div>
     )

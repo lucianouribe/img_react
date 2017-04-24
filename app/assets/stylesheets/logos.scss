@@ -60,7 +60,7 @@
   background-image: url(asset_path("teapot_silouete_side.svg"));
 }
 
-
+// Panoramicos (mundo)
 .world {
   background-image: url(asset_path("world_silouete.svg"));
   background-repeat: no-repeat;
@@ -100,8 +100,8 @@
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  width: 40px !important;
-  height: 40px !important;
+  width: 36px !important;
+  height: 36px !important;
 }
 .collapsible-header:hover .gallery_icon {
   background-image: url(asset_path("foto_gallery_icon.png"));
@@ -109,6 +109,7 @@
 .side-nav .gallery_icon {
   background-image: url(asset_path("gallery_icon_side.svg"));
 }
+
 // Programming Icon (React log and ruby)
 .programming_icon {
   background-image: url(asset_path("icon_programming.svg"));
@@ -123,6 +124,22 @@
 }
 .side-nav .programming_icon {
   background-image: url(asset_path("icon_programming_side.svg"));
+}
+
+// Contact Icon (carta)
+.contact_icon {
+  background-image: url(asset_path("icon_contact.svg"));
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 40px !important;
+  height: 40px !important;
+}
+.collapsible-header:hover .contact_icon {
+  background-image: url(asset_path("icon_contact.png"));
+}
+.side-nav .contact_icon {
+  background-image: url(asset_path("icon_contact_side.svg"));
 }
 
 .side-nav .home-icon {

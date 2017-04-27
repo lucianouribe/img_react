@@ -46,7 +46,7 @@
 
 // Home (casa)
 .home-icon {
-  background-image: url(asset_path("home_side.svg"));
+  background-image: url(asset_path("icon_home.svg"));
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -55,10 +55,10 @@
 }
 
 .collapsible-header:hover .home-icon {
-  background-image: url(asset_path("home_side.svg"));
+  background-image: url(asset_path("icon_home_o.svg"));
 }
 .side-nav .home-icon {
-  background-image: url(asset_path("home_side.svg"));
+  background-image: url(asset_path("icon_home_side.svg"));
 }
 
 // Renders (Tetera)

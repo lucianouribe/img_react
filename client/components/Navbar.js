@@ -66,11 +66,11 @@ class Navbar extends Component {
   theDoubt(){
     if(this.props.user.role === "admin" || this.props.user.role === "visitor"){
       return(
-        <li><a style={{ cursor: 'pointer' }} onClick={this.logout}>Logout</a></li>
+        <li><a style={{ cursor: 'pointer' }} onClick={this.logout}><i className="logout_icon"></i>Logout</a></li>
       )
     } else {
       return (
-        <li><Link className="collapsible-header" to='/signin'><i className="login-icon"></i>Login</Link></li>
+        <li><Link className="collapsible-header" to='/signin'><i className="login_icon"></i>Login</Link></li>
       )
     }
   }

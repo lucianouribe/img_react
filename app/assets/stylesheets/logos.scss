@@ -44,6 +44,24 @@
 
 // Collapsible Dashboard Icons
 
+// Home (casa)
+.home-icon {
+  background-image: url(asset_path("home_side.svg"));
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 40px !important;
+  height: 40px !important;
+}
+
+.collapsible-header:hover .home-icon {
+  background-image: url(asset_path("home_side.svg"));
+}
+.side-nav .home-icon {
+  background-image: url(asset_path("home_side.svg"));
+}
+
+// Renders (Tetera)
 .teapot {
   background-image: url(asset_path("teapot_silouete.svg"));
   background-repeat: no-repeat;
@@ -142,30 +160,39 @@
   background-image: url(asset_path("icon_contact_side.svg"));
 }
 
-.side-nav .home-icon {
+// Login Icon (cara)
+.login_icon {
+  background-image: url(asset_path("icon_login.svg"));
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  width: 40px !important;
-  height: 40px !important;
-  background-image: url(asset_path("home_side.svg"));
+  width: 36px !important;
+  height: 36px !important;
 }
-.side-nav .contact-icon {
+.collapsible-header:hover .login_icon {
+  background-image: url(asset_path("icon_login_o.svg"));
+}
+.side-nav .login_icon {
+  background-image: url(asset_path("icon_login_side.svg"));
+}
+
+// Logout Icon (cara)
+.logout_icon {
+  background-image: url(asset_path("icon_logout.svg"));
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
-  width: 40px !important;
-  height: 40px !important;
-  background-image: url(asset_path("home_side.svg"));
+  width: 36px !important;
+  height: 36px !important;
 }
-.side-nav .login-icon {
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
-  width: 40px !important;
-  height: 40px !important;
-  background-image: url(asset_path("home_side.svg"));
+.collapsible-header:hover .logout_icon {
+  background-image: url(asset_path("icon_logout_o.svg"));
 }
+.side-nav .logout_icon {
+  background-image: url(asset_path("icon_logout_side.svg"));
+}
+
+
 .side-nav li > a > i {
   margin-right:1rem;
 }

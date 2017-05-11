@@ -14,13 +14,21 @@
 
 @media all and (max-width: 599px) {
   .calculator .btn {
-    padding-top: 0.5rem !important;
+    padding-top: 0.3rem !important;
     font-size: 1rem !important;
   }
   #screen {
     font-size: 3rem !important;
     font-weight: 300;
     margin-right: 1rem;
+  }
+}
+
+@media all and (orientation:portrait) and (max-width: 700px) {
+  .calculator .btn {
+    line-height: 2rem;
+    padding-top: 0 !important;
+    font-size: 0.8rem !important;
   }
 }
 

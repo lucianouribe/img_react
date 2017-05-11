@@ -10,6 +10,15 @@ class DashButtons extends Component {
 
   componentDidMount() {
     $('.collapsible').collapsible();
+    $('.side-but').on('click', function() {
+      $('.button-collapse').sideNav('hide');
+    });
+  }
+
+  componentDidUpdate() {
+    $('.side-but').on('click', function() {
+      $('.button-collapse').sideNav('hide');
+    });
   }
 
   render() {
@@ -36,6 +45,7 @@ class DashButtons extends Component {
 
     const translate = 'translate';
     const morse = 'morse';
+    const calculator = 'calculator';
 
 
     return(
@@ -43,36 +53,36 @@ class DashButtons extends Component {
         <ul className="collapsible" data-collapsible="accordion">
           <li>
             <div className="collapsible-header"><i className="world"></i>Panoramicos 360</div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongePanos(e, panodigital)} ><a>Digital</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongePanos(e, panofotografia)}><a>Fotografia</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongePanos(e, panoradar)}><a>Radar</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongePanos(e, panodigital)} ><a>Digital</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongePanos(e, panofotografia)}><a>Fotografia</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongePanos(e, panoradar)}><a>Radar</a></div>
           </li>
           <li>
             <div className="collapsible-header"><i className="teapot"></i>Renders</div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, productos)}><a>Productos</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, espacios)}><a>Espacios</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, otros)}><a>Otros</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, productos)}><a>Productos</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, espacios)}><a>Espacios</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, otros)}><a>Otros</a></div>
           </li>
           <li>
             <div className="collapsible-header"><i className="bulb"></i>Fotografia Productos</div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosJoyas)}><a>Joyas</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosComp)}><a>Componentes</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosCuadros)}><a>Cuadros</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosJoyas)}><a>Joyas</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosComp)}><a>Componentes</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosCuadros)}><a>Cuadros</a></div>
           </li>
           <li>
             <div className="collapsible-header"><i className="gallery_icon"></i>Galeria Imagenes</div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosDetalles)}><a>Detalles</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosPaisajes)}><a>Paisajes</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosUrbano)}><a>Urbano</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosTexturas)}><a>Texturas</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosMuelles)}><a>Muelles</a></div>
-            <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosCuadrados)}><a>Cuadrados</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosDetalles)}><a>Detalles</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosPaisajes)}><a>Paisajes</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosUrbano)}><a>Urbano</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosTexturas)}><a>Texturas</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosMuelles)}><a>Muelles</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosCuadrados)}><a>Cuadrados</a></div>
           </li>
           <li>
             <div className="collapsible-header"><i className="programming_icon"></i>Programming</div>
-            <div className="collapsible-body" onClick={() => this.props.cardOpener(translate)}><a>Cyrillic</a></div>
-            <div className="collapsible-body"onClick={() => this.props.cardOpener(morse)}><a>Morse</a></div>
-            <div className="collapsible-body"><a>Carlculator</a></div>
+            <div className="collapsible-body side-but" onClick={() => this.props.cardOpener(translate)}><a>Cyrillic</a></div>
+            <div className="collapsible-body side-but" onClick={() => this.props.cardOpener(morse)}><a>Morse</a></div>
+            <div className="collapsible-body side-but" onClick={() => this.props.cardOpener(calculator)}><a>Calculator</a></div>
           </li>
         </ul>
       </div>

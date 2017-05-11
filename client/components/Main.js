@@ -8,6 +8,7 @@ import Trisixti from './Trisixti';
 import Navbar from './Navbar';
 import Translator from './Translator';
 import Morse from './Morse';
+import Calculator from './Calculator';
 import Description from '../Description';
 
 
@@ -35,7 +36,7 @@ class Main extends Component {
     this.state = {
       slideInfo: {},
       description: '',
-      whichOne: 'intro',
+      whichOne: 'translate',
       reset: true
     };
 
@@ -150,7 +151,7 @@ class Main extends Component {
     })
   }
 
-  // Main renderer selector
+  // Main renderer card selector
   // TODO: change to switch case!
   mainRenderer(){
     if(this.state.whichOne === "intro") {
@@ -181,6 +182,10 @@ class Main extends Component {
     } else if(this.state.whichOne === "morse") {
       return (
         <Morse />
+      );
+    } else if(this.state.whichOne === "calculator") {
+      return (
+        <Calculator />
       );
     } else if(this.state.whichOne === "contact") {
       return (

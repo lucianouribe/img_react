@@ -24,12 +24,18 @@ class Navbar extends Component {
 
   componentDidMount() {
     $('.button-collapse').sideNav();
+    // $('.side-but').on('click', function() {
+    //   $('.button-collapse').sideNav('hide');
+    // });
   }
 
   componentDidUpdate() {
     $('.collapsible-body').on('click', function() {
      $('.button-collapse').sideNav('hide');
     });
+    // $('.side-but').on('click', function() {
+    //   $('.button-collapse').sideNav('hide');
+    // });
   }
 
 
@@ -38,26 +44,26 @@ class Navbar extends Component {
       case'visitor':
         return(
           <div>
-            <li><Link to='/'><i className="home-icon"></i>Home</Link></li>
-            <li><Link to='/contact'><i className="contact_icon"></i>Contact</Link></li>
-            <li><a style={{ cursor: 'pointer' }} onClick={this.logout}><i className="logout_icon"></i>Logout</a></li>
+            <li className="top-icon"><Link to='/'><i className="home-icon"></i>Home</Link></li>
+            <li className="top-icon"><Link to='/contact'><i className="contact_icon"></i>Contact</Link></li>
+            <li className="top-icon"><a style={{ cursor: 'pointer' }} onClick={this.logout}><i className="logout_icon"></i>Logout</a></li>
           </div>
         );
       case'admin':
         return(
           <div>
-            <li><Link to='/'><i className="home-icon"></i>Home</Link></li>
-            <li><Link to='/main'>Main</Link></li>
-            <li><Link to='/admin'>Admin</Link></li>
-            <li><a style={{ cursor: 'pointer' }} onClick={this.logout}><i className="logout_icon"></i>Logout</a></li>
+            <li className="top-icon"><Link to='/'>Home</Link></li>
+            <li className="top-icon"><Link to='/main'>Main</Link></li>
+            <li className="top-icon"><Link to='/admin'>Admin</Link></li>
+            <li className="top-icon"><a style={{ cursor: 'pointer' }} onClick={this.logout}>Logout</a></li>
           </div>
         );
       default:
         return(
           <div>
-            <li><Link to='/home'><i className="home-icon"></i>Home</Link></li>
-            <li><Link to='/contact'><i className="contact_icon"></i>Contact</Link></li>
-            <li><Link to='/signin'><i className="login_icon"></i>Login</Link></li>
+            <li className="top-icon"><Link to='/home'><i className="home-icon"></i></Link></li>
+            <li className="top-icon"><Link to='/contact'><i className="contact_icon"></i></Link></li>
+            <li className="top-icon"><Link to='/signin'><i className="login_icon"></i></Link></li>
           </div>
         );
     }

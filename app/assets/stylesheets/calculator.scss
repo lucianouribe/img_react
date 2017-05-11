@@ -1,0 +1,79 @@
+.calculator {
+  width: 100%;
+  // height: 60vh;
+  background-color: #404040;
+  border: 3px solid #000;
+  border-radius: 8px;
+}
+@media all and (min-width: 600px) and (max-width: 992px) {
+  .calculator .btn {
+    padding-top: 0.7rem !important;
+    font-size: 1.4rem !important;
+  }
+}
+
+@media all and (max-width: 599px) {
+  .calculator .btn {
+    padding-top: 0.5rem !important;
+    font-size: 1rem !important;
+  }
+  #screen {
+    font-size: 3rem !important;
+    font-weight: 300;
+    margin-right: 1rem;
+  }
+}
+
+.calculator .screen {
+  color: #fff;
+  height: 12vh;
+  border-radius: 5px;
+  align-items: center;
+  margin: 5px 5px 15px 5px;
+}
+.calculator .col {
+  padding: 0 !important;
+}
+.calculator .row {
+  margin-bottom: 0 !important;
+}
+// el 2 de la pontencia (x2)
+sup {
+  vertical-align: super;
+  font-size: smaller;
+}
+
+#screen {
+  font-size: 4rem;
+  font-weight: 300;
+  margin-right: 1rem;
+}
+#show-history {
+  display: none;
+}
+#history-button {
+  border-bottom-left-radius: 5px;
+}
+#history-button {
+  border-bottom-right-radius: 5px;
+}
+
+.calculator .num {
+ background-color: #FD9729;
+}
+.calculator .ope {
+  background-color: #878787;
+}
+.calculator .esp {
+  background-color: #4B4B4B;
+}
+.calculator .btn {
+  border: 0.5px solid #404040;
+  margin: 0 !important;
+  height: 8vh;
+  padding-top: 1rem !important;
+  font-size: 2rem;
+}
+.calculator .btn:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}

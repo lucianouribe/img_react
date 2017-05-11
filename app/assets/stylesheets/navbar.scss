@@ -1,14 +1,26 @@
 nav {
   margin-bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  // position: fixed;
   box-shadow: none;
   font-weight: 100;
   text-transform: lowercase;
   letter-spacing: 1px;
+  height: 4.5rem;
 }
-nav li:hover {
+
+nav .top-icon a {
+  padding-top: .8rem !important;
+  height: 4.5rem;
+}
+
+nav .top-icon:hover {
   background: rgba(255, 255, 255, 0.4);
+  height: 4.5rem;
+}
+
+#sidenav-overlay {
+  opacity: 0 !important;
+  z-index: -999;
 }
 
 .brand-logo {

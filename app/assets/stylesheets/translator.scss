@@ -35,6 +35,10 @@
   background-color: #723025;
 }
 
+.morse-output {
+  font-size: 2rem;
+}
+
 @media all and (min-width: 1100px) and (max-width: 1300px) {
   .translate .btn {
     font-size: 12px !important;
@@ -51,6 +55,7 @@
   }
 
 }
+
 @media all and (max-width: 899px) {
   .translate .btn {
     margin: 2px !important;
@@ -84,6 +89,12 @@
   .translate .cir {
     background-image: url(asset_path("cir.svg"));
   }
+  .translate .rom {
+    background-image: url(asset_path("rom.svg"));
+  }
+  .translate .mor {
+    background-image: url(asset_path("mor.svg"));
+  }
   .translate .btn-translate {
     background-image: url(asset_path("go.svg"));
   }
@@ -98,6 +109,12 @@
   }
   .translate .cir:hover {
     background-image: url(asset_path("cir_o.svg"));
+  }
+  .translate .rom:hover {
+    background-image: url(asset_path("rom_o.svg"));
+  }
+  .translate .mor:hover {
+    background-image: url(asset_path("mor_o.svg"));
   }
   .translate .btn-translate:hover {
     background-image: url(asset_path("go_o.svg"));

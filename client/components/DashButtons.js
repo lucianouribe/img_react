@@ -35,6 +35,7 @@ class DashButtons extends Component {
     const fotosCuadrados = 'fotosCuadrados';
 
     const translate = 'translate';
+    const morse = 'morse';
 
 
     return(
@@ -68,10 +69,10 @@ class DashButtons extends Component {
             <div className="collapsible-body" onClick={(e) => this.props.infoSpongeAjax(e, fotosCuadrados)}><a>Cuadrados</a></div>
           </li>
           <li>
-            <div className="collapsible-header"><i className="programming_icon"></i>Programming Stuff</div>
-            <div className="collapsible-body" onClick={() => this.props.cardOpener(translate)}><a>Translate</a></div>
-            <div className="collapsible-body"><a>Calculator</a></div>
-            <div className="collapsible-body"><a>Battery</a></div>
+            <div className="collapsible-header"><i className="programming_icon"></i>Programming</div>
+            <div className="collapsible-body" onClick={() => this.props.cardOpener(translate)}><a>Cyrillic</a></div>
+            <div className="collapsible-body"onClick={() => this.props.cardOpener(morse)}><a>Morse</a></div>
+            <div className="collapsible-body"><a>Carlculator</a></div>
           </li>
         </ul>
       </div>

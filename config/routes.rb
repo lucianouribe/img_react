@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     get 'users/info'
     post 'translator', to: 'translators#translate'
     get 'translator', to: 'translators#translated'
+    post 'morse', to: 'morses#go_to_model'
+    get 'morse', to: 'morses#comes_from_model'
   end
 
   get '*unmatched_route', to: 'home#index'

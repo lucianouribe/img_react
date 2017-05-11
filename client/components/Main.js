@@ -7,6 +7,7 @@ import Carrusel from './Carrusel';
 import Trisixti from './Trisixti';
 import Navbar from './Navbar';
 import Translator from './Translator';
+import Morse from './Morse';
 import Description from '../Description';
 
 
@@ -150,6 +151,7 @@ class Main extends Component {
   }
 
   // Main renderer selector
+  // TODO: change to switch case!
   mainRenderer(){
     if(this.state.whichOne === "intro") {
       return (
@@ -175,6 +177,10 @@ class Main extends Component {
     } else if(this.state.whichOne === "translate") {
       return (
         <Translator />
+      );
+    } else if(this.state.whichOne === "morse") {
+      return (
+        <Morse />
       );
     } else if(this.state.whichOne === "contact") {
       return (

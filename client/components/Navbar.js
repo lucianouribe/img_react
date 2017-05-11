@@ -38,26 +38,26 @@ class Navbar extends Component {
       case'visitor':
         return(
           <div>
-            <li><Link to='/'>Home</Link></li>
-            <li><Link to='/contact'>Contact</Link></li>
-            <li><a style={{ cursor: 'pointer' }} onClick={this.logout}>Logout</a></li>
+            <li><Link to='/'><i className="home-icon"></i>Home</Link></li>
+            <li><Link to='/contact'><i className="contact_icon"></i>Contact</Link></li>
+            <li><a style={{ cursor: 'pointer' }} onClick={this.logout}><i className="logout_icon"></i>Logout</a></li>
           </div>
         );
       case'admin':
         return(
           <div>
-            <li><Link to='/'>Home</Link></li>
+            <li><Link to='/'><i className="home-icon"></i>Home</Link></li>
             <li><Link to='/main'>Main</Link></li>
             <li><Link to='/admin'>Admin</Link></li>
-            <li><a style={{ cursor: 'pointer' }} onClick={this.logout}>Logout</a></li>
+            <li><a style={{ cursor: 'pointer' }} onClick={this.logout}><i className="logout_icon"></i>Logout</a></li>
           </div>
         );
       default:
         return(
           <div>
-            <li><Link to='/home'>Home</Link></li>
-            <li><Link to='/contact'>Contact</Link></li>
-            <li><Link to='/signin'>LogIn</Link></li>
+            <li><Link to='/home'><i className="home-icon"></i>Home</Link></li>
+            <li><Link to='/contact'><i className="contact_icon"></i>Contact</Link></li>
+            <li><Link to='/signin'><i className="login_icon"></i>Login</Link></li>
           </div>
         );
     }

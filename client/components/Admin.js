@@ -1,9 +1,13 @@
 import React from 'react';
 
-const Admin = () => {
-  <div>
-    I'm an admin
-  </div>
+class Admin extends React.Component {
+  render(){
+    return (
+      <div>
+      I'm Admin
+      </div>
+    )
+  }
 }
 
 export default Admin;

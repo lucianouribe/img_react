@@ -121,12 +121,12 @@ class Translator extends React.Component {
       dataType: 'JSON',
       data: { translator: {inphrase, outphrase, lang_first, lang_second }}
     }).done( data => {
-      console.log("its hitting done");
-      console.log(data);
+      // console.log("its hitting done");
+      // console.log(data);
       this.answer();
       this.refs.translateForm.reset();
     }).fail( data => {
-      console.log("its hitting fail first part");
+      // console.log("its hitting fail first part");
       // console.log(data);
       this.refs.translateForm.reset();
     })

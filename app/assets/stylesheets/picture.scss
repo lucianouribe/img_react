@@ -1,7 +1,26 @@
-.pic-compo {
+.pic-standard {
   height: 180px;
-  background-image: url(asset_path("logosolo200blanco.png"));
   background-repeat: no-repeat;
   background-position: center;
+  background-size: 80%;
+}
+
+.PicLogo {
+  background-image: url(asset_path("logosolo200blanco.png"));
   background-size: 70%;
+}
+.PicPanoramics {
+  background-image: url(asset_path("world_icon.png"));
+}
+.PicRenders {
+  background-image: url(asset_path("teapot.png"));
+}
+.PicProducts {
+  background-image: url(asset_path("bombillo_icon_II.png"));
+}
+.PicGallery {
+  background-image: url(asset_path("foto_gallery_icon.png"));
+}
+.PicProgramming {
+  background-image: url(asset_path("icon_programming.png"));
 }

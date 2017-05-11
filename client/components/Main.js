@@ -31,23 +31,31 @@ class Main extends Component {
     this.reseter = this.reseter.bind(this);
 
     this.cardOpener = this.cardOpener.bind(this);
+    this.picPiquer = this.picPiquer.bind(this);
 
 
     this.state = {
       slideInfo: {},
       description: '',
       whichOne: 'translate',
-      reset: true
+      reset: true,
+      whichPic: 'pic-standard PicLogo'
     };
 
   }
 
-// state reseter
+  // Picture Component
+  picPiquer(picType) {
+    this.setState({whichPic: `pic-standard ${picType}`})
+    console.log(this.state.whichPic)
+  }
+
+  // state reseter
   reseter(){
     this.setState({reset: false})
   }
 
-// static images renderer
+  // static images renderer
   renderImages(info) {
     this.cardOpener('carousel');
     this.setState({
@@ -55,29 +63,30 @@ class Main extends Component {
     });
   }
 
-// panoramics renderer
-  renderPanoramics(info) {
-    this.cardOpener('trisixti');
+  // panoramics renderer
+  renderPanoramics(info, picType) {
+    this.cardOpener('trisixti', picType);
     this.setState({
       slideInfo: {info},
     });
   }
 
-// panoramic information receiver
-  infoSpongePanos(e, info) {
+  // panoramic information receiver
+  infoSpongePanos(e, info, picType) {
     e.preventDefault();
-    this.renderPanoramics(info);
+    // this.picPiquer(picType);
+    this.renderPanoramics(info, picType);
   }
 
-// image information receiver
+  // image information receiver
   infoSpongeImages(e, info) {
     e.preventDefault();
     // console.log(info)
     this.renderImages(info);
   }
 
-// image information receiver, filters and dispatch
-  infoSpongeAjax(e, info) {
+  // image information receiver, filters and dispatch
+  infoSpongeAjax(e, info, picType) {
     e.preventDefault();
       //reset state to get a new 0
       this.setState({reset: true});
@@ -90,6 +99,8 @@ class Main extends Component {
         const theStuffForTheCarrusel = data.filter( filteredData => filteredData.role === info )
         // dispatch only the data with the specified role
         this.carruselStateSetter(theStuffForTheCarrusel, info);
+        // Set the picture for the pic piquer
+        this.picPiquer(picType);
       }).fail ( data => {
         console.log(error)
       })
@@ -145,7 +156,8 @@ class Main extends Component {
   }
 
   // card opener for main renderer
-  cardOpener(info) {
+  cardOpener(info, picType) {
+    this.picPiquer(picType);
     this.setState({
       whichOne: info
     })
@@ -207,6 +219,7 @@ class Main extends Component {
             infoSpongeImages={ this.infoSpongeImages }
             infoSpongeAjax={ this.infoSpongeAjax  }
             cardOpener={ this.cardOpener }
+            thePicture={ this.state.whichPic }
         />
         <div className="row">
           <div className="col s12 m10 l8 offset-l1 offset-m1">

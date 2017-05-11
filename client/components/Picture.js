@@ -4,9 +4,7 @@ class Picture extends React.Component {
 
   render() {
     return (
-      <div className="pic-compo">
-        
-      </div>
+      <div className={this.props.thePicture}></div>
     )
   }
 }

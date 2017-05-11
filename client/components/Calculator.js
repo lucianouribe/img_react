@@ -3,6 +3,19 @@ import React from 'react';
 class Calculator extends React.Component {
 
   componentDidMount() {
+    var i = document.getElementById("calculator");
+
+    // go full-screen
+    if (i.requestFullscreen) {
+    	i.requestFullscreen();
+    } else if (i.webkitRequestFullscreen) {
+    	i.webkitRequestFullscreen();
+    } else if (i.mozRequestFullScreen) {
+    	i.mozRequestFullScreen();
+    } else if (i.msRequestFullscreen) {
+    	i.msRequestFullscreen();
+    }
+
     var numbers = ""
     var memory = ""
 

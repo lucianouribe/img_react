@@ -33,9 +33,17 @@ class Navbar extends Component {
     $('.collapsible-body').on('click', function() {
      $('.button-collapse').sideNav('hide');
     });
-    // $('.side-but').on('click', function() {
-    //   $('.button-collapse').sideNav('hide');
-    // });
+    $('.exit').on('click', function() {
+      if (document.exitFullscreen) {
+      	document.exitFullscreen();
+      } else if (document.webkitExitFullscreen) {
+      	document.webkitExitFullscreen();
+      } else if (document.mozCancelFullScreen) {
+      	document.mozCancelFullScreen();
+      } else if (document.msExitFullscreen) {
+      	document.msExitFullscreen();
+      }
+    });
   }
 
 
@@ -90,6 +98,7 @@ class Navbar extends Component {
         infoSpongeAjax={this.props.infoSpongeAjax} infoSpongePanos={this.props.infoSpongePanos}/></li>
         <li><Link className="collapsible-header" to='/contact'><i className="contact_icon"></i>Contact</Link></li>
         {this.theDoubt()}
+        <li><a className="collapsible-header exit">Exit Full Screen</a></li>
       </div>
     )
   }

@@ -44,6 +44,22 @@ class Main extends Component {
 
   }
 
+  componentDidMount() {
+    var i = document.getElementById("main-component");
+
+    // go full-screen
+    if (i.requestFullscreen) {
+      i.requestFullscreen();
+    } else if (i.webkitRequestFullscreen) {
+      i.webkitRequestFullscreen();
+    } else if (i.mozRequestFullScreen) {
+      i.mozRequestFullScreen();
+    } else if (i.msRequestFullscreen) {
+      i.msRequestFullscreen();
+    }
+    
+  }
+
   // Picture Component
   picPiquer(picType) {
     this.setState({whichPic: `pic-standard ${picType}`})
@@ -208,7 +224,7 @@ class Main extends Component {
 
   render() {
     return (
-      <div>
+      <div className='main-component'>
         <Navbar
           infoSpongeAjax={ this.infoSpongeAjax  }
           infoSpongePanos={ this.infoSpongePanos }

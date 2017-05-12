@@ -105,10 +105,11 @@ class Carrusel extends Component {
 
   showMeThePic() {
     const info = this.props.details
-    console.log('info')
-    console.log(info)
+    // console.log('show me the pic')
+    // console.log(info)
     const actualPic = this.state.currentSlide;
-    console.log(actualPic)
+    // console.log('actualPic')
+    // console.log(actualPic)
     const id = info[actualPic].id;
 
     return (<img className="carruslide" src={info[actualPic].image} data-info={info[actualPic].infopic} id={id} />)
@@ -137,7 +138,7 @@ class Carrusel extends Component {
     if (prev < 0) {
       prev = data.length - 1;
     }
-    console.log(prev);
+    // console.log(prev);
     this.setState({currentSlide: prev});
     this.props.reseter()
     // console.log(this.state.currentSlide)

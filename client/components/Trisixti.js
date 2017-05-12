@@ -18,11 +18,6 @@ class Trisixti extends React.Component {
 
 
   front() {
-    // return (
-    //   <div className="frame">
-    //     <iframe src={this.props.details.address} seamless></iframe>
-    //   </div>
-    // )
     return(
       <div>
         <div className="card">

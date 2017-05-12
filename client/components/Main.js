@@ -36,6 +36,7 @@ class Main extends Component {
 
     this.state = {
       slideInfo: {},
+      PanoslideInfo: {},
       description: '',
       whichOne: 'translate',
       reset: true,
@@ -44,21 +45,6 @@ class Main extends Component {
 
   }
 
-  componentDidMount() {
-    var i = document.getElementById("main-component");
-
-    // go full-screen
-    if (i.requestFullscreen) {
-      i.requestFullscreen();
-    } else if (i.webkitRequestFullscreen) {
-      i.webkitRequestFullscreen();
-    } else if (i.mozRequestFullScreen) {
-      i.mozRequestFullScreen();
-    } else if (i.msRequestFullscreen) {
-      i.msRequestFullscreen();
-    }
-    
-  }
 
   // Picture Component
   picPiquer(picType) {
@@ -83,14 +69,13 @@ class Main extends Component {
   renderPanoramics(info, picType) {
     this.cardOpener('trisixti', picType);
     this.setState({
-      slideInfo: {info},
+      PanoslideInfo: {info},
     });
   }
 
   // panoramic information receiver
   infoSpongePanos(e, info, picType) {
     e.preventDefault();
-    // this.picPiquer(picType);
     this.renderPanoramics(info, picType);
   }
 
@@ -194,7 +179,7 @@ class Main extends Component {
     } else if(this.state.whichOne === "trisixti") {
       return (
         <ul>
-          {Object.keys(this.state.slideInfo).map(key => <Trisixti key={key} details={this.state.slideInfo[key]} />)}
+          {Object.keys(this.state.PanoslideInfo).map(key => <Trisixti key={key} details={this.state.PanoslideInfo[key]} />)}
         </ul>
       );
     } else if(this.state.whichOne === "carrusel") {

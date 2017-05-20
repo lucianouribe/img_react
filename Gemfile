@@ -24,6 +24,8 @@ gem 'paperclip'
 gem 'letter_opener'
 gem 'ambethia-smtp-tls'
 
+gem "sentry-raven"
+
 group :development, :test do
   gem 'pry'
   # secret stuff

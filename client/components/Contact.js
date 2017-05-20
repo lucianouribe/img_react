@@ -22,7 +22,7 @@ class Contact extends React.Component {
       email: this.refs.email.value,
       message: this.refs.message.value,
     }}
-    console.log(contact);
+    // console.log(contact);
     $.ajax({
       url: '/api/contact',
       type: 'POST',

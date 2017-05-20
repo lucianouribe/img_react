@@ -113,6 +113,7 @@ class Carrusel extends Component {
     const id = info[actualPic].id;
 
     return (<img className="carruslide" src={info[actualPic].image} data-info={info[actualPic].infopic} id={id} />)
+    // return (<img className="carruslide" src={asset_path(tarro_pupa_mari_optimize.gif")} data-info={info[actualPic].infopic} id={id} />)
   }
 
   toggleNext() {

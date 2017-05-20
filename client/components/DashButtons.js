@@ -36,6 +36,7 @@ class DashButtons extends Component {
     const fotosJoyas = 'fotosJoyas';
     const fotosComp = 'fotosComp';
     const fotosCuadros = 'fotosCuadros';
+    const fotosGifs = 'fotosGifs';
 
     const fotosDetalles = 'fotosDetalles';
     const fotosPaisajes = 'fotosPaisajes';
@@ -47,6 +48,7 @@ class DashButtons extends Component {
     const translate = 'translate';
     const morse = 'morse';
     const calculator = 'calculator';
+    const equilibrio = 'equilibrio';
 
     const PicPanoramics = 'PicPanoramics';
     const PicRenders = 'PicRenders';
@@ -72,6 +74,7 @@ class DashButtons extends Component {
           </li>
           <li>
             <div className="collapsible-header"><i className="bulb"></i>Fotografia Productos</div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosGifs, PicProducts)}><a>360 Gifs</a></div>
             <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosJoyas, PicProducts)}><a>Joyas</a></div>
             <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosComp, PicProducts)}><a>Componentes</a></div>
             <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosCuadros, PicProducts)}><a>Cuadros</a></div>
@@ -90,6 +93,7 @@ class DashButtons extends Component {
             <div className="collapsible-body side-but" onClick={() => this.props.cardOpener(translate, PicProgramming)}><a>Cyrillic</a></div>
             <div className="collapsible-body side-but" onClick={() => this.props.cardOpener(morse, PicProgramming)}><a>Morse</a></div>
             <div className="collapsible-body side-but" onClick={() => this.props.cardOpener(calculator, PicProgramming)}><a>Calculator</a></div>
+            <div className="collapsible-body side-but hide" onClick={() => this.props.cardOpener(equilibrio, PicProgramming)}><a>Equilibrio</a></div>
           </li>
         </ul>
       </div>

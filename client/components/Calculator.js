@@ -3,19 +3,6 @@ import React from 'react';
 class Calculator extends React.Component {
 
   componentDidMount() {
-    var i = document.getElementById("calculator");
-
-    // go full-screen
-    if (i.requestFullscreen) {
-    	i.requestFullscreen();
-    } else if (i.webkitRequestFullscreen) {
-    	i.webkitRequestFullscreen();
-    } else if (i.mozRequestFullScreen) {
-    	i.mozRequestFullScreen();
-    } else if (i.msRequestFullscreen) {
-    	i.msRequestFullscreen();
-    }
-
     var numbers = ""
     var memory = ""
 
@@ -193,12 +180,12 @@ class Calculator extends React.Component {
             <div id="history-button" className="col s12 m12 btn red hide">history</div>
           </div>
           </div>
-          <section id="show-history" class="card center">
-          <div class="card-container">
-            <h5>History</h5>
-            <ul id="history-list">
-            </ul>
-          </div>
+          <section id="show-history" className="card center">
+            <div className="card-container">
+              <h5>History</h5>
+              <ul id="history-list">
+              </ul>
+            </div>
           </section>
       </div>
     )

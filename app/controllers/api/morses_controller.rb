@@ -10,12 +10,10 @@ class Api::MorsesController < ApplicationController
 
   def comes_from_model
     @morse = Morse.last
-    # binding.pry
     destroy
   end
 
   def destroy
-    # binding.pry
     @api_morses = Morse.last
     @api_morses.destroy
   end

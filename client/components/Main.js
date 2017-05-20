@@ -9,6 +9,7 @@ import Navbar from './Navbar';
 import Translator from './Translator';
 import Morse from './Morse';
 import Calculator from './Calculator';
+import Equilibrio from './Equilibrio';
 import Description from '../Description';
 
 
@@ -38,7 +39,7 @@ class Main extends Component {
       slideInfo: {},
       PanoslideInfo: {},
       description: '',
-      whichOne: 'translate',
+      whichOne: 'morse',
       reset: true,
       whichPic: 'pic-standard PicLogo'
     };
@@ -49,7 +50,8 @@ class Main extends Component {
   // Picture Component
   picPiquer(picType) {
     this.setState({whichPic: `pic-standard ${picType}`})
-    console.log(this.state.whichPic)
+    // console.log('this.state.whichPic')
+    // console.log(this.state.whichPic)
   }
 
   // state reseter
@@ -90,25 +92,32 @@ class Main extends Component {
   infoSpongeAjax(e, info, picType) {
     e.preventDefault();
       //reset state to get a new 0
+      // debugger;
       this.setState({reset: true});
       $.ajax({
         url: '/api/carrusels',
         type: 'GET',
         dataType: 'JSON'
-      }).done ( data => {
+      }).done ( carruselPic => {
+        console.log('info sponge ajax done')
         // loop the database & pick the specific info
-        const theStuffForTheCarrusel = data.filter( filteredData => filteredData.role === info )
+        const theStuffForTheCarrusel = carruselPic.filter( filteredData => filteredData.role === info )
         // dispatch only the data with the specified role
         this.carruselStateSetter(theStuffForTheCarrusel, info);
         // Set the picture for the pic piquer
         this.picPiquer(picType);
       }).fail ( data => {
+        console.log('fail info sponge ajax')
         console.log(error)
       })
   }
 
   // sets state of the desired info
   carruselStateSetter(stuff, info) {
+    // console.log('carrusel state setter')
+    // console.log(stuff);
+    // console.log(info);
+    // debugger;
     let newState;
     switch (info) {
         case 'products':
@@ -119,6 +128,9 @@ class Main extends Component {
           break;
         case 'others':
             newState = Description.descriptionRenderOtr
+          break;
+        case 'fotosGifs':
+            newState = Description.descriptionRenderGifs
           break;
         case 'fotosJoyas':
             newState = Description.descriptionFotosJoyas
@@ -148,7 +160,8 @@ class Main extends Component {
             newState = Description.descriptionFotosCuadrados
           break;
       };
-
+      // console.log(newState);
+      // console.log(stuff);
     this.cardOpener('carrusel')
     this.setState({
       slideInfo: { stuff },
@@ -188,6 +201,12 @@ class Main extends Component {
           {Object.keys(this.state.slideInfo).map(item => <Carrusel key={item} details={this.state.slideInfo[item]} description={this.state.description} reset={this.state.reset} reseter={this.reseter} infoSponge={this.infoSpongeAjax}/>)}
         </ul>
       );
+    } else if(this.state.whichOne === "gifs") {
+      return (
+        <ul>
+          {Object.keys(this.state.slideInfo).map(item => <Carrusel key={item} details={this.state.slideInfo[item]} description={this.state.description}   reset={this.state.reset} reseter={this.reseter} infoSponge={this.infoSpongeAjax}/>)}
+        </ul>
+      );
     } else if(this.state.whichOne === "translate") {
       return (
         <Translator />
@@ -199,6 +218,10 @@ class Main extends Component {
     } else if(this.state.whichOne === "calculator") {
       return (
         <Calculator />
+      );
+    } else if(this.state.whichOne === "equilibrio") {
+      return (
+        <Equilibrio />
       );
     } else if(this.state.whichOne === "contact") {
       return (

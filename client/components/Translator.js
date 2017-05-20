@@ -39,7 +39,14 @@ class Translator extends React.Component {
   }
 
   language(idiom) {
-    this.setState({ lengua1: idiom })
+    if(idiom === 'rus') {
+      this.setState({
+        lengua1: idiom,
+        lengua2: 'eng'
+      })
+    } else {
+      this.setState({ lengua1: idiom })
+    }
   }
 
   language2(idiom) {

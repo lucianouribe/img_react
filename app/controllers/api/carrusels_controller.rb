@@ -1,13 +1,11 @@
 class Api::CarruselsController < ApplicationController
   before_action :set_api_carrusel, only: [:show, :edit, :update, :destroy]
 
-  # GET /api/carrusels
   # GET /api/carrusels.json
   def index
     @api_carrusels = Carrusel.all
   end
 
-  # GET /api/carrusels/1
   # GET /api/carrusels/1.json
   def show
   end
@@ -21,7 +19,6 @@ class Api::CarruselsController < ApplicationController
   def edit
   end
 
-  # POST /api/carrusels
   # POST /api/carrusels.json
   def create
     @api_carrusel = Carrusel.new(api_carrusel_params)
@@ -35,7 +32,6 @@ class Api::CarruselsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /api/carrusels/1
   # PATCH/PUT /api/carrusels/1.json
   def update
     respond_to do |format|
@@ -47,7 +43,6 @@ class Api::CarruselsController < ApplicationController
     end
   end
 
-  # DELETE /api/carrusels/1
   # DELETE /api/carrusels/1.json
   def destroy
     @api_carrusel.destroy

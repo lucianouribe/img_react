@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 import Navbar from './Navbar';
 import Carousel from './Carousel';
+import Panoramicos from './Panoramicos';
 import Stuff from '../Stuff';
 
 class Home extends Component {
@@ -34,6 +35,7 @@ class Home extends Component {
         </div>
       );
   }
+  // <Panoramicos xmlLocation='app/assets/libs/carpeta1/Terraza_PH_out.xml'/>
 
   render() {
     return (

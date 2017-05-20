@@ -113,12 +113,12 @@ class Morse extends React.Component {
       dataType: 'JSON',
       data: { morse: {inphrase, outphrase, lang_first, lang_second }}
     }).done( data => {
-      // console.log("its hitting done");
+      // console.log("morse handle submit done");
       // console.log(data);
       this.answer();
       this.refs.translateForm.reset();
     }).fail( data => {
-      // console.log("its hitting fail first part");
+      // console.log("morse handle submit fail");
       // console.log(data);
       this.refs.translateForm.reset();
     })

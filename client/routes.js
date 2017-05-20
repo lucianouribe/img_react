@@ -28,9 +28,9 @@ export default (
       <Route path="home" component={Home} />
       <Route path="main" component={Main} />
       <Route path="navbar" component={Navbar} />
-      <Route path="/signup" component={SignUp} />
-      <Route path="/signin" component={SignIn} />
-      <Route path="/contact" component={Contact} />
+      <Route path="signup" component={SignUp} />
+      <Route path="signin" component={SignIn} />
+      <Route path="contact" component={Contact} />
 
       <Route component={AuthenticatedRoutes}>
         <Route component={AdminRoutes}>

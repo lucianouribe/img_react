@@ -1,0 +1,2 @@
+class Panoramico < ApplicationRecord
+end

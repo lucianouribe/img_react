@@ -1,5 +1,13 @@
 module.exports = {
 
+  descriptionRenderGifs: {
+    name: "Renders Digitales",
+    description: "Los renders son imágenes ideales para visualizar un objeto o espacio que aún no existe o para diseñar reformas, texturas y decoración a uno existente.\nEstas gráficas son realizadas mediante técnicas de fotorealismo utlizando diferentes softwares de modelación 3D, renderizado y post producción.",
+    logo1: "tridimax",
+    logo2: "vray",
+    logo3: "photoshop",
+    logo4: "illustrator"
+  },
   descriptionRenderOtr: {
     name: "Renders Digitales",
     description: "Los renders son imágenes ideales para visualizar un objeto o espacio que aún no existe o para diseñar reformas, texturas y decoración a uno existente.\nEstas gráficas son realizadas mediante técnicas de fotorealismo utlizando diferentes softwares de modelación 3D, renderizado y post producción.",

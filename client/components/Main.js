@@ -129,6 +129,9 @@ class Main extends Component {
         case 'others':
             newState = Description.descriptionRenderOtr
           break;
+        case 'renderGifs':
+            newState = Description.descriptionRenderOtr
+          break;
         case 'fotosGifs':
             newState = Description.descriptionRenderGifs
           break;
@@ -199,12 +202,6 @@ class Main extends Component {
       return (
         <ul>
           {Object.keys(this.state.slideInfo).map(item => <Carrusel key={item} details={this.state.slideInfo[item]} description={this.state.description} reset={this.state.reset} reseter={this.reseter} infoSponge={this.infoSpongeAjax}/>)}
-        </ul>
-      );
-    } else if(this.state.whichOne === "gifs") {
-      return (
-        <ul>
-          {Object.keys(this.state.slideInfo).map(item => <Carrusel key={item} details={this.state.slideInfo[item]} description={this.state.description}   reset={this.state.reset} reseter={this.reseter} infoSponge={this.infoSpongeAjax}/>)}
         </ul>
       );
     } else if(this.state.whichOne === "translate") {

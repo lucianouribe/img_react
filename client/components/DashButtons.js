@@ -32,6 +32,7 @@ class DashButtons extends Component {
     const productos = 'products';
     const espacios = 'spaces';
     const otros = 'others';
+    const renderGifs = 'renderGifs';
 
     const fotosJoyas = 'fotosJoyas';
     const fotosComp = 'fotosComp';
@@ -68,6 +69,7 @@ class DashButtons extends Component {
           </li>
           <li>
             <div className="collapsible-header"><i className="teapot"></i>Renders</div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, renderGifs, PicRenders)}><a>360 Gifs</a></div>
             <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, productos, PicRenders)}><a>Productos</a></div>
             <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, espacios, PicRenders)}><a>Espacios</a></div>
             <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, otros, PicRenders)}><a>Otros</a></div>

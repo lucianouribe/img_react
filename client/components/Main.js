@@ -39,7 +39,7 @@ class Main extends Component {
       slideInfo: {},
       PanoslideInfo: {},
       description: '',
-      whichOne: 'morse',
+      whichOne: 'equilibrio',
       reset: true,
       whichPic: 'pic-standard PicLogo'
     };
@@ -181,49 +181,63 @@ class Main extends Component {
   }
 
   // Main renderer card selector
-  // TODO: change to switch case!
+
   mainRenderer(){
-    if(this.state.whichOne === "intro") {
-      return (
-        <div>
-          <div className="card intro">
-            <p className='bienvenido'>Bienvenido!</p>
-            Haz click en el menu para visualizar las imágenes.
+    switch (this.state.whichOne) {
+      case 'intro':
+        return (
+          <div>
+            <div className="card intro">
+              <p className='bienvenido'>Bienvenido!</p>
+              Haz click en el menu para visualizar las imágenes.
+            </div>
           </div>
-        </div>
-      );
-    } else if(this.state.whichOne === "trisixti") {
-      return (
-        <ul>
-          {Object.keys(this.state.PanoslideInfo).map(key => <Trisixti key={key} details={this.state.PanoslideInfo[key]} />)}
-        </ul>
-      );
-    } else if(this.state.whichOne === "carrusel") {
-      return (
-        <ul>
-          {Object.keys(this.state.slideInfo).map(item => <Carrusel key={item} details={this.state.slideInfo[item]} description={this.state.description} reset={this.state.reset} reseter={this.reseter} infoSponge={this.infoSpongeAjax}/>)}
-        </ul>
-      );
-    } else if(this.state.whichOne === "translate") {
-      return (
-        <Translator />
-      );
-    } else if(this.state.whichOne === "morse") {
-      return (
-        <Morse />
-      );
-    } else if(this.state.whichOne === "calculator") {
-      return (
-        <Calculator />
-      );
-    } else if(this.state.whichOne === "equilibrio") {
-      return (
-        <Equilibrio />
-      );
-    } else if(this.state.whichOne === "contact") {
-      return (
-        <Contact />
-      )
+        );
+        break;
+      case "trisixti":
+        return (
+          <ul>
+            {Object.keys(this.state.PanoslideInfo).map(key => <Trisixti key={key} details={this.state.PanoslideInfo[key]} />)}
+          </ul>
+        );
+        break;
+      case "carrusel":
+        return (
+          <ul>
+            {Object.keys(this.state.slideInfo).map(item => <Carrusel key={item} details={this.state.slideInfo[item]} description={this.state.description} reset={this.state.reset} reseter={this.reseter} infoSponge={this.infoSpongeAjax}/>)}
+          </ul>
+        );
+        break;
+      case "translate":
+        return (
+          <Translator />
+        );
+        break;
+      case "morse":
+        return (
+          <Morse />
+        );
+        break;
+      case "calculator":
+        return (
+          <Calculator />
+        );
+        break;
+      case "equilibrio":
+        return (
+          <Equilibrio />
+        );
+        break;
+      case "contact":
+        return (
+          <Contact />
+        );
+        break;
+      default:
+        return (
+          <Equilibrio />
+        );
+        break;
     }
   }
 

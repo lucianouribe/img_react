@@ -37,10 +37,10 @@ ActiveRecord::Schema.define(version: 20170517032905) do
   end
 
   create_table "equilibrios", force: :cascade do |t|
-    t.string   "gasto"
+    t.boolean  "gasto"
     t.string   "item"
     t.string   "unidad"
-    t.string   "valor"
+    t.integer  "valor"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

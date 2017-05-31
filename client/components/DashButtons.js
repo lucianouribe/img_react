@@ -95,7 +95,7 @@ class DashButtons extends Component {
             <div className="collapsible-body side-but" onClick={() => this.props.cardOpener(translate, PicProgramming)}><a>Cyrillic</a></div>
             <div className="collapsible-body side-but" onClick={() => this.props.cardOpener(morse, PicProgramming)}><a>Morse</a></div>
             <div className="collapsible-body side-but" onClick={() => this.props.cardOpener(calculator, PicProgramming)}><a>Calculator</a></div>
-            <div className="collapsible-body side-but hide" onClick={() => this.props.cardOpener(equilibrio, PicProgramming)}><a>Equilibrio</a></div>
+            <div className="collapsible-body side-but" onClick={() => this.props.cardOpener(equilibrio, PicProgramming)}><a>Equilibrio</a></div>
           </li>
         </ul>
       </div>

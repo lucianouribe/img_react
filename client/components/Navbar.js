@@ -13,7 +13,7 @@ class Navbar extends Component {
     this.logout = this.logout.bind(this);
     this.navs = this.navs.bind(this);
     this.sideNav = this.sideNav.bind(this);
-    this.theDoubt = this.theDoubt.bind(this);
+    this.isUserSigned = this.isUserSigned.bind(this);
   }
 
   logout(e) {
@@ -66,7 +66,7 @@ class Navbar extends Component {
     }
   }
 
-  theDoubt(){
+  isUserSigned(){
     if(this.props.user.role === "admin" || this.props.user.role === "visitor"){
       return(
         <li><a style={{ cursor: 'pointer' }} onClick={this.logout}><i className="logout_icon"></i>Logout</a></li>
@@ -86,8 +86,7 @@ class Navbar extends Component {
         cardOpener={this.props.cardOpener}
         infoSpongeAjax={this.props.infoSpongeAjax} infoSpongePanos={this.props.infoSpongePanos}/></li>
         <li><Link className="collapsible-header" to='/contact'><i className="contact_icon"></i>Contact</Link></li>
-        {this.theDoubt()}
-        <li><a className="collapsible-header exit">Exit Full Screen</a></li>
+        {this.isUserSigned()}
       </div>
     )
   }

@@ -19,9 +19,16 @@ class EquiResult extends React.Component {
     if(this.props.estado.fruta) {
       return(
         <div className='fruto-section equiresult'>
-          <h4>{this.props.estado.fruta}</h4>
-          <i className="icon-btn material-icons" onClick={() => this.props.setStater(({which}))}>edit</i>
-          <i className="icon-btn material-icons" onClick={() => this.props.setStater(({fruta: null}))}>delete</i>
+          <span className="encabezado">
+            <p>Producto</p>
+          </span>
+          <span className="datos">
+            <h4>{this.props.estado.fruta}</h4>
+            <span className="botones">
+              <i className="icon-btn material-icons" onClick={() => this.props.setStater(({which}))}>edit</i>
+              <i className="icon-btn material-icons" onClick={() => this.props.setStater(({fruta: null}))}>delete</i>
+            </span>
+          </span>
         </div>
       )
     }
@@ -32,10 +39,16 @@ class EquiResult extends React.Component {
     if(this.props.estado.valNal) {
       return (
         <div className='valores-section equiresult'>
-          <h5>Valor {this.props.estado.unidad} de {this.props.estado.fruta} mercado nacional:</h5>
-          <h5>{formatPrice(this.props.estado.valNal)}</h5>
-          <i className="icon-btn material-icons" onClick={() => this.props.setStater(({which}))}>edit</i>
-          <i className="icon-btn material-icons" onClick={() => this.props.setStater(({valNal: null}))}>delete</i>
+          <span className="encabezado">
+            <p>Valor {this.props.estado.unidad} de {this.props.estado.fruta} mercado nacional</p>
+          </span>
+          <span className="datos">
+            <h4>{formatPrice(this.props.estado.valNal)}</h4>
+            <span className="botones">
+              <i className="icon-btn material-icons" onClick={() => this.props.setStater(({which}))}>edit</i>
+              <i className="icon-btn material-icons" onClick={() => this.props.setStater(({valNal: null}))}>delete</i>
+            </span>
+          </span>
         </div>
       )
     }
@@ -46,10 +59,16 @@ class EquiResult extends React.Component {
     if(this.props.estado.valExpo) {
       return (
         <div className='valores-section equiresult'>
-          <h5>Valor {this.props.estado.unidad} de {this.props.estado.fruta} exportacion:</h5>
-          <h5>{formatPrice(this.props.estado.valExpo)}</h5>
-          <i className="icon-btn material-icons" onClick={() => this.props.setStater(({which}))}>edit</i>
-          <i className="icon-btn material-icons" onClick={() => this.props.setStater(({valExpo: null}))}>delete</i>
+          <span className="encabezado">
+            <p>Valor {this.props.estado.unidad} de {this.props.estado.fruta} exportacion</p>
+          </span>
+          <span className="datos">
+            <h4>{formatPrice(this.props.estado.valExpo)}</h4>
+            <span className="botones">
+              <i className="icon-btn material-icons" onClick={() => this.props.setStater(({which}))}>edit</i>
+              <i className="icon-btn material-icons" onClick={() => this.props.setStater(({valExpo: null}))}>delete</i>
+            </span>
+          </span>
         </div>
       )
     }
@@ -60,9 +79,16 @@ class EquiResult extends React.Component {
     if(this.props.estado.rechazo) {
       return (
         <div className='rechazo-section equiresult'>
-          <h5>Porcentaje rechazado: {this.props.estado.rechazo}%</h5>
-          <i className="icon-btn material-icons" onClick={() => this.props.setStater(({which}))}>edit</i>
-          <i className="icon-btn material-icons" onClick={() => this.props.setStater(({rechazo: null}))}>delete</i>
+          <span className="encabezado">
+            <p>Porcentaje rechazado</p>
+          </span>
+          <span className="datos">
+            <h4>{this.props.estado.rechazo}%</h4>
+            <span className="botones">
+              <i className="icon-btn material-icons" onClick={() => this.props.setStater(({which}))}>edit</i>
+              <i className="icon-btn material-icons" onClick={() => this.props.setStater(({rechazo: null}))}>delete</i>
+            </span>
+          </span>
         </div>
       )
     }
@@ -72,14 +98,14 @@ class EquiResult extends React.Component {
     let queGasto = this.props.estado.queGasto
     if(queGasto.length) {
       return queGasto.map( gasto => {
-        return(<Gasto key={gasto.id} gasto={gasto} />);
+        return(<Gasto key={gasto.id} gasto={gasto} deleter={this.props.deleter}/>);
       })
     }
   }
-
+ // col s12 m6 l6 right
   render() {
     return (
-      <div className="aside-der col s12 m6 l6 right">
+      <div className="aside-der">
         {this.showFruto()}
         {this.showValoresNal()}
         {this.showValoresExpo()}

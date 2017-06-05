@@ -17,17 +17,34 @@ class Equilibrio extends React.Component {
       valNal: null,
       rechazo: null,
       queGasto: [],
-      which: ''
+      which: '',
+      show: true
     }
 
     this.setStater = this.setStater.bind(this);
     this.equilibrio = this.equilibrio.bind(this);
     this.valorPromedio = this.valorPromedio.bind(this);
     this.equilibrio = this.equilibrio.bind(this);
+    this.deleter = this.deleter.bind(this);
+    this.toggleView = this.toggleView.bind(this);
+  }
+
+  toggleView(){
+    this.setState({ show: !this.state.show });
   }
 
   setStater(hereItCommes) {
     this.setState(hereItCommes)
+  }
+
+  deleter(aidi){
+    let array = this.state.queGasto
+    let index = array.findIndex( c => c.id === aidi)
+    array = [
+      ...array.slice(0, index),
+      ...array.slice(index + 1)
+    ]
+    this.setState({queGasto: array})
   }
 
   valorPromedio(a, b, c, d) {
@@ -76,14 +93,34 @@ class Equilibrio extends React.Component {
 
   }
 
+  viewRenderer(){
+    if(this.state.show) {
+      return(
+        <div className='cuerpo'>
+          <EquiForms setStater={this.setStater} estado={this.state} />
+          <EquiResult setStater={this.setStater} estado={this.state} deleter={this.deleter}/>
+        </div>
+      )
+    } else {
+      return(
+        <div className='cuerpo'>
+          <div className='descripcion'>
+            <h5>Información acerca de este app</h5>
+            <p>Componentes realizados en ReactJS.<br/>Calculos realizados en javascript desde el client side.<br/>No back end.<br/>Estilo y encuadre realizado con flexbox.<br/>Iconos tomados de materialize (en un futuro font awasome)</p>
+          </div>
+        </div>
+      )
+    }
+  }
+
   render(){
     return (
       <div className='equilibrio'>
         <div className='titulo'>
           {this.calculoEquilibrio()}
+          <i className="info-btn material-icons" onClick={() => this.toggleView()}>info</i>
         </div>
-        <EquiForms setStater={this.setStater} estado={this.state} />
-        <EquiResult setStater={this.setStater} estado={this.state} />
+        {this.viewRenderer()}
       </div>
     )
   }

@@ -82,7 +82,8 @@ class EquiForms extends React.Component {
   handleSubmitGastos(e){
     e.preventDefault();
     // console.log('Equilibrio handle submit');
-    let id = this.props.estado.queGasto.length + 1;
+    // let id = this.props.estado.queGasto.length + 1;
+    let id = new Date().getUTCMilliseconds();
     let item = this.refs.item.value;
     let costo = this.refs.costo.value;
 
@@ -97,7 +98,7 @@ class EquiForms extends React.Component {
   unidadDeMedida() {
     if(!this.props.estado.unidad) {
       return (
-        <div className="input-field">
+        <div className="input-field unidad-medida">
           <label>Unidad de medida</label>
           <select ref="addUnidad">
             <option value="" disabled>Escoge una opcion</option>
@@ -114,15 +115,19 @@ class EquiForms extends React.Component {
     let which = 'fruta';
     if(!this.props.estado.fruta || this.props.estado.which == 'fruta') {
       return(
-        <form ref="addFrutaForm" className="add-fruta-form">
-          <label>Tipo de fruta o vegetal</label>
-          <input type='text' ref='fruta' placeholder='tipo' />
-          <i className="icon-btn material-icons" onClick={this.handleSubmitFrutos}>done</i>
+        <form ref="addFrutaForm" className="add-fruta-form equiform open">
+          <span className="inputer">
+            <label>Tipo de fruta o vegetal</label>
+            <input type='text' ref='fruta' placeholder='Tipo de fruta' />
+          </span>
+          <span className="doner" onClick={this.handleSubmitFrutos}>
+            <i className="icon-btn material-icons">done</i>
+          </span>
         </form>
       )
     } else {
       return(
-        <form ref="addFrutaForm" className="add-fruta-form">
+        <form ref="addFrutaForm" className="add-fruta-form equiform close">
           <label>Tipo de fruta o vegetal</label>
           <i className="icon-btn material-icons" onClick={() => this.opener(which)}>visibility</i>
         </form>
@@ -135,29 +140,33 @@ class EquiForms extends React.Component {
     let which = 'valorKilo';
     if(!this.props.estado.valNal || !this.props.estado.valExpo || this.props.estado.which == 'valorKilo') {
       return (
-        <form ref="addValorKiloForm" className="add-valor-kilo-form">
-          <label>Valor por unidad y mercado</label>
-          <div className="row">
-          <i className="icon-btn material-icons show-unit" onClick={() => this.props.setStater(({unidad: null}))}>repeat</i>
-            <div className="input-field">
-              <div className="switch">
-                <label>
-                  Nacional
-                    <input ref="expoONal" type="checkbox" onClick={this.handleExpoNal} />
-                    <span className="lever"></span>
-                  Exportacion
-                </label>
+        <form ref="addValorKiloForm" className="add-valor-kilo-form equiform open">
+          <span className="inputer">
+            <label>Valor por unidad y mercado</label>
+            <div className="row">
+              <i className="icon-btn material-icons show-unit" onClick={() => this.props.setStater(({unidad: null}))}>repeat</i>
+              <div className="input-field">
+                <div className="switch">
+                  <label>
+                    Nacional
+                      <input ref="expoONal" type="checkbox" onClick={this.handleExpoNal} />
+                      <span className="lever"></span>
+                    Exportacion
+                  </label>
+                </div>
+                {this.unidadDeMedida()}
+                <input className="" type='number' ref='valorMercado' placeholder='valor'/>
               </div>
-              {this.unidadDeMedida()}
-              <input className="" type='number' ref='valorMercado' placeholder='valor'/>
-              <i className="icon-btn material-icons done-unit" onClick={this.handleSubmitValores}>done</i>
             </div>
-          </div>
+            </span>
+            <span className="doner" onClick={this.handleSubmitValores}>
+              <i className="icon-btn material-icons done-unit">done</i>
+            </span>
         </form>
       )
     } else {
       return (
-        <form ref="addValorKiloForm" className="add-valor-kilo-form">
+        <form ref="addValorKiloForm" className="add-valor-kilo-form equiform close">
           <label>Valor por unidad y mercado</label>
           <i className="icon-btn material-icons" onClick={() => this.opener(which)}>visibility</i>
         </form>
@@ -170,35 +179,43 @@ class EquiForms extends React.Component {
     let which = 'rechazo';
     if(!this.props.estado.rechazo || this.props.estado.which == 'rechazo') {
       return(
-        <form ref='addRechazoForm' className='add-rechazo-form'>
-          <label>Porcentaje rechazo</label>
-          <input className="" type='number' ref='rechazo' placeholder='porcentaje rechazo'/>
-          <i className="icon-btn material-icons" onClick={this.handleSubmitRechazo}>done</i>
+        <form ref='addRechazoForm' className='add-rechazo-form equiform open'>
+          <span className="inputer">
+            <label>Porcentaje rechazo</label>
+            <input className="" type='number' ref='rechazo' placeholder='% Rechazo'/>
+          </span>
+          <span className="doner" onClick={this.handleSubmitRechazo}>
+            <i className="icon-btn material-icons">done</i>
+          </span>
         </form>
       )
     } else {
       return (
-        <form ref='addRechazoForm' className='add-rechazo-form'>
+        <form ref='addRechazoForm' className='add-rechazo-form equiform close'>
           <label>Porcentaje rechazo</label>
           <i className="icon-btn material-icons" onClick={() => this.opener(which)}>visibility</i>
         </form>
       )
     }
   }
-
+// col s12 m6 l6 left
   render() {
     return (
-      <div className="aside-izq  col s12 m6 l6 left">
+      <div className="aside-izq">
 
         {this.addFruta()}
         {this.addValorKilo()}
         {this.addRechazo()}
 
-        <form ref='addGastoForm' className='add-gasto-form'>
-          <label>Gastos y costos</label>
-          <input className="" type='text' ref='item' placeholder='item'/>
-          <input className="" type='number' ref='costo' placeholder='costo'/>
-          <i className="icon-btn material-icons medium" onClick={this.handleSubmitGastos}>add</i>
+        <form ref='addGastoForm' className='add-gasto-form equiform open'>
+          <span className="inputer">
+            <label>Gastos y costos</label>
+            <input className="" type='text' ref='item' placeholder='item'/>
+            <input className="" type='number' ref='costo' placeholder='costo'/>
+          </span>
+          <span className="doner" onClick={this.handleSubmitGastos}>
+            <i className="icon-btn material-icons">add</i>
+          </span>
         </form>
 
       </div>

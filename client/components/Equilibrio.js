@@ -52,8 +52,12 @@ class Equilibrio extends React.Component {
   }
 
   equilibrio(a, b, c, d, e) {
-    return (e / ((a * d) + (b * c)))
+    return (e / ( (a * d) + (b * c) - b))
   }
+
+  // def equilibrio(b, c, d, e, f, g)
+  //   return f / ((b * e) + (c * d) - c)
+  // end
 
   calculoEquilibrio() {
     if(this.state.queGasto.length) {
@@ -106,7 +110,7 @@ class Equilibrio extends React.Component {
         <div className='cuerpo'>
           <div className='descripcion'>
             <h5>Información acerca de este app</h5>
-            <p>Componentes realizados en ReactJS.<br/>Calculos realizados en javascript desde el client side.<br/>No back end.<br/>Estilo y encuadre realizado con flexbox.<br/>Iconos tomados de materialize (en un futuro font awasome)</p>
+            <p>Componentes realizados en ReactJS.<br/>Calculos realizados en javascript desde el client side.<br/>No back end.<br/>Estilo y encuadre realizado con flexbox.<br/>Iconos tomados de Font Awesome<i className="fa fa-font-awesome"></i> y materialize</p>
           </div>
         </div>
       )
@@ -118,7 +122,7 @@ class Equilibrio extends React.Component {
       <div className='equilibrio'>
         <div className='titulo'>
           {this.calculoEquilibrio()}
-          <i className="info-btn material-icons" onClick={() => this.toggleView()}>info</i>
+          <i className="fa fa-info-circle info-btn" onClick={() => this.toggleView()}></i>
         </div>
         {this.viewRenderer()}
       </div>

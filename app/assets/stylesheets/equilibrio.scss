@@ -1,5 +1,5 @@
 .equilibrio {
-  padding: 10px 30px 30px 30px !important;
+  padding: 10px 30px 10px 30px !important;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -9,7 +9,7 @@
           flex-direction: column;
 }
 .equilibrio .cuerpo {
-  margin-top: 4.5rem;
+  margin-top: 5.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -37,6 +37,12 @@
   color: #ff6d00;
 }
 .equilibrio .info-btn {
+  font-size: 2rem;
+  color: #2b2b2b;
+}
+.descripcion i {
+  margin-left: 5px;
+  font-size: 1.5rem;
   color: #2b2b2b;
 }
 // forms
@@ -84,6 +90,12 @@
   height: 8.5rem;
   text-align: center;
 }
+.equilibrio .titulo h2 {
+  font-size: 3rem;
+}
+.equilibrio .titulo h3 {
+  font-size: 2.6rem;
+}
 .titulo strong {
   border-bottom: 2px solid #ff6d00;
 }
@@ -91,7 +103,7 @@
 // equiform
 .equilibrio .aside-izq {
   overflow-y: scroll;
-  height: calc(100vh - 13rem);
+  height: calc(100vh - 20rem);
 }
 .aside-izq label {
   color: #4b4b4b;
@@ -186,7 +198,7 @@
 // equi result
 .equilibrio .aside-der {
   overflow-y: scroll;
-  height: calc(100vh - 13rem);
+  height: calc(100vh - 20rem);
 }
 .add-fruta-form, .add-valor-kilo-form, .add-gasto-form, .add-rechazo-form {
   margin: 1rem;

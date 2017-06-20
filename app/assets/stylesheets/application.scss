@@ -1,5 +1,5 @@
 @import 'materialize';
-// @import 'font-awesome';
+@import 'font-awesome';
 @import 'carrusel';
 @import 'navbar';
 @import 'dashboard';
@@ -10,6 +10,9 @@
 @import 'translator';
 @import 'calculator';
 @import 'equilibrio';
+/*
+ *= require font-awesome
+ */
 
 // body
 body {
@@ -18,7 +21,9 @@ body {
   background-repeat: repeat;
   background-size: 4%;
 }
-
+.row {
+  margin-bottom: 0 !important;
+}
 @media only screen and (max-width: 800px) {
   body {
     background-size: 10%;

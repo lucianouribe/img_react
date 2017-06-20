@@ -11,6 +11,7 @@ import Main from './components/Main';
 import Navbar from './components/Navbar';
 import Contact from './components/Contact';
 import NoMatch from './components/NoMatch';
+import Panoramicos from './components/Panoramicos';
 
 const AdminAccess = UserAuthWrapper({
   authSelector: state => state.user,
@@ -31,6 +32,7 @@ export default (
       <Route path="signup" component={SignUp} />
       <Route path="signin" component={SignIn} />
       <Route path="contact" component={Contact} />
+      <Route path="panos" component={Panoramicos} />
 
       <Route component={AuthenticatedRoutes}>
         <Route component={AdminRoutes}>

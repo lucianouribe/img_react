@@ -25,3 +25,4 @@ npm-debug.log
 config/mail.yml
 .ENV
 gulpStyles
+app/assets/javascripts/libs

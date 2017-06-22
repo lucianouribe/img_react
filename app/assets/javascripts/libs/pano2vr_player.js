@@ -88,8 +88,26 @@ d.checkLoaded.push(c))};d.ia=function(){var a;ma=ea=n;var c,b;Qa=m;var e=128;nb>
 " scale("+Ya+") translate3d("+-e/2+"px,"+-e/2+"px,"+-e/2+"px)";a+=g+";";c.Y=g;c.setAttribute("style",a);F.appendChild(c);d.cubeFaces.push(c);d.checkLoaded.push(c)}};d.finalPanorama=function(){var a;if(Bb)for(a=0;6>a;a++)d.cubeFaces[a].setAttribute("src",Z(Wa[a]))};d.setOverlayOpacity=function(a){var c;if(Bb)for(c=0;6>c;c++)d.cubeFacesOverlay[c]&&d.cubeFacesOverlay[c].style&&(d.cubeFacesOverlay[c].style.opacity=a)};d.removePanorama=function(){var a;if(Bb){for(a=0;a<d.cubeFaces.length;a++)d.cubeFaces[a].setAttribute("src",
 "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYBgeACDAAADIAAE3iTbkAAAAAElFTkSuQmCC"),d.cubeFacesOverlay[a]&&d.cubeFacesOverlay[a].setAttribute("src","data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAIAAABLbSncAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYBgeACDAAADIAAE3iTbkAAAAAElFTkSuQmCC");ea&&F.removeChild(ea);ea=ma=n;d.cubeFaces=[];d.cubeFacesOverlay=[]}if(e&&X)for(;0<X.length;)e.deleteTexture(X.pop());
 for(a=0;a<y.length;a++)D.removeChild(y[a].obj);for(a=0;a<Ma.length;a++)D.removeChild(Ma[a].obj);var c=[];for(a=0;a<r.length;a++){var b=r[a];if(0==b.mode||1==b.mode||b.ua)c.push(b);else{try{b.obj.pause()}catch(h){$(h)}C.removeChild(b.obj)}}r=c;y=[];Ma=[]};d.getScreenResolution=function(){var a=1,c=-1!=navigator.userAgent.indexOf("Mac");window.devicePixelRatio&&c&&(a=window.devicePixelRatio);return{w:screen.width*a,h:screen.height*a}};d.getMaxScreenResolution=function(){var a=d.getScreenResolution();
-return a.w>a.h?a.w:a.h};d.readConfigString=function(a){window.DOMParser?(parser=new DOMParser,xmlDoc=parser.parseFromString(a,"text/xml")):(xmlDoc=new ActiveXObject("Microsoft.XMLDOM"),xmlDoc.async="false",xmlDoc.loadXML(a));d.readConfigXml(xmlDoc)};d.readConfigUrl=function(a,c){try{var b;b=window.XMLHttpRequest?new XMLHttpRequest:new ActiveXObject("Microsoft.XMLHTTP");b.open("GET",a,u);b.send(n);if(b.responseXML){var e=a.lastIndexOf("/");0<=e&&(Xa=a.substr(0,e+1));2<=arguments.length&&(Xa=c);d.readConfigString(b.responseText)}else alert("Error loading panorama XML")}catch(g){alert("Error:"+
-g)}};var Db=m;d.readConfigXml=function(a){var c=a.firstChild;Za=[];Ua=[];if("tour"==c.nodeName){var a="",b;(b=c.getAttributeNode("start"))&&(a=b.nodeValue.toString());""!=d.startNode&&(a=d.startNode,d.startNode="");for(c=c.firstChild;c;){b="";if("panorama"==c.nodeName&&(b=c.getAttributeNode("id")))b=b.nodeValue.toString(),""==a&&(a=b),Za[b]=c,Ua.push(b);c=c.nextSibling}d.U(Za[a]);o("{"+a+"}");d.S=m}else d.S=u,d.U(c),o("")};d.U=function(a){d.removeHotspots();d.removePanorama();d.T=0;for(var a=a.firstChild,
+return a.w>a.h?a.w:a.h};d.readConfigString=function(a){window.DOMParser?(parser=new DOMParser,xmlDoc=parser.parseFromString(a,"text/xml")):(xmlDoc=new ActiveXObject("Microsoft.XMLDOM"),xmlDoc.async="false",xmlDoc.loadXML(a));d.readConfigXml(xmlDoc)};
+
+d.readConfigUrl = function(a,c) {
+  try {
+    var b;
+    b = window.XMLHttpRequest ? new XMLHttpRequest : new ActiveXObject("Microsoft.XMLHTTP");
+    b.open("GET",a,u);
+    // debugger;
+    b.send(n);
+    if(b.responseXML){
+      var e = a.lastIndexOf("/");
+      0 <= e && (Xa = a.substr( 0, e+1 ));
+      2 <= arguments.length && (Xa=c);
+      d.readConfigString(b.responseText)
+    } else console.log("Error loading panorama XML")
+  } catch(g){
+    alert("Error:" + g)}
+};
+
+var Db=m;d.readConfigXml=function(a){var c=a.firstChild;Za=[];Ua=[];if("tour"==c.nodeName){var a="",b;(b=c.getAttributeNode("start"))&&(a=b.nodeValue.toString());""!=d.startNode&&(a=d.startNode,d.startNode="");for(c=c.firstChild;c;){b="";if("panorama"==c.nodeName&&(b=c.getAttributeNode("id")))b=b.nodeValue.toString(),""==a&&(a=b),Za[b]=c,Ua.push(b);c=c.nextSibling}d.U(Za[a]);o("{"+a+"}");d.S=m}else d.S=u,d.U(c),o("")};d.U=function(a){d.removeHotspots();d.removePanorama();d.T=0;for(var a=a.firstChild,
 c,b,h,g=1E6;a;){if("view"==a.nodeName){(b=a.getAttributeNode("fovmode"))&&(ic=Number(b.nodeValue));b=a.getAttributeNode("pannorth");Fc=1*(b?b.nodeValue:0);for(c=a.firstChild;c;)"start"==c.nodeName&&(b=c.getAttributeNode("pan"),gc=q=Number(b?b.nodeValue:0),b=c.getAttributeNode("tilt"),hc=p=Number(b?b.nodeValue:0),b=c.getAttributeNode("fov"),tb=t=Number(b?b.nodeValue:70)),"min"==c.nodeName&&(b=c.getAttributeNode("pan"),Sa=1*(b?b.nodeValue:0),b=c.getAttributeNode("tilt"),va=1*(b?b.nodeValue:-90),b=c.getAttributeNode("fov"),
 ka=1*(b?b.nodeValue:5),1.0E-8>ka&&(ka=1.0E-8)),"max"==c.nodeName&&(b=c.getAttributeNode("pan"),Ra=1*(b?b.nodeValue:0),b=c.getAttributeNode("tilt"),ua=1*(b?b.nodeValue:90),b=c.getAttributeNode("fov"),ja=1*(b?b.nodeValue:120),180<=ja&&(ja=179.9)),c=c.nextSibling}"autorotate"==a.nodeName&&((b=a.getAttributeNode("speed"))&&(ra=1*b.nodeValue),(b=a.getAttributeNode("delay"))&&(Ob=1*b.nodeValue),(b=a.getAttributeNode("returntohorizon"))&&(sb=1*b.nodeValue),(b=a.getAttributeNode("nodedelay"))&&(Nb=1*b.nodeValue),
 Db&&0!=ra&&(ca=ib=m,Ta=(new Date).getTime()));"input"==a.nodeName&&(h||(h=a));if(h)for(c=0;6>c;c++)b=h.getAttributeNode("prev"+c+"url"),ta[c]=b?new String(b.nodeValue):"";"altinput"==a.nodeName&&(c=0,(b=a.getAttributeNode("screensize"))&&(c=1*b.nodeValue),0<c&&c>=d.getMaxScreenResolution()&&c<g&&(g=c,h=a));"control"==a.nodeName&&Db&&((b=a.getAttributeNode("simulatemass"))&&(Ib=1==b.nodeValue),(b=a.getAttributeNode("locked"))&&(S=1==b.nodeValue),b&&(vb=1==b.nodeValue),(b=a.getAttributeNode("lockedmouse"))&&

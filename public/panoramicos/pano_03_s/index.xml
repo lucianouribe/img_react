@@ -36,7 +36,7 @@
       <sound mode="0" loop="1000" keep="1" url="images/skin_snd_camera.mp3" id="camera" level="1"/>
       <sound mode="0" loop="1000" keep="1" url="images/skin_snd_click_close.mp3" id="click_close" level="1"/>
     </media>
-    <input tile0url="images/baño360PH_o_0.jpg" tile5url="images/baño360PH_o_5.jpg" tilesize="680" tile4url="images/baño360PH_o_4.jpg" tile3url="images/baño360PH_o_3.jpg" tilescale="1.014705882352941" tile2url="images/baño360PH_o_2.jpg" tile1url="images/baño360PH_o_1.jpg"/>
+    <input tile0url="images/bano360PH_o_0.jpg" tile5url="images/bano360PH_o_5.jpg" tilesize="680" tile4url="images/bano360PH_o_4.jpg" tile3url="images/bano360PH_o_3.jpg" tilescale="1.014705882352941" tile2url="images/bano360PH_o_2.jpg" tile1url="images/bano360PH_o_1.jpg"/>
     <control simulatemass="1" lockedmouse="0" lockedkeyboard="0" dblclickfullscreen="0" invertwheel="0" lockedwheel="0" invertcontrol="1" speedwheel="1" sensitivity="8"/>
   </panorama>
   <panorama id="node13" hideabout="1">

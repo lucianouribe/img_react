@@ -24,9 +24,9 @@ class DashButtons extends Component {
 // public/panoramicos/pano_01/index.html
   render() {
     // hard coded info
-    const panoradar = {name: 'Aplicativo con radar', address: "../panoramicos/pano_03/", description: 'hello everybody', logo1: 'tridimax', logo2: 'photoshop'};
-    const panofotografia = {name: 'Fotografia 360', address: "../panoramicos/pano_02/", description: 'hello everybody', logo1: 'tridimax', logo2: 'photoshop'};
-    const panodigital = {name: 'Digital 360', address: "../panoramicos/pano_01/", description: 'hello ooooo', logo1: 'tridimax', logo2: 'photoshop'};
+    const panoradar = {name: 'Aplicativo con radar', address: "../panoramicos/pano_03_s/", description: 'hello everybody', logo1: 'tridimax', logo2: 'photoshop'};
+    const panofotografia = {name: 'Fotografia 360', address: "../panoramicos/pano_02_s/", description: 'hello everybody', logo1: 'tridimax', logo2: 'photoshop'};
+    const panodigital = {name: 'Digital 360', address: "../panoramicos/pano_01_s/", description: 'hello ooooo', logo1: 'tridimax', logo2: 'photoshop'};
 
     // info from a database (it's obvious in Main!)
     const productos = 'products';

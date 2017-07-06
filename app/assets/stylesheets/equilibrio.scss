@@ -223,9 +223,6 @@
 .equiresult .encabezado {
   border-top-left-radius: .5rem;
   border-top-right-radius: .5rem;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 100%;
-          flex: 1 1 100%;
   background-color: #fff;
 }
 .equiresult p {
@@ -257,13 +254,22 @@
 }
 
 @media only screen and (max-width: 600px) {
+
   .result-section h2 {
     font-size: 2.5rem;
   }
   .equilibrio .titulo {
     height: auto;
   }
+  .equilibrio .titulo h2 {
+    font-size: 2rem;
+  }
+  .equilibrio .titulo h3 {
+    font-size: 1.8rem;
+  }
   .equilibrio .cuerpo {
+    margin-top: 2rem;
+    height: 100vh;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
@@ -283,6 +289,7 @@
         -ms-flex: 1 1 100%;
             flex: 1 1 100%;
   }
+
 }
 
 

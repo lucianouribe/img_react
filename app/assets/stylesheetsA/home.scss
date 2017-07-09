@@ -2,7 +2,6 @@
 .first-section {
   height: 500px;
   background: #949CA9;
-  background: -webkit-gradient(linear, left top, right top, from(#767A86), color-stop(60%, #B7C1D1), to(#767A86));
   background: linear-gradient(to right, #767A86, #B7C1D1 60%, #767A86);
 }
 .logo {
@@ -13,9 +12,7 @@
 .letreros {
   display: block;
   margin: auto;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  align-items: center;
   text-align: center;
 }
 .title {
@@ -31,8 +28,7 @@
   padding: 15px 30px;
   border-radius: 4px;
   border: none;
-  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 .ingresa:hover {
   background-color: #9DD0FF;
@@ -57,8 +53,7 @@
 }
 .contacto:hover {
   background-color: #FF6949;
-  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 //second section (moving scripts)
@@ -126,8 +121,6 @@
 
 //third section (carousel)
 .third-section {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
   display: inline-flex;
   background-color: #723025;
   width: 100%;
@@ -199,7 +192,6 @@
     padding: 20px;
     background: #9DD0FF;
     background: #949CA9;
-    background: -webkit-gradient(linear, left top, right top, from(#767A86), color-stop(60%, #B7C1D1), to(#767A86));
     background: linear-gradient(to right, #767A86, #B7C1D1 60%, #767A86);
   }
   .letreros h3 {
@@ -219,8 +211,7 @@
   }
   // second section (moving scripts)
   .sec-scrp {
-    -webkit-transform: translateY(260px) translateX(0px) !important;
-            transform: translateY(260px) translateX(0px) !important;
+    transform: translateY(260px) translateX(0px) !important;
   }
   // second B section (parallax)
   .parallax-container {

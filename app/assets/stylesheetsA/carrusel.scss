@@ -39,8 +39,7 @@
   margin-top: 3rem;
   padding: 20px;
   background: #fff;
-  -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
-          box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.3);
   text-align: justify;
 }
 
@@ -104,8 +103,7 @@
 .next:hover {
 	background-color: rgba(255, 255, 255, 0.3);
 	background-image: url(asset_path("right_o.svg"));
-	-webkit-transform: scale(1.1);
-	        transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 .prev {
@@ -124,8 +122,7 @@
 .prev:hover {
 	background-color: rgba(255, 255, 255, 0.3);
 	background-image: url(asset_path("left_o.svg"));
-	-webkit-transform: scale(1.1);
-	        transform: scale(1.1);
+	transform: scale(1.1);
 }
 
 // the info from every picture

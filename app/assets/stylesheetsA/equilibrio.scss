@@ -1,32 +1,18 @@
 .equilibrio {
   padding: 10px 30px 30px 30px !important;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 .equilibrio .cuerpo {
   margin-top: 4.5rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: horizontal;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: row;
-          flex-direction: row;
+  flex-direction: row;
 }
 .equilibrio .aside-izq {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 50%;
-          flex: 1 1 50%;
+  flex: 1 1 50%;
 }
 .equilibrio .aside-der {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 50%;
-          flex: 1 1 50%;
+  flex: 1 1 50%;
 }
 
 .equilibrio i {
@@ -44,34 +30,16 @@
   border-bottom: 1px solid #fff !important;
   color: #fff;
   letter-spacing: 1px;
-  -webkit-box-shadow: none;
-          box-shadow: none;
+  box-shadow: none;
   margin-bottom: 1rem;
 }
 .equilibrio input:focus {
   border-bottom: 1px solid #ff6d00 !important;
-  -webkit-box-shadow: none !important;
-          box-shadow: none !important;
-}
-.equilibrio input::-webkit-input-placeholder {
-  // color: #ff6d00;
-  color: #fff;
-}
-.equilibrio input:-ms-input-placeholder {
-  // color: #ff6d00;
-  color: #fff;
+  box-shadow: none !important;
 }
 .equilibrio input::placeholder {
   // color: #ff6d00;
   color: #fff;
-}
-.equilibrio input:focus::-webkit-input-placeholder {
-  color: #ff6d00;
-  // color: #fff;
-}
-.equilibrio input:focus:-ms-input-placeholder {
-  color: #ff6d00;
-  // color: #fff;
 }
 .equilibrio input:focus::placeholder {
   color: #ff6d00;
@@ -101,15 +69,9 @@
 }
 .equiform.close {
   padding: 0.6rem;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-between;
+  align-items: center;
 }
 .equiform .input-field {
   margin-top: 0 !important;
@@ -118,39 +80,26 @@
   color: #4b4b4b;
 }
 .equiform {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
 }
 .equiform .inputer {
-  -webkit-box-flex: 3;
-      -ms-flex: 3 3 75%;
-          flex: 3 3 75%;
+  flex: 3 3 75%;
 }
 .inputer {
   padding: 1rem;
 }
 .equiform .doner {
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 25%;
-          flex: 1 1 25%;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  flex: 1 1 25%;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: center;
+  align-items: center;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
 }
 .doner {
   background-color: #ff6d00;
   cursor: pointer;
-  -webkit-box-shadow: -3px 0 3px rgba(0,0,0,0.3);
-          box-shadow: -3px 0 3px rgba(0,0,0,0.3);
+  box-shadow: -3px 0 3px rgba(0,0,0,0.3);
 }
 .doner:hover {
   background-color: #FF4E00;
@@ -200,20 +149,13 @@
   background: rgba(0,0,0,0.3);
   border-radius: .5rem;
   border: 1px solid #2b2b2b;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  flex-direction: column;
 }
 .equiresult .encabezado {
   border-top-left-radius: .5rem;
   border-top-right-radius: .5rem;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 100%;
-          flex: 1 1 100%;
+  flex: 1 1 100%;
   background-color: #fff;
 }
 .equiresult p {
@@ -222,26 +164,17 @@
   margin: 5px auto;
 }
 .equiresult h4 {
-  -webkit-box-flex: 7;
-      -ms-flex: 7 7 70%;
-          flex: 7 7 70%;
+  flex: 7 7 70%;
   margin: 1rem;
   border-bottom: 2px solid #ff6d00;
 }
 .equiresult .datos {
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
+  justify-content: space-around;
+  align-items: center;
 }
 .equiresult .botones {
-  -webkit-box-flex: 2;
-      -ms-flex: 2 2 20%;
-          flex: 2 2 20%;
+  flex: 2 2 20%;
 }
 
 @media only screen and (max-width: 600px) {
@@ -252,23 +185,16 @@
     height: auto;
   }
   .equilibrio .cuerpo {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
+    flex-direction: column;
   }
   .equilibrio .aside-izq {
     overflow-y: none;
     height: auto;
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 100%;
-            flex: 1 1 100%;
+    flex: 1 1 100%;
   }
   .equilibrio .aside-der {
     overflow-y: none;
     height: auto;
-    -webkit-box-flex: 1;
-        -ms-flex: 1 1 100%;
-            flex: 1 1 100%;
+    flex: 1 1 100%;
   }
 }

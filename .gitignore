@@ -26,3 +26,4 @@ config/mail.yml
 .ENV
 gulpStyles
 app/assets/javascripts/libs
+app/assets/stylesheets/stylesheetsA

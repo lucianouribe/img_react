@@ -27,6 +27,7 @@ class Equilibrio extends React.Component {
     this.equilibrio = this.equilibrio.bind(this);
     this.deleter = this.deleter.bind(this);
     this.toggleView = this.toggleView.bind(this);
+    this.reseter = this.reseter.bind(this);
   }
 
   toggleView(){
@@ -45,6 +46,21 @@ class Equilibrio extends React.Component {
       ...array.slice(index + 1)
     ]
     this.setState({queGasto: array})
+  }
+
+  reseter(){
+    this.setState({
+      fruta: '',
+      valores: '',
+      expo: false,
+      unidad: null,
+      valExpo: null,
+      valNal: null,
+      rechazo: null,
+      queGasto: [],
+      which: '',
+      show: true
+    })
   }
 
   valorPromedio(a, b, c, d) {
@@ -120,11 +136,13 @@ class Equilibrio extends React.Component {
   render(){
     return (
       <div className='equilibrio'>
-        <div className='titulo'>
+        <div className='titulo' id="resultados">
           {this.calculoEquilibrio()}
           <i className="fa fa-info-circle info-btn" onClick={() => this.toggleView()}></i>
         </div>
         {this.viewRenderer()}
+        <div className='btn btn-reset'><a href="#resultados">Results</a></div>
+        <div className='btn btn-reset' onClick={this.reseter}>Reset</div>
       </div>
     )
   }

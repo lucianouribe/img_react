@@ -39,7 +39,7 @@ class EquiForms extends React.Component {
     this.props.setStater(({which}));
   }
 
-  handleSubmitFrutos(){
+  handleSubmitFrutos(e){
     let fruta = this.refs.fruta.value;
     // this.setState({ fruta });
     this.props.setStater(({fruta}));

@@ -105,8 +105,8 @@ class Carrusel extends Component {
 
   showMeThePic() {
     const info = this.props.details
-    // console.log('show me the pic')
-    // console.log(info)
+    console.log('show me the pic')
+    console.log(info)
     const actualPic = this.state.currentSlide;
     // console.log('actualPic')
     // console.log(actualPic)

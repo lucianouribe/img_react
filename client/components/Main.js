@@ -12,6 +12,7 @@ import Calculator from './Calculator';
 import Equilibrio from './Equilibrio';
 import Description from '../Description';
 
+import { setQueVeo } from '../actions/queVeo';
 
 
 class Main extends Component {
@@ -78,6 +79,7 @@ class Main extends Component {
   // panoramic information receiver
   infoSpongePanos(e, info, picType) {
     e.preventDefault();
+    this.props.dispatch(setQueVeo(info.name));
     this.renderPanoramics(info, picType);
   }
 
@@ -91,6 +93,9 @@ class Main extends Component {
   // image information receiver, filters and dispatch
   infoSpongeAjax(e, info, picType) {
     e.preventDefault();
+    console.log('info');
+    console.log(info);
+    // this.props.dispatch(setQueVeo(info));
       //reset state to get a new 0
       // debugger;
       this.setState({reset: true});
@@ -99,7 +104,7 @@ class Main extends Component {
         type: 'GET',
         dataType: 'JSON'
       }).done ( carruselPic => {
-        console.log('info sponge ajax done')
+        // console.log('info sponge ajax done')
         // loop the database & pick the specific info
         const theStuffForTheCarrusel = carruselPic.filter( filteredData => filteredData.role === info )
         // dispatch only the data with the specified role
@@ -175,6 +180,7 @@ class Main extends Component {
   // card opener for main renderer
   cardOpener(info, picType) {
     this.picPiquer(picType);
+    // this.props.dispatch(setQueVeo(info));
     this.setState({
       whichOne: info
     })
@@ -235,7 +241,7 @@ class Main extends Component {
         break;
       default:
         return (
-          <Equilibrio />
+          <Translator />
         );
         break;
     }
@@ -269,7 +275,9 @@ class Main extends Component {
 const mapStateToProps = (state) => {
   return {
     user: state.user,
-    slideInfo: state.slideInfo
+    slideInfo: state.slideInfo,
+    idiomas: state.idiomas,
+    queVeo: state.queVeo
   }
 }
 

@@ -1,0 +1,46 @@
+// main distribution
+.admin-container {
+  width: 100%;
+  height: calc(100vh - 4.5rem);
+  // background-color: blue;
+  display: flex;
+  flex-direction: row;
+}
+.admin-dashboard-container {
+  flex: 2 2 20%;
+  // background-color: red;
+  // border-right: 1px solid #ccc;
+  box-shadow: 3px 0 3px rgba(0,0,0,0.3);
+}
+.admin-main-container {
+  flex: 8 8 80%;
+  // background-color: orange;
+}
+// dashboard
+
+// dashboard buttons
+.admin-btn {
+  width: 90%;
+  margin-left: 5%;
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: rgba(0,0,0,0.3);
+  border: 1px solid #fff;
+  border-radius: 1rem;
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.admin-btn span {
+  font-size: 1.2rem;
+  font-weight: 100;
+}
+.admin-btn:hover {
+  background-color: rgba(0,0,0,0.7);
+  border: 1px solid #ccc;
+}
+.admin-btn:hover span {
+  color: #fff;
+  font-weight: 300;
+}

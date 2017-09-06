@@ -3,12 +3,18 @@ import { routerReducer } from 'react-router-redux';
 import user from './user';
 import idiomas from './idiomas';
 import queVeo from './queVeo';
+import carrusels from './carrusels';
+import selectedCarrusel from './selectedCarrusel';
+import transitoryInfo from './transitoryInfo';
 
 const rootReducer = combineReducers({
   routing: routerReducer ,
   user,
   idiomas,
-  queVeo
+  queVeo,
+  carrusels,
+  selectedCarrusel,
+  transitoryInfo
 });
 
 export default rootReducer;

@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import Picture from './Picture';
 import { connect } from 'react-redux';
+import { addCarrusel, editCarrusel, deleteCarrusel } from '../actions/carrusels';
 
-// import { carruselStateSetter } from './main';
 
-
-class Carrusel extends Component {
+class Carrusels extends Component {
 
   constructor(props) {
     super(props);
@@ -40,31 +39,6 @@ class Carrusel extends Component {
     this.menuButtons = this.menuButtons.bind(this);
 
   }
-
-  canSee() {
-    // console.log('can see')
-    if(this.props.user.role == 'admin')
-      return true
-  }
-
-  menuButtons() {
-    // console.log('menu buttons')
-    if(this.canSee()) {
-      return(
-        <div>
-          <i type="button" onClick={this.addItem} className="pic-options small material-icons">add</i>
-          <i type="button" onClick={this.editItem} className="pic-options small material-icons">mode_edit</i>
-          <i type="button" onClick={this.deleteItem} className="pic-options small material-icons">delete</i>
-        </div>
-      )
-    }
-  }
-
-  toggleCard() {
-    this.setState({ show: !this.state.show });
-  }
-
-  // console.log(this.props.reset)
 
   componentDidMount(){
     // Text of each picture
@@ -103,18 +77,40 @@ class Carrusel extends Component {
     });
   }
 
+  canSee() {
+    // console.log('can see')
+    if(this.props.user.role == 'admin')
+      return true
+  }
+
+  menuButtons() {
+    // console.log('menu buttons')
+    if(this.canSee()) {
+      return(
+        <div>
+          <i type="button" onClick={this.addItem} className="pic-options small material-icons">add</i>
+          <i type="button" onClick={this.editItem} className="pic-options small material-icons">mode_edit</i>
+          <i type="button" onClick={this.deleteItem} className="pic-options small material-icons">delete</i>
+        </div>
+      )
+    }
+  }
+
+  toggleCard() {
+    this.setState({ show: !this.state.show });
+  }
 
   showMeThePic() {
-    const info = this.props.details
-    console.log('show me the pic')
+    const info = this.props.transitoryInfo
+    console.log('show me the pic info')
     console.log(info)
+    console.log('actualPic')
     const actualPic = this.state.currentSlide;
-    // console.log('actualPic')
-    // console.log(actualPic)
-    const id = info[actualPic].id;
-
-    return (<img className="carruslide" src={info[actualPic].image} data-info={info[actualPic].infopic} id={id} />)
-    // return (<img className="carruslide" src={asset_path(tarro_pupa_mari_optimize.gif")} data-info={info[actualPic].infopic} id={id} />)
+    console.log(actualPic)
+    let id = info[actualPic].id;
+    console.log('id')
+    console.log(info[actualPic])
+    // return (<img className="carruslide" src={info[actualPic].image} data-info={info[actualPic].infopic} id={id} />)
   }
 
   toggleNext() {
@@ -173,27 +169,15 @@ class Carrusel extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
+    // console.log('this is my handle sumbit');
     let name = this.refs.name.value;
     let image = this.refs.address.value;
     let infopic = this.refs.infopic.value;
     let role = this.refs.role.value;
-
-      $.ajax({
-        url: '/api/carrusels',
-        type: 'POST',
-        dataType: 'JSON',
-        data: { carrusel: {name, image, infopic, role} }
-      }).done( data => {
-        this.setState({
-          data: [data, ...this.state.data],
-          frontState: 'show'
-        })
-        this.props.infoSponge(e, role)
-      }).fail( data => {
-        console.log("its hitting fail?")
-    })
+    this.props.dispatch(addCarrusel(name, image, infopic, role));
+    this.setState({frontState: 'show'});
+    this.props.infoSponge(e, role);
   }
-
 
   editItem() {
     this.setState({ frontState: 'edit' });
@@ -224,32 +208,15 @@ class Carrusel extends Component {
 
   handleSubmitEdit(e) {
     e.preventDefault();
+    // console.log('handle submit edit')
     let id = this.props.details[this.state.currentSlide].id
     let name = this.refs.name.value;
     let image = this.refs.address.value;
     let infopic = this.refs.infopic.value;
     let role = this.refs.role.value;
-
-      $.ajax({
-        url: `/api/carrusels/${id}`,
-        type: 'PUT',
-        dataType: 'JSON',
-        data: { carrusel: { name, image, infopic, role} }
-      }).done( data => {
-        this.refs.imageForm.reset();
-        this.setState({
-          data: [...data, ...this.state.data],
-          frontState: 'show'
-        })
-        // let yes = this.state.data;
-        // index = yes.findIndex( o => o.id === action.data.id)
-        // yes[index] = action.data
-        // return [...yes]
-
-        this.props.infoSponge(e, role)
-      }).fail( data => {
-        console.log(data)
-    })
+    this.props.dispatch(editCarrusel(id, name, image, infopic, role));
+    this.setState({frontState: 'show'});
+    this.props.infoSponge(e, role)
   }
 
   deleteItem(e) {
@@ -257,17 +224,8 @@ class Carrusel extends Component {
     let id = this.props.details[this.state.currentSlide].id
     let yes = confirm('are you sure');
     if (yes == true) {
-      $.ajax({
-        url: `/api/carrusels/${id}`,
-        type: 'DELETE',
-        dataType: 'JSON'
-      }).done( data => {
-        this.setState({
-          currentSlide: 0
-        })
-      }).fail( data => {
-        console.log(data)
-      });
+      this.props.dispatch(deleteCarrusel(id));
+      this.setState({currentSlide: 0});
     }
   }
 
@@ -279,13 +237,13 @@ class Carrusel extends Component {
           <div>
             <div id="detalles" className="carousel carruholder center">
               <div className="prev detalles valign-wrapper" onClick={this.togglePrev}></div>
-              {this.showMeThePic(this.props.details)}
+              {this.showMeThePic(this.props.selectedCarrusel)}
               <div className="letter truncate"></div>
               <div className="next detalles valign-wrapper" onClick={this.toggleNext}></div>
             </div>
           </div>
           <div className="card-info">
-            <h5 className="card-title left">{this.props.details[actualPic].name}</h5>
+            <h5 className="card-title left">{}</h5>
             <span className="rigth">
               {this.menuButtons()}
               <i type="button" onClick={this.toggleCard} className="hamburger right"></i>
@@ -343,8 +301,11 @@ class Carrusel extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user
+    user: state.user,
+    carrusels: state.carrusels,
+    selectedCarrusel: state.selectedCarrusel,
+    transitoryInfo: state.transitoryInfo
   }
 }
 
-export default connect(mapStateToProps)(Carrusel);
+export default connect(mapStateToProps)(Carrusels);

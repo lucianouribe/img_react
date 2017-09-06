@@ -30,13 +30,10 @@ class Main extends Component {
     this.renderImages = this.renderImages.bind(this);
     this.renderPanoramics = this.renderPanoramics.bind(this);
 
-    this.infoSpongeAjax = this.infoSpongeAjax.bind(this);
     this.carruselStateSetter = this.carruselStateSetter.bind(this);
 
     this.reseter = this.reseter.bind(this);
 
-    this.cardOpener = this.cardOpener.bind(this);
-    this.picPiquer = this.picPiquer.bind(this);
 
 
     this.state = {
@@ -44,18 +41,9 @@ class Main extends Component {
       PanoslideInfo: {},
       description: '',
       whichOne: '',
-      reset: true,
-      whichPic: 'pic-standard PicLogo'
+      reset: true
     };
 
-  }
-
-
-  // Picture Component
-  picPiquer(picType) {
-    this.setState({whichPic: `pic-standard ${picType}`})
-    // console.log('this.state.whichPic')
-    // console.log(this.state.whichPic)
   }
 
   // state reseter
@@ -91,34 +79,6 @@ class Main extends Component {
     e.preventDefault();
     // console.log(info)
     this.renderImages(info);
-  }
-
-  // image information receiver, filters and dispatch
-  infoSpongeAjax(e, info, picType) {
-    e.preventDefault();
-    console.log('info');
-    console.log(info);
-    // this.props.dispatch(setQueVeo(info));
-      //reset state to get a new 0
-      // debugger;
-      // this.props.dispatch(fetchCarrusels(info, picType))
-      this.setState({reset: true});
-      $.ajax({
-        url: '/api/carrusels',
-        type: 'GET',
-        dataType: 'JSON'
-      }).done ( carruselPic => {
-        // console.log('info sponge ajax done')
-        // loop the database & pick the specific info
-        const theStuffForTheCarrusel = carruselPic.filter( filteredData => filteredData.role === info )
-        // dispatch only the data with the specified role
-        this.carruselStateSetter(theStuffForTheCarrusel, info);
-        // Set the picture for the pic piquer
-        this.picPiquer(picType);
-      }).fail ( data => {
-        console.log('fail info sponge ajax')
-        console.log(error)
-      })
   }
 
   // sets state of the desired info
@@ -174,26 +134,16 @@ class Main extends Component {
       };
       // console.log(newState);
       // console.log(stuff);
-    this.cardOpener('carrusel')
     this.setState({
       slideInfo: { stuff },
       description: newState,
     });
   }
 
-  // card opener for main renderer
-  cardOpener(info, picType) {
-    this.picPiquer(picType);
-    // this.props.dispatch(setQueVeo(info));
-    this.setState({
-      whichOne: info
-    })
-  }
-
   // Main renderer card selector
 
   mainRenderer(){
-    switch (this.state.whichOne) {
+    switch (this.props.selectedCarrusel) {
       case 'intro':
         return (
           <div>
@@ -218,7 +168,12 @@ class Main extends Component {
           </ul>
         );
         break;
-      case "carrusels":
+      case "fotosDetalles":
+      case "fotosPaisajes":
+      case "fotosUrbano":
+      case "fotosTexturas":
+      case "fotosMuelles":
+      case "fotosCuadrados":
         return (
           <Carrusels />
         );
@@ -260,16 +215,11 @@ class Main extends Component {
     return (
       <div className='main-component'>
         <Navbar
-          infoSpongeAjax={ this.infoSpongeAjax  }
           infoSpongePanos={ this.infoSpongePanos }
-          cardOpener={ this.cardOpener }
         />
         <Dashboard className="row"
             infoSpongePanos={ this.infoSpongePanos }
             infoSpongeImages={ this.infoSpongeImages }
-            infoSpongeAjax={ this.infoSpongeAjax  }
-            cardOpener={ this.cardOpener }
-            thePicture={ this.state.whichPic }
         />
         <div className="row">
           <div className="col s12 m10 l8 offset-l1 offset-m1">

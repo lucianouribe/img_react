@@ -1,7 +1,7 @@
 const transitoryInfo = ( state = [], action ) => {
-  console.log('transitoryInfo reducer');
-  console.log(state, action);
-  console.log('here');
+  // console.log('transitoryInfo reducer');
+  // console.log(state, action);
+  // console.log('here');
   switch(action.type){
     case 'TRANSITORY_INFO':
       console.log('set transitory info reducer')

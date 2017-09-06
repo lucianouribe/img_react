@@ -101,15 +101,15 @@ class Carrusels extends Component {
   }
 
   showMeThePic() {
-    const info = this.props.transitoryInfo
+    // const info = this.props.transitoryInfo
     console.log('show me the pic info')
-    console.log(info)
-    console.log('actualPic')
-    const actualPic = this.state.currentSlide;
-    console.log(actualPic)
-    let id = info[actualPic].id;
-    console.log('id')
-    console.log(info[actualPic])
+    // console.log(info)
+    // console.log('actualPic')
+    // const actualPic = this.state.currentSlide;
+    // console.log(actualPic)
+    // let id = info[actualPic].id;
+    // console.log('id')
+    // console.log(info[actualPic])
     // return (<img className="carruslide" src={info[actualPic].image} data-info={info[actualPic].infopic} id={id} />)
   }
 

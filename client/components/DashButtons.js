@@ -71,7 +71,7 @@ class DashButtons extends Component {
         <ul className="collapsible" data-collapsible="accordion">
           <li>
             <div className="collapsible-header"><i className="world"></i>{Portada[info].panos360}</div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.dispatch(selectedCarrusel(panodigital))}><a>{Portada[info].digital}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongePanos(e, panodigital, PicPanoramics)}><a>{Portada[info].panodigital}</a></div>
             <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongePanos(e, panofotografia, PicPanoramics)}><a>{Portada[info].fotografia}</a></div>
             <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongePanos(e, panoradar, PicPanoramics)}><a>{Portada[info].radar}</a></div>
           </li>
@@ -91,12 +91,12 @@ class DashButtons extends Component {
           </li>
           <li>
             <div className="collapsible-header"><i className="gallery_icon"></i>{Portada[info].galeria}</div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.dispatch(transitoryInfo(fotosDetalles))}><a>{Portada[info].detalles}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.dispatch(transitoryInfo(fotosPaisajes))}><a>{Portada[info].paisajes}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.dispatch(transitoryInfo(fotosUrbano))}><a>{Portada[info].urbano}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.dispatch(transitoryInfo(fotosTexturas))}><a>{Portada[info].texturas}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.dispatch(transitoryInfo(fotosMuelles))}><a>{Portada[info].muelles}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.dispatch(transitoryInfo(fotosCuadrados))}><a>{Portada[info].cuadrados}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosDetalles, PicGallery)}><a>{Portada[info].detalles}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosPaisajes, PicGallery)}><a>{Portada[info].paisajes}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosUrbano, PicGallery)}><a>{Portada[info].urbano}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosTexturas, PicGallery)}><a>{Portada[info].texturas}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosMuelles, PicGallery)}><a>{Portada[info].muelles}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosCuadrados, PicGallery)}><a>{Portada[info].cuadrados}</a></div>
           </li>
           <li>
             <div className="collapsible-header"><i className="programming_icon"></i>{Portada[info].programacion}</div>

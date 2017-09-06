@@ -11,6 +11,8 @@ class DashButtons extends Component {
 
   constructor() {
     super();
+
+    this.theSettler = this.theSettler.bind(this);
   }
 
   componentDidMount() {
@@ -25,6 +27,15 @@ class DashButtons extends Component {
       $('.button-collapse').sideNav('hide');
     });
   }
+
+  theSettler(e, info){
+    e.preventDefault();
+    // console.log('the setter info')
+    // console.log(info)
+    this.props.dispatch(transitoryInfo(info));
+    this.props.dispatch(selectedCarrusel(info));
+  }
+
 // public/panoramicos/pano_01/index.html
   render() {
     let info = this.props.idiomas;
@@ -37,9 +48,9 @@ class DashButtons extends Component {
     const panoradar = 'panoradar';
 
     // info from a database (it's obvious in Main!)
-    const productos = 'products';
-    const espacios = 'spaces';
-    const otros = 'others';
+    const productos = 'productos';
+    const espacios = 'espacios';
+    const otros = 'otros';
     const renderGifs = 'renderGifs';
 
     const fotosJoyas = 'fotosJoyas';
@@ -77,33 +88,33 @@ class DashButtons extends Component {
           </li>
           <li>
             <div className="collapsible-header"><i className="teapot"></i>{Portada[info].renders}</div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, renderGifs, PicRenders)}><a>{Portada[info].gifs360}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, productos, PicRenders)}><a>{Portada[info].productos}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, espacios, PicRenders)}><a>{Portada[info].espacios}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, otros, PicRenders)}><a>{Portada[info].otros}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, renderGifs)}><a>{Portada[info].gifs360}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, productos)}><a>{Portada[info].productos}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, espacios)}><a>{Portada[info].espacios}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, otros)}><a>{Portada[info].otros}</a></div>
           </li>
           <li>
             <div className="collapsible-header"><i className="bulb"></i>{Portada[info].fotoproductos}</div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosGifs, PicProducts)}><a>{Portada[info].gifs360}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosJoyas, PicProducts)}><a>{Portada[info].joyas}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosComp, PicProducts)}><a>{Portada[info].componentes}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosCuadros, PicProducts)}><a>{Portada[info].cuadros}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosGifs)}><a>{Portada[info].gifs360}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosJoyas)}><a>{Portada[info].joyas}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosComp)}><a>{Portada[info].componentes}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosCuadros)}><a>{Portada[info].cuadros}</a></div>
           </li>
           <li>
             <div className="collapsible-header"><i className="gallery_icon"></i>{Portada[info].galeria}</div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.dispatch(transitoryInfo(fotosCuadros))}><a>{Portada[info].detalles}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosPaisajes, PicGallery)}><a>{Portada[info].paisajes}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosUrbano, PicGallery)}><a>{Portada[info].urbano}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosTexturas, PicGallery)}><a>{Portada[info].texturas}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosMuelles, PicGallery)}><a>{Portada[info].muelles}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.props.infoSpongeAjax(e, fotosCuadrados, PicGallery)}><a>{Portada[info].cuadrados}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosDetalles)}><a>{Portada[info].detalles}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosPaisajes)}><a>{Portada[info].paisajes}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosUrbano)}><a>{Portada[info].urbano}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosTexturas)}><a>{Portada[info].texturas}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosMuelles)}><a>{Portada[info].muelles}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosCuadrados)}><a>{Portada[info].cuadrados}</a></div>
           </li>
           <li>
             <div className="collapsible-header"><i className="programming_icon"></i>{Portada[info].programacion}</div>
-            <div className="collapsible-body side-but" onClick={() => this.props.cardOpener(translate, PicProgramming)}><a>{Portada[info].cirilico}</a></div>
-            <div className="collapsible-body side-but" onClick={() => this.props.cardOpener(morse, PicProgramming)}><a>{Portada[info].morse}</a></div>
-            <div className="collapsible-body side-but" onClick={() => this.props.cardOpener(calculator, PicProgramming)}><a>{Portada[info].calculadora}</a></div>
-            <div className="collapsible-body side-but" onClick={() => this.props.cardOpener(equilibrio, PicProgramming)}><a>{Portada[info].equilibrio}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, translate)}><a>{Portada[info].cirilico}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, morse)}><a>{Portada[info].morse}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, calculator)}><a>{Portada[info].calculadora}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, equilibrio)}><a>{Portada[info].equilibrio}</a></div>
           </li>
         </ul>
       </div>

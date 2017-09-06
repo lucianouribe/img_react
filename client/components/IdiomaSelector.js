@@ -25,8 +25,8 @@ class IdiomaSelector extends React.Component {
         <div className="idioma-flag idioma-eng" onClick={() => this.changeIdioma(ingles)}></div>
         <div className="idioma-flag idioma-esp" onClick={() => this.changeIdioma(espanol)}></div>
         <div className="idioma-flag idioma-fra" onClick={() => this.changeIdioma(frances)}></div>
-        <div className="idioma-flag idioma-ita" onClick={() => this.changeIdioma(italiano)}></div>
-        <div className="idioma-flag idioma-por" onClick={() => this.changeIdioma(portugues)}></div>
+        <div className="idioma-flag idioma-ita hide" onClick={() => this.changeIdioma(italiano)}></div>
+        <div className="idioma-flag idioma-por hide" onClick={() => this.changeIdioma(portugues)}></div>
         <div className="idioma-flag idioma-deu" onClick={() => this.changeIdioma(aleman)}></div>
       </div>
     )

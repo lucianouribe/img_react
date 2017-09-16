@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
 import Dashboard from './Dashboard';
 import DashButtons from './DashButtons';
 import Carousel from './Carousel';
-import Carrusel from './Carrusel';
 import Carrusels from './Carrusels';
 import Trisixti from './Trisixti';
 import Navbar from './Navbar';
@@ -24,17 +24,7 @@ class Main extends Component {
     super();
 
     this.mainRenderer = this.mainRenderer.bind(this);
-    this.reseter = this.reseter.bind(this);
 
-    this.state = {
-      reset: true
-    };
-
-  }
-
-  // state reseter
-  reseter(sincerity){
-    this.setState({reset: sincerity})
   }
 
   // Main renderer card selector
@@ -75,7 +65,7 @@ class Main extends Component {
       case "fotosMuelles":
       case "fotosCuadrados":
         return (
-          <Carrusels reset={this.state.reset} reseter={this.reseter}/>
+          <Carrusels />
         );
         break;
       case "translate":
@@ -115,7 +105,7 @@ class Main extends Component {
     return (
       <div className='main-component'>
         <Navbar/>
-        <Dashboard className="row" reseter={this.reseter} />
+        <Dashboard className="row" />
         <div className="row">
           <div className="col s12 m10 l8 offset-l1 offset-m1">
             {this.mainRenderer()}

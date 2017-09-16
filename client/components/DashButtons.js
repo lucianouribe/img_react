@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import Stuff from '../Stuff';
+import { Link } from 'react-router';
+
 import Portada from '../Portada';
 
 import { selectedCarrusel } from '../actions/selectedCarrusel';
 import { transitoryInfo } from '../actions/transitoryInfo';
+import { reseter } from '../actions/reseter';
 
 class DashButtons extends Component {
 
@@ -30,7 +31,7 @@ class DashButtons extends Component {
 
   theSettler(e, info){
     e.preventDefault();
-    this.props.reseter(true)
+    this.props.dispatch(reseter(true));
     this.props.dispatch(transitoryInfo(info));
     this.props.dispatch(selectedCarrusel(info));
   }
@@ -130,7 +131,8 @@ class DashButtons extends Component {
 const mapStateToProps = (state) => {
   return {
     idiomas: state.idiomas,
-    queVeo: state.queVeo
+    queVeo: state.queVeo,
+    reseter: state.reseter
   }
 }
 

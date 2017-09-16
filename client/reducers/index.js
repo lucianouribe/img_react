@@ -6,6 +6,7 @@ import queVeo from './queVeo';
 import carrusels from './carrusels';
 import selectedCarrusel from './selectedCarrusel';
 import transitoryInfo from './transitoryInfo';
+import reseter from './reseter';
 
 const rootReducer = combineReducers({
   routing: routerReducer ,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
   queVeo,
   carrusels,
   selectedCarrusel,
-  transitoryInfo
+  transitoryInfo,
+  reseter
 });
 
 export default rootReducer;

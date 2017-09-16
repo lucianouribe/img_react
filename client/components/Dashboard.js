@@ -8,11 +8,7 @@ class Dashboard extends Component {
       <div className="dashboard col s12 m2 l2 left">
         <aside className="center">
           <Picture />
-          <DashButtons
-              infoSpongePanos={this.props.infoSpongePanos}
-              infoSpongeImages={this.props.infoSpongeImages}
-              reseter={this.props.reseter}
-              />
+          <DashButtons />
         </aside>
       </div>
     )

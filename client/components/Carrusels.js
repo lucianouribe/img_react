@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { deleteCarrusel } from '../actions/carrusels';
+
 import CarruselsEdit from './CarruselsEdit';
 import CarruselsDescription from './CarruselsDescription';
+
+import { deleteCarrusel } from '../actions/carrusels';
 import { setIdioma } from '../actions/idiomas';
+import { reseter } from '../actions/reseter';
 
 class Carrusels extends Component {
 
@@ -44,11 +47,11 @@ class Carrusels extends Component {
 
   componentDidUpdate(){
     // reset current slide to cero!
-    if(this.props.reset == true) {
+    if(this.props.reseter == true) {
       this.setState({
         currentSlide: 0
       })
-      this.props.reseter(false);
+      this.props.dispatch(reseter(false));
     }
     // Text of each picture
     $('.carruslide').on('mouseenter', function() {
@@ -130,7 +133,7 @@ class Carrusels extends Component {
     }
     console.log(next);
     this.setState({currentSlide: next});
-    this.props.reseter(false)
+    this.props.dispatch(reseter(false));
     // console.log(this.state.currentSlide)
   }
 
@@ -144,7 +147,7 @@ class Carrusels extends Component {
     }
     // console.log(prev);
     this.setState({currentSlide: prev});
-    this.props.reseter(false)
+    this.props.dispatch(reseter(false));
     // console.log(this.state.currentSlide)
   }
 
@@ -199,7 +202,8 @@ const mapStateToProps = (state) => {
     selectedCarrusel: state.selectedCarrusel,
     transitoryInfo: state.transitoryInfo,
     idiomas: state.idiomas,
-    queVeo: state.queVeo
+    queVeo: state.queVeo,
+    reseter: state.reseter,
   }
 }
 

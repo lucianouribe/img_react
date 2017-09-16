@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import { logout } from '../actions/auth';
+import { Link } from 'react-router';
+
 import DashButtons from './DashButtons';
+
+import { logout } from '../actions/auth';
 import { setQueVeo } from '../actions/queVeo';
+import { reseter } from '../actions/reseter';
 
 class Navbar extends Component {
 
@@ -19,7 +22,7 @@ class Navbar extends Component {
 
   logout(e) {
     e.preventDefault();
-    console.log('logout dispatcher');
+    // console.log('logout dispatcher');
     this.props.dispatch(logout(this.props.history));
   }
 
@@ -89,9 +92,7 @@ class Navbar extends Component {
     return(
       <div>
         <li><Link className="collapsible-header" to='/home'><i className="home-icon"></i>Home</Link></li>
-        <li><DashButtons id="side-menu"
-        cardOpener={this.props.cardOpener}
-        infoSpongeAjax={this.props.infoSpongeAjax} infoSpongePanos={this.props.infoSpongePanos}/></li>
+        <li><DashButtons id="side-menu" reseter={this.props.reseter}/></li>
         <li><Link className="collapsible-header" to='/contact'><i className="contact_icon"></i>Contact</Link></li>
         {this.isUserSigned()}
       </div>
@@ -121,7 +122,10 @@ class Navbar extends Component {
 
 
 const mapStateToProps = (state) => {
-  return { user: state.user }
+  return {
+    user: state.user,
+    reseter: state.reseter
+  }
 }
 
 export default connect(mapStateToProps)(Navbar);

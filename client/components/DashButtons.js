@@ -43,9 +43,9 @@ class DashButtons extends Component {
     const panofotografia = 'panofotografia';
     const panoradar = 'panoradar';
 
-    const productos = 'productos';
-    const espacios = 'espacios';
-    const otros = 'otros';
+    const products = 'products';
+    const spaces = 'spaces';
+    const others = 'others';
     const renderGifs = 'renderGifs';
 
     const fotosJoyas = 'fotosJoyas';
@@ -84,9 +84,9 @@ class DashButtons extends Component {
           <li>
             <div className="collapsible-header"><i className="teapot"></i>{Portada[info].renders}</div>
             <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, renderGifs)}><a>{Portada[info].gifs360}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, productos)}><a>{Portada[info].productos}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, espacios)}><a>{Portada[info].espacios}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, otros)}><a>{Portada[info].otros}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, products)}><a>{Portada[info].productos}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, spaces)}><a>{Portada[info].espacios}</a></div>
+            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, others)}><a>{Portada[info].otros}</a></div>
           </li>
           <li>
             <div className="collapsible-header"><i className="bulb"></i>{Portada[info].fotoproductos}</div>

@@ -1,7 +1,6 @@
 // intro
 .first-section {
   height: 500px;
-  // background: #949CA9;
   background-color: #723025;
   // background: linear-gradient(to right, #767A86, #B7C1D1 60%, #767A86);
   background: -webkit-gradient(linear, left top, right top, from(#723025), color-stop(60%, #AB4837), to(#723025));
@@ -46,7 +45,6 @@
   height: 100px;
   // background-color: #798F5F;
   background-color: #FF6949;
-  // background: linear-gradient(to right, #767A86, #B7C1D1 60%, #767A86);
   padding: 1.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -137,7 +135,6 @@
 }
 .btn-contacto:hover {
   background-color: #9DD0FF;
-  // box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 //second section (moving scripts)
@@ -214,21 +211,15 @@
           flex-direction: row;
   background-color: #723025;
   width: 100%;
-  // min-height: 500px;
-  // height: 60vh;
   padding: 0 10%;
 }
 // the slider
 .soft .card {
-  // flex: 2 2 20%;
   min-height: 450px;
-  // height: 52vh;
   min-width: 400px;
-  // width: 50%;
 }
 .soft .card-image {
   min-height: 400px;
-  // height: 45vh;
 }
 .soft .carousel {
   background-position: top !important;
@@ -237,7 +228,6 @@
   padding: 7px;
 }
 .subtitle {
-  // max-width: 70%;
   font-size: 2rem;
   margin: none;
 }
@@ -262,7 +252,6 @@
 // footer
 .wine-bar {
   height: 40px;
-  // border-top: 1px dashed #52221A;
   border-top: 1px dashed #FF6949;
   background-color: #723025;
 }
@@ -283,10 +272,9 @@
   .first-section {
     height: 85vh;
     padding: 20px;
-    background: #9DD0FF;
-    background: #949CA9;
-    background: -webkit-gradient(linear, left top, right top, from(#767A86), color-stop(60%, #B7C1D1), to(#767A86));
-    background: linear-gradient(to right, #767A86, #B7C1D1 60%, #767A86);
+    background: #723025;
+    background: -webkit-gradient(linear, left top, right top, from(#723025), color-stop(60%, #AB4837), to(#723025)) !important;
+    background: linear-gradient(to right, #723025, #AB4837 60%, #723025) !important;
   }
   .letreros h3 {
     font-size: 1rem;
@@ -363,8 +351,8 @@
   }
   .btn-contacto {
     margin-right: 10px;
-    font-size: 1.4rem;
-    padding: 8px 15px;
+    font-size: 1rem;
+    padding: 8px 15px !important;
     border-radius: 5px;
   }
 }

@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-//components
-//actions
-//hard coded info
+import { deleteCarrusel } from '../actions/carrusels';
+
 import Description from '../Description';
 
 
@@ -23,7 +22,7 @@ class Trisixti extends React.Component {
   toggleCard() {
     this.setState({ show: !this.state.show });
   }
-  
+
   menuButtons() {
     // console.log('menu buttons')
     if(this.props.user.role == 'admin' && this.props.queVeo == 'admin') {

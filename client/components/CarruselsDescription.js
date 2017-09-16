@@ -19,9 +19,9 @@ class CarruselsDescription extends Component {
     let first;
     const sprache = this.props.idiomas;
     switch (this.props.selectedCarrusel) {
-      case "productos":
-      case "espacios":
-      case "otros":
+      case "products":
+      case "spaces":
+      case "others":
         first = Description.renders;
         infoForBehind = first[sprache]
         break;

@@ -60,9 +60,9 @@ class Main extends Component {
       case 'panodigital':
       case 'panofotografia':
       case 'panoradar':
-      case 'productos':
-      case 'espacios':
-      case 'otros':
+      case 'products':
+      case 'spaces':
+      case 'others':
       case 'renderGifs':
       case 'fotosJoyas':
       case 'fotosComp':

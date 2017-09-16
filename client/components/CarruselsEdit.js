@@ -34,9 +34,9 @@ class CarruselsEdit extends Component {
               <option type="text" value="panodigital">Pano Digital</option>
               <option type="text" value="panofotografia">Pano Foto</option>
               <option type="text" value="panoradar">Pano Radar</option>
-              <option type="text" value="productos">Render Productos</option>
-              <option type="text" value="espacios">Render Espacio</option>
-              <option type="text" value="otros">Render Otros</option>
+              <option type="text" value="products">Render Productos</option>
+              <option type="text" value="spaces">Render Espacio</option>
+              <option type="text" value="others">Render Otros</option>
               <option type="text" value="renderGifs">Render Gifs</option>
               <option type="text" value="fotosJoyas">Fotos Joyas</option>
               <option type="text" value="fotosComp">Fotos Componentes</option>

@@ -62,15 +62,12 @@ class CarruselsEdit extends Component {
     // console.log('this is my handle sumbit');
     let name = this.refs.name.value;
     let image = this.refs.address.value;
-    let role = this.refs.role.value;
     let infopic = this.refs.infopic.value;
-    // console.log(image);
+    let role = this.refs.role.value;
     this.props.dispatch(addCarrusel(name, image, infopic, role));
     let change = "show";
     this.props.menuButtonsMagic(change);
   }
-
-
 
   editForm() {
     let image = this.props.transitoryInfo[this.props.currentSlide];

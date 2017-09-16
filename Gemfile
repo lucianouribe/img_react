@@ -20,7 +20,7 @@ gem 'dotenv-rails'
 gem 'cloudinary'
 gem 'paperclip-cloudinary'
 gem 'attachinary'
-gem 'paperclip'
+# gem 'paperclip'
 gem 'letter_opener'
 gem 'ambethia-smtp-tls'
 

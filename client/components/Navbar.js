@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { logout } from '../actions/auth';
 import DashButtons from './DashButtons';
-
+import { setQueVeo } from '../actions/queVeo';
 
 class Navbar extends Component {
 
@@ -14,6 +14,7 @@ class Navbar extends Component {
     this.navs = this.navs.bind(this);
     this.sideNav = this.sideNav.bind(this);
     this.isUserSigned = this.isUserSigned.bind(this);
+    this.queVeoSetter = this.queVeoSetter.bind(this);
   }
 
   logout(e) {
@@ -35,8 +36,14 @@ class Navbar extends Component {
     });
   }
 
+  queVeoSetter(doThis){
+    this.props.dispatch(setQueVeo(doThis));
+  }
 
   navs() {
+    const home = 'portada';
+    const main = 'main';
+    const admin = 'admin';
     switch(this.props.user.role) {
       case'visitor':
         return(
@@ -49,9 +56,9 @@ class Navbar extends Component {
       case'admin':
         return(
           <div>
-            <li className="top-icon"><Link to='/'>Home</Link></li>
-            <li className="top-icon"><Link to='/main'>Main</Link></li>
-            <li className="top-icon"><Link to='/admin'>Admin</Link></li>
+            <li className="top-icon" onClick={(e) => this.queVeoSetter(home)}><Link to='/'>Home</Link></li>
+            <li className="top-icon"onClick={(e) => this.queVeoSetter(main)}><Link to='/main'>Main</Link></li>
+            <li className="top-icon" onClick={(e) => this.queVeoSetter(admin)}><Link to='/admin'>Admin</Link></li>
             <li className="top-icon"><a style={{ cursor: 'pointer' }} onClick={this.logout}>Logout</a></li>
           </div>
         );

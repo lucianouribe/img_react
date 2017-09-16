@@ -1,3 +1,4 @@
+require 'pry'
 class Api::CarruselsController < ApplicationController
   before_action :set_api_carrusel, only: [:show, :edit, :update, :destroy]
 
@@ -22,7 +23,7 @@ class Api::CarruselsController < ApplicationController
   # POST /api/carrusels.json
   def create
     @api_carrusel = Carrusel.new(api_carrusel_params)
-
+    # binding.pry
     respond_to do |format|
       if @api_carrusel.save
         format.json { render :show, status: :created }

@@ -1,4 +1,10 @@
 import React from 'react';
+import { connect } from 'react-redux';
+//components
+//actions
+//hard coded info
+import Description from '../Description';
+
 
 class Trisixti extends React.Component {
 
@@ -10,26 +16,53 @@ class Trisixti extends React.Component {
     }
 
     this.toggleCard = this.toggleCard.bind(this);
+    this.menuButtons = this.menuButtons.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   toggleCard() {
     this.setState({ show: !this.state.show });
   }
+  
+  menuButtons() {
+    // console.log('menu buttons')
+    if(this.props.user.role == 'admin' && this.props.queVeo == 'admin') {
+      return(
+        <div>
+          <i type="button" onClick={this.deleteItem} className="pic-options small material-icons">delete</i>
+        </div>
+      )
+    }
+  }
 
+  deleteItem(e) {
+    e.preventDefault();
+    let id = this.props.transitoryInfo[0].id
+    let yes = confirm('are you sure');
+    if (yes == true) {
+      this.props.dispatch(deleteCarrusel(id));
+    }
+  }
 
   front() {
+    if(this.props.transitoryInfo.length > 0) {
+      var actualPic = this.props.transitoryInfo[0];
+    } else {
+      var actualPic = "no images";
+    }
     return(
       <div>
         <div className="card">
           <div className="card-image waves-effect waves-block waves-light">
               <div id="detalles" className="frame">
-                <iframe src={this.props.details.address} seamless></iframe>
+                <iframe src={actualPic.image} seamless></iframe>
               </div>
             <div className="letter"></div>
           </div>
           <div className="card-info">
-            <h5 className="card-title left">{this.props.details.name}</h5>
+            <h5 className="card-title left">{actualPic.name}</h5>
             <span>
+              {this.menuButtons()}
               <i type="button" onClick={this.toggleCard} className="hamburger right"></i>
             </span>
           </div>
@@ -43,13 +76,9 @@ class Trisixti extends React.Component {
     return(
       <div>
         <div className="card-reveal">
-          <span className="card-title grey-text text-darken-4"><i type="button" onClick={this.toggleCard} className="close material-icons right">close</i><h5>{this.props.details.name}</h5></span>
-          <p>{this.props.details.description}</p>
+          <span className="card-title"><i type="button" onClick={this.toggleCard} className="close material-icons right">close</i><h5>{Description.panoramicos[this.props.idiomas].name}</h5></span>
+          <p>{Description.panoramicos[this.props.idiomas].description}</p>
           <div className="logos">
-          <div className={this.props.details.logo1}></div>
-          <div className={this.props.details.logo2}></div>
-          <div className={this.props.details.logo3}></div>
-          <div className={this.props.details.logo4}></div>
           </div>
         </div>
       </div>
@@ -65,4 +94,14 @@ class Trisixti extends React.Component {
   }
 }
 
-export default Trisixti;
+const mapStateToProps = (state) => {
+  return {
+    user: state.user,
+    selectedCarrusel: state.selectedCarrusel,
+    transitoryInfo: state.transitoryInfo,
+    idiomas: state.idiomas,
+    queVeo: state.queVeo
+  }
+}
+
+export default connect(mapStateToProps)(Trisixti);

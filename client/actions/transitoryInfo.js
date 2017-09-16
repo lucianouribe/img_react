@@ -7,17 +7,17 @@
 // }
 
 export const transitoryInfo = (infoII) => {
-  console.log('this is setTransitoryInfo actions');
+  // console.log('this is setTransitoryInfo actions');
   return(dispatch) => {
     $.ajax({
       url: '/api/carrusels/',
       type: 'GET',
       dataType: 'JSON'
     }).done( carrusel => {
-      console.log(carrusel)
-      console.log(infoII)
+      // console.log(carrusel)
+      // console.log(infoII)
       const filtered = carrusel.filter( filteredData => filteredData.role === infoII )
-      console.log(filtered)
+      // console.log(filtered)
       dispatch({ type: 'TRANSITORY_INFO', filtered});
     }).fail( data => {
       console.log('fetch carrusels fail data')

@@ -1,5 +1,5 @@
 export const addCarrusel = (name, image, infopic, role) => {
-  // console.log('this is add carrusels action');
+  console.log('this is add carrusels action');
   return(dispatch) => {
     $.ajax({
       url: `/api/carrusels`,
@@ -7,8 +7,8 @@ export const addCarrusel = (name, image, infopic, role) => {
       dataType: 'JSON',
       data: { carrusel: { name, image, infopic, role } }
     }).done( carrusel => {
-      // console.log('add carrusel done data');
-      // console.table(carrusel);
+      console.log('add carrusel done data');
+      console.table(carrusel);
       dispatch({ type: 'ADD_CARRUSEL', carrusel });
     }).fail( data => {
       console.log('add carrusel fail data')
@@ -19,7 +19,8 @@ export const addCarrusel = (name, image, infopic, role) => {
 }
 
 export const fetchCarrusels = (info, picType) => {
-  // console.log('this is fetch carrusels')
+  console.log('this is fetch carrusels')
+  console.log(info)
 
   return(dispatch) => {
     $.ajax({

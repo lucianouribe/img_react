@@ -19,11 +19,15 @@
 /public/webpack
 npm-debug.log
 
-/Main.js
-/Slider.js
-
 config/mail.yml
 .ENV
 gulpStyles
 app/assets/javascripts/libs
 app/assets/stylesheets/stylesheetsA
+client/components/Carrusel.js
+client/components/DashboardO.js
+client/components/DashButtonsO.js
+client/components/MainO.js
+client/components/TrisixtiH.js
+client/components/Slider.js
+client/components/Panoramicos.js

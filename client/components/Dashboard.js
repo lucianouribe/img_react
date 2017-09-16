@@ -7,12 +7,11 @@ class Dashboard extends Component {
     return(
       <div className="dashboard col s12 m2 l2 left">
         <aside className="center">
-          <Picture  thePicture={this.props.thePicture} />
+          <Picture />
           <DashButtons
               infoSpongePanos={this.props.infoSpongePanos}
               infoSpongeImages={this.props.infoSpongeImages}
-              infoSpongeAjax={this.props.infoSpongeAjax}
-              cardOpener={this.props.cardOpener }
+              reseter={this.props.reseter}
               />
         </aside>
       </div>

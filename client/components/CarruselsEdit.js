@@ -10,7 +10,7 @@ class CarruselsEdit extends Component {
 
 
     this.addForm = this.addForm.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSubmitAdd = this.handleSubmitAdd.bind(this);
 
     this.editForm = this.editForm.bind(this);
     this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
@@ -50,14 +50,14 @@ class CarruselsEdit extends Component {
             </select>
           </div>
           <div className="card-action">
-            <div type="submit" className="btn" onClick={this.handleSubmit}>submit</div>
+            <div type="submit" className="btn" onClick={this.handleSubmitAdd}>submit</div>
           </div>
         </form>
       </div>
     );
   }
 
-  handleSubmit(e) {
+  handleSubmitAdd(e) {
     e.preventDefault();
     // console.log('this is my handle sumbit');
     let name = this.refs.name.value;

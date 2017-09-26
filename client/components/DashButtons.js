@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 
 import Portada from '../Portada';
 
+import { setQueVeo } from '../actions/queVeo';
 import { selectedCarrusel } from '../actions/selectedCarrusel';
 import { transitoryInfo } from '../actions/transitoryInfo';
 import { reseter } from '../actions/reseter';
@@ -31,9 +32,29 @@ class DashButtons extends Component {
 
   theSettler(e, info){
     e.preventDefault();
+    let campo;
     this.props.dispatch(reseter(true));
     this.props.dispatch(transitoryInfo(info));
     this.props.dispatch(selectedCarrusel(info));
+    switch (info) {
+      case 'panodigital':
+      case 'panofotografia':
+      case 'panoradar':
+        campo = 'panoramicos'
+        break;
+      case 'products':
+      case 'spaces':
+      case 'others':
+        campo = 'renders'
+        break;
+      case 'renderGifs':
+      case 'fotosGifs':
+        campo = 'gifs'
+        break;
+      default:
+
+    }
+    this.props.dispatch(setQueVeo(campo));
   }
 
 // public/panoramicos/pano_01/index.html

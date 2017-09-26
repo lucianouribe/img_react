@@ -9,6 +9,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :carrusels
+    resources :descripcions
     post 'contact', to: 'contacts#create'
     get 'users/info'
     post 'translator', to: 'translators#translate'

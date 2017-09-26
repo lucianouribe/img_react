@@ -16,8 +16,8 @@ class AdminDashButtons extends React.Component {
     const boton3 = 'boton 3'
     return (
       <div className="admin-dash-buttons">
-        <div className='admin-btn' onClick={() => this.props.setRenderOption(boton1)}><span>description</span></div>
         <Link to='/main' className='admin-btn'><div onClick={() => this.props.dispatch(setQueVeo(boton2))}><span>edit carrusel</span></div></Link>
+        <div className='admin-btn' onClick={() => this.props.setRenderOption(boton1)}><span>description</span></div>
         <div className='admin-btn' onClick={() => this.props.setRenderOption(boton3)}><span>boton 3</span></div>
       </div>
     )

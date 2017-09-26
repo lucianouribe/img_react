@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import Navbar from './Navbar';
 import AdminDashboard from './AdminDashboard';
-import Description from './Description';
+import Descripcions from './Descripcions';
 
 
 class Admin extends React.Component {
@@ -25,17 +25,17 @@ class Admin extends React.Component {
   mainRenderer(){
     const admin = 'admin'
     switch (this.state.renderOption) {
-      case 'description':
-          return(<Description />)
-        break;
       case 'edit carrusel':
-          return(<div>yo</div>)
+        return(<div>yo</div>)
+        break;
+      case 'description':
+          return(<Descripcions />)
         break;
       case 'boton 2':
           return(<div>i'm boton 2</div>)
         break;
       default:
-        return(<div>i'm the default component</div>)
+        return(<Descripcions />)
     }
   }
 

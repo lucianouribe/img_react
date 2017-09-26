@@ -42,9 +42,6 @@ GEM
       public_suffix (~> 2.0, >= 2.0.2)
     ambethia-smtp-tls (1.1.2)
     arel (7.1.4)
-    attachinary (1.3.1)
-      cloudinary (~> 1.1.0)
-      rails (>= 3.2)
     aws_cf_signer (0.1.3)
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -232,26 +229,25 @@ PLATFORMS
 
 DEPENDENCIES
   ambethia-smtp-tls
-  attachinary
-  cloudinary
+  cloudinary (~> 1.1.7)
   coffee-rails (~> 4.2)
   devise (~> 4.2.0)
   dotenv
   dotenv-rails
-  faker
+  faker (= 1.6.6)
   font-awesome-rails
   jbuilder (~> 2.5)
   jquery-rails
   letter_opener
   listen (~> 3.0.5)
   materialize-sass
-  paperclip-cloudinary
+  paperclip-cloudinary (~> 1.3.0)
   pg (~> 0.18)
   pry
   puma (~> 3.0)
   rails (~> 5.0.1)
   react-rails
-  repack
+  repack (~> 2.1.5)
   sass-rails (~> 5.0)
   sentry-raven
   spring

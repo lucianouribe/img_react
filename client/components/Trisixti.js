@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { deleteCarrusel } from '../actions/carrusels';
+import { fetchDescripcions } from '../actions/descripcions';
 
 import Description from '../Description';
 
@@ -21,6 +22,11 @@ class Trisixti extends React.Component {
 
   toggleCard() {
     this.setState({ show: !this.state.show });
+  }
+
+  componentDidMount(){
+    let whichDescription = this.props.queVeo
+    this.props.dispatch(fetchDescripcions(whichDescription));
   }
 
   menuButtons() {
@@ -72,11 +78,14 @@ class Trisixti extends React.Component {
 
 
   behind() {
+    let laDescripcion = this.props.descripcions.filter( descr => { if(descr.lenguaje === this.props.idiomas) return descr })
+    let gooo = laDescripcion[0]
+
     return(
       <div>
         <div className="card-reveal">
-          <span className="card-title"><i type="button" onClick={this.toggleCard} className="close material-icons right">close</i><h5>{Description.panoramicos[this.props.idiomas].name}</h5></span>
-          <p>{Description.panoramicos[this.props.idiomas].description}</p>
+          <span className="card-title"><i type="button" onClick={this.toggleCard} className="close material-icons right">close</i><h5>{gooo.titulo}</h5></span>
+          <p>{gooo.contenido}</p>
           <div className="logos">
           </div>
         </div>
@@ -99,7 +108,8 @@ const mapStateToProps = (state) => {
     selectedCarrusel: state.selectedCarrusel,
     transitoryInfo: state.transitoryInfo,
     idiomas: state.idiomas,
-    queVeo: state.queVeo
+    queVeo: state.queVeo,
+    descripcions: state.descripcions
   }
 }
 

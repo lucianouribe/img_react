@@ -6,3 +6,8 @@ export function formatPrice(pay) {
 export function pluralize(word) {
   return word + 's'
 }
+
+export function createMarkup(text) {
+  text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
+  return {__html: `${text}`};
+}

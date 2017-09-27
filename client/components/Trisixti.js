@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { deleteCarrusel } from '../actions/carrusels';
-import { fetchDescripcions } from '../actions/descripcions';
 
 import Description from '../Description';
+
+import { deleteCarrusel } from '../actions/carrusels';
+import { fetchDescripcions } from '../actions/descripcions';
+import { createMarkup } from '../helpers';
 
 
 class Trisixti extends React.Component {
@@ -79,13 +81,13 @@ class Trisixti extends React.Component {
 
   behind() {
     let laDescripcion = this.props.descripcions.filter( descr => { if(descr.lenguaje === this.props.idiomas) return descr })
-    let gooo = laDescripcion[0]
+    let explicacion = laDescripcion[0]
 
     return(
       <div>
         <div className="card-reveal">
-          <span className="card-title"><i type="button" onClick={this.toggleCard} className="close material-icons right">close</i><h5>{gooo.titulo}</h5></span>
-          <p>{gooo.contenido}</p>
+          <span className="card-title"><i type="button" onClick={this.toggleCard} className="close material-icons right">close</i><h5>{explicacion.titulo}</h5></span>
+          <div dangerouslySetInnerHTML={createMarkup(explicacion.contenido)} />
           <div className="logos">
           </div>
         </div>

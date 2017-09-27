@@ -56,51 +56,43 @@ class Descripcions extends React.Component {
   addForm(){
 
     return(
-      <div className="col s12 m12">
-        <div className="card form-card">
-          <form className="input-field">
-            <div className="card-content">
-              <h3 className='card-title'>New Description</h3>
-              <p>
-                <strong>Campo:</strong>
-                <select className="browser-default" ref="campo" required>
-                  <option value="panoramicos">panoramicos</option>
-                  <option value="renders">renders</option>
-                  <option value="productos">foto productos</option>
-                  <option value="galeria">galeria</option>
-                  <option value="gifs">gifs</option>
-                  <option value="cirilico">cirilico</option>
-                  <option value="morse">morse</option>
-                  <option value="calculadora">calculadora</option>
-                  <option value="equilibrio">equilibrio</option>
-                </select>
-              </p>
-              <p>
-                <strong>Title:</strong>
-                <input type="text" ref='titulo' required/>
-              </p>
-              <p>
-                <strong>Description:</strong>
-                <textarea ref='contenido' required></textarea>
-              </p>
-              <p>
-                <strong>Languaje:</strong>
-                <select className="browser-default" ref="lenguaje" required>
-                  <option value="ingles">english</option>
-                  <option value="espanol">espanol</option>
-                  <option value="frances">francais</option>
-                  <option value="aleman">deutsch</option>
-                  <option value="portugues">portugues</option>
-                  <option value="italiano">italiano</option>
-                </select>
-              </p>
-            </div>
-            <div className="card-action">
-              <span onClick={this.handleSubmit}><i className="material-icons">done</i></span>
-              <span onClick={this.toggleDisplay}><i className="material-icons">cancel</i></span>
-            </div>
-          </form>
-        </div>
+      <div className="tarjeta form-edit">
+        <form className="input-field">
+          <div className="tarjeta-content">
+            <h3 className='tarjeta-title center'>Add New Description</h3>
+            <p>
+              <select className="browser-default" ref="campo" required>
+                <option disabled selected>Campo:</option>
+                <option value="panoramicos">panoramicos</option>
+                <option value="renders">renders</option>
+                <option value="productos">foto productos</option>
+                <option value="galeria">galeria</option>
+                <option value="gifs">gifs</option>
+                <option value="cirilico">cirilico</option>
+                <option value="morse">morse</option>
+                <option value="calculadora">calculadora</option>
+                <option value="equilibrio">equilibrio</option>
+              </select>
+            </p>
+            <p><input type="text" ref='titulo' required placeholder="Title:"/></p>
+            <p><textarea ref='contenido' required placeholder="Description:"></textarea></p>
+            <p>
+              <select className="browser-default" ref="lenguaje" required>
+                <option disabled selected>Languaje:</option>
+                <option value="ingles">english</option>
+                <option value="espanol">espanol</option>
+                <option value="frances">francais</option>
+                <option value="aleman">deutsch</option>
+                <option value="portugues">portugues</option>
+                <option value="italiano">italiano</option>
+              </select>
+            </p>
+          </div>
+          <div className="tarjeta-action">
+            <span onClick={this.handleSubmit}><i className="material-icons">done</i></span>
+            <span onClick={this.toggleDisplay}><i className="material-icons">cancel</i></span>
+          </div>
+        </form>
       </div>
     );
   }

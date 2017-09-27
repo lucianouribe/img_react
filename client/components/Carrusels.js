@@ -8,6 +8,9 @@ import { deleteCarrusel } from '../actions/carrusels';
 import { setIdioma } from '../actions/idiomas';
 import { reseter } from '../actions/reseter';
 
+import { createMarkup } from '../helpers';
+
+
 class Carrusels extends Component {
 
   constructor(props) {

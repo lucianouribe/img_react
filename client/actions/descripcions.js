@@ -47,14 +47,14 @@ export const fetchDescripcions = (wordToMatch) => {
 
 }
 
-export const editDescripcion = (id, campo, titulo, contenido, lenguaje) => {
+export const editDescripcion = (id, titulo, contenido) => {
   // console.log(`this is edit descripcion con id: ${id}`)
   return(dispatch) => {
     $.ajax({
       url: `/api/descripcions/${id}`,
       type: 'PUT',
       dataType: 'JSON',
-      data: { descripcion: { campo, titulo, contenido, lenguaje } }
+      data: { descripcion: { titulo, contenido } }
     }).done( descripcion => {
       // console.log('edit descripcion done data');
       // console.table(descripcion);

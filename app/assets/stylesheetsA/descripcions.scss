@@ -6,8 +6,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  // flex-direction: row;
-
 }
 .admin-title h1 {
   font-size: 2.5rem;
@@ -25,36 +23,31 @@
   border: 1px solid #ccc;
   border-radius: 1rem;
   box-shadow: inset 3px 3px 3px rgba(0,0,0,0.3);
+  background: rgba(255,255,255,0.7);
   padding-left: 1rem;
 }
 .description-cards {
   height: calc(100vh - 16rem);
   overflow-y: scroll;
+  border-bottom: 3px solid rgba(0,0,0,0.3);
 }
 
 // tarjeta
-
 .tarjeta {
   margin-bottom: 2rem;
   background: rgba(255,255,255,0.8);
   border: 2px solid #ccc;
   border-radius: 1rem;
-  height: 25vh;
 }
-.form-add {
-  height: 55vh;
-}
-.form-edit {
-  height: 45vh;
-}
+
 .form-edit textarea {
   height: 6rem;
 }
+
 .tarjeta-content {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  height: 80%;
   padding: 1rem;
 }
 .tarjeta-content h3 {
@@ -74,11 +67,11 @@
   font-weight: 400;
 }
 
-.tarjeta-content p {
+.tarjeta-content .descripcion-contenido {
   margin: 0;
+  margin-top: 1rem;
   flex: 10 10 100%;
   width: 100%;
-  height: 70%;
 }
 .tarjeta-action {
   display: flex;
@@ -91,4 +84,8 @@
 }
 .tarjeta-action i {
   margin-right: 10px;
+}
+// form edit
+.form-edit .tarjeta-content{
+  flex-direction: column;
 }

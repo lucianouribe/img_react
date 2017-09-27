@@ -23,7 +23,7 @@ config/mail.yml
 .ENV
 gulpStyles
 app/assets/javascripts/libs
-app/assets/stylesheets/stylesheetsA
+app/assets/stylesheets/stylesheetsA.scss
 client/components/Carrusel.js
 client/components/DashboardO.js
 client/components/DashButtonsO.js

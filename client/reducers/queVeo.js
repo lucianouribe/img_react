@@ -1,4 +1,4 @@
-const queVeo = ( state = 'portada', action ) => {
+const queVeo = ( state = "portada", action ) => {
 
   switch(action.type){
     case 'SET_QUE_VEO':

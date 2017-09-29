@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import { Link } from 'react-router';
+
 import Navbar from './Navbar';
 import Carousel from './Carousel';
 import Panoramicos from './Panoramicos';
 import IdiomaSelector from './IdiomaSelector';
+
 import { setIdioma } from '../actions/idiomas';
+import { setQueVeo } from '../actions/queVeo';
+
 import Stuff from '../Stuff';
 import Portada from '../Portada';
 
@@ -24,6 +27,8 @@ class Home extends Component {
   componentDidMount() {
     $('.parallax').parallax();
     $('.slider').slider();
+    let WhatDoISee = 'portada';
+    this.props.dispatch(setQueVeo(WhatDoISee));
     var renderSoft = Stuff.slideRenderSoft
     this.setState({
       slideInfo: { renderSoft }

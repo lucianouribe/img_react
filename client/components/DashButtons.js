@@ -51,8 +51,34 @@ class DashButtons extends Component {
       case 'fotosGifs':
         campo = 'gifs'
         break;
+      case 'fotosJoyas':
+      case 'fotosComp':
+      case 'fotosCuadros':
+        campo = 'productos'
+        break;
+      case 'fotosDetalles':
+      case 'fotosPaisajes':
+      case 'fotosUrbano':
+      case 'fotosTexturas':
+      case 'fotosMuelles':
+      case 'fotosCuadrados':
+        campo = 'galeria'
+        break;
+      case 'translate':
+        campo = 'translate'
+        break;
+      case 'morse':
+        campo = 'morse'
+        break;
+      case 'calculator':
+        campo = 'calculator'
+        break;
+      case 'equilibrio':
+        campo = 'equilibrio'
+        break;
       default:
-
+        campo = ''
+        break;
     }
     this.props.dispatch(setQueVeo(campo));
   }
@@ -86,13 +112,6 @@ class DashButtons extends Component {
     const morse = 'morse';
     const calculator = 'calculator';
     const equilibrio = 'equilibrio';
-
-    const PicPanoramics = 'PicPanoramics';
-    const PicRenders = 'PicRenders';
-    const PicProducts = 'PicProducts';
-    const PicGallery = 'PicGallery';
-    const PicProgramming = 'PicProgramming';
-
 
     return(
       <div className="dash-buttons">

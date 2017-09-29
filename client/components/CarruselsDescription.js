@@ -23,7 +23,7 @@ class CarruselsDescription extends Component {
   behind() {
     let laDescripcion = this.props.descripcions.filter( descr => { if(descr.lenguaje === this.props.idiomas) return descr })
     let infoForBehind = laDescripcion[0]
-
+    debugger;
     if(this.props.descripcions.length > 0) {
       return(
         <div>

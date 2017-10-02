@@ -28,6 +28,7 @@ class CarruselsEdit extends Component {
               <input type="text" required ref='name'  placeholder="name" />
             </span>
             <p><input type="text" ref="address" placeholder="Paste URL" /></p>
+            <input type="file" ref="picture" placeholder="add picture" />
             <p><input type="text" ref="infopic" placeholder="Comments"  /></p>
             <select className="browser-default" ref="role">
               <option type="text" disabled>select role</option>

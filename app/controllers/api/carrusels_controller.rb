@@ -60,6 +60,6 @@ class Api::CarruselsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def api_carrusel_params
-      params.require(:carrusel).permit(:name, :image, :infopic, :role)
+      params.require(:carrusel).permit(:name, :image, :infopic, :role, :picture)
     end
 end

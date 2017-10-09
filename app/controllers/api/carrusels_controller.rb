@@ -22,8 +22,8 @@ class Api::CarruselsController < ApplicationController
 
   # POST /api/carrusels.json
   def create
-    one_param = { picture: params[:picture], name: params[:name] }
-    Carrusel.do_something(one_param)
+    # one_param = { picture: params[:picture], name: params[:name] }
+    Carrusel.do_something(params)
     new_params = { name: params[:name], image: params[:image], infopic: params[:infopic], role: params[:role]}
     @api_carrusel = Carrusel.new(new_params)
     respond_to do |format|
@@ -48,7 +48,9 @@ class Api::CarruselsController < ApplicationController
 
   # DELETE /api/carrusels/1.json
   def destroy
+    info_from_pic = @api_carrusel
     @api_carrusel.destroy
+    Carrusel.delete_me(info_from_pic)
     respond_to do |format|
       format.json { head :no_content }
     end

@@ -68,7 +68,7 @@ export const editCarrusel = (id, name, image, infopic, role) => {
 }
 
 export const deleteCarrusel = (id) => {
-  // console.log(`this is delete carrusel con id: ${id}`)
+  console.log(`this is delete carrusel con id: ${id}`)
   return(dispatch) => {
     $.ajax({
       url: `/api/carrusels/${id}`,

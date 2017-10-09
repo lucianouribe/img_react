@@ -47,7 +47,7 @@ class CarruselsEdit extends Component {
     });
     return(<div>{images}</div>)
   }
-
+            // <p><input type="text" ref="filename" placeholder="File name" /></p>
   addForm() {
     return (
       <div>
@@ -57,7 +57,7 @@ class CarruselsEdit extends Component {
             <span className="card-title">
               <input type="text" required ref='name'  placeholder="name" />
             </span>
-            <p><input type="text" ref="address" placeholder="Paste URL" /></p>
+
             <input type="file" ref="picture" placeholder="add picture" onChange={this.selectFiles}/>
             <input type="hidden" value={this.state.files} />
             <div className={this.state.preview ? "image-preview" : "hide"}>
@@ -98,10 +98,11 @@ class CarruselsEdit extends Component {
     e.preventDefault();
     // console.log('this is my handle sumbit');
     let name = this.refs.name.value;
-    let image = this.refs.address.value;
-    // let image = `http://res.cloudinary.com/lucianouribe/image/upload/:/${name}.jpg`;
     let infopic = this.refs.infopic.value;
     let role = this.refs.role.value;
+    let filename = name.toLowerCase();
+    filename = filename.replace(' ', '%20');
+    let image = `http://res.cloudinary.com/lucianouribe/image/upload/${role}/${filename}.jpg`;
     let picture = this.refs.picture.files[0];
     this.props.dispatch(addCarrusel(name, image, infopic, role, picture));
     let change = "show";

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { addCarrusel, editCarrusel } from '../actions/carrusels';
+import { addCarrusel, editCarrusel, addPicture } from '../actions/carrusels';
 
 
 class CarruselsEdit extends Component {
@@ -8,27 +8,63 @@ class CarruselsEdit extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      files: [],
+      preview: false
+    }
 
     this.addForm = this.addForm.bind(this);
     this.handleSubmitAdd = this.handleSubmitAdd.bind(this);
 
     this.editForm = this.editForm.bind(this);
     this.handleSubmitEdit = this.handleSubmitEdit.bind(this);
+    this.selectFiles = this.selectFiles.bind(this);
+    this.imageRender = this.imageRender.bind(this);
 
   }
 
+  selectFiles(){
+    let file = this.refs.picture.files[0];
+    let reader = new FileReader();
+    let url = reader.readAsDataURL(file);
+
+    reader.onloadend = (e) => {
+      this.setState({
+          files: [reader.result],
+          preview: true
+      })
+    }
+
+  }
+
+  imageRender(){
+    var images = this.state.files.map( (f, x) => {
+      return(
+        <div key={x}>
+          <img src={f} width="150" height='150'/>
+        </div>
+      )
+    });
+    return(<div>{images}</div>)
+  }
 
   addForm() {
     return (
       <div>
-        <form ref="imageForm" className="input-field">
+        <form ref="imageForm" className="input-field" encType="multipart/form-data">
           <span className="center title"><i type="button" onClick={this.props.showItem} className="close material-icons right">close</i><h5>Add new image</h5></span>
           <div className="card-content">
             <span className="card-title">
               <input type="text" required ref='name'  placeholder="name" />
             </span>
             <p><input type="text" ref="address" placeholder="Paste URL" /></p>
-            <input type="file" ref="picture" placeholder="add picture" />
+            <input type="file" ref="picture" placeholder="add picture" onChange={this.selectFiles}/>
+            <input type="hidden" value={this.state.files} />
+            <div className={this.state.preview ? "image-preview" : "hide"}>
+              <h6>Preview:</h6>
+              {this.imageRender()}
+            </div>
+
             <p><input type="text" ref="infopic" placeholder="Comments"  /></p>
             <select className="browser-default" ref="role">
               <option type="text" disabled>select role</option>
@@ -63,9 +99,11 @@ class CarruselsEdit extends Component {
     // console.log('this is my handle sumbit');
     let name = this.refs.name.value;
     let image = this.refs.address.value;
+    // let image = `http://res.cloudinary.com/lucianouribe/image/upload/:/${name}.jpg`;
     let infopic = this.refs.infopic.value;
     let role = this.refs.role.value;
-    this.props.dispatch(addCarrusel(name, image, infopic, role));
+    let picture = this.refs.picture.files[0];
+    this.props.dispatch(addCarrusel(name, image, infopic, role, picture));
     let change = "show";
     this.props.menuButtonsMagic(change);
   }

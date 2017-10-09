@@ -1,11 +1,21 @@
-export const addCarrusel = (name, image, infopic, role) => {
+export const addCarrusel = (name, image, infopic, role, picture) => {
   // console.log('this is add carrusels action');
+  let formData = new FormData();
+  formData.append('name', name);
+  formData.append('image', image);
+  formData.append('infopic', infopic);
+  formData.append('role', role);
+  formData.append('picture', picture);
   return(dispatch) => {
     $.ajax({
       url: `/api/carrusels`,
       type: 'POST',
-      dataType: 'JSON',
-      data: { carrusel: { name, image, infopic, role } }
+      // dataType: 'JSON',
+      data: formData,
+      // cache: false,
+      contentType: false,
+      processData: false,
+      // data: { carrusel: { name, image, infopic, role, picture } }
     }).done( carrusel => {
       // console.log('add carrusel done data');
       // console.table(carrusel);

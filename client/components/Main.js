@@ -12,6 +12,7 @@ import Morse from './Morse';
 import Calculator from './Calculator';
 import Equilibrio from './Equilibrio';
 import Description from '../Description';
+import Introduction from './Introduction';
 
 import { setQueVeo } from '../actions/queVeo';
 import { selectedCarrusel } from '../actions/selectedCarrusel';
@@ -32,12 +33,7 @@ class Main extends Component {
     switch (this.props.selectedCarrusel) {
       case 'intro':
         return (
-          <div>
-            <div className="card intro">
-              <p className='bienvenido'>Bienvenido!</p>
-              Haz click en el menu para visualizar las imágenes.
-            </div>
-          </div>
+          <Carrusels />
         );
         break;
       case "panodigital":
@@ -47,9 +43,6 @@ class Main extends Component {
           <Trisixti />
         );
         break;
-      case 'panodigital':
-      case 'panofotografia':
-      case 'panoradar':
       case 'products':
       case 'spaces':
       case 'others':

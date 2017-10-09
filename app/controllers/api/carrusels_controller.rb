@@ -22,8 +22,10 @@ class Api::CarruselsController < ApplicationController
 
   # POST /api/carrusels.json
   def create
-    @api_carrusel = Carrusel.new(api_carrusel_params)
-    # binding.pry
+    one_param = { picture: params[:picture], name: params[:name] }
+    Carrusel.do_something(one_param)
+    new_params = { name: params[:name], image: params[:image], infopic: params[:infopic], role: params[:role]}
+    @api_carrusel = Carrusel.new(new_params)
     respond_to do |format|
       if @api_carrusel.save
         format.json { render :show, status: :created }

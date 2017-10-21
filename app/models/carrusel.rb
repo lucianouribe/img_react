@@ -5,7 +5,6 @@ class Carrusel < ApplicationRecord
   def self.upload_image(the_info)
     el_nombre = the_info[:image].split(/(http:\/\/res.cloudinary.com\/lucianouribe\/image\/upload\/|.jpg)/)
     nombre = el_nombre[2]
-    binding.pry
     Cloudinary::Uploader.upload(the_info[:picture], :public_id => nombre, :width => 864, :crop => :limit)
   end
 

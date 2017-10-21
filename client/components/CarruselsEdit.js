@@ -41,7 +41,7 @@ class CarruselsEdit extends Component {
     var images = this.state.files.map( (f, x) => {
       return(
         <div key={x}>
-          <img src={f} width="150" height='150'/>
+          <img src={f} width="150" />
         </div>
       )
     });
@@ -49,10 +49,11 @@ class CarruselsEdit extends Component {
   }
             // <p><input type="text" ref="filename" placeholder="File name" /></p>
   addForm() {
+    let close = 'show';
     return (
       <div>
         <form ref="imageForm" className="input-field" encType="multipart/form-data">
-          <span className="center title"><i type="button" onClick={this.props.showItem} className="close material-icons right">close</i><h5>Add new image</h5></span>
+          <span className="center title"><i type="button" onClick={()=> this.props.menuButtonsMagic(close)} className="close material-icons right">close</i><h5>Add new image</h5></span>
           <div className="card-content">
             <span className="card-title">
               <input type="text" required ref='name'  placeholder="name" />
@@ -100,9 +101,9 @@ class CarruselsEdit extends Component {
     let name = this.refs.name.value;
     let infopic = this.refs.infopic.value;
     let role = this.refs.role.value;
-    let filename = name.toLowerCase();
-    filename = filename.replace(' ', '%20');
-    let image = `http://res.cloudinary.com/lucianouribe/image/upload/${role}/${filename}.jpg`;
+    let filename = Math.random().toString(36).replace(/0\./i, '');
+
+    let image = `http://res.cloudinary.com/lucianouribe/image/upload/${filename}.jpg`;
     let picture = this.refs.picture.files[0];
     this.props.dispatch(addCarrusel(name, image, infopic, role, picture));
     let change = "show";

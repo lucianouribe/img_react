@@ -1,6 +1,7 @@
 require 'pry'
 class Api::CarruselsController < ApplicationController
   before_action :set_api_carrusel, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /api/carrusels.json
   def index
@@ -23,7 +24,7 @@ class Api::CarruselsController < ApplicationController
   # POST /api/carrusels.json
   def create
     # one_param = { picture: params[:picture], name: params[:name] }
-    Carrusel.do_something(params)
+    Carrusel.upload_image(params)
     new_params = { name: params[:name], image: params[:image], infopic: params[:infopic], role: params[:role]}
     @api_carrusel = Carrusel.new(new_params)
     respond_to do |format|
@@ -48,7 +49,7 @@ class Api::CarruselsController < ApplicationController
 
   # DELETE /api/carrusels/1.json
   def destroy
-    info_from_pic = @api_carrusel
+    info_from_pic = @api_carrusel[:image]
     @api_carrusel.destroy
     Carrusel.delete_me(info_from_pic)
     respond_to do |format|

@@ -2,22 +2,17 @@ require 'pry'
 class Carrusel < ApplicationRecord
   validates_presence_of :name, :image, :role
 
-  # has_attached_file :picture,
-  #   :storage => :cloudinary,
-  #   :path => ':id/:style/:filename'
-  def self.do_something(the_info)
-    Cloudinary::Uploader.upload(the_info[:picture], :public_id => the_info[:name].downcase, :folder => the_info[:role], :width => 864, :crop => :limit)
+  def self.upload_image(the_info)
+    el_nombre = the_info[:image].split(/(http:\/\/res.cloudinary.com\/lucianouribe\/image\/upload\/|.jpg)/)
+    nombre = el_nombre[2]
+    binding.pry
+    Cloudinary::Uploader.upload(the_info[:picture], :public_id => nombre, :width => 864, :crop => :limit)
   end
 
   def self.delete_me(info)
-    testing = info.name.downcase
-    testing = testing.gsub(' ', '%20')
-    retesting = info.role
-    retesting = retesting.gsub('%20', ' ')
-    puts 'delete_me'
-    puts testing
-    puts retesting
-    Cloudinary::Uploader.destroy(testing, :folder => retesting)
+    first = info.split(/(http:\/\/res.cloudinary.com\/lucianouribe\/image\/upload\/|.jpg)/)
+    delete_this_name = first[2]
+    Cloudinary::Uploader.destroy(delete_this_name)
   end
 
 

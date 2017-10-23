@@ -33,7 +33,7 @@ class Main extends Component {
     switch (this.props.selectedCarrusel) {
       case 'intro':
         return (
-          <Introduccion />
+          <Introduction />
         );
         break;
       case "panodigital":

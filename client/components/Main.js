@@ -17,6 +17,7 @@ import Introduction from './Introduction';
 import { setQueVeo } from '../actions/queVeo';
 import { selectedCarrusel } from '../actions/selectedCarrusel';
 import { transitoryInfo } from '../actions/transitoryInfo';
+import { setColor } from '../actions/colorset';
 
 
 class Main extends Component {
@@ -94,9 +95,21 @@ class Main extends Component {
     }
   }
 
+
+
   render() {
+    let imgUrl = "assets/background_02.png"
+    const divStyle = {
+      backgroundColor: this.props.colorset,
+      backgroundImage: 'url(' + imgUrl + ')',
+      backgroundRepeat: 'repeat',
+      backgroundSize: '60px',
+      height: '100vh',
+      WebkitTransition: 'all',
+      msTransition: 'all'
+    };
     return (
-      <div className='main-component'>
+      <div style={divStyle} className='main-component'>
         <Navbar/>
         <Dashboard className="row" />
         <div className="row">
@@ -109,6 +122,7 @@ class Main extends Component {
   }
 }
 
+
 const mapStateToProps = (state) => {
   return {
     user: state.user,
@@ -116,7 +130,8 @@ const mapStateToProps = (state) => {
     queVeo: state.queVeo,
     carrusels: state.carrusels,
     selectedCarrusel: state.selectedCarrusel,
-    transitoryInfo: state.transitoryInfo
+    transitoryInfo: state.transitoryInfo,
+    colorset: state.colorset
   }
 }
 

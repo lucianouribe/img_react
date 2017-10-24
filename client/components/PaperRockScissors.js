@@ -99,8 +99,8 @@ class PaperRockScissors extends React.Component {
   choiseContainer(){
     return(
       <div className="the-rps-container">
-        <div>{this.state.playerChoice}</div>
-        <div>{this.state.pcChoice}</div>
+        <div className="hand-choices">{this.state.playerChoice}</div>
+        <div className="hand-choices">{this.state.pcChoice}</div>
       </div>
     )
   }
@@ -124,14 +124,14 @@ class PaperRockScissors extends React.Component {
         return(this.rpsContainer())
         break;
       case 'election':
-        return(<div className={`ppt img-${this.state.playerChoice}`}></div>)
+        return(<div className={`hand-choices img-${this.state.playerChoice}`}></div>)
         break;
       case 'computer':
         return(
           <div className="competing">
-            <div className={`ppt img-${this.state.playerChoice}`}></div>
+            <div className={`hand-choices img-${this.state.playerChoice}`}></div>
             <div className="message-btn" onClick={()=> this.continuePlaying()}>{this.state.message}<p>click to continue</p></div>
-            <div className={`ppt rimg-${this.state.pcChoice}`}></div>
+            <div className={`hand-choices rimg-${this.state.pcChoice}`}></div>
           </div>
         )
         break;
@@ -144,7 +144,7 @@ class PaperRockScissors extends React.Component {
     return(
       <div className="paper-rock-scissors-container">
         <p className='bienvenido'>Rock, Paper, Scissors</p>
-        <h4>{`--> THE BEST OF 3 <--`}</h4>
+        <h4>{`THE BEST OF 3`}</h4>
         {this.resultingStuff()}
         {this.renderer()}
       </div>

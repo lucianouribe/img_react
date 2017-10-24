@@ -8,6 +8,7 @@ import selectedCarrusel from './selectedCarrusel';
 import transitoryInfo from './transitoryInfo';
 import reseter from './reseter';
 import descripcions from './descripcions';
+import colorset from './colorset';
 
 const rootReducer = combineReducers({
   routing: routerReducer ,
@@ -18,7 +19,8 @@ const rootReducer = combineReducers({
   selectedCarrusel,
   transitoryInfo,
   reseter,
-  descripcions
+  descripcions,
+  colorset
 });
 
 export default rootReducer;

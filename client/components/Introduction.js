@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import PaperRockScissors from './PaperRockScissors';
+import ColorForm from './ColorForm';
 
 class Introduction extends React.Component {
   constructor(props) {
@@ -28,16 +29,24 @@ class Introduction extends React.Component {
       if(this.state.whatToShow === 'gameWon') {
         return(
           <div>
-            <p className='bienvenido'>You Won!!!</p>
-            <div className="play-again-btn" onClick={()=> this.setState({finishGame: false})}>play again</div>
-            <p>this is space for the color thing</p>
+            <span className="game-lost-won">
+              <p className='bienvenido'>You Won!!!</p>
+              <div className="play-again-btn" onClick={()=> this.setState({finishGame: false})}><span>play again</span></div>
+            </span>
+            <span className="game-color-form">
+              <h2>Since you won, you get to change the color of this site</h2>
+              <ColorForm />
+              <h2>{`<--- Or go straight to the menu`}</h2>
+            </span>
           </div>
         )
       } else if (this.state.whatToShow === 'gameLost'){
         return(
           <div>
-            <p className='bienvenido'>You loose!!!</p>
-            <div className="play-again-btn" onClick={()=> this.setState({finishGame: false})}>play again</div>
+            <span className="game-lost-won">
+              <p className='bienvenido'>You loose!!!</p>
+              <div className="play-again-btn" onClick={()=> this.setState({finishGame: false})}><span>play again</span></div>
+            </span>
           </div>
         )
       }

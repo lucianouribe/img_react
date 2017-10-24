@@ -1,0 +1,43 @@
+.color-form-container {
+  // background-color: #ccc;
+
+}
+.color-form {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+.color-picker {
+  background-color: blue;
+  height: 100px;
+  width: 100px;
+  border-radius: 50%;
+}
+#colorimp{
+  visibility:hidden;
+}
+
+#colorlabel{
+  background-color:#ccc;
+  height:100px;
+  width:100px;
+  border-radius: 50%;
+}
+.btn-color {
+  font-size: 1.8rem;
+  font-weight: 200;
+  color: #fff;
+  background-color: #FF6949;
+  border: 1px solid #723025;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+  height: 50%;
+}
+.btn-color:hover {
+  background-color: #9DD0FF;
+}

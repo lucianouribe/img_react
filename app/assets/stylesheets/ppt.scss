@@ -75,21 +75,34 @@
   display: flex;
 }
 .ppt {
-  width: 100px;
-  height: 100px;
-  background-size: 100px;
+  // width: 100px;
+  // height: 100px;
+  // background-size: 100px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 14%;
+          flex: 1 1 14%;
+  background-size: 75%;
   background-repeat: no-repeat;
   background-position: center;
   cursor: pointer;
 }
 .rppt {
+  // width: 100px;
+  // height: 100px;
+  // background-size: 100px;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 14%;
+          flex: 1 1 14%;
+  background-size: 75%;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+.hand-choices {
   width: 100px;
-  height: 100px;
   background-size: 100px;
   background-repeat: no-repeat;
   background-position: center;
 }
-
 .img-rock {
   background-image: url(asset_path("rock.png"));
 }
@@ -141,4 +154,62 @@
 }
 .message-btn:hover {
   background-color: #9DD0FF;
+}
+
+.game-lost-won {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.play-again-btn {
+  font-size: 1.8rem;
+  font-weight: 200;
+  color: #fff;
+  background-color: #FF6949;
+  border: 1px solid #723025;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+          box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+  height: 50%;
+}
+.play-again-btn:hover {
+  background-color: #9DD0FF;
+}
+.game-color-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.game-color-form h2 {
+  font-size: 2.5rem;
+}
+
+@media only screen and (max-width: 800px) {
+  .rppt {
+    display: none;
+  }
 }

@@ -17,9 +17,9 @@ class Picture extends React.Component {
         IamAClass = 'PicPanoramics'
         break;
       case 'renderGifs':
-      case 'productos':
-      case 'espacios':
-      case 'otros':
+      case 'products':
+      case 'spaces':
+      case 'others':
           IamAClass = 'PicRenders'
         break;
       case 'fotosGifs':

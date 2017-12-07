@@ -9,6 +9,8 @@ import transitoryInfo from './transitoryInfo';
 import reseter from './reseter';
 import descripcions from './descripcions';
 import colorset from './colorset';
+import proyectos from './proyectos';
+import pasos from './pasos';
 
 const rootReducer = combineReducers({
   routing: routerReducer ,
@@ -20,7 +22,9 @@ const rootReducer = combineReducers({
   transitoryInfo,
   reseter,
   descripcions,
-  colorset
+  colorset,
+  proyectos,
+  pasos: proyectos
 });
 
 export default rootReducer;

@@ -59,13 +59,14 @@ end
 
 puts 'images made'
 
-# 10.times do
-#   Equilibrio.create(
-#               gasto: [true, false].sample,
-#               item: ['camion', 'laboratorio', 'pago', 'pagoII'].sample,
-#               unidad: ['kilo', 'libra', 'arroba', 'tonelada'].sample,
-#               valor: rand(12300..456078)
-#               )
-# end
-#
-# puts "equilibrio seeded"
+10.times do
+  Proyecto.create(
+              name: Faker::Pokemon.name,
+              topic: ['javascript', 'ruby', 'git', 'literatura'].sample,
+              subtopic: ['rails', 'react', 'github', 'gramatica'].sample,
+              difficulty: ['basic', 'medium', 'advanced', 'sayayin'].sample,
+              order: rand(1..20)
+              )
+end
+
+puts "proyectos seeded"

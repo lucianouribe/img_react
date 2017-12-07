@@ -10,6 +10,11 @@ Rails.application.routes.draw do
   namespace :api do
     resources :carrusels
     resources :descripcions
+    resources :proyectos do
+      resources :pasos
+    end
+    # resources :pasos, except: [:show]
+
     post 'contact', to: 'contacts#create'
     get 'users/info'
     post 'translator', to: 'translators#translate'
@@ -21,4 +26,5 @@ Rails.application.routes.draw do
   end
 
   get '*unmatched_route', to: 'home#index'
+
 end

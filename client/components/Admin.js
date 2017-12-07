@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import Navbar from './Navbar';
 import AdminDashboard from './AdminDashboard';
 import Descripcions from './Descripcions';
+import Proyectos from './Proyectos';
 
 
 class Admin extends React.Component {
@@ -31,11 +32,11 @@ class Admin extends React.Component {
       case 'description':
           return(<Descripcions />)
         break;
-      case 'boton 2':
-          return(<div>i'm boton 2</div>)
+      case 'tutoriales':
+          return(<Proyectos />)
         break;
       default:
-        return(<Descripcions />)
+        return(<Proyectos />)
     }
   }
 

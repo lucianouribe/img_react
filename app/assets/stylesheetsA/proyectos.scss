@@ -1,0 +1,264 @@
+// space
+.proyectos-section {
+  height: 70vh;
+  overflow-y: scroll;
+}
+// parent
+.proyecto-unidad {
+  padding: 1rem;
+  background-color: #fff;
+  margin: 1rem 3rem 1rem 3rem;
+  border: 1px solid #ccc;
+  box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  display: flex;
+  // align-content: space-between;
+}
+.principal {
+  cursor: pointer;
+}
+// add stuff
+.proyectos-section .tarjeta {
+  margin: 0 3rem;
+  margin-bottom: 1rem;
+  border: 1px solid #767A86;
+}
+// edit stuff
+.name-edit-form {
+  display: flex;
+  align-items: center;
+}
+.name-edit {
+  border-bottom: none !important;
+  font-size: 2rem !important;
+  font-weight: 100 !important;
+  margin: 0 !important;
+  height: 2rem !important;
+  text-align: center;
+  border-bottom: 1px dashed red !important;
+}
+
+// PROYECTO UNIDAD (PASO MINIMO)
+// children
+.proyecto-unidad h4 {
+  font-size: 2rem;
+  margin: 0 !important;
+}
+.proyecto-unidad .titulo-nombre {
+  flex: 6 6 6rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.proyecto-unidad .container-logos {
+  flex: 2 2 2rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.botones {
+  flex: 2 2 2rem;
+  display: flex;
+  align-content: center;
+}
+
+.botones i {
+  flex: 1;
+}
+
+.btn-icon:hover {
+  color: red;
+}
+
+// cambio color cuando se dice que es importante
+.basic {
+  border: 1px solid green;
+  // background-color: green;
+}
+.medium {
+  border: 1px solid orange;
+  // background-color: orange;
+}
+.advanced {
+  border: 1px solid red;
+  // background-color: red;
+}
+.sayayin {
+  border: 1px solid brown;
+  // background-color: black;
+}
+// los logos
+.cont-log {
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 32px;
+  height: 32px;
+  background-size: 32px;
+}
+// javascript logos
+.container-logos .javascript {
+  background-image: url(asset_path("thumb_javascript.png"));
+}
+.container-logos .vanella {
+  background-image: url(asset_path("thumb_javascript.png"));
+}
+.container-logos .es6 {
+  background-image: url(asset_path("thumb_es6.png"));
+}
+.container-logos .react {
+  background-image: url(asset_path("thumb_react.png"));
+}
+.container-logos .redux {
+  background-image: url(asset_path("thumb_redux.png"));
+}
+.container-logos .json {
+  background-image: url(asset_path("thumb_json.png"));
+}
+// ruby on rails
+.container-logos .ruby {
+  background-image: url(asset_path("thumb_ruby.png"));
+}
+.container-logos .rails {
+  background-image: url(asset_path("thumb_rails.png"));
+}
+
+.container-logos .adobe {
+  background-image: url(asset_path("thumb_adobe.png"));
+}
+.container-logos .photoshop {
+  background-image: url(asset_path("thumb_photoshop.jpg"));
+}
+.container-logos .illustrator {
+  background-image: url(asset_path("thumb_illustrator.png"));
+}
+.container-logos .indesign {
+  background-image: url(asset_path("thumb_indesign.png"));
+}
+.container-logos .afterfx {
+  background-image: url(asset_path("thumb_afterfx.png"));
+}
+// git
+.container-logos .git {
+  background-image: url(asset_path("thumb_git.png"));
+}
+.container-logos .github {
+  background-image: url(asset_path("thumb_github.png"));
+}
+// server
+.container-logos .server {
+  background-image: url(asset_path("thumb_server.png"));
+}
+.container-logos .digital_ocean {
+  background-image: url(asset_path("thumb_digital_ocean.png"));
+}
+.container-logos .cloudinary {
+  background-image: url(asset_path("thumb_cloudinary.png"));
+}
+.container-logos .nginx {
+  background-image: url(asset_path("thumb_nginx.png"));
+}
+.container-logos .passenger {
+  background-image: url(asset_path("thumb_passenger.png"));
+}
+.container-logos .postgresql {
+  background-image: url(asset_path("thumb_postgresql.png"));
+}
+//sql
+.container-logos .sql {
+  background-image: url(asset_path("thumb_sql.png"));
+}
+// tridimax
+.container-logos .tridimax {
+  background-image: url(asset_path("thumb_tridimax.png"));
+}
+.container-logos .mental {
+  background-image: url(asset_path("thumb_mental.png"));
+}
+.container-logos .vray {
+  background-image: url(asset_path("thumb_vray.png"));
+}
+.container-logos .modeling {
+  background-image: url(asset_path("thumb_modeling.png"));
+}
+.container-logos .texturing {
+  background-image: url(asset_path("thumb_texturing.png"));
+}
+.container-logos .lighting {
+  background-image: url(asset_path("thumb_lighting.png"));
+}
+.container-logos .animation {
+  background-image: url(asset_path("thumb_animation.png"));
+}
+.container-logos .rigging {
+  background-image: url(asset_path("thumb_rigging.png"));
+}
+.container-logos .post_production {
+  background-image: url(asset_path("thumb_post_production.png"));
+}
+// zbrush
+.container-logos .zbrush {
+  background-image: url(asset_path("thumb_zbrush.png"));
+}
+// literatura
+.container-logos .literatura {
+  background-image: url(asset_path("thumb_literatura.png"));
+}
+.container-logos .gramatica {
+  background-image: url(asset_path("thumb_gramatica.png"));
+}
+.container-logos .estilo {
+  background-image: url(asset_path("thumb_estilo.png"));
+}
+.container-logos .tecnicas_narrativas {
+  background-image: url(asset_path("thumb_tecnicas_narrativas.png"));
+}
+// otros
+.container-logos .final_cut {
+  background-image: url(asset_path("thumb_final_cut.png"));
+}
+
+// PASOS (PASO MAXIMO – ABIERTO)
+.paso-container {
+  margin: 0 3.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #767A86;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  // background: #ccc;
+}
+.paso-content {
+  flex: 8 8 8rem;
+}
+.paso-container i {
+  color: #767A86;
+}
+.paso-container i:hover {
+  color: #ff6d00;
+}
+
+// estilo de los pasos
+.codigo {
+  background: #b2b2b2;
+}
+.terminal {
+  background: red;
+}
+.go-to {
+  background: blue;
+}
+.full-code {
+  background: #ccc;
+}
+.shortcut {
+  background: #ccc;
+}
+//iphone 3 y 4
+@media all and (max-width: 380px) {
+
+}
+@media all and (max-width: 992px) {
+
+}

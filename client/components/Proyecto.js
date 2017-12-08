@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProyectos, editProyecto, deleteProyecto, addPaso } from '../actions/proyectos';
-import { fetchPasos } from '../actions/pasos';
 
 import Paso from './Paso';
 

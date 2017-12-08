@@ -18,6 +18,26 @@ export const addProyecto = (name, topic, subtopic, difficulty) => {
 
 }
 
+export const addPaso = (proyecto, step, orden, estilo) => {
+  console.log('this is add paso action');
+  return(dispatch) => {
+    $.ajax({
+      url: `/api/proyectos/${proyecto.id}/pasos`,
+      type: 'POST',
+      dataType: 'JSON',
+      data: { paso: { step, orden, estilo } }
+    }).done( data => {
+      console.log('add data done data');
+      console.table(data);
+      dispatch({ type: 'ADD_PASO', proyecto });
+    }).fail( data => {
+      console.log('add paso fail data')
+      console.log(data);
+    })
+  }
+
+}
+
 export const fetchProyectos = (wordToMatch) => {
   // console.log('this is fetch proyectos')
   const regex = new RegExp(wordToMatch, 'gi');
@@ -39,6 +59,26 @@ export const fetchProyectos = (wordToMatch) => {
       }
     }).fail( data => {
       console.log('fetch proyectos fail data')
+      console.log(data)
+    })
+  }
+
+}
+
+export const fetchPasos = (fetchWho) => {
+  console.log('this is fetch pasos')
+
+  return(dispatch) => {
+    $.ajax({
+      url: `/api/proyectos/${fetchWho}/`,
+      type: 'GET',
+      dataType: 'JSON'
+    }).done( pasos => {
+        console.log('fetch pasos success')
+        dispatch({ type: 'ALL_PASOS', pasos});
+        // fix this?
+    }).fail( data => {
+      console.log('fetch pasos fail data')
       console.log(data)
     })
   }

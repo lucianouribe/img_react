@@ -24,9 +24,6 @@ config/mail.yml
 gulpStyles
 app/assets/javascripts/libs
 app/assets/stylesheets/stylesheetsA.scss
-client/components/Carrusel.js
-client/components/DashboardO.js
-client/components/DashButtonsO.js
 client/components/MainO.js
 client/components/TrisixtiH.js
 client/components/Slider.js

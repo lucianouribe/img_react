@@ -13,6 +13,9 @@ Rails.application.routes.draw do
     resources :proyectos do
       resources :pasos
     end
+    resources :pasos do
+      resources :procoms
+    end
     # resources :pasos, except: [:show]
 
     post 'contact', to: 'contacts#create'

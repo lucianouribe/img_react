@@ -18,7 +18,8 @@ const proyectos = ( state = [], action ) => {
       return [action.proyecto, ...state]
       break;
     case 'EDIT_PROYECTO':
-      // console.log('edit proyecto')
+      console.log('edit proyecto')
+      // console.table(action, state)
       let allProyectos = state;
       // console.log(allProyectos)
       index = allProyectos.findIndex( proy => proy.id === action.proyecto.id)
@@ -33,11 +34,16 @@ const proyectos = ( state = [], action ) => {
         ...state.slice(index + 1)
       ]
       break;
+    case 'ADD_PASO':
+      // debugger;
+      return [action.proyecto.pasos, ...state]
+      break;
     case 'DELETE_PASO':
-      // console.log('this is delete paso');
+      console.log('this is delete paso');
       // console.log(state);
       // console.log(action);
       index = state.findIndex( proy => proy.id === action.proId)
+      // debugger;
       indexTwo = state[index].pasos.findIndex( paso => paso.id === action.pasId)
       // debugger;
       return [

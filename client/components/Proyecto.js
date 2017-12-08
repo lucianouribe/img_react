@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchProyectos, editProyecto, deleteProyecto } from '../actions/proyectos';
-import { addPaso, fetchPasos } from '../actions/pasos';
+import { fetchProyectos, editProyecto, deleteProyecto, addPaso } from '../actions/proyectos';
+import { fetchPasos } from '../actions/pasos';
 
 import Paso from './Paso';
 
@@ -181,10 +181,10 @@ class Proyecto extends React.Component {
       let showPasos = this.props.pasos;
       let proyecto = this.props.elproyecto;
       // console.log(`show pasos for ${proye.name}`);
-      // console.table(showPasos);
+      console.table(showPasos);
       if(showPasos.length > 0) {
         return showPasos.map( paso => {
-          return(<Paso key={paso.id} step={paso} proyecto={proyecto} showContent={this.showContent}/>);
+          return(<Paso key={paso.id} elpaso={paso} proyecto={proyecto} procoms={paso.procoms} showContent={this.showContent}/>);
         })
       } else {
         return(<div className="paso-container"><div>Sin Pasos</div></div>);

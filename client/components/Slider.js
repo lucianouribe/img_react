@@ -69,28 +69,6 @@ class Slider extends Component {
     });
   }
 
-// <div className="carousel-item" data-info={this.props.details.infopic[0]} id={this.props.details.id[0]}></div>
-
-// {Object.key(this.showMeThePic)}
-
-  // showMeThePic() {
-  //   // console.log(this.props.details.id.length);
-  //   console.log(this.props.details);
-  //   const info = this.props.details
-  //
-  //   for(var i = 0; i < info.id.length; i++) {
-  //     console.log(info.infopic[i]);
-  //     return (<div className="carousel-item" data-info={info.infopic[i]} id={info.id[i]}></div>)
-  //   }
-  // }
-
-  // const fullNames = inventors.map( inventor => `${inventor.first} ${inventor.last}`);
-
-
-// {Object.keys(this.props.details).map(key => <div className="carousel-item" data-info={this.props.details.infopic[key]} id={this.props.details.id[key]}></div>)}
-
-// {console.log(Object.keys(this.props.details.id.length).map(key => key))}
-
   front() {
     return(
       <div>

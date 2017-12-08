@@ -70,3 +70,26 @@ puts 'images made'
 end
 
 puts "proyectos seeded"
+
+10.times do
+  Paso.create(
+    proyecto_id: rand(1..10),
+    step: Faker::Lorem.paragraph(2),
+    orden: rand(1..20),
+    estilo: ['basic', 'medium', 'advanced', 'sayayin'].sample
+  )
+end
+
+puts "pasos seeded"
+
+30.times do
+  Procom.create(
+    paso_id: rand(1..10),
+    pro_content: Faker::Lorem.paragraph(1),
+    pro_style: ['basic', 'medium', 'advanced', 'sayayin'].sample,
+    pro_order: rand(1..20),
+    type_of_issue: [true, false].sample
+  )
+end
+
+puts "procom seeded"

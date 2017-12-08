@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171109201020) do
+ActiveRecord::Schema.define(version: 20171207202002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,17 @@ ActiveRecord::Schema.define(version: 20171109201020) do
     t.index ["proyecto_id"], name: "index_pasos_on_proyecto_id", using: :btree
   end
 
+  create_table "procoms", force: :cascade do |t|
+    t.text     "pro_content"
+    t.string   "pro_style"
+    t.integer  "pro_order"
+    t.boolean  "type_of_issue"
+    t.integer  "paso_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["paso_id"], name: "index_procoms_on_paso_id", using: :btree
+  end
+
   create_table "proyectos", force: :cascade do |t|
     t.string   "name"
     t.string   "topic"
@@ -109,4 +120,5 @@ ActiveRecord::Schema.define(version: 20171109201020) do
   end
 
   add_foreign_key "pasos", "proyectos"
+  add_foreign_key "procoms", "pasos"
 end

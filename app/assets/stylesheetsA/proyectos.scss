@@ -3,6 +3,9 @@
   height: 70vh;
   overflow-y: scroll;
 }
+.proyectos-section .fa {
+  font-size: 1.2rem;
+}
 // parent
 .proyecto-unidad {
   padding: 1rem;
@@ -254,6 +257,32 @@
 }
 .shortcut {
   background: #ccc;
+}
+
+// PROCOMS (PROCOM MAXIMO – ABIERTO)
+.procom-container {
+  margin: 0 3.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #767A86;
+  border-radius: 1rem;
+  padding: 1rem;
+  display: flex;
+  // background: #ccc;
+}
+.procom-content {
+  flex: 8 8 8rem;
+}
+.procom-container i {
+  color: #767A86;
+}
+.procom-container i:hover {
+  color: #ff6d00;
+}
+.problema {
+  color: red;
+}
+.comentario {
+  color: blue;
 }
 //iphone 3 y 4
 @media all and (max-width: 380px) {

@@ -20,102 +20,28 @@ class Proyecto extends React.Component {
       // cualSubTopic: null
     }
 
-    this.showContent = this.showContent.bind(this);
     this.showEditContent = this.showEditContent.bind(this);
-    this.showAddOption = this.showAddOption.bind(this);
-
     this.showNameEdit = this.showNameEdit.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
+
+    this.showPasos = this.showPasos.bind(this);
+    this.showAddPasoOption = this.showAddPasoOption.bind(this);
     this.stepSubmit = this.stepSubmit.bind(this);
     this.pasos = this.pasos.bind(this);
   }
 
   componentDidMount(){
-
     let full = 'full'
     this.props.dispatch(fetchProyectos(full));
   }
 
-  showContent(){
-    this.setState({ show: !this.state.show })
-  }
 
-  showAddOption(){
-    this.setState({ showAdd: !this.state.showAdd })
-  }
-
+  // PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!
   showEditContent(one, two){
     // this.fixEditState(one, two);
     this.setState({ showEdit: !this.state.showEdit });
   }
-
-  // fixEditState(one, two){
-  //   this.setState({ cualTopic: one, cualSubTopic: two})
-  // }
-
-  //SET TOPIC STATER
-  // setTopics(aTopic){
-  //   let picked = Tutorials[aTopic];
-  //   this.setState({cualTopic: aTopic, cualSubTopic: picked});
-  // }
-
-  // STEP ADD DISPATCHER
-  stepSubmit(){
-    let step = this.refs.step.value;
-    let orden;
-    let estilo = 'combinado';
-    // let estilo = this.refs.estilo.value;
-    let proyecto = this.props.elproyecto;
-    console.log('go')
-    console.log(proyecto)
-    this.props.dispatch(addPaso(proyecto, step, orden, estilo));
-    this.showAddOption();
-    let full = 'full'
-    this.props.dispatch(fetchProyectos(full));
-  }
-
-  // ADD STEP FORM
-  addStepForm(){
-    if(this.state.showAdd){
-      // let estilo;
-      // let codigo = 'codigo'
-      return(
-        <div className="tarjeta form-edit">
-          <form className="add-form-container input-field">
-            <div className='btns-estilo'>
-              <input type='radio' name='estilo' value='combinado' checked/>
-              <label>combinado</label>
-              <input type='radio' name='estilo' value='codigo'/>
-              <label>codigo</label>
-              <input type='radio' name='estilo' value='terminal'/>
-              <label>terminal</label>
-              <input type='radio' name='estilo' value='entonces'/>
-              <label>entonces</label>
-            </div>
-            <div className="tarjeta-content">
-              <textarea ref='step'></textarea>
-            </div>
-            <div className="tarjeta-action">
-              <span onClick={this.stepSubmit}><i className="material-icons">done</i></span>
-              <span onClick={this.showAddOption}><i className="material-icons">cancel</i></span>
-            </div>
-          </form>
-        </div>
-      )
-    }
-  }
-
   // EDIT FORM
-  handleEdit(){
-    let id = this.refs.id.value;
-    let name = this.refs.name.value.toLowerCase();
-    let topic;
-    let subtopic;
-    let difficulty = this.refs.difficulty.value;
-    this.props.dispatch(editProyecto(id, name, topic, subtopic, difficulty));
-    this.componentDidMount();
-  }
-
   showNameEdit(){
     let proyecto = this.props.elproyecto
 
@@ -169,8 +95,71 @@ class Proyecto extends React.Component {
     } else {
       return (
         <span className='titulo-nombre'>
-          <h4 onClick={this.showContent}>{proyecto.name}</h4>
+          <h4 onClick={this.showPasos}>{proyecto.name}</h4>
         </span>
+      )
+    }
+  }
+
+  handleEdit(){
+    let id = this.refs.id.value;
+    let name = this.refs.name.value.toLowerCase();
+    let topic;
+    let subtopic;
+    let difficulty = this.refs.difficulty.value;
+    this.props.dispatch(editProyecto(id, name, topic, subtopic, difficulty));
+    this.componentDidMount();
+  }
+
+  // PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!
+  showPasos(){
+    this.setState({ show: !this.state.show })
+  }
+  showAddPasoOption(){
+    this.setState({ showAdd: !this.state.showAdd })
+  }
+  // STEP ADD DISPATCHER
+  stepSubmit(){
+    let step = this.refs.step.value;
+    let orden;
+    let estilo = 'combinado';
+    // let estilo = this.refs.estilo.value;
+    let proyecto = this.props.elproyecto;
+    console.log('go')
+    console.log(proyecto)
+    this.props.dispatch(addPaso(proyecto, step, orden, estilo));
+    this.showAddPasoOption();
+    let full = 'full'
+    this.props.dispatch(fetchProyectos(full));
+  }
+
+  // ADD STEP FORM
+  addStepForm(){
+    if(this.state.showAdd){
+      // let estilo;
+      // let codigo = 'codigo'
+      return(
+        <div className="tarjeta form-edit">
+          <form className="add-form-container input-field">
+            <div className='btns-estilo'>
+              <input type='radio' name='estilo' value='combinado' checked/>
+              <label>combinado</label>
+              <input type='radio' name='estilo' value='codigo'/>
+              <label>codigo</label>
+              <input type='radio' name='estilo' value='terminal'/>
+              <label>terminal</label>
+              <input type='radio' name='estilo' value='entonces'/>
+              <label>entonces</label>
+            </div>
+            <div className="tarjeta-content">
+              <textarea ref='step'></textarea>
+            </div>
+            <div className="tarjeta-action">
+              <span onClick={this.stepSubmit}><i className="material-icons">done</i></span>
+              <span onClick={this.showAddPasoOption}><i className="material-icons">cancel</i></span>
+            </div>
+          </form>
+        </div>
       )
     }
   }
@@ -179,11 +168,10 @@ class Proyecto extends React.Component {
     if(this.state.show) {
       let showPasos = this.props.pasos;
       let proyecto = this.props.elproyecto;
-      // console.log(`show pasos for ${proye.name}`);
-      console.table(showPasos);
+
       if(showPasos.length > 0) {
         return showPasos.map( paso => {
-          return(<Paso key={paso.id} elpaso={paso} proyecto={proyecto} procoms={paso.procoms} showContent={this.showContent}/>);
+          return(<Paso key={paso.id} elpaso={paso} proyecto={proyecto} procoms={paso.procoms} showPasos={this.showPasos}/>);
         })
       } else {
         return(<div className="paso-container"><div>Sin Pasos</div></div>);
@@ -204,7 +192,7 @@ class Proyecto extends React.Component {
           </span>
           {this.showNameEdit()}
           <span className='botones'>
-            <i className="material-icons btn-icon btn-add" onClick={() => this.showAddOption()}>add</i>
+            <i className="material-icons btn-icon btn-add" onClick={() => this.showAddPasoOption()}>add</i>
             <i className="material-icons btn-icon btn-delete" onClick={() => this.props.dispatch(deleteProyecto(proyecto.id))}>delete</i>
             <i className="material-icons btn-icon btn-edit" onClick={() => this.showEditContent(topic, subtopic)}>edit</i>
           </span>

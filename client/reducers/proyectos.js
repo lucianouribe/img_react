@@ -17,6 +17,10 @@ const proyectos = ( state = [], action ) => {
     case 'ADD_PROYECTO':
       return [action.proyecto, ...state]
       break;
+    case 'ADD_PASO':
+      // debugger;
+      return [action.proyecto.pasos, ...state]
+      break;
     case 'EDIT_PROYECTO':
       console.log('edit proyecto')
       // console.table(action, state)
@@ -34,21 +38,23 @@ const proyectos = ( state = [], action ) => {
         ...state.slice(index + 1)
       ]
       break;
-    case 'ADD_PASO':
-      // debugger;
-      return [action.proyecto.pasos, ...state]
-      break;
     case 'DELETE_PASO':
       console.log('this is delete paso');
-      // console.log(state);
-      // console.log(action);
       index = state.findIndex( proy => proy.id === action.proId)
-      // debugger;
       indexTwo = state[index].pasos.findIndex( paso => paso.id === action.pasId)
-      // debugger;
       return [
         ...state[index].pasos.slice(0, indexTwo),
         ...state[index].pasos.slice(indexTwo + 1)
+      ]
+      break;
+    case 'DELETE_PROCOM':
+      console.log('this is delete procom');
+      index = state.findIndex( paso => paso.id === action.pasoId)
+      //here VVVV
+      indexTwo = state[index].procoms.findIndex( procom => procom.id === action.procomId)
+      return [
+        ...state[index].procoms.slice(0, indexTwo),
+        ...state[index].procoms.slice(indexTwo + 1)
       ]
       break;
 

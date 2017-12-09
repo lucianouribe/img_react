@@ -22,7 +22,7 @@ class Api::PasosController < ApplicationController
     @api_paso = @api_proyecto.pasos.new(api_paso_params)
 
     if @api_paso.save
-      render :show, status: :created
+      # render :show, status: :created
     else
       render json: @api_paso.errors, status: :unprocessable_entity
     end
@@ -30,7 +30,7 @@ class Api::PasosController < ApplicationController
 
   def update
     if @api_paso.update(api_paso_params)
-      render :show, status: :ok
+      # render :show, status: :ok
     else
       render json: @api_paso.errors, status: :unprocessable_entity
     end

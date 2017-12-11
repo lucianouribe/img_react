@@ -17,64 +17,46 @@ class Paso extends React.Component {
       showProblem: false,
       typeOfProcom: true,
       showAddProcomForm: false,
-      showEditPasoForm: false
+      showEditPasoForm: false,
+      estilo: null,
+      radialButtonsOne: false,
+      radialButtonsTwo: 'hide-buttons',
+      typeOfIssue: true
     }
 
-    // PASO CRUDS
-    this.showEditPaso = this.showEditPaso.bind(this);
-    this.submitEditPaso = this.submitEditPaso.bind(this);
-    this.deletePaso = this.deletePaso.bind(this);
     // PROCOMS
     this.setComment = this.setComment.bind(this);
     this.setProblem = this.setProblem.bind(this);
     this.displayProcoms = this.displayProcoms.bind(this);
     this.addProcom = this.addProcom.bind(this);
     this.procomSubmit = this.procomSubmit.bind(this);
+    // PASO CRUDS
+    this.showEditPaso = this.showEditPaso.bind(this);
+    this.submitEditPaso = this.submitEditPaso.bind(this);
+    this.deletePaso = this.deletePaso.bind(this);
+
   }
 
-
-  // PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!
-
-  // EDIT
-  showEditPaso(){
-    console.log('edit me');
-    this.setState({showEditPasoForm: !this.state.showEditPasoForm})
+  componentDidMount(){
+    let estilo = this.props.elpaso.estilo;
+    this.setState({estilo});
   }
 
-  editPasoForm(){
-    let paso = this.props.elpaso;
-    return(
-      <div className="tarjeta form-edit">
-        <form className="add-form-container input-field">
-          <div className="tarjeta-content">
-            <textarea ref='step'>{paso.step}</textarea>
-          </div>
-          <div className="tarjeta-action">
-            <span><i className="material-icons" onClick={()=> this.submitEditPaso()}>done</i></span>
-            <span><i className="material-icons" onClick={()=> this.showEditPaso()}>cancel</i></span>
-          </div>
-        </form>
-      </div>
-    )
-  }
+  componentDidUpdate(){
+    // para que los tab funcionen en el textarea
+    var textareas = document.getElementsByTagName('textarea');
+    var count = textareas.length;
+    for(var i=0;i<count;i++) {
+        textareas[i].onkeydown = function(e){
+            if(e.keyCode==9 || e.which==9){
+                e.preventDefault();
+                var s = this.selectionStart;
+                this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
+                this.selectionEnd = s+1;
+            }
+        }
+    }
 
-  submitEditPaso(){
-    let proyecto = this.props.proyecto;
-    let paso = this.props.elpaso;
-    let step = this.refs.step.value;
-    let orden = 0;
-    let estilo = 'terminal';
-    this.props.dispatch(editPaso(proyecto, paso.id, step, orden, estilo));
-    this.showEditPaso();
-  }
-
-  //DELETE
-  deletePaso(pasId, proyecto){
-    console.log('delete me');
-    this.props.dispatch(deletePaso(pasId, proyecto));
-    // this.props.showContent();
-    // let full = 'full';
-    // this.props.dispatch(fetchProyectos(full));
   }
 
   // PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!
@@ -118,15 +100,17 @@ class Paso extends React.Component {
 
   //PROCOM FORM
   procomForm(){
+    let comentario = true;
+    let problema = false;
     if(this.state.showAddProcomForm){
       return(
         <div className="tarjeta form-edit">
           <form className="add-form-container input-field">
             <div className='btns-estilo'>
-              <input type='radio' ref='type_of_issue' value='true' />
-              <label>comentario</label>
-              <input type='radio' ref='type_of_issue' value='false'/>
-              <label>problema</label>
+              <input type='radio' name="radAnswer" id='comentario' onClick={()=> this.setState({typeOfIssue: comentario})}/>
+              <label htmlFor='comentario'>comment</label>
+              <input type='radio' name="radAnswer" id='problema' onClick={()=> this.setState({typeOfIssue: problema})}/>
+              <label htmlFor='problema'>problem</label>
             </div>
             <div className="tarjeta-content">
               <textarea ref='pro_content'></textarea>
@@ -143,13 +127,98 @@ class Paso extends React.Component {
   // PROCOM ADD DISPATCHER
   procomSubmit(){
     let pro_content = this.refs.pro_content.value;
-    let type_of_issue = this.refs.type_of_issue.value;
-    let pro_style = 'problema';
+    let type_of_issue = this.state.typeOfIssue;
+    let pro_style;
+    if(this.state.typeOfIssue) {
+      pro_style = 'comentario';
+    } else {
+      pro_style = 'problema';
+    }
     let pro_order = 0;
     let paso = this.props.elpaso;
     this.props.dispatch(addProcom(paso, pro_content, pro_style, pro_order, type_of_issue));
     this.addProcom();
   }
+
+
+  // PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!
+
+  // EDIT
+  showEditPaso(){
+    console.log('edit me');
+    this.setState({showEditPasoForm: !this.state.showEditPasoForm})
+  }
+
+  showRadialButtons(){
+    this.setState({radialButtonsOne: !this.state.radialButtonsOne});
+    if(this.state.radialButtonsOne){
+      this.setState({radialButtonsTwo: 'show-buttons'});
+    } else {
+      this.setState({radialButtonsTwo: 'hide-buttons'});
+    }
+  }
+
+  editPasoForm(){
+    let paso = this.props.elpaso;
+    let fullCode = 'full-code'
+    let codigo = 'codigo'
+    let terminal = 'terminal'
+    let goTo = 'go-to'
+    let shortcut = 'shortcut'
+    return(
+      <div className="">
+        <form className="paso-container">
+          <textarea className="paso-content" ref='step'>{paso.step}</textarea>
+          <span className="botones-container">
+            <div className="botones-form">
+              <span><i className="fa fa-download" aria-hidden="true" onClick={()=> this.showRadialButtons()}></i></span>
+              <span><i className="fa fa-check" aria-hidden="true" onClick={()=> this.submitEditPaso()}></i></span>
+              <span><i className="fa fa-ban" aria-hidden="true" onClick={()=> this.showEditPaso()}></i></span>
+            </div>
+            <div className={`edit-btns-estilo ${this.state.radialButtonsTwo}`}>
+              <input type='radio' name="radAnswer" id='full-code' onClick={()=> this.setState({estilo: fullCode})}/>
+              <label htmlFor='full-code'>full code</label>
+              <input type='radio' name="radAnswer" id='codigo' onClick={()=> this.setState({estilo: codigo})}/>
+              <label htmlFor='codigo'>code</label>
+              <input type='radio' name="radAnswer" id='terminal' onClick={()=> this.setState({estilo: terminal})}/>
+              <label htmlFor='terminal'>terminal</label>
+              <input type='radio' name="radAnswer" id='go-to' onClick={()=> this.setState({estilo: goTo})}/>
+              <label htmlFor='go-to'>go to</label>
+              <input type='radio' name="radAnswer" id='shortcut' onClick={()=> this.setState({estilo: shortcut})}/>
+              <label htmlFor='shortcut'>shortcut</label>
+            </div>
+          </span>
+        </form>
+      </div>
+    )
+  }
+
+  submitEditPaso(){
+    let proyecto = this.props.proyecto;
+    let paso = this.props.elpaso;
+    let step;
+    if(this.state.estilo === 'terminal') {
+      step = `terminal >> ${this.refs.step.value}`
+    } else if (this.state.estilo === 'go-to') {
+      step = `go to -> ${this.refs.step.value}`
+    } else {
+      step = this.refs.step.value;
+    }
+    let orden = 0;
+    let estilo = this.state.estilo;
+    this.props.dispatch(editPaso(proyecto, paso.id, step, orden, estilo));
+    this.showEditPaso();
+  }
+
+  //DELETE
+  deletePaso(pasId, proyecto){
+    console.log('delete me');
+    this.props.dispatch(deletePaso(pasId, proyecto));
+    // this.props.showContent();
+    // let full = 'full';
+    // this.props.dispatch(fetchProyectos(full));
+  }
+
 
   // RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!
   renderPasoContent(){
@@ -157,6 +226,7 @@ class Paso extends React.Component {
     let proyecto = this.props.proyecto;
     return(
       <div>
+        {this.procomForm()}
         <div className={`paso-container ${paso.estilo}`}>
           <div className="paso-content" dangerouslySetInnerHTML={createMarkup(paso.step)}/>
           <span className='botones'>
@@ -168,7 +238,6 @@ class Paso extends React.Component {
           </span>
         </div>
         {this.displayProcoms()}
-        {this.procomForm()}
       </div>
     )
   }
@@ -176,11 +245,10 @@ class Paso extends React.Component {
   render() {
     if(!this.state.showEditPasoForm){
       return(this.renderPasoContent())
-    } else {
+    } else if(this.state.showEditPasoForm) {
       return(this.editPasoForm())
     }
   }
-
 }
 
 const mapStateToProps = (state) => {

@@ -123,7 +123,8 @@ class Proyectos extends React.Component {
     let topic = this.refs.topic.value;
     let subtopic = this.refs.subtopic.value;
     let difficulty = this.refs.difficulty.value;
-    this.props.dispatch(addProyecto(name, topic, subtopic, difficulty));
+    let order = 0;
+    this.props.dispatch(addProyecto(name, topic, subtopic, difficulty, order));
     this.toggleDisplay();
   }
 
@@ -145,7 +146,7 @@ class Proyectos extends React.Component {
     return (
       <div className='descripciones-container'>
         <div className='admin-title'>
-          <h1>Tutoriales</h1>
+          <h1>Supersonic cheatsheet</h1>
           {this.showSearcher()}
           <span className='right' onClick={this.toggleDisplay}><i className="material-icons btn-icon large">add</i></span>
         </div>

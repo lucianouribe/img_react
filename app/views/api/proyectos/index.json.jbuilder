@@ -1,4 +1,3 @@
-# json.array! @api_proyectos, partial: 'api/proyectos/api_proyecto', as: :api_proyecto
 require 'pry'
 # binding.pry
 json.array! @api_proyectos do |proyecto|
@@ -7,6 +6,7 @@ json.array! @api_proyectos do |proyecto|
   json.topic proyecto.topic
   json.subtopic proyecto.subtopic
   json.difficulty proyecto.difficulty
+  json.order proyecto.order
     # binding.pry
   json.pasos proyecto.pasos do |paso|
     json.id paso.id
@@ -23,14 +23,5 @@ json.array! @api_proyectos do |proyecto|
       json.type_of_issue procom.type_of_issue
     end
   end
+  json.url api_proyecto_url(proyecto, format: :json)
 end
-
-# json.people(@people) do |person|
-#   json.name person.name
-#   json.age calculate_age(person.birthday)
-# end
-
-# json.array! @api_proyectos, api_proyecto, :id, :name, :topic, :subtopic, :difficulty, :pasos => :id, :step
-
-# json.extract! api_proyecto, :id, :name, :topic, :subtopic, :difficulty
-# json.url api_proyecto_url(api_proyecto, format: :json)

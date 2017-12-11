@@ -15,6 +15,9 @@ const proyectos = ( state = [], action ) => {
       return filteredProyectos;
       break;
     case 'ADD_PROYECTO':
+      console.log('this is add proyecto reducer')
+      console.log(action)
+      console.log(state)
       return [action.proyecto, ...state]
       break;
     case 'ADD_PASO':
@@ -23,7 +26,8 @@ const proyectos = ( state = [], action ) => {
       break;
     case 'EDIT_PROYECTO':
       console.log('edit proyecto')
-      // console.table(action, state)
+      console.log(action)
+      console.log(state)
       let allProyectos = state;
       // console.log(allProyectos)
       index = allProyectos.findIndex( proy => proy.id === action.proyecto.id)

@@ -1,21 +1,21 @@
 
 // ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!
 
-export const addProyecto = (name, topic, subtopic, difficulty) => {
+export const addProyecto = (name, topic, subtopic, difficulty, order) => {
   console.log('this is add proyectos action');
   return(dispatch) => {
     $.ajax({
       url: `/api/proyectos`,
       type: 'POST',
       dataType: 'JSON',
-      data: { proyecto: { name, topic, subtopic, difficulty } }
+      data: { proyecto: { name, topic, subtopic, difficulty, order } }
     }).done( proyecto => {
       console.log('add proyecto done');
-      // console.table(proyecto);
+      console.log(proyecto);
       dispatch({ type: 'ADD_PROYECTO', proyecto });
     }).fail( data => {
-      // console.log('add proyecto fail data')
-      // console.log(data);
+      console.log('add proyecto fail data')
+      console.log(data);
     })
   }
 
@@ -112,7 +112,7 @@ export const fetchPasos = (fetchWho) => {
 
 // EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!
 
-export const editProyecto = (id, name, topic, subtopic, difficulty) => {
+export const editProyecto = (id, name, topic, subtopic, difficulty, order) => {
   // console.log(`this is edit proyecto con id: ${id}`)
   // console.table(id, name, topic, subtopic, difficulty)
   return(dispatch) => {
@@ -120,13 +120,13 @@ export const editProyecto = (id, name, topic, subtopic, difficulty) => {
       url: `/api/proyectos/${id}`,
       type: 'PUT',
       dataType: 'JSON',
-      data: { proyecto: { name, topic, subtopic, difficulty } }
+      data: { proyecto: { name, topic, subtopic, difficulty, order } }
     }).done( proyecto => {
-      // console.log('edit proyecto done data');
-      // console.table(proyecto);
+      console.log('edit proyecto done data');
+      console.log(proyecto);
       dispatch({ type: 'EDIT_PROYECTO', proyecto });
     }).fail( data => {
-      // console.log('edit proyecto fail data')
+      console.log('edit proyecto fail data')
       // console.log(data);
     })
   }

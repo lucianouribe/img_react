@@ -8,7 +8,16 @@ export function pluralize(word) {
 }
 
 export function createMarkup(text) {
+  text = text.replace(/(?:\t)/g, '<span class="indent-me">--</span>');
   text = text.replace(/(?:\r\n|\r|\n)/g, '<br />');
+  text = text.replace(/(<div>)/g, '< div>');
+  text = text.replace(/(<\/div>)/g, '< /div>');
+  text = text.replace(/(<\/p>)/g, '< /p>');
+  text = text.replace(/(<\/p>)/g, '< /p>');
+  text = text.replace(/(<span>)/g, '<span>');
+  text = text.replace(/(<span>)/g, '<span>');
+  text = text.replace(/(<\/i>)/g, '< /i>');
+  text = text.replace(/(<\/i>)/g, '< /i>');
   return {__html: `${text}`};
 }
 

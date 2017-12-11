@@ -1,4 +1,4 @@
-// space
+// GENERAL
 .proyectos-section {
   height: 70vh;
   overflow-y: scroll;
@@ -6,14 +6,15 @@
 .proyectos-section .fa {
   font-size: 1.2rem;
 }
-// parent
+
+// PROYECTOS
 .proyecto-unidad {
   padding: 1rem;
   background-color: #fff;
   margin: 1rem 3rem 1rem 3rem;
-  border: 1px solid #ccc;
-  -webkit-box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
-          box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.3);
+  border: 1px solid #7b7b7b;
+  -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+          box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
   border-radius: 4px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -47,8 +48,13 @@
   text-align: center;
   border-bottom: 1px dashed red !important;
 }
-
-// PROYECTO UNIDAD (PASO MINIMO)
+.select-topic {
+  width: 100px;
+}
+.select-difficulty {
+  width: 100px;
+}
+// PROYECTO
 // children
 .proyecto-unidad h4 {
   font-size: 2rem;
@@ -82,6 +88,52 @@
           align-items: center;
 }
 
+.botones-container {
+  -webkit-box-flex: 2;
+      -ms-flex: 2 2 2rem;
+          flex: 2 2 2rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  height: 1.5rem;
+  // align-content: center;
+  // justify-content: space-between;
+}
+
+.botones-form {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 100%;
+          flex: 1 1 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 1.5rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #7b7b7b;
+  -webkit-box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.botones-form i {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+  text-align: center;
+}
+
 .botones {
   -webkit-box-flex: 2;
       -ms-flex: 2 2 2rem;
@@ -91,34 +143,50 @@
   display: flex;
   -ms-flex-line-pack: center;
       align-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 1.5rem;
+  padding: 1rem;
+  // background: blue;
+  border-radius: 1rem;
+  border: 1px solid #7b7b7b;
+  -webkit-box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3);
+          box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
 .botones i {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  text-align: center;
 }
 
 .btn-icon:hover {
-  color: red;
+  color: #9DD0FF;
 }
-
+.hide-buttons {
+  display: none;
+}
 // cambio color cuando se dice que es importante
 .basic {
-  border: 1px solid green;
-  // background-color: green;
+  // border: 1px solid green;
+  background-color: #8E864B;
 }
 .medium {
-  border: 1px solid orange;
-  // background-color: orange;
+  // border: 1px solid orange;
+  background-color: #ff6d00;
 }
 .advanced {
-  border: 1px solid red;
-  // background-color: red;
+  // border: 1px solid red;
+  background-color: #F33745;
 }
 .sayayin {
-  border: 1px solid brown;
-  // background-color: black;
+  // border: 1px solid brown;
+  background-color: #723025;
 }
 // los logos
 .cont-log {
@@ -250,12 +318,12 @@
   background-image: url(asset_path("thumb_final_cut.png"));
 }
 
-// PASOS (PASO MAXIMO – ABIERTO)
+// PASOS
 .paso-container {
-  margin: 0 3.5rem;
+  margin: 0 3rem;
   margin-bottom: 1rem;
   border: 1px solid #767A86;
-  border-radius: 1rem;
+  border-radius: 5px;
   padding: 1rem;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -266,6 +334,10 @@
   -webkit-box-flex: 8;
       -ms-flex: 8 8 8rem;
           flex: 8 8 8rem;
+  font-family: 'Source Code Pro', monospace;
+}
+.paso-content .indent-me {
+  visibility: hidden;
 }
 .paso-container i {
   color: #767A86;
@@ -273,25 +345,74 @@
 .paso-container i:hover {
   color: #ff6d00;
 }
-
+// add paso form
+.add-paso-form {
+  padding-top: 1.5rem;
+}
+.paso-container textarea {
+  border: 1px dashed rgba(0,0,0,0.1);
+  margin-right: 1rem !important;
+  min-height: 8rem;
+}
 // estilo de los pasos
+[type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
+    position: relative;
+    padding-left: 25px;
+    cursor: pointer;
+    display: inline-block;
+    height: 25px;
+    line-height: 25px;
+    font-size: 1rem;
+    -webkit-transition: .28s ease;
+    transition: .28s ease;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+
+[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after {
+    background-color: #FF6949 !important;
+    border: 2px solid #723025;
+}
+
+.edit-btns-estilo {
+  margin-top: 10px;
+  padding: 6px;
+  border: 1px solid #7b7b7b;
+  border-radius: 1rem;
+  background: #ccc;
+  -webkit-box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+          box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
+  z-index: 100;
+}
+
+.btns-estilo {
+  margin-left: 2rem;
+}
+
+.btns-estilo label {
+  margin-right: 1.3rem;
+  color: #2b2b2b;
+}
+
+.full-code {
+  background: #fff;
+}
 .codigo {
-  background: #b2b2b2;
+  background: #fff;
 }
 .terminal {
-  background: red;
+  background: #fff;
 }
 .go-to {
-  background: blue;
-}
-.full-code {
-  background: #ccc;
+  background: #fff;
 }
 .shortcut {
-  background: #ccc;
+  background: #fff;
 }
 
-// PROCOMS (PROCOM MAXIMO – ABIERTO)
+// PROCOMS
 .procom-container {
   margin: 0 3.5rem;
   margin-bottom: 1rem;

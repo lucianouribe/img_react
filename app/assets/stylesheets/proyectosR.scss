@@ -11,7 +11,7 @@
 .proyecto-unidad {
   padding: 1rem;
   background-color: #fff;
-  margin: 0.6rem 3rem;
+  margin: 1rem 3rem 1rem 3rem;
   border: 1px solid #7b7b7b;
   -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
           box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
@@ -127,13 +127,11 @@
       -ms-flex-pack: justify;
           justify-content: space-between;
   height: 1.5rem;
-  margin-top: 1rem;
   padding: 1rem;
   border-radius: 1rem;
   border: 1px solid #7b7b7b;
   -webkit-box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3);
           box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3);
-  background: #fff;
 }
 
 .botones-form i {
@@ -326,12 +324,6 @@
 .container-logos .final_cut {
   background-image: url(asset_path("thumb_final_cut.png"));
 }
-.container-logos .html {
-  background-image: url(asset_path("thumb_html.png"));
-}
-.container-logos .css {
-  background-image: url(asset_path("thumb_css.png"));
-}
 
 // PASOS
 .paso-container {
@@ -365,10 +357,9 @@
   padding-top: 1.5rem;
 }
 .paso-container textarea {
-  border: none!important;
+  border: 1px dashed rgba(0,0,0,0.1);
   margin-right: 1rem !important;
-  min-height: auto;
-  overflow: visible;
+  min-height: 8rem;
 }
 // estilo de los pasos
 [type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
@@ -392,10 +383,6 @@
     border: 2px solid #723025;
 }
 
-.btns-radial-procom {
-  margin-top: 10px;
-  // z-index: 100;
-}
 .edit-btns-estilo {
   margin-top: 10px;
   padding: 6px;
@@ -436,9 +423,9 @@
 
 // PROCOMS
 .procom-container {
-  margin: 1rem 3rem;
+  margin: 0 3rem;
   margin-bottom: 1rem;
-  border-bottom: 1px dashed #767A86;
+  // border: 1px solid #767A86;
   // border-radius: 1rem;
   padding: 1rem;
   display: -webkit-box;
@@ -450,13 +437,12 @@
   -webkit-box-flex: 8;
       -ms-flex: 8 8 80%;
           flex: 8 8 80%;
-
+  position: relative;
+  top: -1rem;
 }
 .procom-content p {
   margin: 0;
-  text-align: center;
-  position: relative;
-  top: -1rem;
+  // text-align: center;
   color: #7b7b7b;
 
 }
@@ -479,10 +465,9 @@
   background: rgba(142,134,75,0.4);
 }
 .procom-container textarea {
-  // border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
-  // border-radius: 1rem;
-  border: none;
-  // padding-left: 10px;
+  border: 1px dashed rgba(0, 0, 0, 0.3);
+  border-radius: 1rem;
+  padding-left: 10px;
   margin-right: 10px;
 }
 .nothing-flash {

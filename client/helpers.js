@@ -43,3 +43,9 @@ export function ortografica(word){
       return word
   }
 }
+
+// export function setTextareaHeight(paso){
+//     paso.each(function(index, item){
+//       item.style.height = item.scrollHeight+'px';
+//     });
+//   }

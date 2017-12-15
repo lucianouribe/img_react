@@ -18,7 +18,9 @@ class Proyecto extends React.Component {
       showAdd: false,
       cualTopic: null,
       cualSubTopic: null,
-      estilo: 'combinado'
+      estilo: 'combinado',
+      radialButtonsOne: false,
+      radialButtonsTwo: 'hide-buttons',
     }
 
     this.showEditContent = this.showEditContent.bind(this);
@@ -57,6 +59,19 @@ class Proyecto extends React.Component {
 
   componentDidUpdate() {
     $('select').material_select();
+    // para que los tab funcionen en el textarea
+    var textareas = document.getElementsByTagName('textarea');
+    var count = textareas.length;
+    for(var i=0;i<count;i++) {
+      textareas[i].onkeydown = function(e){
+        if(e.keyCode==9 || e.which==9){
+          e.preventDefault();
+          var s = this.selectionStart;
+          this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
+          this.selectionEnd = s+1;
+        }
+      }
+    }
   }
 
   // PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!
@@ -103,7 +118,7 @@ class Proyecto extends React.Component {
     });
 
     return(
-      <div className={`proyecto-unidad principal ${proyecto.difficulty}`}>
+      <div className="proyecto-unidad principal">
         <span className='titulo-nombre'>
           <form className="name-edit-form">
             <select className="browser-default select-topic" ref="topic" onChange={()=> this.topicChanger(this.refs.topic.value)}>
@@ -174,30 +189,40 @@ class Proyecto extends React.Component {
       let goTo = 'go-to'
       let shortcut = 'shortcut'
       return(
-        <div className="tarjeta form-edit">
-          <form className="add-paso-form">
-            <div className='btns-estilo'>
-              <input type='radio' name="radAnswer" id='full-code' onClick={()=> this.setState({estilo: fullCode})}/>
-              <label htmlFor='full-code'>full code</label>
-              <input type='radio' name="radAnswer" id='codigo' onClick={()=> this.setState({estilo: codigo})}/>
-              <label htmlFor='codigo'>code</label>
-              <input type='radio' name="radAnswer" id='terminal' onClick={()=> this.setState({estilo: terminal})}/>
-              <label htmlFor='terminal'>terminal</label>
-              <input type='radio' name="radAnswer" id='go-to' onClick={()=> this.setState({estilo: goTo})}/>
-              <label htmlFor='go-to'>go to</label>
-              <input type='radio' name="radAnswer" id='shortcut' onClick={()=> this.setState({estilo: shortcut})}/>
-              <label htmlFor='shortcut'>shortcut</label>
-            </div>
-            <div className="tarjeta-content">
-              <textarea ref='step'></textarea>
-            </div>
-            <div className="tarjeta-action">
-              <span onClick={this.pasoSubmit}><i className="material-icons">done</i></span>
-              <span onClick={this.showAddPasoOption}><i className="material-icons">cancel</i></span>
-            </div>
+        <div className="">
+          <form className="paso-container">
+            <textarea className="paso-content" ref='step' placeholder="Add a new step"></textarea>
+            <span className="botones-container">
+              <div className="botones-form">
+                <span><i className="fa fa-download" aria-hidden="true" onClick={()=> this.showRadialButtons()}></i></span>
+                <span onClick={this.pasoSubmit}><i className="fa fa-check" aria-hidden="true" ></i></span>
+                <span onClick={this.showAddPasoOption}><i className="fa fa-ban" aria-hidden="true" ></i></span>
+              </div>
+              <div className={`edit-btns-estilo ${this.state.radialButtonsTwo}`}>
+                <input type='radio' name="radAnswer" id='full-code' onClick={()=> this.setState({estilo: fullCode})}/>
+                <label htmlFor='full-code'>full code</label>
+                <input type='radio' name="radAnswer" id='codigo' onClick={()=> this.setState({estilo: codigo})}/>
+                <label htmlFor='codigo'>code</label>
+                <input type='radio' name="radAnswer" id='terminal' onClick={()=> this.setState({estilo: terminal})}/>
+                <label htmlFor='terminal'>terminal</label>
+                <input type='radio' name="radAnswer" id='go-to' onClick={()=> this.setState({estilo: goTo})}/>
+                <label htmlFor='go-to'>go to</label>
+                <input type='radio' name="radAnswer" id='shortcut' onClick={()=> this.setState({estilo: shortcut})}/>
+                <label htmlFor='shortcut'>shortcut</label>
+              </div>
+            </span>
           </form>
         </div>
       )
+    }
+  }
+
+  showRadialButtons(){
+    this.setState({radialButtonsOne: !this.state.radialButtonsOne});
+    if(this.state.radialButtonsOne){
+      this.setState({radialButtonsTwo: 'show-buttons'});
+    } else {
+      this.setState({radialButtonsTwo: 'hide-buttons'});
     }
   }
 
@@ -211,7 +236,7 @@ class Proyecto extends React.Component {
           return(<Paso key={paso.id} elpaso={paso} proyecto={proyecto} procoms={paso.procoms} showPasos={this.showPasos}/>);
         })
       } else {
-        return(<div className="paso-container"><div>Sin Pasos</div></div>);
+        return(<p className="nothing-flash">Sin Pasos</p>);
       }
     }
   }

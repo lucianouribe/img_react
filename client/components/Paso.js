@@ -21,7 +21,9 @@ class Paso extends React.Component {
       estilo: null,
       radialButtonsOne: false,
       radialButtonsTwo: 'hide-buttons',
-      typeOfIssue: true
+      typeOfIssue: true,
+
+      showEditButtons: 'hide-buttons'
     }
 
     // PROCOMS
@@ -35,11 +37,14 @@ class Paso extends React.Component {
     this.submitEditPaso = this.submitEditPaso.bind(this);
     this.deletePaso = this.deletePaso.bind(this);
 
+    this.setTextareaHeight = this.setTextareaHeight.bind(this);
   }
 
   componentDidMount(){
     let estilo = this.props.elpaso.estilo;
     this.setState({estilo});
+    // para que textareas se ajusten a las medidas de su contenido
+    this.setTextareaHeight($('textarea'));
   }
 
   componentDidUpdate(){
@@ -59,6 +64,13 @@ class Paso extends React.Component {
 
   }
 
+  setTextareaHeight(paso){
+    paso.each(function(index, item){
+      item.style.height = item.scrollHeight+'px';
+    });
+  }
+
+
   // PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!
   setComment(){
     this.setState({showComment: !this.state.showComment, typeOfProcom: true});
@@ -71,23 +83,30 @@ class Paso extends React.Component {
   displayProcoms(){
     let showProcoms = this.props.procoms;
     let paso = this.props.elpaso;
+    let numeracionComment = 0;
+    let numeracionProblems = 0;
+
     let comments = this.props.procoms.filter( comme => { if(comme.type_of_issue === true) return comme })
+
     let problems = this.props.procoms.filter( proble => { if(proble.type_of_issue === false) return proble })
+
     if(this.state.showComment && this.state.typeOfProcom === true) {
       if(showProcoms.length > 0) {
         return comments.map( procom => {
-          return(<Procom key={procom.id} procom={procom} paso={paso} />);
+          numeracionComment++
+          return(<Procom key={procom.id} procom={procom} paso={paso} numeracion={numeracionComment}/>);
         })
       } else {
-        return (<p>no comments</p>)
-      }
+        return (<p className="nothing-flash">no comments</p>)
+      }``
     } else if (this.state.showProblem && this.state.typeOfProcom === false) {
       if(showProcoms.length > 0) {
         return problems.map( procom => {
-          return(<Procom key={procom.id} procom={procom} paso={paso} />);
+          numeracionProblems++
+          return(<Procom key={procom.id} procom={procom} paso={paso} numeracion={numeracionProblems}/>);
         })
       } else {
-        return (<p>no problems</p>)
+        return (<p className="nothing-flash">no problems</p>)
       }
     }
   }
@@ -104,21 +123,21 @@ class Paso extends React.Component {
     let problema = false;
     if(this.state.showAddProcomForm){
       return(
-        <div className="tarjeta form-edit">
-          <form className="add-form-container input-field">
-            <div className='btns-estilo'>
-              <input type='radio' name="radAnswer" id='comentario' onClick={()=> this.setState({typeOfIssue: comentario})}/>
-              <label htmlFor='comentario'>comment</label>
-              <input type='radio' name="radAnswer" id='problema' onClick={()=> this.setState({typeOfIssue: problema})}/>
-              <label htmlFor='problema'>problem</label>
-            </div>
-            <div className="tarjeta-content">
-              <textarea ref='pro_content'></textarea>
-            </div>
-            <div className="tarjeta-action">
-              <span onClick={()=> this.procomSubmit()}><i className="material-icons">done</i></span>
-              <span><i className="material-icons" onClick={()=> this.addProcom()}>cancel</i></span>
-            </div>
+        <div className="">
+          <form className="paso-container">
+            <textarea className="paso-content" ref='pro_content' placeholder="Add Comment or Problem"></textarea>
+            <span className="botones-container">
+              <div className="botones-form">
+                <span><i className="fa fa-check" aria-hidden="true" onClick={()=> this.procomSubmit()}></i></span>
+                <span><i className="fa fa-ban" aria-hidden="true" onClick={()=> this.addProcom()}></i></span>
+              </div>
+              <div className='edit-btns-estilo'>
+                <input type='radio' name="radAnswer" id='comentario' onClick={()=> this.setState({typeOfIssue: comentario})}/>
+                <label htmlFor='comentario'>comment</label>
+                <input type='radio' name="radAnswer" id='problema' onClick={()=> this.setState({typeOfIssue: problema})}/>
+                <label htmlFor='problema'>problem</label>
+              </div>
+            </span>
           </form>
         </div>
       )
@@ -143,9 +162,8 @@ class Paso extends React.Component {
 
   // PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!
 
-  // EDIT
+  // OPTIONS FOR EDIT
   showEditPaso(){
-    console.log('edit me');
     this.setState({showEditPasoForm: !this.state.showEditPasoForm})
   }
 
@@ -156,41 +174,6 @@ class Paso extends React.Component {
     } else {
       this.setState({radialButtonsTwo: 'hide-buttons'});
     }
-  }
-
-  editPasoForm(){
-    let paso = this.props.elpaso;
-    let fullCode = 'full-code'
-    let codigo = 'codigo'
-    let terminal = 'terminal'
-    let goTo = 'go-to'
-    let shortcut = 'shortcut'
-    return(
-      <div className="">
-        <form className="paso-container">
-          <textarea className="paso-content" ref='step'>{paso.step}</textarea>
-          <span className="botones-container">
-            <div className="botones-form">
-              <span><i className="fa fa-download" aria-hidden="true" onClick={()=> this.showRadialButtons()}></i></span>
-              <span><i className="fa fa-check" aria-hidden="true" onClick={()=> this.submitEditPaso()}></i></span>
-              <span><i className="fa fa-ban" aria-hidden="true" onClick={()=> this.showEditPaso()}></i></span>
-            </div>
-            <div className={`edit-btns-estilo ${this.state.radialButtonsTwo}`}>
-              <input type='radio' name="radAnswer" id='full-code' onClick={()=> this.setState({estilo: fullCode})}/>
-              <label htmlFor='full-code'>full code</label>
-              <input type='radio' name="radAnswer" id='codigo' onClick={()=> this.setState({estilo: codigo})}/>
-              <label htmlFor='codigo'>code</label>
-              <input type='radio' name="radAnswer" id='terminal' onClick={()=> this.setState({estilo: terminal})}/>
-              <label htmlFor='terminal'>terminal</label>
-              <input type='radio' name="radAnswer" id='go-to' onClick={()=> this.setState({estilo: goTo})}/>
-              <label htmlFor='go-to'>go to</label>
-              <input type='radio' name="radAnswer" id='shortcut' onClick={()=> this.setState({estilo: shortcut})}/>
-              <label htmlFor='shortcut'>shortcut</label>
-            </div>
-          </span>
-        </form>
-      </div>
-    )
   }
 
   submitEditPaso(){
@@ -207,7 +190,8 @@ class Paso extends React.Component {
     let orden = 0;
     let estilo = this.state.estilo;
     this.props.dispatch(editPaso(proyecto, paso.id, step, orden, estilo));
-    this.showEditPaso();
+    this.setState({showEditButtons: 'hide-buttons', radialButtonsTwo: 'hide-buttons'})
+    // this.showEditPaso();
   }
 
   //DELETE
@@ -221,20 +205,59 @@ class Paso extends React.Component {
 
 
   // RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!
+  optionButtons(){
+    let hide = 'hide-buttons'
+    return(
+      <div className={`botones-form ${this.state.showEditButtons}`}>
+        <span><i className="fa fa-download" aria-hidden="true" onClick={()=> this.showRadialButtons()}></i></span>
+        <span><i className="fa fa-check" aria-hidden="true" onClick={()=> this.submitEditPaso()}></i></span>
+        <span><i className="fa fa-ban" aria-hidden="true" onClick={()=> this.setState({showEditButtons: hide})}></i></span>
+      </div>
+    )
+  }
+
+  radialButtons(){
+    let fullCode = 'full-code'
+    let codigo = 'codigo'
+    let terminal = 'terminal'
+    let goTo = 'go-to'
+    let shortcut = 'shortcut'
+    return(
+      <div className={`edit-btns-estilo ${this.state.radialButtonsTwo}`}>
+        <input type='radio' name="radAnswer" id='full-code' onClick={()=> this.setState({estilo: fullCode})}/>
+        <label htmlFor='full-code'>full code</label>
+        <input type='radio' name="radAnswer" id='codigo' onClick={()=> this.setState({estilo: codigo})}/>
+        <label htmlFor='codigo'>code</label>
+        <input type='radio' name="radAnswer" id='terminal' onClick={()=> this.setState({estilo: terminal})}/>
+        <label htmlFor='terminal'>terminal</label>
+        <input type='radio' name="radAnswer" id='go-to' onClick={()=> this.setState({estilo: goTo})}/>
+        <label htmlFor='go-to'>go to</label>
+        <input type='radio' name="radAnswer" id='shortcut' onClick={()=> this.setState({estilo: shortcut})}/>
+        <label htmlFor='shortcut'>shortcut</label>
+      </div>
+    )
+  }
+
   renderPasoContent(){
     let paso = this.props.elpaso;
     let proyecto = this.props.proyecto;
+
+    let show = 'show-buttons'
+    let hide = 'hide-buttons'
     return(
       <div>
         {this.procomForm()}
         <div className={`paso-container ${paso.estilo}`}>
-          <div className="paso-content" dangerouslySetInnerHTML={createMarkup(paso.step)}/>
-          <span className='botones'>
-            <i className="fa fa-plus-circle btn-icon" aria-hidden="true" onClick={() => this.addProcom()}></i>
-            <i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true" onClick={() => this.setProblem()}></i>
-            <i className="fa fa-comments btn-icon" aria-hidden="true" onClick={() => this.setComment()}></i>
-            <i className="fa fa-pencil" aria-hidden="true" onClick={()=> this.showEditPaso()}></i>
-            <i className="fa fa-trash" aria-hidden="true" onClick={() => this.deletePaso(paso.id, proyecto)}></i>
+          <textarea className="paso-content" ref='step' onChange={()=> this.setState({showEditButtons: show})}>{paso.step}</textarea>
+          <span className="botones-container">
+            <span className='botones'>
+              <i className="fa fa-plus-circle btn-icon" aria-hidden="true" onClick={() => this.addProcom()}></i>
+              <i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true" onClick={() => this.setProblem()}></i>
+              <i className="fa fa-comments btn-icon" aria-hidden="true" onClick={() => this.setComment()}></i>
+              <i className="fa fa-trash" aria-hidden="true" onClick={() => this.deletePaso(paso.id, proyecto)}></i>
+            </span>
+            {this.optionButtons()}
+            {this.radialButtons()}
           </span>
         </div>
         {this.displayProcoms()}
@@ -243,12 +266,9 @@ class Paso extends React.Component {
   }
 
   render() {
-    if(!this.state.showEditPasoForm){
-      return(this.renderPasoContent())
-    } else if(this.state.showEditPasoForm) {
-      return(this.editPasoForm())
-    }
+    return(this.renderPasoContent())
   }
+
 }
 
 const mapStateToProps = (state) => {

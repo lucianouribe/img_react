@@ -4,7 +4,7 @@ class Api::ProcomsController < ApplicationController
   before_action :set_api_procom, only: [:show, :edit, :update, :destroy]
 
   def index
-    @api_procoms = @api_paso.procoms.all
+    @api_procoms = @api_paso.procoms.order_by_id.all
   end
 
   def show

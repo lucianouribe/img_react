@@ -4,7 +4,7 @@ class Api::ProyectosController < ApplicationController
 
 
   def index
-    @api_proyectos = Proyecto.all
+    @api_proyectos = Proyecto.order_by_id.all
   end
 
   def show

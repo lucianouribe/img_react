@@ -27,7 +27,7 @@ class Proyecto extends React.Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.editForm = this.editForm.bind(this);
 
-    this.showPasos = this.showPasos.bind(this);
+    this.showPasosFu = this.showPasosFu.bind(this);
     this.showAddPasoOption = this.showAddPasoOption.bind(this);
     this.pasoSubmit = this.pasoSubmit.bind(this);
 
@@ -36,8 +36,10 @@ class Proyecto extends React.Component {
 
   componentDidMount(){
     $('select').material_select();
+
     let full = 'full'
     this.props.dispatch(fetchProyectos(full));
+
     let proyectoTopic = this.props.elproyecto.topic
     let picked = Tutorials[proyectoTopic];
     this.setState({cualTopic: proyectoTopic, cualSubTopic: picked});
@@ -76,12 +78,10 @@ class Proyecto extends React.Component {
 
   // PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!
   showEditContent(){
-    // this.fixEditState(one, two);
     this.setState({ showEdit: !this.state.showEdit });
   }
 
   topicChanger(aTopic){
-    // console.log('did i change?')
     let picked = Tutorials[aTopic];
     this.setState({cualTopic: aTopic, cualSubTopic: picked});
   }
@@ -149,13 +149,15 @@ class Proyecto extends React.Component {
     let subtopic = this.refs.subtopic.value;
     let difficulty = this.refs.difficulty.value;
     let order = 0;
+
     this.props.dispatch(editProyecto(id, name, topic, subtopic, difficulty, order));
     this.showEditContent();
   }
 
   // PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!
-  showPasos(){
-    this.setState({ show: !this.state.show })
+  showPasosFu(command){
+    // debugger;
+    this.setState({ show: command })
   }
   showAddPasoOption(){
     this.setState({ showAdd: !this.state.showAdd })
@@ -172,12 +174,13 @@ class Proyecto extends React.Component {
       step = this.refs.step.value;
     }
     let orden;
+    let tutoLink;
+    let videoLink;
+    let imageLink;
     let estilo = this.state.estilo;
     let proyecto = this.props.elproyecto;
-    this.props.dispatch(addPaso(proyecto, step, orden, estilo));
-    this.showAddPasoOption();
-    let full = 'full'
-    this.props.dispatch(fetchProyectos(full));
+    this.props.dispatch(addPaso(proyecto, step, orden, estilo, tutoLink, videoLink, imageLink));
+    this.setState({showAdd: false, show: true})
   }
 
   // ADD PASO FORM
@@ -230,10 +233,9 @@ class Proyecto extends React.Component {
     if(this.state.show) {
       let showPasos = this.props.pasos;
       let proyecto = this.props.elproyecto;
-
       if(showPasos.length > 0) {
         return showPasos.map( paso => {
-          return(<Paso key={paso.id} elpaso={paso} proyecto={proyecto} procoms={paso.procoms} showPasos={this.showPasos}/>);
+          return(<Paso key={paso.id} elpaso={paso} proyecto={proyecto} procoms={paso.procoms} showPasosFu={this.showPasosFu}/>);
         })
       } else {
         return(<p className="nothing-flash">Sin Pasos</p>);
@@ -256,7 +258,7 @@ class Proyecto extends React.Component {
             <div className={`cont-log ${subtopic}`}></div>
           </span>
           <span className='titulo-nombre'>
-            <h4 onClick={this.showPasos}>{proyecto.name}</h4>
+            <h4 onClick={() => this.setState({show: !this.state.show})}>{proyecto.name}</h4>
           </span>
           <span className={`botones ${proyecto.difficulty}`}>
             <i className="material-icons btn-icon btn-add" onClick={() => this.showAddPasoOption()}>add</i>

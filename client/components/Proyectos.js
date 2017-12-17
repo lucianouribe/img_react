@@ -119,11 +119,13 @@ class Proyectos extends React.Component {
   addHandleSubmit(e){
     e.preventDefault();
     console.log('handle sumbit')
+    console.log('front end paso 1')
     let name = this.refs.name.value.toLowerCase();
     let topic = this.refs.topic.value;
     let subtopic = this.refs.subtopic.value;
     let difficulty = this.refs.difficulty.value;
     let order = 0;
+    // debugger;
     this.props.dispatch(addProyecto(name, topic, subtopic, difficulty, order));
     this.toggleDisplay();
   }
@@ -133,8 +135,7 @@ class Proyectos extends React.Component {
     let proyectos = this.props.proyectos;
     if(proyectos.length > 0) {
       return proyectos.map( proyecto => {
-        // debugger;
-        return(<Proyecto key={proyecto.id} elproyecto={proyecto} pasos={proyecto.pasos} setTopics={this.setTopics} />);
+        return(<Proyecto key={proyecto.id} elproyecto={proyecto} pasos={proyecto.pasos} />);
       })
     } else {
       return(<h4>Sin Proyectos</h4>);

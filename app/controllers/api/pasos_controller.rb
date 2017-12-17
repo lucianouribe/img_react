@@ -22,7 +22,7 @@ class Api::PasosController < ApplicationController
     @api_paso = @api_proyecto.pasos.new(api_paso_params)
 
     if @api_paso.save
-      # render :show, status: :created
+      render :show, status: :created
     else
       render json: @api_paso.errors, status: :unprocessable_entity
     end
@@ -30,23 +30,21 @@ class Api::PasosController < ApplicationController
 
   def update
     if @api_paso.update(api_paso_params)
-      # render :show, status: :ok
+      render :show, status: :ok
     else
       render json: @api_paso.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
+    # binding.pry
     @api_paso.destroy
+    # binding.pry
     head :no_content
   end
 
   private
 
-  def api_paso_params
-    # 3 (#2 es el modelo)
-    params.require(:paso).permit(:step, :orden, :estilo)
-  end
 
   def set_api_proyecto
     # 1
@@ -54,7 +52,13 @@ class Api::PasosController < ApplicationController
   end
 
   def set_api_paso
+    # binding.pry
     @api_paso = @api_proyecto.pasos.find(params[:id])
+  end
+
+  def api_paso_params
+    # 3 (#2 es el modelo)
+    params.require(:paso).permit(:step, :orden, :estilo, :tuto_link, :video_link, :image_link)
   end
 
 end

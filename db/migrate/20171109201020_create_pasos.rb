@@ -4,6 +4,9 @@ class CreatePasos < ActiveRecord::Migration[5.0]
       t.text :step
       t.integer :orden
       t.string :estilo
+      t.string :tuto_link
+      t.string :video_link
+      t.string :image_link
       t.belongs_to :proyecto, foreign_key: true
 
       t.timestamps

@@ -20,6 +20,7 @@ class Procom extends React.Component {
 
   componentDidMount(){
     this.setTextareaHeight($('textarea'));
+
   }
 
   setTextareaHeight(paso){
@@ -34,7 +35,8 @@ class Procom extends React.Component {
   }
 
   submitEditProcom(){
-    let paso = this.props.paso;
+    let pasId = this.props.paso.id;
+    let proId = this.props.proyecto.id;
     let procom = this.props.procom;
     let pro_content = this.refs.pro_content.value;
     let type_of_issue = this.state.typeOfIssue;
@@ -46,14 +48,14 @@ class Procom extends React.Component {
     }
     let pro_order = 0;
     // console.log(pro_content)
-    this.props.dispatch(editProcom(paso, procom.id, pro_content, pro_style, pro_order, type_of_issue));
+    this.props.dispatch(editProcom(proId, pasId, procom.id, pro_content, pro_style, pro_order, type_of_issue));
     this.setState({showEditButtons: 'hide-buttons'})
   }
 
   // delete
-  deleteProcom(procomId, pasoId){
+  deleteProcom(procomId, pasoId, proyectoId){
     console.log('delete me')
-    this.props.dispatch(deleteProcom(procomId, pasoId));
+    this.props.dispatch(deleteProcom(procomId, pasoId, proyectoId));
   }
 
   optionButtons(){
@@ -71,7 +73,8 @@ class Procom extends React.Component {
 
   render(){
     let procom = this.props.procom;
-    let paso = this.props.paso;
+    let pasoId = this.props.paso.id;
+    let proyectoId = this.props.proyecto.id;
     let comentario = true;
     let problema = false;
     let show = 'show-buttons';
@@ -86,7 +89,7 @@ class Procom extends React.Component {
           <span className={`botones`}>
             <i className="fa fa-check" aria-hidden="true" onClick={()=> this.submitEditProcom()}></i>
             <i className="fa fa-ban" aria-hidden="true" onClick={()=> this.setState({ showEditButtons: hide})}></i>
-            <i className="fa fa-trash" aria-hidden="true" onClick={()=> this.deleteProcom(procom.id, paso.id)}></i>
+            <i className="fa fa-trash" aria-hidden="true" onClick={()=> this.deleteProcom(procom.id, pasoId, proyectoId)}></i>
           </span>
           {this.optionButtons()}
         </span>

@@ -1,12 +1,11 @@
 const proyectos = ( state = [], action ) => {
   let index;
   let indexTwo;
-  // console.log('reducer proyectos');
-  // console.log(action, state);
+  let indexThree;
+  let allProyectos;
+
   switch(action.type){
     case 'ALL_PROYECTOS':
-      // console.log('all proyectos');
-      // console.log(action.proyectos);
       return action.proyectos;
       break;
     case 'FILTERED_PROYECTOS':
@@ -15,27 +14,53 @@ const proyectos = ( state = [], action ) => {
       return filteredProyectos;
       break;
     case 'ADD_PROYECTO':
-      console.log('this is add proyecto reducer')
-      console.log(action)
-      console.log(state)
+      // console.log('this is add proyecto reducer')
       return [action.proyecto, ...state]
       break;
     case 'ADD_PASO':
-      // debugger;
-      return [action.proyecto.pasos, ...state]
+      // console.log('this is add paso reducer')
+      allProyectos = state;
+      index = allProyectos.findIndex( proy => proy.id === action.proId)
+      return [action.paso, ...state[index]]
+      break;
+    case 'ADD_PROCOM':
+      // console.log('this is add procom reducer')
+      allProyectos = state;
+      index = allProyectos.findIndex( proy => proy.id === action.proId)
+      indexTwo = allProyectos[index].pasos.findIndex( paso => paso.id === action.pasId)
+      return [action.procom, ...state[index].pasos[indexTwo]]
       break;
     case 'EDIT_PROYECTO':
-      console.log('edit proyecto')
-      console.log(action)
-      console.log(state)
-      let allProyectos = state;
-      // console.log(allProyectos)
+      // console.log('this is edit proyecto reducer')
+      allProyectos = state;
       index = allProyectos.findIndex( proy => proy.id === action.proyecto.id)
-      console.log(action.proyecto)
       allProyectos[index] = action.proyecto
       return [...allProyectos]
       break;
+    case 'EDIT_PASO':
+      // console.log('this is edit paso reducer !')
+      allProyectos = state;
+      index = allProyectos.findIndex( proy => proy.id === action.proId)
+      indexTwo = allProyectos[index].pasos.findIndex( paso => paso.id === action.pasId)
+
+      allProyectos[index].pasos[indexTwo] = action.paso
+
+      return [...allProyectos[index].pasos]
+      break;
+    case 'EDIT_PROCOM':
+      // console.log('this is edit procom reducer !')
+      allProyectos = state;
+
+      index = allProyectos.findIndex( proy => proy.id === action.proId)
+      indexTwo = allProyectos[index].pasos.findIndex( paso => paso.id === action.pasId)
+      indexThree = allProyectos[index].pasos[indexTwo].procoms.findIndex( procom => procom.id === action.procom.id)
+
+      allProyectos[index].pasos[indexTwo].procoms[indexThree] = action.procom
+
+      return [...allProyectos[index].pasos[indexTwo].procoms]
+      break;
     case 'DELETE_PROYECTO':
+      // console.log('this is delete proyecto');
       index = state.findIndex( proy => proy.id === action.id)
       return [
         ...state.slice(0, index),
@@ -43,7 +68,7 @@ const proyectos = ( state = [], action ) => {
       ]
       break;
     case 'DELETE_PASO':
-      console.log('this is delete paso');
+      // console.log('this is delete paso');
       index = state.findIndex( proy => proy.id === action.proId)
       indexTwo = state[index].pasos.findIndex( paso => paso.id === action.pasId)
       return [
@@ -52,13 +77,13 @@ const proyectos = ( state = [], action ) => {
       ]
       break;
     case 'DELETE_PROCOM':
-      console.log('this is delete procom');
-      index = state.findIndex( paso => paso.id === action.pasoId)
-      //here VVVV
-      indexTwo = state[index].procoms.findIndex( procom => procom.id === action.procomId)
+      // console.log('this is delete procom');
+      index = state.findIndex( proy => proy.id === action.proyectoId)
+      indexTwo = state[index].pasos.findIndex( paso => paso.id === action.pasoId)
+      indexThree = state[index].pasos[indexTwo].procoms.findIndex( procom => procom.id === action.procomId)
       return [
-        ...state[index].procoms.slice(0, indexTwo),
-        ...state[index].procoms.slice(indexTwo + 1)
+        ...state[index].pasos[indexTwo].procoms.slice(0, indexThree),
+        ...state[index].pasos[indexTwo].procoms.slice(indexThree + 1)
       ]
       break;
 

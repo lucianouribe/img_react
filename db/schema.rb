@@ -63,6 +63,9 @@ ActiveRecord::Schema.define(version: 20171207202002) do
     t.text     "step"
     t.integer  "orden"
     t.string   "estilo"
+    t.string   "tuto_link"
+    t.string   "video_link"
+    t.string   "image_link"
     t.integer  "proyecto_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false

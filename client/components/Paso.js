@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import Procom from './Procom';
 
-import { fetchPasos, editPaso, deletePaso, addProcom } from '../actions/proyectos';
+import { editPaso, deletePaso, addProcom } from '../actions/proyectos';
 import { createMarkup } from '../helpers';
 
 
@@ -13,24 +13,24 @@ class Paso extends React.Component {
     super(props);
 
     this.state = {
+      //procoms (child)
       showComment: false,
       showProblem: false,
       typeOfProcom: true,
       showAddProcomForm: false,
       showEditPasoForm: false,
-      estilo: null,
-      radialButtonsOne: false,
-      radialButtonsTwo: 'hide-buttons',
       typeOfIssue: true,
-
-      showEditButtons: 'hide-buttons'
+      //pasos (parent)
+      estilo: 'full-code',
+      showEditButtons: 'hide-buttons',
+      radialButtons: 'hide-buttons',
     }
 
     // PROCOMS
     this.setComment = this.setComment.bind(this);
     this.setProblem = this.setProblem.bind(this);
     this.displayProcoms = this.displayProcoms.bind(this);
-    this.addProcom = this.addProcom.bind(this);
+    this.addProcomSetter = this.addProcomSetter.bind(this);
     this.procomSubmit = this.procomSubmit.bind(this);
     // PASO CRUDS
     this.showEditPaso = this.showEditPaso.bind(this);
@@ -41,10 +41,13 @@ class Paso extends React.Component {
   }
 
   componentDidMount(){
-    let estilo = this.props.elpaso.estilo;
-    this.setState({estilo});
+    // let estilo = this.props.elpaso.estilo;
+    // this.setState({estilo});
     // para que textareas se ajusten a las medidas de su contenido
     this.setTextareaHeight($('textarea'));
+    // let proyecto = this.props.proyecto;
+    // let paso = this.props.elpaso;
+    // this.props.dispatch(fetchProcoms(proyecto, paso));
   }
 
   componentDidUpdate(){
@@ -83,6 +86,7 @@ class Paso extends React.Component {
   displayProcoms(){
     let showProcoms = this.props.procoms;
     let paso = this.props.elpaso;
+    let proyecto = this.props.proyecto;
     let numeracionComment = 0;
     let numeracionProblems = 0;
 
@@ -94,16 +98,16 @@ class Paso extends React.Component {
       if(showProcoms.length > 0) {
         return comments.map( procom => {
           numeracionComment++
-          return(<Procom key={procom.id} procom={procom} paso={paso} numeracion={numeracionComment}/>);
+          return(<Procom key={procom.id} procom={procom} paso={paso} proyecto={proyecto} numeracion={numeracionComment}/>);
         })
       } else {
         return (<p className="nothing-flash">no comments</p>)
-      }``
+      }
     } else if (this.state.showProblem && this.state.typeOfProcom === false) {
       if(showProcoms.length > 0) {
         return problems.map( procom => {
           numeracionProblems++
-          return(<Procom key={procom.id} procom={procom} paso={paso} numeracion={numeracionProblems}/>);
+          return(<Procom key={procom.id} procom={procom} paso={paso} proyecto={proyecto} numeracion={numeracionProblems}/>);
         })
       } else {
         return (<p className="nothing-flash">no problems</p>)
@@ -112,7 +116,7 @@ class Paso extends React.Component {
   }
 
   // ADD PROCOM STARTER
-  addProcom(){
+  addProcomSetter(){
     // console.log('add procom')
     this.setState({showAddProcomForm: !this.state.showAddProcomForm})
   }
@@ -129,7 +133,7 @@ class Paso extends React.Component {
             <span className="botones-container">
               <div className="botones-form">
                 <span><i className="fa fa-check" aria-hidden="true" onClick={()=> this.procomSubmit()}></i></span>
-                <span><i className="fa fa-ban" aria-hidden="true" onClick={()=> this.addProcom()}></i></span>
+                <span><i className="fa fa-ban" aria-hidden="true" onClick={()=> this.addProcomSetter()}></i></span>
               </div>
               <div className='edit-btns-estilo'>
                 <input type='radio' name="radAnswer" id='comentario' onClick={()=> this.setState({typeOfIssue: comentario})}/>
@@ -145,6 +149,9 @@ class Paso extends React.Component {
   }
   // PROCOM ADD DISPATCHER
   procomSubmit(){
+    let pasId = this.props.elpaso.id;
+    let proId = this.props.proyecto.id;
+
     let pro_content = this.refs.pro_content.value;
     let type_of_issue = this.state.typeOfIssue;
     let pro_style;
@@ -154,9 +161,9 @@ class Paso extends React.Component {
       pro_style = 'problema';
     }
     let pro_order = 0;
-    let paso = this.props.elpaso;
-    this.props.dispatch(addProcom(paso, pro_content, pro_style, pro_order, type_of_issue));
-    this.addProcom();
+
+    this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
+    this.addProcomSetter();
   }
 
 
@@ -168,12 +175,7 @@ class Paso extends React.Component {
   }
 
   showRadialButtons(){
-    this.setState({radialButtonsOne: !this.state.radialButtonsOne});
-    if(this.state.radialButtonsOne){
-      this.setState({radialButtonsTwo: 'show-buttons'});
-    } else {
-      this.setState({radialButtonsTwo: 'hide-buttons'});
-    }
+    this.setState({radialButtons: 'show-buttons'});
   }
 
   submitEditPaso(){
@@ -188,19 +190,21 @@ class Paso extends React.Component {
       step = this.refs.step.value;
     }
     let orden = 0;
+    let tutoLink = '';
+    let videoLink = '';
+    let imageLink = '';
     let estilo = this.state.estilo;
-    this.props.dispatch(editPaso(proyecto, paso.id, step, orden, estilo));
-    this.setState({showEditButtons: 'hide-buttons', radialButtonsTwo: 'hide-buttons'})
-    // this.showEditPaso();
+    this.props.dispatch(editPaso(proyecto, paso.id, step, orden, estilo, tutoLink, videoLink, imageLink));
+    this.setState({showEditButtons: 'hide-buttons', radialButtons: 'hide-buttons'})
   }
 
   //DELETE
   deletePaso(pasId, proyecto){
     console.log('delete me');
+    // debugger;
     this.props.dispatch(deletePaso(pasId, proyecto));
-    // this.props.showContent();
-    // let full = 'full';
-    // this.props.dispatch(fetchProyectos(full));
+    let command = true
+    this.props.showPasosFu(command)
   }
 
 
@@ -211,7 +215,7 @@ class Paso extends React.Component {
       <div className={`botones-form ${this.state.showEditButtons}`}>
         <span><i className="fa fa-download" aria-hidden="true" onClick={()=> this.showRadialButtons()}></i></span>
         <span><i className="fa fa-check" aria-hidden="true" onClick={()=> this.submitEditPaso()}></i></span>
-        <span><i className="fa fa-ban" aria-hidden="true" onClick={()=> this.setState({showEditButtons: hide})}></i></span>
+        <span><i className="fa fa-ban" aria-hidden="true" onClick={()=> this.setState({showEditButtons: hide, radialButtons: hide})}></i></span>
       </div>
     )
   }
@@ -223,7 +227,7 @@ class Paso extends React.Component {
     let goTo = 'go-to'
     let shortcut = 'shortcut'
     return(
-      <div className={`edit-btns-estilo ${this.state.radialButtonsTwo}`}>
+      <div className={`edit-btns-estilo ${this.state.radialButtons}`}>
         <input type='radio' name="radAnswer" id='full-code' onClick={()=> this.setState({estilo: fullCode})}/>
         <label htmlFor='full-code'>full code</label>
         <input type='radio' name="radAnswer" id='codigo' onClick={()=> this.setState({estilo: codigo})}/>
@@ -251,7 +255,7 @@ class Paso extends React.Component {
           <textarea className="paso-content" ref='step' onChange={()=> this.setState({showEditButtons: show})}>{paso.step}</textarea>
           <span className="botones-container">
             <span className='botones'>
-              <i className="fa fa-plus-circle btn-icon" aria-hidden="true" onClick={() => this.addProcom()}></i>
+              <i className="fa fa-plus-circle btn-icon" aria-hidden="true" onClick={() => this.addProcomSetter()}></i>
               <i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true" onClick={() => this.setProblem()}></i>
               <i className="fa fa-comments btn-icon" aria-hidden="true" onClick={() => this.setComment()}></i>
               <i className="fa fa-trash" aria-hidden="true" onClick={() => this.deletePaso(paso.id, proyecto)}></i>

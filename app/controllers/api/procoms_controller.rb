@@ -20,10 +20,9 @@ class Api::ProcomsController < ApplicationController
   def create
     #4
     @api_procom = @api_paso.procoms.new(api_procom_params)
-    # binding.pry
-    # @api_procom.save
+
     if @api_procom.save
-      # render :show, status: :created
+      render :show, status: :created
     else
       render json: @api_procom.errors, status: :unprocessable_entity
     end
@@ -31,7 +30,7 @@ class Api::ProcomsController < ApplicationController
 
   def update
     if @api_procom.update(api_procom_params)
-      # render :show, status: :ok
+      render :show, status: :ok
     else
       render json: @api_procom.errors, status: :unprocessable_entity
     end

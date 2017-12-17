@@ -13,6 +13,9 @@ json.array! @api_proyectos do |proyecto|
     json.step paso.step
     json.orden paso.orden
     json.estilo paso.estilo
+    json.tuto_link paso.tuto_link
+    json.video_link paso.video_link
+    json.image_link paso.image_link
     # binding.pry
     json.procoms paso.procoms do |procom|
       # binding.pry

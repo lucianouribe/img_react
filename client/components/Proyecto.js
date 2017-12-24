@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProyectos, editProyecto, deleteProyecto, addPaso } from '../actions/proyectos';
+import { addMemoProyect } from '../actions/mymemory';
 
 import Paso from './Paso';
 
@@ -23,6 +24,9 @@ class Proyecto extends React.Component {
       radialButtonsTwo: 'hide-buttons',
     }
 
+    this.memorySetter = this.memorySetter.bind(this);
+    // this.memoryReceiver = this.memoryReceiver.bind(this);
+
     this.showEditContent = this.showEditContent.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
     this.editForm = this.editForm.bind(this);
@@ -37,8 +41,12 @@ class Proyecto extends React.Component {
   componentDidMount(){
     $('select').material_select();
 
+    console.log('soy proyecto');
+
     let full = 'full'
     this.props.dispatch(fetchProyectos(full));
+
+    // this.memorySetter();
 
     let proyectoTopic = this.props.elproyecto.topic
     let picked = Tutorials[proyectoTopic];
@@ -61,6 +69,8 @@ class Proyecto extends React.Component {
 
   componentDidUpdate() {
     $('select').material_select();
+
+    // this.memorySetter();
     // para que los tab funcionen en el textarea
     var textareas = document.getElementsByTagName('textarea');
     var count = textareas.length;
@@ -74,6 +84,19 @@ class Proyecto extends React.Component {
         }
       }
     }
+  }
+
+  // ALL MIGHTY MEMORY
+  memorySetter(){
+    // console.log('im memory setter')
+    let whoAmI = {
+      id: this.props.elproyecto.id,
+      state: {
+        show: !this.state.show
+      }
+    }
+    // this.props.dispatch(addMemoProyect(whoAmI))
+    this.props.memoryBankFunction(whoAmI)
   }
 
   // PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!
@@ -152,27 +175,23 @@ class Proyecto extends React.Component {
 
     this.props.dispatch(editProyecto(id, name, topic, subtopic, difficulty, order));
     this.showEditContent();
+    this.memorySetter();
   }
 
   // PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!
-  showPasosFu(command){
+  showPasosFu(){
     // debugger;
-    this.setState({ show: command })
+    this.setState({show: !this.state.show})
+    this.memorySetter();
   }
+
   showAddPasoOption(){
     this.setState({ showAdd: !this.state.showAdd })
   }
 
   // PASO ADD DISPATCHER
   pasoSubmit(){
-    let step;
-    if(this.state.estilo === 'terminal') {
-      step = `terminal >> ${this.refs.step.value}`
-    } else if (this.state.estilo === 'go-to') {
-      step = `go to -> ${this.refs.step.value}`
-    } else {
-      step = this.refs.step.value;
-    }
+    let step = this.refs.step.value
     let orden;
     let tutoLink;
     let videoLink;
@@ -181,6 +200,7 @@ class Proyecto extends React.Component {
     let proyecto = this.props.elproyecto;
     this.props.dispatch(addPaso(proyecto, step, orden, estilo, tutoLink, videoLink, imageLink));
     this.setState({showAdd: false, show: true})
+    this.memorySetter();
   }
 
   // ADD PASO FORM
@@ -230,7 +250,7 @@ class Proyecto extends React.Component {
   }
 
   pasoLooper(){
-    if(this.state.show) {
+    if(this.props.doorStatus) {
       let showPasos = this.props.pasos;
       let proyecto = this.props.elproyecto;
       if(showPasos.length > 0) {
@@ -258,7 +278,7 @@ class Proyecto extends React.Component {
             <div className={`cont-log ${subtopic}`}></div>
           </span>
           <span className='titulo-nombre'>
-            <h4 onClick={() => this.setState({show: !this.state.show})}>{proyecto.name}</h4>
+            <h4 onClick={() => this.showPasosFu()}>{proyecto.name}</h4>
           </span>
           <span className={`botones ${proyecto.difficulty}`}>
             <i className="material-icons btn-icon btn-add" onClick={() => this.showAddPasoOption()}>add</i>

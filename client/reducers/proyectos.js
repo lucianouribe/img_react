@@ -9,32 +9,38 @@ const proyectos = ( state = [], action ) => {
       return action.proyectos;
       break;
     case 'FILTERED_PROYECTOS':
-      // console.log('filtered proyectos');
+      // console.log('this is FILTERED_PROYECTOS reducer');
       let filteredProyectos = action.losProyectos;
       return filteredProyectos;
       break;
     case 'ADD_PROYECTO':
-      // console.log('this is add proyecto reducer')
+      // console.log('this is ADD_PROYECTO reducer')
       return [action.proyecto, ...state]
       break;
     case 'ADD_PASO':
-      // console.log('this is add paso reducer')
+      console.log('this is ADD_PASO reducer en proyectos')
       allProyectos = state;
       index = allProyectos.findIndex( proy => proy.id === action.proId)
-      return [action.paso, ...state[index]]
+      // state[index].pasos = [action.paso, ...allProyectos[index].pasos]
+      // debugger;
+      // let testing =  allProyectos[index].pasos
+      // debugger;
+      return [action.paso, ...state[index].pasos]
       break;
     case 'ADD_PROCOM':
-      // console.log('this is add procom reducer')
+      // console.log('this is ADD_PROCOM reducer')
       allProyectos = state;
       index = allProyectos.findIndex( proy => proy.id === action.proId)
       indexTwo = allProyectos[index].pasos.findIndex( paso => paso.id === action.pasId)
       return [action.procom, ...state[index].pasos[indexTwo]]
       break;
     case 'EDIT_PROYECTO':
-      // console.log('this is edit proyecto reducer')
+      console.log('this is EDIT_PROYECTO reducer')
       allProyectos = state;
+      // debugger;
       index = allProyectos.findIndex( proy => proy.id === action.proyecto.id)
       allProyectos[index] = action.proyecto
+      // debugger;
       return [...allProyectos]
       break;
     case 'EDIT_PASO':

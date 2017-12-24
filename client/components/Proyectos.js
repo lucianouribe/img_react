@@ -13,9 +13,11 @@ class Proyectos extends React.Component {
     this.state = {
       showForm: false,
       cualTopic: 'javascript',
-      cualSubTopic: ['vanella', 'es6', 'react', 'redux', 'json']
+      cualSubTopic: ['vanella', 'es6', 'react', 'redux', 'json'],
+      memoryBank: null
     }
 
+    this.memoryBankFunction = this.memoryBankFunction.bind(this);
     this.toggleDisplay = this.toggleDisplay.bind(this);
     this.displayChanger = this.displayChanger.bind(this);
     this.addForm = this.addForm.bind(this);
@@ -29,6 +31,7 @@ class Proyectos extends React.Component {
   componentDidMount() {
     $('select').material_select();
 
+
     let full = 'full'
     this.props.dispatch(fetchProyectos(full));
   }
@@ -37,6 +40,33 @@ class Proyectos extends React.Component {
     // $('select').material_select();
   }
 
+  // ALL MIGHTY MEMORY
+  memoryBankFunction(etwas){
+    // filter state if slot with id exist
+    // let newArray = this.state.memoryBank;
+    // newArray = newArray.concat(etwas)
+    let newArray;
+    let tempArray;
+    if(this.state.memoryBank === null) {
+      console.log("i'm an empty array")
+      tempArray = []
+      newArray = tempArray.concat(etwas)
+    } else {
+      console.log("i have something inside")
+      tempArray = this.state.memoryBank.filter(elected => elected['id'] !== etwas["id"])
+      newArray = tempArray.concat(etwas)
+    }
+    // let newArray = this.state.memoryBank;
+    // // let newArray2 = newArray.concat(etwas)
+    // let newArray3 = newArray.filter(elected => elected['id'] !== etwas["id"])
+    // let newArray4 = newArray3.concat(etwas)
+    //
+    //
+    this.setState({memoryBank: newArray })
+  }
+
+
+  // SHOW FORM
   toggleDisplay(){
     this.setState({showForm: !this.state.showForm})
   }
@@ -47,6 +77,7 @@ class Proyectos extends React.Component {
       <input type="text" className="search-input" placeholder="buscar proyecto" ref='searchInput' onChange={this.handleChange} />
     )
   }
+
   // SEARCHER CHANGE HANDLER
   handleChange(){
     this.props.dispatch(fetchProyectos(this.refs.searchInput.value));
@@ -133,9 +164,26 @@ class Proyectos extends React.Component {
   // DISPLAY PROYECTOS
   displayProyectos() {
     let proyectos = this.props.proyectos;
+    // memory banck stuff
+    let bank;
+    let index;
+    let doorStatus;
+    if(this.state.memoryBank === null) {
+      bank = []
+    } else {
+      bank = this.state.memoryBank
+    }
+    // the loop itself
     if(proyectos.length > 0) {
       return proyectos.map( proyecto => {
-        return(<Proyecto key={proyecto.id} elproyecto={proyecto} pasos={proyecto.pasos} />);
+        // door status stuff
+        index = bank.findIndex( elem => elem["id"] === proyecto.id)
+        if(index !== -1) {
+          doorStatus = bank[index].state['show']
+        } else {
+          doorStatus = false
+        }
+        return(<Proyecto key={proyecto.id} elproyecto={proyecto} pasos={proyecto.pasos} memoryBankFunction={this.memoryBankFunction} doorStatus={doorStatus}/>);
       })
     } else {
       return(<h4>Sin Proyectos</h4>);

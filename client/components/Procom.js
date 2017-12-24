@@ -41,7 +41,7 @@ class Procom extends React.Component {
     let pro_content = this.refs.pro_content.value;
     let type_of_issue = this.state.typeOfIssue;
     let pro_style;
-    if(this.state.typeOfIssue) {
+    if(this.state.typeOfIssue === true) {
       pro_style = 'comentario';
     } else {
       pro_style = 'problema';
@@ -88,7 +88,7 @@ class Procom extends React.Component {
         <span className="botones-container">
           <span className={`botones`}>
             <i className="fa fa-check" aria-hidden="true" onClick={()=> this.submitEditProcom()}></i>
-            <i className="fa fa-ban" aria-hidden="true" onClick={()=> this.setState({ showEditButtons: hide})}></i>
+            <i className={`fa fa-ban ${this.state.showEditButtons}`} aria-hidden="true" onClick={()=> this.setState({ showEditButtons: hide})}></i>
             <i className="fa fa-trash" aria-hidden="true" onClick={()=> this.deleteProcom(procom.id, pasoId, proyectoId)}></i>
           </span>
           {this.optionButtons()}

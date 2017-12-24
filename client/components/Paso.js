@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import Procom from './Procom';
 
 import { editPaso, deletePaso, addProcom } from '../actions/proyectos';
+import { addMemoPaso } from '../actions/mymemory';
+
 import { createMarkup } from '../helpers';
 
 
@@ -25,7 +27,7 @@ class Paso extends React.Component {
       showEditButtons: 'hide-buttons',
       radialButtons: 'hide-buttons',
     }
-
+    this.memorySetter = this.memorySetter.bind(this);
     // PROCOMS
     this.setComment = this.setComment.bind(this);
     this.setProblem = this.setProblem.bind(this);
@@ -41,16 +43,13 @@ class Paso extends React.Component {
   }
 
   componentDidMount(){
-    // let estilo = this.props.elpaso.estilo;
-    // this.setState({estilo});
     // para que textareas se ajusten a las medidas de su contenido
     this.setTextareaHeight($('textarea'));
-    // let proyecto = this.props.proyecto;
-    // let paso = this.props.elpaso;
-    // this.props.dispatch(fetchProcoms(proyecto, paso));
+    // this.memorySetter();
   }
 
   componentDidUpdate(){
+    // this.memorySetter();
     // para que los tab funcionen en el textarea
     var textareas = document.getElementsByTagName('textarea');
     var count = textareas.length;
@@ -65,6 +64,20 @@ class Paso extends React.Component {
         }
     }
 
+  }
+
+  // ALL MIGHTY MEMORY
+  memorySetter(){
+    // console.log('im memory setter')
+    let whoAmI = {
+      parentId: this.props.proyecto.id,
+      id: this.props.elpaso.id,
+      state: {
+        showComment: this.state.showComment,
+        showComment: this.state.showComment
+      }
+    }
+    // this.props.dispatch(addMemoPaso(whoAmI))
   }
 
   setTextareaHeight(paso){
@@ -164,6 +177,11 @@ class Paso extends React.Component {
 
     this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
     this.addProcomSetter();
+    if(type_of_issue === true){
+      this.setComment()
+    } else {
+      this.setProblem()
+    }
   }
 
 
@@ -181,14 +199,8 @@ class Paso extends React.Component {
   submitEditPaso(){
     let proyecto = this.props.proyecto;
     let paso = this.props.elpaso;
-    let step;
-    if(this.state.estilo === 'terminal') {
-      step = `terminal >> ${this.refs.step.value}`
-    } else if (this.state.estilo === 'go-to') {
-      step = `go to -> ${this.refs.step.value}`
-    } else {
-      step = this.refs.step.value;
-    }
+    let step = this.refs.step.value;
+
     let orden = 0;
     let tutoLink = '';
     let videoLink = '';
@@ -242,22 +254,36 @@ class Paso extends React.Component {
     )
   }
 
+  extraContent(){
+    let paso = this.props.elpaso;
+    if(paso.estilo === 'terminal') {
+      return(<p className="paso-type">terminal >> </p>)
+    } else if (paso.estilo === 'go-to') {
+      return(<p className="paso-type">go to >> </p>)
+    } else {
+      return(<p></p>)
+    }
+  }
+
   renderPasoContent(){
     let paso = this.props.elpaso;
     let proyecto = this.props.proyecto;
 
     let show = 'show-buttons'
     let hide = 'hide-buttons'
+
+
     return(
       <div>
         {this.procomForm()}
         <div className={`paso-container ${paso.estilo}`}>
+          {this.extraContent()}
           <textarea className="paso-content" ref='step' onChange={()=> this.setState({showEditButtons: show})}>{paso.step}</textarea>
           <span className="botones-container">
             <span className='botones'>
               <i className="fa fa-plus-circle btn-icon" aria-hidden="true" onClick={() => this.addProcomSetter()}></i>
-              <i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true" onClick={() => this.setProblem()}></i>
               <i className="fa fa-comments btn-icon" aria-hidden="true" onClick={() => this.setComment()}></i>
+              <i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true" onClick={() => this.setProblem()}></i>
               <i className="fa fa-trash" aria-hidden="true" onClick={() => this.deletePaso(paso.id, proyecto)}></i>
             </span>
             {this.optionButtons()}

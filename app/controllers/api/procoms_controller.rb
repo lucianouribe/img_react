@@ -30,7 +30,7 @@ class Api::ProcomsController < ApplicationController
 
   def update
     if @api_procom.update(api_procom_params)
-      render :show, status: :ok
+      # render :show, status: :ok
     else
       render json: @api_procom.errors, status: :unprocessable_entity
     end

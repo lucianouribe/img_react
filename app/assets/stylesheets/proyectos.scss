@@ -343,6 +343,9 @@
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   // background: #ccc;
 }
 .paso-content {
@@ -360,10 +363,25 @@
 .paso-container i:hover {
   color: #9DD0FF;
 }
+// go to| terminal
+.paso-type {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 8%;
+          flex: 1 1 8%;
+  font-size: 0.8rem;
+  margin-right: 6px;
+}
+.terminal .paso-type {
+  color: red;
+}
+.go-to .paso-type {
+  color: blue;
+}
 // add paso form
 .add-paso-form {
   padding-top: 1.5rem;
 }
+
 .paso-container textarea {
   border: none!important;
   margin-right: 1rem !important;

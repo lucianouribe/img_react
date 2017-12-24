@@ -10,7 +10,7 @@ import reseter from './reseter';
 import descripcions from './descripcions';
 import colorset from './colorset';
 import proyectos from './proyectos';
-// import pasos from './pasos';
+import mymemory from './mymemory';
 
 const rootReducer = combineReducers({
   routing: routerReducer ,
@@ -24,7 +24,7 @@ const rootReducer = combineReducers({
   descripcions,
   colorset,
   proyectos,
-  // pasos: proyectos
+  mymemory
 });
 
 export default rootReducer;

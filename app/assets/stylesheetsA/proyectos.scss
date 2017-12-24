@@ -289,6 +289,7 @@
   border-radius: 5px;
   padding: 1rem;
   display: flex;
+  align-items: center;
   // background: #ccc;
 }
 .paso-content {
@@ -304,10 +305,23 @@
 .paso-container i:hover {
   color: #9DD0FF;
 }
+// go to| terminal
+.paso-type {
+  flex: 1 1 8%;
+  font-size: 0.8rem;
+  margin-right: 6px;
+}
+.terminal .paso-type {
+  color: red;
+}
+.go-to .paso-type {
+  color: blue;
+}
 // add paso form
 .add-paso-form {
   padding-top: 1.5rem;
 }
+
 .paso-container textarea {
   border: none!important;
   margin-right: 1rem !important;

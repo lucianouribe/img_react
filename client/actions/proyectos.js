@@ -13,7 +13,7 @@ export const addProyecto = (name, topic, subtopic, difficulty, order) => {
       data: { proyecto: { name, topic, subtopic, difficulty, order } }
     }).done( proyecto => {
       console.log('add proyecto done');
-      console.log(proyecto);
+      // console.log(proyecto);
       // debugger;
       dispatch({ type: 'ADD_PROYECTO', proyecto });
     }).fail( data => {
@@ -35,7 +35,7 @@ export const addPaso = (proyecto, step, orden, estilo, tutoLink, videoLink, imag
       data: { paso: { step, orden, estilo, tutoLink, videoLink, imageLink } }
     }).done( paso => {
       console.log('add data done data');
-      console.table(paso);
+      // console.table(paso);
       dispatch({ type: 'ADD_PASO', paso, proId });
     }).fail( data => {
       console.log('add paso fail data')
@@ -46,7 +46,6 @@ export const addPaso = (proyecto, step, orden, estilo, tutoLink, videoLink, imag
 }
 
 export const addProcom = (proId, pasId, pro_content, pro_style, pro_order, type_of_issue) => {
-  console.log('this is add procom action');
   return(dispatch) => {
     $.ajax({
       url: `/api/pasos/${pasId}/procoms`,
@@ -81,7 +80,12 @@ export const fetchProyectos = (wordToMatch) => {
         dispatch({ type: 'ALL_PROYECTOS', proyectos});
       } else {
         let losProyectos = proyectos.filter( proyecto => {
-          if(proyecto.name.match(regex)) return proyecto;
+          if(
+            proyecto.name.match(regex) ||
+            proyecto.topic.match(regex) ||
+            proyecto.subtopic.match(regex) ||
+            proyecto.difficulty.match(regex)
+          ) return proyecto;
         })
         // console.table(losProyectos)
         dispatch({ type: 'FILTERED_PROYECTOS', losProyectos});
@@ -93,6 +97,7 @@ export const fetchProyectos = (wordToMatch) => {
   }
 
 }
+
 
 export const fetchPasos = (proyecto) => {
   console.log('this is fetch pasos')
@@ -137,7 +142,7 @@ export const fetchProcoms = (proyecto, paso) => {
 // EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!
 
 export const editProyecto = (id, name, topic, subtopic, difficulty, order) => {
-  // console.log(`this is edit proyecto con id: ${id}`)
+  console.log(`this is edit proyecto con id: ${id}`)
   // console.log(id, name, topic, subtopic, difficulty, order)
   return(dispatch) => {
     $.ajax({
@@ -146,7 +151,7 @@ export const editProyecto = (id, name, topic, subtopic, difficulty, order) => {
       dataType: 'JSON',
       data: { proyecto: { name, topic, subtopic, difficulty, order } }
     }).done( proyecto => {
-      // console.log('edit proyecto done data');
+      console.log('edit proyecto done data');
       // console.log(proyecto);
       dispatch({ type: 'EDIT_PROYECTO', proyecto });
     }).fail( data => {

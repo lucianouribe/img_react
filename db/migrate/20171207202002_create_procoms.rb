@@ -4,7 +4,7 @@ class CreateProcoms < ActiveRecord::Migration[5.0]
       t.text :pro_content
       t.string :pro_style
       t.integer :pro_order
-      t.boolean :type_of_issue
+      t.string :type_of_issue
       t.belongs_to :paso, foreign_key: true
 
       t.timestamps

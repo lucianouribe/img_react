@@ -2,7 +2,7 @@
 // ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!
 
 export const addProyecto = (name, topic, subtopic, difficulty, order) => {
-  console.log('this is add proyectos action');
+  // console.log('this is add proyectos action');
   // console.log('front end paso 2')
   // debugger;
   return(dispatch) => {
@@ -34,7 +34,7 @@ export const addPaso = (proyecto, step, orden, estilo, tutoLink, videoLink, imag
       dataType: 'JSON',
       data: { paso: { step, orden, estilo, tutoLink, videoLink, imageLink } }
     }).done( paso => {
-      console.log('add data done data');
+      console.log('add paso done data');
       // console.table(paso);
       dispatch({ type: 'ADD_PASO', paso, proId });
     }).fail( data => {
@@ -54,7 +54,7 @@ export const addProcom = (proId, pasId, pro_content, pro_style, pro_order, type_
       data: { procom: { pro_content, pro_style, pro_order, type_of_issue } }
     }).done( procom => {
       console.log('add procom done data');
-      console.log(procom);
+      // console.log(procom);
       dispatch({ type: 'ADD_PROCOM', procom, pasId, proId });
     }).fail( data => {
       console.log('add procom fail data')
@@ -100,8 +100,8 @@ export const fetchProyectos = (wordToMatch) => {
 
 
 export const fetchPasos = (proyecto) => {
-  console.log('this is fetch pasos')
-  console.log(proyecto)
+  // console.log('this is fetch pasos')
+  // console.log(proyecto)
 
   return(dispatch) => {
     $.ajax({
@@ -109,7 +109,7 @@ export const fetchPasos = (proyecto) => {
       type: 'GET',
       dataType: 'JSON'
     }).done( pasos => {
-        console.log('fetch pasos success')
+        // console.log('fetch pasos success')
         dispatch({ type: 'ALL_PASOS', pasos, proyecto});
         // fix this?
     }).fail( data => {
@@ -129,7 +129,7 @@ export const fetchProcoms = (proyecto, paso) => {
       type: 'GET',
       dataType: 'JSON'
     }).done( procoms => {
-        console.log('fetch procoms success')
+        // console.log('fetch procoms success')
         dispatch({ type: 'ALL_PROCOMS', procoms, paso, proyecto});
     }).fail( data => {
       console.log('fetch pasos fail data')
@@ -142,7 +142,7 @@ export const fetchProcoms = (proyecto, paso) => {
 // EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!
 
 export const editProyecto = (id, name, topic, subtopic, difficulty, order) => {
-  console.log(`this is edit proyecto con id: ${id}`)
+  // console.log(`this is edit proyecto con id: ${id}`)
   // console.log(id, name, topic, subtopic, difficulty, order)
   return(dispatch) => {
     $.ajax({
@@ -151,7 +151,7 @@ export const editProyecto = (id, name, topic, subtopic, difficulty, order) => {
       dataType: 'JSON',
       data: { proyecto: { name, topic, subtopic, difficulty, order } }
     }).done( proyecto => {
-      console.log('edit proyecto done data');
+      console.log(`edit proyecto - ${id} - done data`);
       // console.log(proyecto);
       dispatch({ type: 'EDIT_PROYECTO', proyecto });
     }).fail( data => {
@@ -173,8 +173,8 @@ export const editPaso = (proyecto, id, step, orden, estilo, tutoLink, videoLink,
       dataType: 'JSON',
       data: { paso: { step, orden, estilo, tutoLink, videoLink, imageLink } }
     }).done( paso => {
-      console.log('edit paso done data');
-      console.table(paso);
+      console.log(`edit paso - ${id} - done data`);
+      // console.table(paso);
       dispatch({ type: 'EDIT_PASO', paso, pasId, proId });
     }).fail( data => {
       // console.log('edit proyecto fail data')
@@ -184,7 +184,7 @@ export const editPaso = (proyecto, id, step, orden, estilo, tutoLink, videoLink,
 }
 
 export const editProcom = (proId, pasId, id, pro_content, pro_style, pro_order, type_of_issue) => {
-  console.log(`this is edit paso con id: ${id}`)
+  // console.log(`this is edit paso con id: ${id}`)
   // step 2
   console.log(id, pro_content, pro_style, pro_order, type_of_issue)
   return(dispatch) => {
@@ -194,8 +194,8 @@ export const editProcom = (proId, pasId, id, pro_content, pro_style, pro_order, 
       dataType: 'JSON',
       data: { procom: { pro_content, pro_style, pro_order, type_of_issue } }
     }).done( procom => {
-      console.log('edit procom done data');
-      console.table(procom);
+      console.log(`edit procom - ${id} - done data`);
+      // console.table(procom);
       dispatch({ type: 'EDIT_PROCOM', procom, pasId, proId });
     }).fail( data => {
       // console.log('edit proyecto fail data')
@@ -244,7 +244,7 @@ export const deletePaso = (pasId, proyecto) => {
   }
 }
 export const deleteProcom = (procomId, pasoId, proyectoId) => {
-  console.log(`this is delete procom con id: ${procomId} y paso id: ${pasoId}`)
+  // console.log(`this is delete procom con id: ${procomId} y paso id: ${pasoId}`)
   return(dispatch) => {
     $.ajax({
       url: `/api/pasos/${pasoId}/procoms/${procomId}`,

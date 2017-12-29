@@ -8,7 +8,7 @@ class Procom extends React.Component {
     super(props);
 
     this.state = {
-      typeOfIssue: true,
+      typeOfIssue: 'comment',
       showEditButtons: 'hide-buttons',
     }
 
@@ -20,7 +20,8 @@ class Procom extends React.Component {
 
   componentDidMount(){
     this.setTextareaHeight($('textarea'));
-
+    let procom = this.props.procom;
+    this.setState({typeOfIssue: procom.type_of_issue})
   }
 
   setTextareaHeight(paso){
@@ -41,10 +42,12 @@ class Procom extends React.Component {
     let pro_content = this.refs.pro_content.value;
     let type_of_issue = this.state.typeOfIssue;
     let pro_style;
-    if(this.state.typeOfIssue === true) {
-      pro_style = 'comentario';
-    } else {
+    if(this.state.typeOfIssue === 'problem') {
       pro_style = 'problema';
+    } else if (this.state.typeOfIssue === 'example'){
+      pro_style = 'ejemplo';
+    } else {
+      pro_style = "comentario"
     }
     let pro_order = 0;
     // console.log(pro_content)
@@ -59,10 +62,13 @@ class Procom extends React.Component {
   }
 
   optionButtons(){
-    let comentario = true;
-    let problema = false;
+    let ejemplo = 'example';
+    let comentario = 'comment';
+    let problema = 'problem';
     return(
       <div className={`botones btns-radial-procom ${this.state.showEditButtons}`}>
+        <input type='radio' name="radAnswer" id='ejemplo' onClick={()=> this.setState({typeOfIssue: ejemplo})}/>
+        <label htmlFor='ejemplo'><i className="fa fa-eye btn-icon" aria-hidden="true"></i></label>
         <input type='radio' name="radAnswer" id='comentario' onClick={()=> this.setState({typeOfIssue: comentario})}/>
         <label htmlFor='comentario'><i className="fa fa-comments btn-icon" aria-hidden="true"></i></label>
         <input type='radio' name="radAnswer" id='problema' onClick={()=> this.setState({typeOfIssue: problema})}/>

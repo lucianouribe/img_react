@@ -14,7 +14,6 @@ class Proyecto extends React.Component {
     super();
 
     this.state = {
-      show: false,
       showEdit: false,
       showAdd: false,
       cualTopic: null,
@@ -22,10 +21,10 @@ class Proyecto extends React.Component {
       estilo: 'combinado',
       radialButtonsOne: false,
       radialButtonsTwo: 'hide-buttons',
+      highness: '36px'
     }
 
     this.memorySetter = this.memorySetter.bind(this);
-    // this.memoryReceiver = this.memoryReceiver.bind(this);
 
     this.showEditContent = this.showEditContent.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
@@ -36,17 +35,16 @@ class Proyecto extends React.Component {
     this.pasoSubmit = this.pasoSubmit.bind(this);
 
     this.topicChanger = this.topicChanger.bind(this);
+    this.textAreaSizing = this.textAreaSizing.bind(this);
+    this.textAreaSizingTwo = this.textAreaSizingTwo.bind(this);
+    this.setTextareaHeight = this.setTextareaHeight.bind(this);
   }
 
   componentDidMount(){
     $('select').material_select();
-
-    console.log('soy proyecto');
-
+    // console.log('soy proyecto');
     let full = 'full'
     this.props.dispatch(fetchProyectos(full));
-
-    // this.memorySetter();
 
     let proyectoTopic = this.props.elproyecto.topic
     let picked = Tutorials[proyectoTopic];
@@ -69,8 +67,6 @@ class Proyecto extends React.Component {
 
   componentDidUpdate() {
     $('select').material_select();
-
-    // this.memorySetter();
     // para que los tab funcionen en el textarea
     var textareas = document.getElementsByTagName('textarea');
     var count = textareas.length;
@@ -86,13 +82,33 @@ class Proyecto extends React.Component {
     }
   }
 
+  //NO ESTA EN FUNCIONAMIENTO, PERO FUNCIONA AL PELO EN PASOS, MIRAR SI SE PUEDE EN REEMPLAZO DE TEXT AREA SIZING!
+  // this.setTextareaHeight($('textarea'));
+  setTextareaHeight(paso){
+    paso.each(function(index, item){
+      item.style.height = item.scrollHeight+'px';
+    });
+  }
+
+  textAreaSizing(){
+    let textareaToResize = document.getElementsByClassName('paso-content');
+    this.setState({highness: `${textareaToResize[0].scrollHeight}px`})
+  }
+
+  textAreaSizingTwo(){
+    // let textareaToResize = document.getElementsByClassName('paso-content');
+    let measuringCanvas = document.getElementsByClassName('paso-container');
+    // debugger;
+    this.setState({highness: `${measuringCanvas[0].scrollHeight}px`})
+  }
+
   // ALL MIGHTY MEMORY
-  memorySetter(){
-    // console.log('im memory setter')
+  memorySetter(show){
+    // console.log('im memory setter in proyecto')
     let whoAmI = {
       id: this.props.elproyecto.id,
       state: {
-        show: !this.state.show
+        show: show
       }
     }
     // this.props.dispatch(addMemoProyect(whoAmI))
@@ -180,9 +196,8 @@ class Proyecto extends React.Component {
 
   // PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!
   showPasosFu(){
-    // debugger;
-    this.setState({show: !this.state.show})
-    this.memorySetter();
+    let show = !this.props.doorStatus;
+    this.memorySetter(show);
   }
 
   showAddPasoOption(){
@@ -199,22 +214,29 @@ class Proyecto extends React.Component {
     let estilo = this.state.estilo;
     let proyecto = this.props.elproyecto;
     this.props.dispatch(addPaso(proyecto, step, orden, estilo, tutoLink, videoLink, imageLink));
-    this.setState({showAdd: false, show: true})
-    this.memorySetter();
+    this.setState({showAdd: false})
+    let show = true
+    this.memorySetter(show);
   }
 
   // ADD PASO FORM
   addPasoForm(){
+    let altura = this.state.highness
+    let inlineStyle = {
+      height: altura,
+    };
     if(this.state.showAdd){
-      let fullCode = 'full-code'
-      let codigo = 'codigo'
-      let terminal = 'terminal'
       let goTo = 'go-to'
-      let shortcut = 'shortcut'
+      let terminal = 'terminal'
+      let codigo = 'codigo'
+      let paragraph = 'paragraph'
+      let linkTuto = 'linkTuto'
+      let linkVideo = 'linkVideo'
+      let linkImage = 'linkImage'
       return(
-        <div className="">
+        <div className="paso-container-form">
           <form className="paso-container">
-            <textarea className="paso-content" ref='step' placeholder="Add a new step"></textarea>
+            <textarea className="paso-content" style={inlineStyle} ref='step' placeholder="Add a new step" onChange={() => this.textAreaSizing()}></textarea>
             <span className="botones-container">
               <div className="botones-form">
                 <span><i className="fa fa-download" aria-hidden="true" onClick={()=> this.showRadialButtons()}></i></span>
@@ -222,16 +244,20 @@ class Proyecto extends React.Component {
                 <span onClick={this.showAddPasoOption}><i className="fa fa-ban" aria-hidden="true" ></i></span>
               </div>
               <div className={`edit-btns-estilo ${this.state.radialButtonsTwo}`}>
-                <input type='radio' name="radAnswer" id='full-code' onClick={()=> this.setState({estilo: fullCode})}/>
-                <label htmlFor='full-code'>full code</label>
-                <input type='radio' name="radAnswer" id='codigo' onClick={()=> this.setState({estilo: codigo})}/>
-                <label htmlFor='codigo'>code</label>
+                <input type='radio' name="radAnswer" id='go-to' onClick={()=> console.log('yupi!')}/>
+                <label htmlFor='go-to'><i className="fa fa-long-arrow-right" aria-hidden="true"></i></label>
                 <input type='radio' name="radAnswer" id='terminal' onClick={()=> this.setState({estilo: terminal})}/>
-                <label htmlFor='terminal'>terminal</label>
-                <input type='radio' name="radAnswer" id='go-to' onClick={()=> this.setState({estilo: goTo})}/>
-                <label htmlFor='go-to'>go to</label>
-                <input type='radio' name="radAnswer" id='shortcut' onClick={()=> this.setState({estilo: shortcut})}/>
-                <label htmlFor='shortcut'>shortcut</label>
+                <label htmlFor='terminal'><i className="fa fa-terminal" aria-hidden="true"></i></label>
+                <input type='radio' name="radAnswer" id='codigo' onClick={()=> this.setState({estilo: codigo})}/>
+                <label htmlFor='codigo'><i className="fa fa-code" aria-hidden="true"></i></label>
+                <input type='radio' name="radAnswer" id='paragraph' onClick={()=> this.setState({estilo: paragraph})}/>
+                <label htmlFor='paragraph'><i className="fa fa-paragraph" aria-hidden="true"></i></label>
+                <input type='radio' name="radAnswer" id='link-tuto' onClick={()=> this.setState({estilo: linkTuto})}/>
+                <label htmlFor='link-tuto'><i className="fa fa-link" aria-hidden="true"></i></label>
+                <input type='radio' name="radAnswer" id='link-video' onClick={()=> this.setState({estilo: linkVideo})}/>
+                <label htmlFor='link-video'><i className="fa fa-video-camera" aria-hidden="true"></i></label>
+                <input type='radio' name="radAnswer" id='link-image' onClick={()=> this.setState({estilo: linkImage})}/>
+                <label htmlFor='link-image'><i className="fa fa-picture-o" aria-hidden="true"></i></label>
               </div>
             </span>
           </form>
@@ -247,15 +273,35 @@ class Proyecto extends React.Component {
     } else {
       this.setState({radialButtonsTwo: 'hide-buttons'});
     }
+    console.log('here!')
+    this.textAreaSizingTwo()
   }
 
-  pasoLooper(){
+  pasosDisplay(){
+    // es aqui, al final borrar showPasosFu
     if(this.props.doorStatus) {
       let showPasos = this.props.pasos;
       let proyecto = this.props.elproyecto;
+      let bank = this.props.newbank;
+      let index;
+      let doorStatus2;
+      let typeStatus2;
+
       if(showPasos.length > 0) {
         return showPasos.map( paso => {
-          return(<Paso key={paso.id} elpaso={paso} proyecto={proyecto} procoms={paso.procoms} showPasosFu={this.showPasosFu}/>);
+
+          if(bank !== 'nope'){
+            index = bank.findIndex( elem => elem["id"] === paso.id)
+            if(index !== -1) {
+              doorStatus2 = bank[index].state['showProcom']
+              typeStatus2 = bank[index].state['typeOfProcom']
+            } else {
+              doorStatus2 = false
+              typeStatus2 = ''
+            }
+          }
+
+          return(<Paso key={paso.id} elpaso={paso} proyecto={proyecto} procoms={paso.procoms} showPasosFu={this.showPasosFu} memoryBankFunction={this.props.memoryBankFunction} showProcom={doorStatus2} typeOfProcom={typeStatus2}/>);
         })
       } else {
         return(<p className="nothing-flash">Sin Pasos</p>);
@@ -290,13 +336,14 @@ class Proyecto extends React.Component {
     }
   }
 
-
   render(){
     return (
       <div>
         {this.proyectoUnitShowCase()}
+        <div className="pasos-container">
+          {this.pasosDisplay()}
+        </div>
         {this.addPasoForm()}
-        {this.pasoLooper()}
       </div>
     )
   }

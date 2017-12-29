@@ -86,9 +86,9 @@ puts "pasos seeded"
   Procom.create(
     paso_id: rand(1..10),
     pro_content: Faker::Lorem.paragraph(1),
-    pro_style: ['basic', 'medium', 'advanced', 'sayayin'].sample,
+    pro_style: ['comentario', 'problema', 'ejemplo'].sample,
     pro_order: rand(1..20),
-    type_of_issue: [true, false].sample
+    type_of_issue: ['comment', 'problem', 'example'].sample
   )
 end
 

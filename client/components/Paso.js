@@ -16,21 +16,17 @@ class Paso extends React.Component {
 
     this.state = {
       //procoms (child)
-      showComment: false,
-      showProblem: false,
-      typeOfProcom: true,
       showAddProcomForm: false,
       showEditPasoForm: false,
-      typeOfIssue: true,
+      typeOfIssue: 'comment',
       //pasos (parent)
-      estilo: 'full-code',
+      estilo: 'paragraph',
       showEditButtons: 'hide-buttons',
       radialButtons: 'hide-buttons',
     }
     this.memorySetter = this.memorySetter.bind(this);
     // PROCOMS
-    this.setComment = this.setComment.bind(this);
-    this.setProblem = this.setProblem.bind(this);
+    this.showProcomsFu = this.showProcomsFu.bind(this);
     this.displayProcoms = this.displayProcoms.bind(this);
     this.addProcomSetter = this.addProcomSetter.bind(this);
     this.procomSubmit = this.procomSubmit.bind(this);
@@ -45,11 +41,9 @@ class Paso extends React.Component {
   componentDidMount(){
     // para que textareas se ajusten a las medidas de su contenido
     this.setTextareaHeight($('textarea'));
-    // this.memorySetter();
   }
 
   componentDidUpdate(){
-    // this.memorySetter();
     // para que los tab funcionen en el textarea
     var textareas = document.getElementsByTagName('textarea');
     var count = textareas.length;
@@ -67,19 +61,22 @@ class Paso extends React.Component {
   }
 
   // ALL MIGHTY MEMORY
-  memorySetter(){
-    // console.log('im memory setter')
+  memorySetter(show, how){
+    // console.log('im memory setter in paso')
     let whoAmI = {
-      parentId: this.props.proyecto.id,
+      proyectoId: this.props.proyecto.id,
       id: this.props.elpaso.id,
       state: {
-        showComment: this.state.showComment,
-        showComment: this.state.showComment
+        showProcom: show,
+        typeOfProcom: how
       }
     }
-    // this.props.dispatch(addMemoPaso(whoAmI))
+
+    this.props.memoryBankFunction(whoAmI)
   }
 
+  // VARIABLE HIGHNESS OF THE PASO CONTENT TEXTAREA
+  // check if it can be a helper
   setTextareaHeight(paso){
     paso.each(function(index, item){
       item.style.height = item.scrollHeight+'px';
@@ -88,12 +85,9 @@ class Paso extends React.Component {
 
 
   // PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!
-  setComment(){
-    this.setState({showComment: !this.state.showComment, typeOfProcom: true});
-  }
-
-  setProblem(){
-    this.setState({showProblem: !this.state.showProblem, typeOfProcom: false});
+  showProcomsFu(how){
+    let show = !this.props.showProcom
+    this.memorySetter(show, how);
   }
 
   displayProcoms(){
@@ -103,11 +97,13 @@ class Paso extends React.Component {
     let numeracionComment = 0;
     let numeracionProblems = 0;
 
-    let comments = this.props.procoms.filter( comme => { if(comme.type_of_issue === true) return comme })
+    let comments = this.props.procoms.filter( comme => { if(comme.type_of_issue === 'comment') return comme })
 
-    let problems = this.props.procoms.filter( proble => { if(proble.type_of_issue === false) return proble })
+    let problems = this.props.procoms.filter( proble => { if(proble.type_of_issue === 'problem') return proble })
 
-    if(this.state.showComment && this.state.typeOfProcom === true) {
+    // add example
+
+    if(this.props.showProcom && (this.props.typeOfProcom === 'comment' || this.props.typeOfProcom === 'example')) {
       if(showProcoms.length > 0) {
         return comments.map( procom => {
           numeracionComment++
@@ -116,7 +112,7 @@ class Paso extends React.Component {
       } else {
         return (<p className="nothing-flash">no comments</p>)
       }
-    } else if (this.state.showProblem && this.state.typeOfProcom === false) {
+    } else if (this.props.showProcom && this.props.typeOfProcom === 'problem') {
       if(showProcoms.length > 0) {
         return problems.map( procom => {
           numeracionProblems++
@@ -136,8 +132,9 @@ class Paso extends React.Component {
 
   //PROCOM FORM
   procomForm(){
-    let comentario = true;
-    let problema = false;
+    let ejemplo = 'example';
+    let comentario = 'comment';
+    let problema = 'problem';
     if(this.state.showAddProcomForm){
       return(
         <div className="">
@@ -149,10 +146,12 @@ class Paso extends React.Component {
                 <span><i className="fa fa-ban" aria-hidden="true" onClick={()=> this.addProcomSetter()}></i></span>
               </div>
               <div className='edit-btns-estilo'>
+                <input type='radio' name="radAnswer" id='ejemplo' onClick={()=> this.setState({typeOfIssue: ejemplo})}/>
+                <label htmlFor='ejemplo'><i className="fa fa-eye btn-icon" aria-hidden="true"></i></label>
                 <input type='radio' name="radAnswer" id='comentario' onClick={()=> this.setState({typeOfIssue: comentario})}/>
-                <label htmlFor='comentario'>comment</label>
+                <label htmlFor='comentario'><i className="fa fa-comments btn-icon" aria-hidden="true"></i></label>
                 <input type='radio' name="radAnswer" id='problema' onClick={()=> this.setState({typeOfIssue: problema})}/>
-                <label htmlFor='problema'>problem</label>
+                <label htmlFor='comentario'><i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true"></i></label>
               </div>
             </span>
           </form>
@@ -168,20 +167,21 @@ class Paso extends React.Component {
     let pro_content = this.refs.pro_content.value;
     let type_of_issue = this.state.typeOfIssue;
     let pro_style;
-    if(this.state.typeOfIssue) {
-      pro_style = 'comentario';
-    } else {
+    if(this.state.typeOfIssue === 'problem') {
       pro_style = 'problema';
+    } else if (this.state.typeOfIssue === 'example'){
+      pro_style = 'ejemplo';
+    } else {
+      pro_style = "comentario"
     }
     let pro_order = 0;
-
     this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
     this.addProcomSetter();
-    if(type_of_issue === true){
-      this.setComment()
-    } else {
-      this.setProblem()
-    }
+    // if(type_of_issue === true){
+    //   this.setComment()
+    // } else {
+    //   this.setProblem()
+    // }
   }
 
 
@@ -213,7 +213,6 @@ class Paso extends React.Component {
   //DELETE
   deletePaso(pasId, proyecto){
     console.log('delete me');
-    // debugger;
     this.props.dispatch(deletePaso(pasId, proyecto));
     let command = true
     this.props.showPasosFu(command)
@@ -233,23 +232,29 @@ class Paso extends React.Component {
   }
 
   radialButtons(){
-    let fullCode = 'full-code'
-    let codigo = 'codigo'
-    let terminal = 'terminal'
     let goTo = 'go-to'
-    let shortcut = 'shortcut'
+    let terminal = 'terminal'
+    let codigo = 'codigo'
+    let paragraph = 'paragraph'
+    let linkTuto = 'linkTuto'
+    let linkVideo = 'linkVideo'
+    let linkImage = 'linkImage'
     return(
       <div className={`edit-btns-estilo ${this.state.radialButtons}`}>
-        <input type='radio' name="radAnswer" id='full-code' onClick={()=> this.setState({estilo: fullCode})}/>
-        <label htmlFor='full-code'>full code</label>
-        <input type='radio' name="radAnswer" id='codigo' onClick={()=> this.setState({estilo: codigo})}/>
-        <label htmlFor='codigo'>code</label>
-        <input type='radio' name="radAnswer" id='terminal' onClick={()=> this.setState({estilo: terminal})}/>
-        <label htmlFor='terminal'>terminal</label>
         <input type='radio' name="radAnswer" id='go-to' onClick={()=> this.setState({estilo: goTo})}/>
-        <label htmlFor='go-to'>go to</label>
-        <input type='radio' name="radAnswer" id='shortcut' onClick={()=> this.setState({estilo: shortcut})}/>
-        <label htmlFor='shortcut'>shortcut</label>
+        <label htmlFor='go-to'><i className="fa fa-long-arrow-right" aria-hidden="true"></i></label>
+        <input type='radio' name="radAnswer" id='terminal' onClick={()=> this.setState({estilo: terminal})}/>
+        <label htmlFor='terminal'><i className="fa fa-terminal" aria-hidden="true"></i></label>
+        <input type='radio' name="radAnswer" id='codigo' onClick={()=> this.setState({estilo: codigo})}/>
+        <label htmlFor='codigo'><i className="fa fa-code" aria-hidden="true"></i></label>
+        <input type='radio' name="radAnswer" id='paragraph' onClick={()=> this.setState({estilo: paragraph})}/>
+        <label htmlFor='paragraph'><i className="fa fa-paragraph" aria-hidden="true"></i></label>
+        <input type='radio' name="radAnswer" id='link-tuto' onClick={()=> this.setState({estilo: linkTuto})}/>
+        <label htmlFor='link-tuto'><i className="fa fa-link" aria-hidden="true"></i></label>
+        <input type='radio' name="radAnswer" id='link-video' onClick={()=> this.setState({estilo: linkVideo})}/>
+        <label htmlFor='link-video'><i className="fa fa-video-camera" aria-hidden="true"></i></label>
+        <input type='radio' name="radAnswer" id='link-image' onClick={()=> this.setState({estilo: linkImage})}/>
+        <label htmlFor='link-image'><i className="fa fa-picture-o" aria-hidden="true"></i></label>
       </div>
     )
   }
@@ -257,11 +262,11 @@ class Paso extends React.Component {
   extraContent(){
     let paso = this.props.elpaso;
     if(paso.estilo === 'terminal') {
-      return(<p className="paso-type">terminal >> </p>)
+      return(<i className="fa fa-terminal paso-type" aria-hidden="true"></i>)
     } else if (paso.estilo === 'go-to') {
-      return(<p className="paso-type">go to >> </p>)
+      return(<i className="fa fa-long-arrow-right paso-type" aria-hidden="true"></i>)
     } else {
-      return(<p></p>)
+      return(<p className="paso-type"></p>)
     }
   }
 
@@ -269,9 +274,11 @@ class Paso extends React.Component {
     let paso = this.props.elpaso;
     let proyecto = this.props.proyecto;
 
-    let show = 'show-buttons'
-    let hide = 'hide-buttons'
-
+    let show = 'show-buttons';
+    let hide = 'hide-buttons';
+    let comentario = 'comment';
+    let problema = 'problem';
+    let ejemplo = 'example';
 
     return(
       <div>
@@ -282,8 +289,8 @@ class Paso extends React.Component {
           <span className="botones-container">
             <span className='botones'>
               <i className="fa fa-plus-circle btn-icon" aria-hidden="true" onClick={() => this.addProcomSetter()}></i>
-              <i className="fa fa-comments btn-icon" aria-hidden="true" onClick={() => this.setComment()}></i>
-              <i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true" onClick={() => this.setProblem()}></i>
+              <i className="fa fa-comments btn-icon" aria-hidden="true" onClick={() => this.showProcomsFu(comentario)}></i>
+              <i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true" onClick={() => this.showProcomsFu(problema)}></i>
               <i className="fa fa-trash" aria-hidden="true" onClick={() => this.deletePaso(paso.id, proyecto)}></i>
             </span>
             {this.optionButtons()}

@@ -18,9 +18,7 @@ class Proyecto extends React.Component {
       showAdd: false,
       cualTopic: null,
       cualSubTopic: null,
-      estilo: 'combinado',
-      radialButtonsOne: false,
-      radialButtonsTwo: 'hide-buttons',
+      estilo: 'paragraph',
       highness: '36px'
     }
 
@@ -91,7 +89,7 @@ class Proyecto extends React.Component {
   }
 
   textAreaSizing(){
-    let textareaToResize = document.getElementsByClassName('paso-content');
+    let textareaToResize = document.getElementsByClassName('paso-content-text');
     this.setState({highness: `${textareaToResize[0].scrollHeight}px`})
   }
 
@@ -222,9 +220,8 @@ class Proyecto extends React.Component {
   // ADD PASO FORM
   addPasoForm(){
     let altura = this.state.highness
-    let inlineStyle = {
-      height: altura,
-    };
+    let inlineStyle = {height: altura};
+
     if(this.state.showAdd){
       let goTo = 'go-to'
       let terminal = 'terminal'
@@ -233,52 +230,69 @@ class Proyecto extends React.Component {
       let linkTuto = 'linkTuto'
       let linkVideo = 'linkVideo'
       let linkImage = 'linkImage'
+
+      let goToS;
+      let terminalS;
+      let codigoS;
+      let paragraphS;
+      let linkTutoS;
+      let linkVideoS;
+      let linkImageS;
+
+      let elected = {color: 'red', fontSize: '1.4rem'}
+
+      switch (this.state.estilo) {
+        case 'go-to':
+          goToS = elected
+          break;
+        case 'terminal':
+          terminalS = elected
+          break;
+        case 'codigo':
+          codigoS = elected
+          break;
+        case 'paragraph':
+          paragraphS = elected
+          break;
+        case 'linkTuto':
+          linkTutoS = elected
+          break;
+        case 'linkVideo':
+          linkVideoS = elected
+          break;
+        case 'linkImage':
+          linkImageS = elected
+          break;
+        default:
+
+      }
       return(
-        <div className="paso-container-form">
-          <form className="paso-container">
-            <textarea className="paso-content" style={inlineStyle} ref='step' placeholder="Add a new step" onChange={() => this.textAreaSizing()}></textarea>
-            <span className="botones-container">
+        <div className="">
+          <form className="paso-container-form">
+            <span className="texta-botones-container">
               <div className="botones-form">
-                <span><i className="fa fa-download" aria-hidden="true" onClick={()=> this.showRadialButtons()}></i></span>
-                <span onClick={this.pasoSubmit}><i className="fa fa-check" aria-hidden="true" ></i></span>
-                <span onClick={this.showAddPasoOption}><i className="fa fa-ban" aria-hidden="true" ></i></span>
-              </div>
-              <div className={`edit-btns-estilo ${this.state.radialButtonsTwo}`}>
-                <input type='radio' name="radAnswer" id='go-to' onClick={()=> console.log('yupi!')}/>
-                <label htmlFor='go-to'><i className="fa fa-long-arrow-right" aria-hidden="true"></i></label>
-                <input type='radio' name="radAnswer" id='terminal' onClick={()=> this.setState({estilo: terminal})}/>
-                <label htmlFor='terminal'><i className="fa fa-terminal" aria-hidden="true"></i></label>
-                <input type='radio' name="radAnswer" id='codigo' onClick={()=> this.setState({estilo: codigo})}/>
-                <label htmlFor='codigo'><i className="fa fa-code" aria-hidden="true"></i></label>
-                <input type='radio' name="radAnswer" id='paragraph' onClick={()=> this.setState({estilo: paragraph})}/>
-                <label htmlFor='paragraph'><i className="fa fa-paragraph" aria-hidden="true"></i></label>
-                <input type='radio' name="radAnswer" id='link-tuto' onClick={()=> this.setState({estilo: linkTuto})}/>
-                <label htmlFor='link-tuto'><i className="fa fa-link" aria-hidden="true"></i></label>
-                <input type='radio' name="radAnswer" id='link-video' onClick={()=> this.setState({estilo: linkVideo})}/>
-                <label htmlFor='link-video'><i className="fa fa-video-camera" aria-hidden="true"></i></label>
-                <input type='radio' name="radAnswer" id='link-image' onClick={()=> this.setState({estilo: linkImage})}/>
-                <label htmlFor='link-image'><i className="fa fa-picture-o" aria-hidden="true"></i></label>
+                <span onClick={this.pasoSubmit}><i className="fa fa-check listo" aria-hidden="true" ></i></span>
+
+                <i className="fa fa-long-arrow-right" style={goToS} aria-hidden="true" onClick={()=> this.setState({ estilo: goTo})}></i>
+                <i className="fa fa-terminal" style={terminalS} aria-hidden="true" onClick={()=> this.setState({ estilo: terminal})}></i>
+                <i className="fa fa-code" style={codigoS} aria-hidden="true" onClick={()=> this.setState({ estilo: codigo})}></i>
+                <i className="fa fa-paragraph" style={paragraphS} aria-hidden="true" onClick={()=> this.setState({ estilo: paragraph})}></i>
+                <i className="fa fa-link" style={linkTutoS} aria-hidden="true" onClick={()=> this.setState({ estilo: linkTuto})}></i>
+                <i className="fa fa-video-camera" style={linkVideoS} aria-hidden="true" onClick={()=> this.setState({ estilo: linkVideo})}></i>
+                <i className="fa fa-picture-o" style={linkImageS} aria-hidden="true" onClick={()=> this.setState({ estilo: linkImage})}></i>
+
+                <span onClick={this.showAddPasoOption}><i className="fa fa-ban pues-no" aria-hidden="true" ></i></span>
               </div>
             </span>
+            <textarea className="paso-content-text" style={inlineStyle} ref='step' placeholder="Add a new step" onChange={() => this.textAreaSizing()}></textarea>
           </form>
         </div>
       )
     }
   }
 
-  showRadialButtons(){
-    this.setState({radialButtonsOne: !this.state.radialButtonsOne});
-    if(this.state.radialButtonsOne){
-      this.setState({radialButtonsTwo: 'show-buttons'});
-    } else {
-      this.setState({radialButtonsTwo: 'hide-buttons'});
-    }
-    console.log('here!')
-    this.textAreaSizingTwo()
-  }
-
   pasosDisplay(){
-    // es aqui, al final borrar showPasosFu
+    // es aqui, esto estaba antes de procoms={paso.procoms}: showPasosFu={this.showPasosFu}
     if(this.props.doorStatus) {
       let showPasos = this.props.pasos;
       let proyecto = this.props.elproyecto;
@@ -301,7 +315,7 @@ class Proyecto extends React.Component {
             }
           }
 
-          return(<Paso key={paso.id} elpaso={paso} proyecto={proyecto} procoms={paso.procoms} showPasosFu={this.showPasosFu} memoryBankFunction={this.props.memoryBankFunction} showProcom={doorStatus2} typeOfProcom={typeStatus2}/>);
+          return(<Paso key={paso.id} elpaso={paso} proyecto={proyecto} procoms={paso.procoms} memoryBankFunction={this.props.memoryBankFunction} showProcom={doorStatus2} typeOfProcom={typeStatus2}/>);
         })
       } else {
         return(<p className="nothing-flash">Sin Pasos</p>);

@@ -16,13 +16,11 @@ class Paso extends React.Component {
 
     this.state = {
       //procoms (child)
-      showAddProcomForm: false,
-      showEditPasoForm: false,
-      typeOfIssue: 'comment',
+      showAddProcomForm: false, // true: to show the form
+      typeOfIssue: 'comment', // can be comment, example, problem
       //pasos (parent)
-      estilo: 'paragraph',
-      showEditButtons: 'hide-buttons',
-      radialButtons: 'hide-buttons',
+      estilo: 'paragraph', // standard estilo
+      showEditButtons: 'hide-buttons', // show-buttons: to show the form
     }
     this.memorySetter = this.memorySetter.bind(this);
     // PROCOMS
@@ -31,7 +29,6 @@ class Paso extends React.Component {
     this.addProcomSetter = this.addProcomSetter.bind(this);
     this.procomSubmit = this.procomSubmit.bind(this);
     // PASO CRUDS
-    this.showEditPaso = this.showEditPaso.bind(this);
     this.submitEditPaso = this.submitEditPaso.bind(this);
     this.deletePaso = this.deletePaso.bind(this);
 
@@ -39,11 +36,15 @@ class Paso extends React.Component {
   }
 
   componentDidMount(){
+    $('select').material_select();
     // para que textareas se ajusten a las medidas de su contenido
     this.setTextareaHeight($('textarea'));
+    let estilo = this.props.elpaso.estilo;
+    this.setState({estilo})
   }
 
   componentDidUpdate(){
+    $('select').material_select();
     // para que los tab funcionen en el textarea
     var textareas = document.getElementsByTagName('textarea');
     var count = textareas.length;
@@ -187,51 +188,33 @@ class Paso extends React.Component {
 
   // PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!
 
-  // OPTIONS FOR EDIT
-  showEditPaso(){
-    this.setState({showEditPasoForm: !this.state.showEditPasoForm})
-  }
-
-  showRadialButtons(){
-    this.setState({radialButtons: 'show-buttons'});
-  }
+  // EDIT PASO
 
   submitEditPaso(){
+    // console.log('submiting edit paso')
     let proyecto = this.props.proyecto;
     let paso = this.props.elpaso;
     let step = this.refs.step.value;
-
     let orden = 0;
+    let estilo = this.state.estilo;
     let tutoLink = '';
     let videoLink = '';
     let imageLink = '';
-    let estilo = this.state.estilo;
     this.props.dispatch(editPaso(proyecto, paso.id, step, orden, estilo, tutoLink, videoLink, imageLink));
-    this.setState({showEditButtons: 'hide-buttons', radialButtons: 'hide-buttons'})
+    this.setState({showEditButtons: 'hide-buttons'})
   }
 
-  //DELETE
+  // DELETE PASO
   deletePaso(pasId, proyecto){
-    console.log('delete me');
+    // console.log('delete me');
     this.props.dispatch(deletePaso(pasId, proyecto));
-    let command = true
-    this.props.showPasosFu(command)
   }
-
 
   // RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!
+  // this should be an independent component
   optionButtons(){
     let hide = 'hide-buttons'
-    return(
-      <div className={`botones-form ${this.state.showEditButtons}`}>
-        <span><i className="fa fa-download" aria-hidden="true" onClick={()=> this.showRadialButtons()}></i></span>
-        <span><i className="fa fa-check" aria-hidden="true" onClick={()=> this.submitEditPaso()}></i></span>
-        <span><i className="fa fa-ban" aria-hidden="true" onClick={()=> this.setState({showEditButtons: hide, radialButtons: hide})}></i></span>
-      </div>
-    )
-  }
 
-  radialButtons(){
     let goTo = 'go-to'
     let terminal = 'terminal'
     let codigo = 'codigo'
@@ -239,23 +222,59 @@ class Paso extends React.Component {
     let linkTuto = 'linkTuto'
     let linkVideo = 'linkVideo'
     let linkImage = 'linkImage'
+
+    let goToS;
+    let terminalS;
+    let codigoS;
+    let paragraphS;
+    let linkTutoS;
+    let linkVideoS;
+    let linkImageS;
+
+    let elected = {color: 'red', fontSize: '1.4rem'}
+
+    switch (this.state.estilo) {
+      case 'go-to':
+        goToS = elected
+        break;
+      case 'terminal':
+        terminalS = elected
+        break;
+      case 'codigo':
+        codigoS = elected
+        break;
+      case 'paragraph':
+        paragraphS = elected
+        break;
+      case 'linkTuto':
+        linkTutoS = elected
+        break;
+      case 'linkVideo':
+        linkVideoS = elected
+        break;
+      case 'linkImage':
+        linkImageS = elected
+        break;
+      default:
+
+    }
+
     return(
-      <div className={`edit-btns-estilo ${this.state.radialButtons}`}>
-        <input type='radio' name="radAnswer" id='go-to' onClick={()=> this.setState({estilo: goTo})}/>
-        <label htmlFor='go-to'><i className="fa fa-long-arrow-right" aria-hidden="true"></i></label>
-        <input type='radio' name="radAnswer" id='terminal' onClick={()=> this.setState({estilo: terminal})}/>
-        <label htmlFor='terminal'><i className="fa fa-terminal" aria-hidden="true"></i></label>
-        <input type='radio' name="radAnswer" id='codigo' onClick={()=> this.setState({estilo: codigo})}/>
-        <label htmlFor='codigo'><i className="fa fa-code" aria-hidden="true"></i></label>
-        <input type='radio' name="radAnswer" id='paragraph' onClick={()=> this.setState({estilo: paragraph})}/>
-        <label htmlFor='paragraph'><i className="fa fa-paragraph" aria-hidden="true"></i></label>
-        <input type='radio' name="radAnswer" id='link-tuto' onClick={()=> this.setState({estilo: linkTuto})}/>
-        <label htmlFor='link-tuto'><i className="fa fa-link" aria-hidden="true"></i></label>
-        <input type='radio' name="radAnswer" id='link-video' onClick={()=> this.setState({estilo: linkVideo})}/>
-        <label htmlFor='link-video'><i className="fa fa-video-camera" aria-hidden="true"></i></label>
-        <input type='radio' name="radAnswer" id='link-image' onClick={()=> this.setState({estilo: linkImage})}/>
-        <label htmlFor='link-image'><i className="fa fa-picture-o" aria-hidden="true"></i></label>
-      </div>
+      <span className={`texta-botones-container ${this.state.showEditButtons}`}>
+        <div className="botones-form">
+          <span><i className="fa fa-check listo" aria-hidden="true" onClick={()=> this.submitEditPaso()}></i></span>
+
+          <i className="fa fa-long-arrow-right" style={goToS} aria-hidden="true" onClick={()=> this.setState({ estilo: goTo})}></i>
+          <i className="fa fa-terminal" style={terminalS} aria-hidden="true" onClick={()=> this.setState({ estilo: terminal})}></i>
+          <i className="fa fa-code" style={codigoS} aria-hidden="true" onClick={()=> this.setState({ estilo: codigo})}></i>
+          <i className="fa fa-paragraph" style={paragraphS} aria-hidden="true" onClick={()=> this.setState({ estilo: paragraph})}></i>
+          <i className="fa fa-link" style={linkTutoS} aria-hidden="true" onClick={()=> this.setState({ estilo: linkTuto})}></i>
+          <i className="fa fa-video-camera" style={linkVideoS} aria-hidden="true" onClick={()=> this.setState({ estilo: linkVideo})}></i>
+          <i className="fa fa-picture-o" style={linkImageS} aria-hidden="true" onClick={()=> this.setState({ estilo: linkImage})}></i>
+
+          <span><i className="fa fa-ban pues-no" aria-hidden="true" onClick={()=> this.setState({showEditButtons: hide})}></i></span>
+        </div>
+      </span>
     )
   }
 
@@ -280,12 +299,20 @@ class Paso extends React.Component {
     let problema = 'problem';
     let ejemplo = 'example';
 
+    let inlineStyle = {height: '18px'};
+    let emergency;
+    if(this.state.showEditButtons === 'show-buttons') {
+      emergency = {border: '2px solid rgba(255,0,0,1)', borderRadius: '1rem'};
+    }
     return(
       <div>
         {this.procomForm()}
-        <div className={`paso-container ${paso.estilo}`}>
+        <div className={`paso-container ${paso.estilo}`} style={emergency}>
           {this.extraContent()}
-          <textarea className="paso-content" ref='step' onChange={()=> this.setState({showEditButtons: show})}>{paso.step}</textarea>
+          <div className="paso-content">
+            {this.optionButtons()}
+            <textarea className="paso-content-text" style={inlineStyle} ref='step' onChange={()=> this.setState({showEditButtons: show})}>{paso.step}</textarea>
+          </div>
           <span className="botones-container">
             <span className='botones'>
               <i className="fa fa-plus-circle btn-icon" aria-hidden="true" onClick={() => this.addProcomSetter()}></i>
@@ -293,8 +320,6 @@ class Paso extends React.Component {
               <i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true" onClick={() => this.showProcomsFu(problema)}></i>
               <i className="fa fa-trash" aria-hidden="true" onClick={() => this.deletePaso(paso.id, proyecto)}></i>
             </span>
-            {this.optionButtons()}
-            {this.radialButtons()}
           </span>
         </div>
         {this.displayProcoms()}

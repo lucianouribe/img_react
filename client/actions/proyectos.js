@@ -12,7 +12,7 @@ export const addProyecto = (name, topic, subtopic, difficulty, order) => {
       dataType: 'JSON',
       data: { proyecto: { name, topic, subtopic, difficulty, order } }
     }).done( proyecto => {
-      console.log('add proyecto done');
+      // console.log('add proyecto done');
       // console.log(proyecto);
       // debugger;
       dispatch({ type: 'ADD_PROYECTO', proyecto });
@@ -25,7 +25,7 @@ export const addProyecto = (name, topic, subtopic, difficulty, order) => {
 }
 
 export const addPaso = (proyecto, step, orden, estilo, tutoLink, videoLink, imageLink) => {
-  console.log('this is add paso action');
+  // console.log('this is add paso action');
   let proId = proyecto.id
   return(dispatch) => {
     $.ajax({
@@ -34,7 +34,7 @@ export const addPaso = (proyecto, step, orden, estilo, tutoLink, videoLink, imag
       dataType: 'JSON',
       data: { paso: { step, orden, estilo, tutoLink, videoLink, imageLink } }
     }).done( paso => {
-      console.log('add paso done data');
+      // console.log('add paso done data');
       // console.table(paso);
       dispatch({ type: 'ADD_PASO', paso, proId });
     }).fail( data => {
@@ -53,7 +53,7 @@ export const addProcom = (proId, pasId, pro_content, pro_style, pro_order, type_
       dataType: 'JSON',
       data: { procom: { pro_content, pro_style, pro_order, type_of_issue } }
     }).done( procom => {
-      console.log('add procom done data');
+      // console.log('add procom done data');
       // console.log(procom);
       dispatch({ type: 'ADD_PROCOM', procom, pasId, proId });
     }).fail( data => {
@@ -121,7 +121,7 @@ export const fetchPasos = (proyecto) => {
 }
 
 export const fetchProcoms = (proyecto, paso) => {
-  console.log('this is fetch pasos')
+  // console.log('this is fetch pasos')
 
   return(dispatch) => {
     $.ajax({
@@ -151,7 +151,7 @@ export const editProyecto = (id, name, topic, subtopic, difficulty, order) => {
       dataType: 'JSON',
       data: { proyecto: { name, topic, subtopic, difficulty, order } }
     }).done( proyecto => {
-      console.log(`edit proyecto - ${id} - done data`);
+      // console.log(`edit proyecto - ${id} - done data`);
       // console.log(proyecto);
       dispatch({ type: 'EDIT_PROYECTO', proyecto });
     }).fail( data => {
@@ -162,8 +162,8 @@ export const editProyecto = (id, name, topic, subtopic, difficulty, order) => {
 }
 
 export const editPaso = (proyecto, id, step, orden, estilo, tutoLink, videoLink, imageLink) => {
-  console.log(`this is edit paso con id: ${id}`)
-  console.log(id, step, orden, estilo)
+  // console.log(`this is edit paso con id: ${id}`)
+  // console.log(id, step, orden, estilo)
   let proId = proyecto.id
   let pasId = id
   return(dispatch) => {
@@ -173,7 +173,7 @@ export const editPaso = (proyecto, id, step, orden, estilo, tutoLink, videoLink,
       dataType: 'JSON',
       data: { paso: { step, orden, estilo, tutoLink, videoLink, imageLink } }
     }).done( paso => {
-      console.log(`edit paso - ${id} - done data`);
+      // console.log(`edit paso - ${id} - done data`);
       // console.table(paso);
       dispatch({ type: 'EDIT_PASO', paso, pasId, proId });
     }).fail( data => {
@@ -233,7 +233,7 @@ export const deletePaso = (pasId, proyecto) => {
       type: 'DELETE',
       dataType: 'JSON'
     }).done( data => {
-      console.log('delete paso done');
+      // console.log('delete paso done');
       // debugger;
       // console.log(data);
       // dispatch({ type: 'EDIT_PROYECTO', proyecto });

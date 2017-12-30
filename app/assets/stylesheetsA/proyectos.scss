@@ -283,6 +283,9 @@
   border: 1px dashed rgba(0,0,0,0.1);
   border-radius: 1rem;
   margin: 0 3rem;
+  max-height: 50vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 .paso-container {
   padding: 0.3rem 1rem;
@@ -290,35 +293,29 @@
   align-items: center;
   justify-content: center;
 }
-.texta-botones-container {
-  flex: 1 1 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-.botones-form {
-  flex: 1 1 100%;
-  display: flex;
-  align-content: center;
-  align-items: center;
-  justify-content: space-between;
-  height: 1.5rem;
-  padding: 1rem;
-  border-top-right-radius: 1rem;
-  border-top-left-radius: 1rem;
-  background: #fff;
-}
-.botones-form i {
-  flex: 1;
-  text-align: center;
-}
 
 // ADD PASO IN PROYECTO
-
+.modal-form {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal-form .paso-container-form {
+  width: 700px;
+  min-width: 320px;
+}
 .paso-container-form {
   margin: 0.5rem 3rem;
   background: rgba(0,0,0,0.1);
-  border: 2px solid #ccc;
+  // border: 2px solid #ccc;
+  border: 4px solid #ff6d00;
   border-top-right-radius: calc(1rem + 2px);
   border-top-left-radius: calc(1rem + 2px);
   border-bottom-right-radius: calc(0.3rem + 2px);
@@ -338,6 +335,47 @@
   margin-top: 0;
 }
 
+
+// PASO OPTION COMPONENT (THE OPTIONS)
+.paso-option-container {
+  flex: 1 1 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.paso-option-botones-form {
+  flex: 1 1 100%;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  height: 1.5rem;
+  padding: 1rem;
+  border-top-right-radius: 1rem;
+  border-top-left-radius: 1rem;
+  background: #fff;
+}
+.paso-option-botones-form i {
+  flex: 1;
+  text-align: center;
+}
+.paso-option-botones-form .elegida {
+  color: red;
+}
+.paso-option-botones-form i {
+  color: #767A86;
+}
+.paso-option-botones-form .listo {
+  color: green;
+}
+.paso-option-botones-form .pues-no {
+  color: red;
+}
+.paso-option-botones-form i:hover {
+  color: #9DD0FF;
+}
+
+
 // PASO EN PASO
 .paso-content {
   flex: 8 8 80%;
@@ -349,10 +387,6 @@
   visibility: hidden;
 }
 
-
-// SPECIFIC PASO STYLING
-// go to | terminal | code | paragraph
-
 .paso-type {
   flex: 1 1 24px;
   font-size: 0.8rem;
@@ -362,7 +396,7 @@
   margin-top: 4px;
   border: none!important;
   margin-right: 1rem !important;
-  overflow: visible;
+  overflow: hidden;
 }
 .terminal .paso-type {
   color: red;
@@ -375,13 +409,10 @@
   border-radius: 0.6rem;
   font-size: 0.8rem;
   color: red;
-  // padding-left: 8px;
   padding: 8px;
 }
 .go-to .paso-type {
   color: blue;
-  // position: relative;
-  // top: -7px;
 }
 .go-to .paso-content-text {
   color: blue;
@@ -399,26 +430,12 @@
 }
 
 // EDIT PASO IN PASO
-.texta-botones-container {
+.paso-option-container {
   // border: 2px solid #ccc;
 }
 
 // ESTILO DE LOS RADIO BUTTONS
-.elegida {
-  color: red;
-}
-.botones-form i {
-  color: #767A86;
-}
-.botones-form .listo {
-  color: green;
-}
-.botones-form .pues-no {
-  color: red;
-}
-.botones-form i:hover {
-  color: #9DD0FF;
-}
+// ERRASE AFTER FIXING PROCOMS!!!!
 
 [type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
     position: relative;

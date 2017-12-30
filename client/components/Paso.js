@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Procom from './Procom';
+import PasoOptions from './PasoOptions';
 
 import { editPaso, deletePaso, addProcom } from '../actions/proyectos';
 import { addMemoPaso } from '../actions/mymemory';
@@ -31,8 +32,12 @@ class Paso extends React.Component {
     // PASO CRUDS
     this.submitEditPaso = this.submitEditPaso.bind(this);
     this.deletePaso = this.deletePaso.bind(this);
-
+    // BOTONES
+    this.pasoOptionsConection = this.pasoOptionsConection.bind(this);
+    this.procomOptionsConection = this.procomOptionsConection.bind(this);
+    // TEXTARE HEIGHT
     this.setTextareaHeight = this.setTextareaHeight.bind(this);
+    this.onChange4Textarea = this.onChange4Textarea.bind(this);
   }
 
   componentDidMount(){
@@ -102,9 +107,8 @@ class Paso extends React.Component {
 
     let problems = this.props.procoms.filter( proble => { if(proble.type_of_issue === 'problem') return proble })
 
-    // add example
+    if(this.props.showProcom && this.props.typeOfProcom === 'comment') {
 
-    if(this.props.showProcom && (this.props.typeOfProcom === 'comment' || this.props.typeOfProcom === 'example')) {
       if(showProcoms.length > 0) {
         return comments.map( procom => {
           numeracionComment++
@@ -126,63 +130,59 @@ class Paso extends React.Component {
   }
 
   // ADD PROCOM STARTER
+
   addProcomSetter(){
     // console.log('add procom')
     this.setState({showAddProcomForm: !this.state.showAddProcomForm})
   }
 
+  // procom connection with PasoOptions component
+  procomOptionsConection(income){
+    if(income === 'submit') {
+      this.procomSubmit()
+    } else if (income === 'cancel') {
+      this.addProcomSetter() //check
+    } else {
+      this.setState({ typeOfIssue: income}) //check
+    }
+  }
+
   //PROCOM FORM
   procomForm(){
-    let ejemplo = 'example';
-    let comentario = 'comment';
-    let problema = 'problem';
+    let whichButtonsShouldIHave = 'add-procom-full-buttons'
     if(this.state.showAddProcomForm){
       return(
-        <div className="">
-          <form className="paso-container">
-            <textarea className="paso-content" ref='pro_content' placeholder="Add Comment or Problem"></textarea>
-            <span className="botones-container">
-              <div className="botones-form">
-                <span><i className="fa fa-check" aria-hidden="true" onClick={()=> this.procomSubmit()}></i></span>
-                <span><i className="fa fa-ban" aria-hidden="true" onClick={()=> this.addProcomSetter()}></i></span>
-              </div>
-              <div className='edit-btns-estilo'>
-                <input type='radio' name="radAnswer" id='ejemplo' onClick={()=> this.setState({typeOfIssue: ejemplo})}/>
-                <label htmlFor='ejemplo'><i className="fa fa-eye btn-icon" aria-hidden="true"></i></label>
-                <input type='radio' name="radAnswer" id='comentario' onClick={()=> this.setState({typeOfIssue: comentario})}/>
-                <label htmlFor='comentario'><i className="fa fa-comments btn-icon" aria-hidden="true"></i></label>
-                <input type='radio' name="radAnswer" id='problema' onClick={()=> this.setState({typeOfIssue: problema})}/>
-                <label htmlFor='comentario'><i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true"></i></label>
-              </div>
-            </span>
+        <div className="modal-form">
+          <form className="paso-container-form">
+            <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.typeOfIssue} conection={this.procomOptionsConection} />
+            <textarea id="add-procom-textarea" className="paso-content-text" ref='pro_content' placeholder="Add Comment, example or Problem" onChange={()=>this.setTextareaHeight($('#add-procom-textarea'))}></textarea>
           </form>
         </div>
       )
     }
   }
+
   // PROCOM ADD DISPATCHER
   procomSubmit(){
     let pasId = this.props.elpaso.id;
     let proId = this.props.proyecto.id;
 
     let pro_content = this.refs.pro_content.value;
-    let type_of_issue = this.state.typeOfIssue;
+    let type_of_issue;
     let pro_style;
     if(this.state.typeOfIssue === 'problem') {
       pro_style = 'problema';
+      type_of_issue = this.state.typeOfIssue;
     } else if (this.state.typeOfIssue === 'example'){
       pro_style = 'ejemplo';
+      type_of_issue = "comment";
     } else {
       pro_style = "comentario"
+      type_of_issue = this.state.typeOfIssue;
     }
     let pro_order = 0;
     this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
     this.addProcomSetter();
-    // if(type_of_issue === true){
-    //   this.setComment()
-    // } else {
-    //   this.setProblem()
-    // }
   }
 
 
@@ -211,71 +211,16 @@ class Paso extends React.Component {
   }
 
   // RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!
-  // this should be an independent component
-  optionButtons(){
-    let hide = 'hide-buttons'
 
-    let goTo = 'go-to'
-    let terminal = 'terminal'
-    let codigo = 'codigo'
-    let paragraph = 'paragraph'
-    let linkTuto = 'linkTuto'
-    let linkVideo = 'linkVideo'
-    let linkImage = 'linkImage'
-
-    let goToS;
-    let terminalS;
-    let codigoS;
-    let paragraphS;
-    let linkTutoS;
-    let linkVideoS;
-    let linkImageS;
-
-    let elected = {color: 'red', fontSize: '1.4rem'}
-
-    switch (this.state.estilo) {
-      case 'go-to':
-        goToS = elected
-        break;
-      case 'terminal':
-        terminalS = elected
-        break;
-      case 'codigo':
-        codigoS = elected
-        break;
-      case 'paragraph':
-        paragraphS = elected
-        break;
-      case 'linkTuto':
-        linkTutoS = elected
-        break;
-      case 'linkVideo':
-        linkVideoS = elected
-        break;
-      case 'linkImage':
-        linkImageS = elected
-        break;
-      default:
-
+  // connector for PasoOptions
+  pasoOptionsConection(income){
+    if(income === 'submit') {
+      this.submitEditPaso()
+    } else if (income === 'cancel') {
+      this.setState({showEditButtons: 'hide-buttons'})
+    } else {
+      this.setState({ estilo: income})
     }
-
-    return(
-      <span className={`texta-botones-container ${this.state.showEditButtons}`}>
-        <div className="botones-form">
-          <span><i className="fa fa-check listo" aria-hidden="true" onClick={()=> this.submitEditPaso()}></i></span>
-
-          <i className="fa fa-long-arrow-right" style={goToS} aria-hidden="true" onClick={()=> this.setState({ estilo: goTo})}></i>
-          <i className="fa fa-terminal" style={terminalS} aria-hidden="true" onClick={()=> this.setState({ estilo: terminal})}></i>
-          <i className="fa fa-code" style={codigoS} aria-hidden="true" onClick={()=> this.setState({ estilo: codigo})}></i>
-          <i className="fa fa-paragraph" style={paragraphS} aria-hidden="true" onClick={()=> this.setState({ estilo: paragraph})}></i>
-          <i className="fa fa-link" style={linkTutoS} aria-hidden="true" onClick={()=> this.setState({ estilo: linkTuto})}></i>
-          <i className="fa fa-video-camera" style={linkVideoS} aria-hidden="true" onClick={()=> this.setState({ estilo: linkVideo})}></i>
-          <i className="fa fa-picture-o" style={linkImageS} aria-hidden="true" onClick={()=> this.setState({ estilo: linkImage})}></i>
-
-          <span><i className="fa fa-ban pues-no" aria-hidden="true" onClick={()=> this.setState({showEditButtons: hide})}></i></span>
-        </div>
-      </span>
-    )
   }
 
   extraContent(){
@@ -289,12 +234,17 @@ class Paso extends React.Component {
     }
   }
 
+  onChange4Textarea(viewType){
+    this.setState({showEditButtons: viewType});
+    this.setTextareaHeight($('#edit-paso-textarea'));
+  }
+
   renderPasoContent(){
     let paso = this.props.elpaso;
     let proyecto = this.props.proyecto;
 
     let show = 'show-buttons';
-    let hide = 'hide-buttons';
+    // let hide = 'hide-buttons';
     let comentario = 'comment';
     let problema = 'problem';
     let ejemplo = 'example';
@@ -304,14 +254,17 @@ class Paso extends React.Component {
     if(this.state.showEditButtons === 'show-buttons') {
       emergency = {border: '2px solid rgba(255,0,0,1)', borderRadius: '1rem'};
     }
+    let whichButtonsShouldIHave = 'add-paso-full-buttons';
     return(
       <div>
         {this.procomForm()}
         <div className={`paso-container ${paso.estilo}`} style={emergency}>
           {this.extraContent()}
           <div className="paso-content">
-            {this.optionButtons()}
-            <textarea className="paso-content-text" style={inlineStyle} ref='step' onChange={()=> this.setState({showEditButtons: show})}>{paso.step}</textarea>
+            <div className={this.state.showEditButtons}>
+              <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.estilo} conection={this.pasoOptionsConection}/>
+            </div>
+            <textarea id="edit-paso-textarea" className="paso-content-text" style={inlineStyle} ref='step' onChange={()=> this.onChange4Textarea(show)}>{paso.step}</textarea>
           </div>
           <span className="botones-container">
             <span className='botones'>
@@ -327,15 +280,8 @@ class Paso extends React.Component {
     )
   }
 
-  render() {
-    return(this.renderPasoContent())
-  }
-
+  render() {return(this.renderPasoContent())}
 }
 
-const mapStateToProps = (state) => {
-  return {
-
-  }
-}
+const mapStateToProps = (state) => {return {}}
 export default connect(mapStateToProps)(Paso);

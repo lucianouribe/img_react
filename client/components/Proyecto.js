@@ -4,6 +4,7 @@ import { fetchProyectos, editProyecto, deleteProyecto, addPaso } from '../action
 import { addMemoProyect } from '../actions/mymemory';
 
 import Paso from './Paso';
+import PasoOptions from './PasoOptions';
 
 import Tutorials from '../Tutorials';
 
@@ -28,13 +29,12 @@ class Proyecto extends React.Component {
     this.handleEdit = this.handleEdit.bind(this);
     this.editForm = this.editForm.bind(this);
 
-    this.showPasosFu = this.showPasosFu.bind(this);
+    this.showPasosDisplay = this.showPasosDisplay.bind(this);
     this.showAddPasoOption = this.showAddPasoOption.bind(this);
     this.pasoSubmit = this.pasoSubmit.bind(this);
+    this.pasoOptionsConection = this.pasoOptionsConection.bind(this);
 
     this.topicChanger = this.topicChanger.bind(this);
-    this.textAreaSizing = this.textAreaSizing.bind(this);
-    this.textAreaSizingTwo = this.textAreaSizingTwo.bind(this);
     this.setTextareaHeight = this.setTextareaHeight.bind(this);
   }
 
@@ -65,6 +65,7 @@ class Proyecto extends React.Component {
 
   componentDidUpdate() {
     $('select').material_select();
+    this.setTextareaHeight($('textarea'));
     // para que los tab funcionen en el textarea
     var textareas = document.getElementsByTagName('textarea');
     var count = textareas.length;
@@ -86,18 +87,6 @@ class Proyecto extends React.Component {
     paso.each(function(index, item){
       item.style.height = item.scrollHeight+'px';
     });
-  }
-
-  textAreaSizing(){
-    let textareaToResize = document.getElementsByClassName('paso-content-text');
-    this.setState({highness: `${textareaToResize[0].scrollHeight}px`})
-  }
-
-  textAreaSizingTwo(){
-    // let textareaToResize = document.getElementsByClassName('paso-content');
-    let measuringCanvas = document.getElementsByClassName('paso-container');
-    // debugger;
-    this.setState({highness: `${measuringCanvas[0].scrollHeight}px`})
   }
 
   // ALL MIGHTY MEMORY
@@ -181,7 +170,7 @@ class Proyecto extends React.Component {
 
   handleEdit(){
     let id = this.refs.id.value;
-    let name = this.refs.name.value.toLowerCase();
+    let name = this.refs.name.value;
     let topic = this.refs.topic.value;
     let subtopic = this.refs.subtopic.value;
     let difficulty = this.refs.difficulty.value;
@@ -193,7 +182,7 @@ class Proyecto extends React.Component {
   }
 
   // PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!
-  showPasosFu(){
+  showPasosDisplay(){
     let show = !this.props.doorStatus;
     this.memorySetter(show);
   }
@@ -218,73 +207,26 @@ class Proyecto extends React.Component {
   }
 
   // ADD PASO FORM
+
+  // connector for PasoOptions
+  pasoOptionsConection(income){
+    if(income === 'submit') {
+      this.pasoSubmit()
+    } else if (income === 'cancel') {
+      this.showAddPasoOption()
+    } else {
+      this.setState({ estilo: income})
+    }
+  }
+
   addPasoForm(){
-    let altura = this.state.highness
-    let inlineStyle = {height: altura};
-
+    let whichButtonsShouldIHave = 'add-paso-full-buttons';
     if(this.state.showAdd){
-      let goTo = 'go-to'
-      let terminal = 'terminal'
-      let codigo = 'codigo'
-      let paragraph = 'paragraph'
-      let linkTuto = 'linkTuto'
-      let linkVideo = 'linkVideo'
-      let linkImage = 'linkImage'
-
-      let goToS;
-      let terminalS;
-      let codigoS;
-      let paragraphS;
-      let linkTutoS;
-      let linkVideoS;
-      let linkImageS;
-
-      let elected = {color: 'red', fontSize: '1.4rem'}
-
-      switch (this.state.estilo) {
-        case 'go-to':
-          goToS = elected
-          break;
-        case 'terminal':
-          terminalS = elected
-          break;
-        case 'codigo':
-          codigoS = elected
-          break;
-        case 'paragraph':
-          paragraphS = elected
-          break;
-        case 'linkTuto':
-          linkTutoS = elected
-          break;
-        case 'linkVideo':
-          linkVideoS = elected
-          break;
-        case 'linkImage':
-          linkImageS = elected
-          break;
-        default:
-
-      }
       return(
-        <div className="">
+        <div className="modal-form">
           <form className="paso-container-form">
-            <span className="texta-botones-container">
-              <div className="botones-form">
-                <span onClick={this.pasoSubmit}><i className="fa fa-check listo" aria-hidden="true" ></i></span>
-
-                <i className="fa fa-long-arrow-right" style={goToS} aria-hidden="true" onClick={()=> this.setState({ estilo: goTo})}></i>
-                <i className="fa fa-terminal" style={terminalS} aria-hidden="true" onClick={()=> this.setState({ estilo: terminal})}></i>
-                <i className="fa fa-code" style={codigoS} aria-hidden="true" onClick={()=> this.setState({ estilo: codigo})}></i>
-                <i className="fa fa-paragraph" style={paragraphS} aria-hidden="true" onClick={()=> this.setState({ estilo: paragraph})}></i>
-                <i className="fa fa-link" style={linkTutoS} aria-hidden="true" onClick={()=> this.setState({ estilo: linkTuto})}></i>
-                <i className="fa fa-video-camera" style={linkVideoS} aria-hidden="true" onClick={()=> this.setState({ estilo: linkVideo})}></i>
-                <i className="fa fa-picture-o" style={linkImageS} aria-hidden="true" onClick={()=> this.setState({ estilo: linkImage})}></i>
-
-                <span onClick={this.showAddPasoOption}><i className="fa fa-ban pues-no" aria-hidden="true" ></i></span>
-              </div>
-            </span>
-            <textarea className="paso-content-text" style={inlineStyle} ref='step' placeholder="Add a new step" onChange={() => this.textAreaSizing()}></textarea>
+            <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.estilo} conection={this.pasoOptionsConection}/>
+            <textarea id="add-paso-textarea" className="paso-content-text" ref='step' placeholder="Add a new step" onChange={()=>this.setTextareaHeight($('#add-paso-textarea'))}></textarea>
           </form>
         </div>
       )
@@ -292,7 +234,7 @@ class Proyecto extends React.Component {
   }
 
   pasosDisplay(){
-    // es aqui, esto estaba antes de procoms={paso.procoms}: showPasosFu={this.showPasosFu}
+    // es aqui, esto estaba antes de procoms={paso.procoms}: showPasosDisplay={this.showPasosDisplay}
     if(this.props.doorStatus) {
       let showPasos = this.props.pasos;
       let proyecto = this.props.elproyecto;
@@ -324,7 +266,7 @@ class Proyecto extends React.Component {
   }
 
   //RENDER DISPLAY
-  proyectoUnitShowCase(){
+  individualProject(){
     if(this.state.showEdit) {
       return(this.editForm())
     } else {
@@ -338,7 +280,7 @@ class Proyecto extends React.Component {
             <div className={`cont-log ${subtopic}`}></div>
           </span>
           <span className='titulo-nombre'>
-            <h4 onClick={() => this.showPasosFu()}>{proyecto.name}</h4>
+            <h4 onClick={() => this.showPasosDisplay()}>{proyecto.name}</h4>
           </span>
           <span className={`botones ${proyecto.difficulty}`}>
             <i className="material-icons btn-icon btn-add" onClick={() => this.showAddPasoOption()}>add</i>
@@ -353,7 +295,7 @@ class Proyecto extends React.Component {
   render(){
     return (
       <div>
-        {this.proyectoUnitShowCase()}
+        {this.individualProject()}
         <div className="pasos-container">
           {this.pasosDisplay()}
         </div>

@@ -1,21 +1,11 @@
 import React from 'react';
 
 class PasoOptions extends React.Component {
-  
-  constructor(props){
-    super(props);
 
-    this.state = {
-      estilo: 'paragraph'
-    }
-  }
+  render(){
+    let submit = 'submit'
+    let cancel = 'cancel'
 
-// for refactoring... put the results in redux state-props, and then it would work. Also check in paso and proyecto where to put the hiding thing
-  componentDidUpdate(){
-
-  }
-
-  radialButtons(){
     let goTo = 'go-to'
     let terminal = 'terminal'
     let codigo = 'codigo'
@@ -32,9 +22,17 @@ class PasoOptions extends React.Component {
     let linkVideoS;
     let linkImageS;
 
+    let ejemplo = 'example';
+    let comentario = 'comment';
+    let problema = 'problem';
+
+    let ejemploS;
+    let comentarioS;
+    let problemaS;
+
     let elected = {color: 'red', fontSize: '1.4rem'}
 
-    switch (this.state.estilo) {
+    switch (this.props.elected) {
       case 'go-to':
         goToS = elected
         break;
@@ -56,21 +54,49 @@ class PasoOptions extends React.Component {
       case 'linkImage':
         linkImageS = elected
         break;
+      case 'example':
+        ejemploS = elected
+        break;
+      case 'comment':
+        comentarioS = elected
+        break;
+      case 'problem':
+        problemaS = elected
+        break;
       default:
 
     }
+    if(this.props.whichType === 'add-paso-full-buttons') {
+      return(
+        <span className="paso-option-container">
+          <div className="paso-option-botones-form">
+            <span onClick={()=> this.props.conection(submit)}><i className="fa fa-check listo" aria-hidden="true" ></i></span>
+            <i className="fa fa-long-arrow-right" style={goToS} aria-hidden="true" onClick={()=> this.props.conection(goTo)}></i>
+            <i className="fa fa-terminal" style={terminalS} aria-hidden="true" onClick={()=> this.props.conection(terminal)}></i>
+            <i className="fa fa-code" style={codigoS} aria-hidden="true" onClick={()=> this.props.conection(codigo)}></i>
+            <i className="fa fa-paragraph" style={paragraphS} aria-hidden="true" onClick={()=> this.props.conection(paragraph)}></i>
+            <i className="fa fa-link" style={linkTutoS} aria-hidden="true" onClick={()=> this.props.conection(linkTuto)}></i>
+            <i className="fa fa-video-camera" style={linkVideoS} aria-hidden="true" onClick={()=> this.props.conection(linkVideo)}></i>
+            <i className="fa fa-picture-o" style={linkImageS} aria-hidden="true" onClick={()=> this.props.conection(linkImage)}></i>
+            <span onClick={()=> this.props.conection(cancel)}><i className="fa fa-ban pues-no" aria-hidden="true" ></i></span>
+          </div>
+        </span>
+      )
+    } else if (this.props.whichType === 'add-procom-full-buttons') {
+      return (
+        <span className="paso-option-container">
+          <div className="paso-option-botones-form">
+            <span onClick={()=> this.props.conection(submit)}><i className="fa fa-check listo" aria-hidden="true" ></i></span>
 
-    return(
-      <div className="edit-btns-estilo">
-        <i className="fa fa-long-arrow-right" style={goToS} aria-hidden="true" onClick={()=> this.setState({ estilo: goTo})}></i>
-        <i className="fa fa-terminal" style={terminalS} aria-hidden="true" onClick={()=> this.setState({ estilo: terminal})}></i>
-        <i className="fa fa-code" style={codigoS} aria-hidden="true" onClick={()=> this.setState({ estilo: codigo})}></i>
-        <i className="fa fa-paragraph" style={paragraphS} aria-hidden="true" onClick={()=> this.setState({ estilo: paragraph})}></i>
-        <i className="fa fa-link" style={linkTutoS} aria-hidden="true" onClick={()=> this.setState({ estilo: linkTuto})}></i>
-        <i className="fa fa-video-camera" style={linkVideoS} aria-hidden="true" onClick={()=> this.setState({ estilo: linkVideo})}></i>
-        <i className="fa fa-picture-o" style={linkImageS} aria-hidden="true" onClick={()=> this.setState({ estilo: linkImage})}></i>
-      </div>
-    )
+            <i className="fa fa-eye btn-icon" style={ejemploS} aria-hidden="true" onClick={()=> this.props.conection(ejemplo)}></i>
+            <i className="fa fa-comments btn-icon" style={comentarioS} aria-hidden="true" onClick={()=> this.props.conection(comentario)}></i>
+            <i className="fa fa-exclamation-triangle btn-icon" style={problemaS} aria-hidden="true" onClick={()=> this.props.conection(problema)}></i>
+
+            <span onClick={()=> this.props.conection(cancel)}><i className="fa fa-ban pues-no" aria-hidden="true" ></i></span>
+          </div>
+        </span>
+      )
+    }
   }
 }
 

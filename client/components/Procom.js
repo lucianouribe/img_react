@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { createMarkup } from '../helpers';
 import { editProcom, deleteProcom } from '../actions/proyectos';
+import PasoOptions from './PasoOptions';
 
 class Procom extends React.Component {
   constructor(props) {
@@ -9,19 +10,21 @@ class Procom extends React.Component {
 
     this.state = {
       typeOfIssue: 'comment',
+      estilo: 'comment',
       showEditButtons: 'hide-buttons',
     }
 
-    this.showEditForm = this.showEditForm.bind(this);
     this.submitEditProcom = this.submitEditProcom.bind(this);
     this.deleteProcom = this.deleteProcom.bind(this);
     this.setTextareaHeight = this.setTextareaHeight.bind(this);
+    this.onChange4Textarea = this.onChange4Textarea.bind(this);
+    this.procomOptionsConection = this.procomOptionsConection.bind(this);
   }
 
   componentDidMount(){
     this.setTextareaHeight($('textarea'));
-    let procom = this.props.procom;
-    this.setState({typeOfIssue: procom.type_of_issue})
+    let estilo = this.props.procom.pro_style;
+    this.setState({estilo})
   }
 
   setTextareaHeight(paso){
@@ -30,9 +33,22 @@ class Procom extends React.Component {
     });
   }
 
-  // edit
-  showEditForm(){
-    this.setState({showEdit: !this.state.showEdit})
+  // EDIT PROCOM
+  onChange4Textarea(viewType){
+    this.setState({showEditButtons: viewType});
+    this.setTextareaHeight($('#edit-procom-textarea'));
+  }
+
+  // procom connection with PasoOptions component
+  procomOptionsConection(income){
+    let hide = 'hide-buttons'
+    if(income === 'submit') {
+      this.submitEditProcom()
+    } else if (income === 'cancel') {
+      this.setState({ showEditButtons: hide})
+    } else {
+      this.setState({estilo: income})
+    }
   }
 
   submitEditProcom(){
@@ -40,44 +56,44 @@ class Procom extends React.Component {
     let proId = this.props.proyecto.id;
     let procom = this.props.procom;
     let pro_content = this.refs.pro_content.value;
-    let type_of_issue = this.state.typeOfIssue;
+    let type_of_issue;
     let pro_style;
-    if(this.state.typeOfIssue === 'problem') {
+    if(this.state.estilo === 'problema') {
       pro_style = 'problema';
-    } else if (this.state.typeOfIssue === 'example'){
+      type_of_issue = 'problem';
+    } else if (this.state.estilo === 'ejemplo'){
       pro_style = 'ejemplo';
+      type_of_issue = "comment";
     } else {
       pro_style = "comentario"
+      type_of_issue = 'comment';
     }
     let pro_order = 0;
-    // console.log(pro_content)
     this.props.dispatch(editProcom(proId, pasId, procom.id, pro_content, pro_style, pro_order, type_of_issue));
     this.setState({showEditButtons: 'hide-buttons'})
   }
 
-  // delete
+  // DELETE PROCOM
   deleteProcom(procomId, pasoId, proyectoId){
-    console.log('delete me')
+    // console.log('delete me')
     this.props.dispatch(deleteProcom(procomId, pasoId, proyectoId));
   }
 
-  optionButtons(){
-    let ejemplo = 'example';
-    let comentario = 'comment';
-    let problema = 'problem';
-    return(
-      <div className={`botones btns-radial-procom ${this.state.showEditButtons}`}>
-        <input type='radio' name="radAnswer" id='ejemplo' onClick={()=> this.setState({typeOfIssue: ejemplo})}/>
-        <label htmlFor='ejemplo'><i className="fa fa-eye btn-icon" aria-hidden="true"></i></label>
-        <input type='radio' name="radAnswer" id='comentario' onClick={()=> this.setState({typeOfIssue: comentario})}/>
-        <label htmlFor='comentario'><i className="fa fa-comments btn-icon" aria-hidden="true"></i></label>
-        <input type='radio' name="radAnswer" id='problema' onClick={()=> this.setState({typeOfIssue: problema})}/>
-        <label htmlFor='problema'><i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true"></i></label>
-      </div>
-    )
+  extraContent(){
+    let procom = this.props.procom;
+    if(procom.pro_style === 'ejemplo') {
+      return(<i className="fa fa-eye procom-type" aria-hidden="true"></i>)
+    } else if (procom.pro_style === 'comentario') {
+      return(<i className="fa fa-comments procom-type" aria-hidden="true"></i>)
+    } else if (procom.pro_style === 'problema'){
+      return(<i className="fa fa-exclamation-triangle procom-type" aria-hidden="true"></i>)
+    }
   }
 
   render(){
+    // <strong>{`${this.props.numeracion} `}</strong>
+    let whichButtonsShouldIHave = 'add-procom-full-buttons'
+
     let procom = this.props.procom;
     let pasoId = this.props.paso.id;
     let proyectoId = this.props.proyecto.id;
@@ -85,19 +101,18 @@ class Procom extends React.Component {
     let problema = false;
     let show = 'show-buttons';
     let hide = 'hide-buttons';
+    let inlineStyle = {height: '18px'};
     return (
       <div className={`procom-container ${procom.pro_style}`}>
+        {this.extraContent()}
         <span className="procom-content">
-          <p>{`<- ${procom.pro_style} `}<strong>{`#${this.props.numeracion}`}</strong>{`  ->`}</p>
-          <textarea ref='pro_content' onChange={()=>this.setState({showEditButtons: show})}>{procom.pro_content}</textarea>
+          <div className={this.state.showEditButtons}>
+            <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.estilo} conection={this.procomOptionsConection} />
+          </div>
+          <textarea id="edit-procom-textarea" className="procom-content-text" style={inlineStyle} ref='pro_content' onChange={()=>this.onChange4Textarea(show)}>{procom.pro_content}</textarea>
         </span>
-        <span className="botones-container">
-          <span className={`botones`}>
-            <i className="fa fa-check" aria-hidden="true" onClick={()=> this.submitEditProcom()}></i>
-            <i className={`fa fa-ban ${this.state.showEditButtons}`} aria-hidden="true" onClick={()=> this.setState({ showEditButtons: hide})}></i>
-            <i className="fa fa-trash" aria-hidden="true" onClick={()=> this.deleteProcom(procom.id, pasoId, proyectoId)}></i>
-          </span>
-          {this.optionButtons()}
+        <span className="mini-botones">
+          <i className="fa fa-trash" aria-hidden="true" onClick={()=> this.deleteProcom(procom.id, pasoId, proyectoId)}></i>
         </span>
       </div>
     )

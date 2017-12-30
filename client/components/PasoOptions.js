@@ -22,9 +22,9 @@ class PasoOptions extends React.Component {
     let linkVideoS;
     let linkImageS;
 
-    let ejemplo = 'example';
-    let comentario = 'comment';
-    let problema = 'problem';
+    let ejemplo = 'ejemplo';
+    let comentario = 'comentario';
+    let problema = 'problema';
 
     let ejemploS;
     let comentarioS;
@@ -54,13 +54,13 @@ class PasoOptions extends React.Component {
       case 'linkImage':
         linkImageS = elected
         break;
-      case 'example':
+      case 'ejemplo':
         ejemploS = elected
         break;
-      case 'comment':
+      case 'comentario':
         comentarioS = elected
         break;
-      case 'problem':
+      case 'problema':
         problemaS = elected
         break;
       default:

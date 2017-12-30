@@ -59,7 +59,8 @@ const proyectos = ( state = [], action ) => {
 
       index = allProyectos.findIndex( proy => proy.id === action.proId)
       indexTwo = allProyectos[index].pasos.findIndex( paso => paso.id === action.pasId)
-      indexThree = allProyectos[index].pasos[indexTwo].procoms.findIndex( procom => procom.id === action.procom.id)
+
+      indexThree = allProyectos[index].pasos[indexTwo].procoms.findIndex( procom => procom.id === action.procomId)
 
       allProyectos[index].pasos[indexTwo].procoms[indexThree] = action.procom
 

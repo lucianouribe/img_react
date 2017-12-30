@@ -271,11 +271,13 @@ class Paso extends React.Component {
               <i className="fa fa-plus-circle btn-icon" aria-hidden="true" onClick={() => this.addProcomSetter()}></i>
               <i className="fa fa-comments btn-icon" aria-hidden="true" onClick={() => this.showProcomsFu(comentario)}></i>
               <i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true" onClick={() => this.showProcomsFu(problema)}></i>
-              <i className="fa fa-trash" aria-hidden="true" onClick={() => this.deletePaso(paso.id, proyecto)}></i>
+              <i className="fa fa-trash btn-icon" aria-hidden="true" onClick={() => this.deletePaso(paso.id, proyecto)}></i>
             </span>
           </span>
         </div>
-        {this.displayProcoms()}
+        <div className="procoms-container">
+          {this.displayProcoms()}
+        </div>
       </div>
     )
   }

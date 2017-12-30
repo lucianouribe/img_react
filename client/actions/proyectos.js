@@ -184,9 +184,10 @@ export const editPaso = (proyecto, id, step, orden, estilo, tutoLink, videoLink,
 }
 
 export const editProcom = (proId, pasId, id, pro_content, pro_style, pro_order, type_of_issue) => {
-  // console.log(`this is edit paso con id: ${id}`)
+  // console.log(`this is edit procom con id: ${id}`)
   // step 2
   console.log(id, pro_content, pro_style, pro_order, type_of_issue)
+  let procomId = id;
   return(dispatch) => {
     $.ajax({
       url: `/api/pasos/${pasId}/procoms/${id}`,
@@ -194,9 +195,9 @@ export const editProcom = (proId, pasId, id, pro_content, pro_style, pro_order, 
       dataType: 'JSON',
       data: { procom: { pro_content, pro_style, pro_order, type_of_issue } }
     }).done( procom => {
-      console.log(`edit procom - ${id} - done data`);
+      // console.log(`edit procom - ${id} - done data`);
       // console.table(procom);
-      dispatch({ type: 'EDIT_PROCOM', procom, pasId, proId });
+      dispatch({ type: 'EDIT_PROCOM', procom, procomId, pasId, proId });
     }).fail( data => {
       // console.log('edit proyecto fail data')
       // console.log(data);

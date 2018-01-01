@@ -18,7 +18,7 @@ class Paso extends React.Component {
     this.state = {
       //procoms (child)
       showAddProcomForm: false, // true: to show the form
-      typeOfIssue: 'comment', // can be comment, example, problem
+      proStyle: 'comment', // can be comment, example, problem
       //pasos (parent)
       estilo: 'paragraph', // standard estilo
       showEditButtons: 'hide-buttons', // show-buttons: to show the form
@@ -102,13 +102,12 @@ class Paso extends React.Component {
     let proyecto = this.props.proyecto;
     let numeracionComment = 0;
     let numeracionProblems = 0;
-
-    let comments = this.props.procoms.filter( comme => { if(comme.type_of_issue === 'comment') return comme })
-
-    let problems = this.props.procoms.filter( proble => { if(proble.type_of_issue === 'problem') return proble })
+    let comments = showProcoms.filter( comme => { if(comme.type_of_issue === 'comment') return comme })
+    console.log(showProcoms)
+    let problems = showProcoms.filter( proble => { if(proble.type_of_issue === 'problem') return proble })
 
     if(this.props.showProcom && this.props.typeOfProcom === 'comment') {
-
+      // debugger;
       if(showProcoms.length > 0) {
         return comments.map( procom => {
           numeracionComment++
@@ -143,7 +142,7 @@ class Paso extends React.Component {
     } else if (income === 'cancel') {
       this.addProcomSetter() //check
     } else {
-      this.setState({ typeOfIssue: income}) //check
+      this.setState({ proStyle: income}) //check
     }
   }
 
@@ -154,7 +153,7 @@ class Paso extends React.Component {
       return(
         <div className="modal-form">
           <form className="paso-container-form">
-            <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.typeOfIssue} conection={this.procomOptionsConection} />
+            <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.proStyle} conection={this.procomOptionsConection} />
             <textarea id="add-procom-textarea" className="paso-content-text" ref='pro_content' placeholder="Add Comment, example or Problem" onChange={()=>this.setTextareaHeight($('#add-procom-textarea'))}></textarea>
           </form>
         </div>
@@ -170,15 +169,15 @@ class Paso extends React.Component {
     let pro_content = this.refs.pro_content.value;
     let type_of_issue;
     let pro_style;
-    if(this.state.typeOfIssue === 'problem') {
-      pro_style = 'problema';
-      type_of_issue = this.state.typeOfIssue;
-    } else if (this.state.typeOfIssue === 'example'){
-      pro_style = 'ejemplo';
+    if(this.state.proStyle === 'problema') {
+      pro_style = this.state.proStyle;
+      type_of_issue = 'problem';
+    } else if (this.state.proStyle === 'ejemplo'){
+      pro_style = this.state.proStyle;
       type_of_issue = "comment";
     } else {
-      pro_style = "comentario"
-      type_of_issue = this.state.typeOfIssue;
+      pro_style = this.state.proStyle;
+      type_of_issue = 'comment';
     }
     let pro_order = 0;
     this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
@@ -223,12 +222,19 @@ class Paso extends React.Component {
     }
   }
 
+  // extra content can be a component
   extraContent(){
     let paso = this.props.elpaso;
     if(paso.estilo === 'terminal') {
       return(<i className="fa fa-terminal paso-type" aria-hidden="true"></i>)
     } else if (paso.estilo === 'go-to') {
       return(<i className="fa fa-long-arrow-right paso-type" aria-hidden="true"></i>)
+    } else if (paso.estilo === 'link-tuto') {
+      return(<a className="fa fa-link paso-type" aria-hidden="true" href={paso.step} target='blank'></a>)
+    } else if (paso.estilo === 'link-video') {
+      return(<iframe className="video-link" width="560" height="315" src={`https://www.youtube.com/embed/${paso.step}?rel=0`} allowFullScreen></iframe>)
+    } else if (paso.estilo === 'link-image') {
+      return(<img className="image-link" src={paso.step}/>)
     } else {
       return(<p className="paso-type"></p>)
     }

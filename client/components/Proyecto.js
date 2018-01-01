@@ -81,8 +81,6 @@ class Proyecto extends React.Component {
     }
   }
 
-  //NO ESTA EN FUNCIONAMIENTO, PERO FUNCIONA AL PELO EN PASOS, MIRAR SI SE PUEDE EN REEMPLAZO DE TEXT AREA SIZING!
-  // this.setTextareaHeight($('textarea'));
   setTextareaHeight(paso){
     paso.each(function(index, item){
       item.style.height = item.scrollHeight+'px';

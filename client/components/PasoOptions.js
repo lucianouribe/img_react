@@ -10,9 +10,9 @@ class PasoOptions extends React.Component {
     let terminal = 'terminal'
     let codigo = 'codigo'
     let paragraph = 'paragraph'
-    let linkTuto = 'linkTuto'
-    let linkVideo = 'linkVideo'
-    let linkImage = 'linkImage'
+    let linkTuto = 'link-tuto'
+    let linkVideo = 'link-video'
+    let linkImage = 'link-image'
 
     let goToS;
     let terminalS;
@@ -45,13 +45,13 @@ class PasoOptions extends React.Component {
       case 'paragraph':
         paragraphS = elected
         break;
-      case 'linkTuto':
+      case 'link-tuto':
         linkTutoS = elected
         break;
-      case 'linkVideo':
+      case 'link-video':
         linkVideoS = elected
         break;
-      case 'linkImage':
+      case 'link-image':
         linkImageS = elected
         break;
       case 'ejemplo':

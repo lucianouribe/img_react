@@ -191,10 +191,18 @@ class Proyectos extends React.Component {
 
   // THE REAL RENDER
   render(){
+    let modalizeStyle;
+    if(this.state.modalize) {
+      modalizeStyle = {
+        fontSize: '2.3rem',
+        color: 'red'
+      }
+    }
     return (
       <div className='descripciones-container'>
         <div className='admin-title'>
-          <h1 onClick={() => this.setState({modalize: !this.state.modalize})}>iTuto</h1>
+        <i className="fa fa-arrows-alt modalize" style={modalizeStyle} aria-hidden="true" onClick={() => this.setState({modalize: !this.state.modalize})}></i>
+          <h1>iTuto</h1>
           {this.showSearcher()}
           <span className='right' onClick={this.toggleDisplay}><i className="material-icons btn-icon large">add</i></span>
         </div>

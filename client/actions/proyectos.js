@@ -46,8 +46,8 @@ export const addPaso = (proyecto, step, orden, estilo, tutoLink, videoLink, imag
       contentType: false,
       processData: false,
     }).done( paso => {
-      console.log('add paso done data');
-      console.table(paso);
+      // console.log('add paso done data');
+      // console.table(paso);
       dispatch({ type: 'ADD_PASO', paso, proId });
     }).fail( data => {
       console.log('add paso fail data')

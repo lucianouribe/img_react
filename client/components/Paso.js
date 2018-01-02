@@ -103,7 +103,7 @@ class Paso extends React.Component {
     let numeracionComment = 0;
     let numeracionProblems = 0;
     let comments = showProcoms.filter( comme => { if(comme.type_of_issue === 'comment') return comme })
-    console.log(showProcoms)
+
     let problems = showProcoms.filter( proble => { if(proble.type_of_issue === 'problem') return proble })
 
     if(this.props.showProcom && this.props.typeOfProcom === 'comment') {
@@ -196,9 +196,9 @@ class Paso extends React.Component {
     let step = this.refs.step.value;
     let orden = 0;
     let estilo = this.state.estilo;
-    let tutoLink = '';
-    let videoLink = '';
-    let imageLink = '';
+    let tutoLink;
+    let videoLink;
+    let imageLink;
     this.props.dispatch(editPaso(proyecto, paso.id, step, orden, estilo, tutoLink, videoLink, imageLink));
     this.setState({showEditButtons: 'hide-buttons'})
   }
@@ -234,7 +234,11 @@ class Paso extends React.Component {
     } else if (paso.estilo === 'link-video') {
       return(<iframe className="video-link" width="560" height="315" src={`https://www.youtube.com/embed/${paso.step}?rel=0`} allowFullScreen></iframe>)
     } else if (paso.estilo === 'link-image') {
-      return(<img className="image-link" src={paso.step}/>)
+      if(paso.image_link === 'undefined') {
+        return(<img className="image-link" src={paso.step}/>)
+      } else {
+        return(<img className="image-link" src={`http://res.cloudinary.com/lucianouribe/image/upload/${paso.image_link}.jpg`}/>)
+      }
     } else {
       return(<p className="paso-type"></p>)
     }

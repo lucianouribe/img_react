@@ -4,10 +4,7 @@ class Api::ProyectosController < ApplicationController
 
 
   def index
-    # binding.pry
     @api_proyectos = Proyecto.order_by_id.all
-
-    # binding.pry
   end
 
   def show
@@ -22,13 +19,9 @@ class Api::ProyectosController < ApplicationController
   end
 
   def create
-    # 4
-    # binding.pry
     @api_proyecto = Proyecto.new(api_proyecto_params)
-    # binding.pry
 
     if @api_proyecto.save
-      # binding.pry
       render :show, status: :created
     else
       render json: @api_proyecto.errors, status: :unprocessable_entity
@@ -37,10 +30,7 @@ class Api::ProyectosController < ApplicationController
   end
 
   def update
-    # binding.pry
     if @api_proyecto.update(api_proyecto_params)
-      # it does change and have the new values as @api_proyecto
-      # binding.pry
       render :show, status: :ok
     else
       render json: @api_proyecto.errors, status: :unprocessable_entity
@@ -54,14 +44,10 @@ class Api::ProyectosController < ApplicationController
 
   private
     def set_api_proyecto
-      # 1
-      # binding.pry
       @api_proyecto = Proyecto.find(params[:id])
     end
 
     def api_proyecto_params
-      # 3 (#2 es el modelo)
-      # binding.pry
-      params.require(:proyecto).permit(:name, :topic, :subtopic, :difficulty, :order)
+      params.require(:proyecto).permit(:name, :topic, :subtopic, :difficulty, :order, :user_id)
     end
 end

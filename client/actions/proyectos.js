@@ -1,7 +1,7 @@
 
 // ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!
 
-export const addProyecto = (name, topic, subtopic, difficulty, order) => {
+export const addProyecto = (name, topic, subtopic, difficulty, order, user_id) => {
   // console.log('this is add proyectos action');
   // console.log('front end paso 2')
   // debugger;
@@ -10,7 +10,7 @@ export const addProyecto = (name, topic, subtopic, difficulty, order) => {
       url: `/api/proyectos`,
       type: 'POST',
       dataType: 'JSON',
-      data: { proyecto: { name, topic, subtopic, difficulty, order } }
+      data: { proyecto: { name, topic, subtopic, difficulty, order, user_id } }
     }).done( proyecto => {
       // console.log('add proyecto done');
       // console.log(proyecto);
@@ -24,18 +24,30 @@ export const addProyecto = (name, topic, subtopic, difficulty, order) => {
 
 }
 
-export const addPaso = (proyecto, step, orden, estilo, tutoLink, videoLink, imageLink) => {
+export const addPaso = (proyecto, step, orden, estilo, tutoLink, videoLink, imageLink, picture) => {
   // console.log('this is add paso action');
   let proId = proyecto.id
+
+  let formData = new FormData();
+  formData.append('step', step);
+  formData.append('orden', orden);
+  formData.append('estilo', estilo);
+  formData.append('tutoLink', tutoLink);
+  formData.append('videoLink', videoLink);
+  formData.append('image_link', imageLink);
+  formData.append('picture', picture);
+
+
   return(dispatch) => {
     $.ajax({
       url: `/api/proyectos/${proId}/pasos`,
       type: 'POST',
-      dataType: 'JSON',
-      data: { paso: { step, orden, estilo, tutoLink, videoLink, imageLink } }
+      data: formData,
+      contentType: false,
+      processData: false,
     }).done( paso => {
-      // console.log('add paso done data');
-      // console.table(paso);
+      console.log('add paso done data');
+      console.table(paso);
       dispatch({ type: 'ADD_PASO', paso, proId });
     }).fail( data => {
       console.log('add paso fail data')
@@ -44,6 +56,7 @@ export const addPaso = (proyecto, step, orden, estilo, tutoLink, videoLink, imag
   }
 
 }
+
 
 export const addProcom = (proId, pasId, pro_content, pro_style, pro_order, type_of_issue) => {
   return(dispatch) => {

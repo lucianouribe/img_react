@@ -1,5 +1,6 @@
 class Proyecto < ApplicationRecord
   has_many :pasos, dependent: :destroy
+  # belongs_to :user
   # binding.pry
   def self.order_by_id
     # binding.pry

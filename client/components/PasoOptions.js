@@ -13,6 +13,7 @@ class PasoOptions extends React.Component {
     let linkTuto = 'link-tuto'
     let linkVideo = 'link-video'
     let linkImage = 'link-image'
+    let download = 'download'
 
     let goToS;
     let terminalS;
@@ -21,6 +22,7 @@ class PasoOptions extends React.Component {
     let linkTutoS;
     let linkVideoS;
     let linkImageS;
+    let downloadS;
 
     let ejemplo = 'ejemplo';
     let comentario = 'comentario';
@@ -54,6 +56,9 @@ class PasoOptions extends React.Component {
       case 'link-image':
         linkImageS = elected
         break;
+      case 'download':
+        downloadS = elected
+        break;
       case 'ejemplo':
         ejemploS = elected
         break;
@@ -78,6 +83,7 @@ class PasoOptions extends React.Component {
             <i className="fa fa-link" style={linkTutoS} aria-hidden="true" onClick={()=> this.props.conection(linkTuto)}></i>
             <i className="fa fa-video-camera" style={linkVideoS} aria-hidden="true" onClick={()=> this.props.conection(linkVideo)}></i>
             <i className="fa fa-picture-o" style={linkImageS} aria-hidden="true" onClick={()=> this.props.conection(linkImage)}></i>
+            <i className="fa fa-download" style={downloadS} aria-hidden="true" onClick={()=> this.props.conection(download)}></i>
             <span onClick={()=> this.props.conection(cancel)}><i className="fa fa-ban pues-no" aria-hidden="true" ></i></span>
           </div>
         </span>

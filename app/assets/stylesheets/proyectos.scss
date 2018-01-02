@@ -410,8 +410,57 @@
 .paso-container-form .paso-content-text{
   margin-top: 0;
 }
+// second form
+.paso-second-form {
+  background: rgba(255,255,255,1);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.paso-second-cont {
+  -webkit-box-flex: 6;
+      -ms-flex: 6 6 60%;
+          flex: 6 6 60%;
+  display: block;
+}
+.paso-second-step {
+  // width: calc(100% - 2rem) !important;
+  width: 100% !important;
+  border-top: 1px dashed #ff6d00 !important;
+  border-bottom: none !important;
+  margin: 0 !important;
+  min-height: 7rem !important;
+  // padding: 0 1rem !important;
+}
+.paso-second-cont [type=file] {
+  width: 100%;
+  background: #ff6d00;
+  color: #fff;
+  padding: 0.5rem;
+  height: 3rem;
+}
+.paso-second-form .image-preview {
+  width: 10rem;
+  height: 10rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 1px dashed #ff6d00;
+}
+.image-preview div {
+  height: 100%;
+}
+.paso-second-image-cont .paso-second-image {
+  width: 100%;
+  height: 100%;
 
-
+}
 // PASO OPTION COMPONENT (THE OPTIONS)
 .paso-option-container {
   -webkit-box-flex: 1;
@@ -577,10 +626,10 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  // flex-wrap: wrap !important;
 }
 .image-link {
-  width: 80%;
+  // width: 80%;
+  height: 30rem;
   border: 1px solid #723025;
   border-radius: 1rem;
 }
@@ -602,56 +651,6 @@
 // EDIT PASO IN PASO
 .paso-option-container {
   // border: 2px solid #ccc;
-}
-
-// ESTILO DE LOS RADIO BUTTONS
-// ERRASE AFTER FIXING PROCOMS!!!!
-
-[type="radio"]:not(:checked) + label, [type="radio"]:checked + label {
-    position: relative;
-    padding-left: 25px;
-    cursor: pointer;
-    display: inline-block;
-    height: 25px;
-    line-height: 25px;
-    font-size: 1rem;
-    -webkit-transition: .28s ease;
-    transition: .28s ease;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none;
-}
-
-[type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after {
-    background-color: #FF6949 !important;
-    border: 2px solid #723025;
-}
-
-.btns-radial-procom {
-  margin-top: 10px;
-  // z-index: 100;
-}
-.edit-btns-estilo {
-  margin-top: 10px;
-  padding: 6px;
-  border: 1px solid #7b7b7b;
-  border-radius: 1rem;
-  background: #ccc;
-  -webkit-box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
-          box-shadow: 3px 3px 3px rgba(0,0,0,0.3);
-  z-index: 100;
-}
-.edit-btns-estilo label {
-  color: #7b7b7b;
-}
-.btns-estilo {
-  margin-left: 2rem;
-}
-
-.btns-estilo label {
-  margin-right: 1.3rem;
-  color: #7b7b7b;
 }
 
 // PROCOMS

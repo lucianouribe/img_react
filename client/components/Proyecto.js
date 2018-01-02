@@ -20,7 +20,10 @@ class Proyecto extends React.Component {
       cualTopic: null,
       cualSubTopic: null,
       estilo: 'paragraph',
-      highness: '36px'
+      highness: '36px',
+
+      files: [],
+      preview: false
     }
 
     this.memorySetter = this.memorySetter.bind(this);
@@ -36,6 +39,12 @@ class Proyecto extends React.Component {
 
     this.topicChanger = this.topicChanger.bind(this);
     this.setTextareaHeight = this.setTextareaHeight.bind(this);
+
+    // upload image
+    this.selectFiles = this.selectFiles.bind(this);
+    this.imageRender = this.imageRender.bind(this);
+
+
   }
 
   componentDidMount(){
@@ -44,6 +53,7 @@ class Proyecto extends React.Component {
     let full = 'full'
     this.props.dispatch(fetchProyectos(full));
 
+    // put in setState this: modalize: isMobile
     let proyectoTopic = this.props.elproyecto.topic
     let picked = Tutorials[proyectoTopic];
     this.setState({cualTopic: proyectoTopic, cualSubTopic: picked});
@@ -191,18 +201,28 @@ class Proyecto extends React.Component {
 
   // PASO ADD DISPATCHER
   pasoSubmit(){
-    let step = this.refs.step.value
+    let proyecto = this.props.elproyecto;
+
+    let step = this.refs.step.value;
     let orden;
+    let estilo = this.state.estilo;
     let tutoLink;
     let videoLink;
     let imageLink;
-    let estilo = this.state.estilo;
-    let proyecto = this.props.elproyecto;
-    this.props.dispatch(addPaso(proyecto, step, orden, estilo, tutoLink, videoLink, imageLink));
+    let picture;
+    // para upload
+    if(this.state.estilo === 'download') {
+      imageLink = Math.random().toString(36).replace(/0\./i, '');
+      let image = `http://res.cloudinary.com/lucianouribe/image/upload/${imageLink}.jpg`;
+      picture = this.refs.picture.files[0];
+    }
+
+    this.props.dispatch(addPaso(proyecto, step, orden, estilo, tutoLink, videoLink, imageLink, picture));
     this.setState({showAdd: false})
     let show = true
     this.memorySetter(show);
   }
+
 
   // ADD PASO FORM
 
@@ -217,14 +237,61 @@ class Proyecto extends React.Component {
     }
   }
 
+  selectFiles(){
+    let file = this.refs.picture.files[0];
+    let reader = new FileReader();
+    let url = reader.readAsDataURL(file);
+
+    reader.onloadend = (e) => {
+      this.setState({
+          files: [reader.result],
+          preview: true
+      })
+    }
+
+  }
+
+
+  imageRender(){
+    var images = this.state.files.map( (f, x) => {
+      return(
+        <div key={x} className="paso-second-image-cont">
+          <img src={f} className="paso-second-image"/>
+        </div>
+      )
+    });
+    return(<div>{images}</div>)
+  }
+
+  addPasoFormOptions(){
+    if(this.state.estilo === 'download'){
+      return(
+        <div className="paso-second-form" >
+          <span className="paso-second-cont">
+            <input type="text" ref="step" className="paso-second-step" placeholder=" >_  picture name"/>
+            <input type="file" ref="picture" onChange={this.selectFiles} className="paso-second-picture"/>
+            <input type="hidden" value={this.state.files} />
+          </span>
+          <div className={this.state.preview ? "image-preview" : "hide"}>
+            {this.imageRender()}
+          </div>
+        </div>
+      )
+    } else {
+      return(
+        <textarea id="add-paso-textarea" className="paso-content-text" ref='step' placeholder="Add a new step" onChange={()=>this.setTextareaHeight($('#add-paso-textarea'))}></textarea>
+      )
+    }
+  }
+
   addPasoForm(){
     let whichButtonsShouldIHave = 'add-paso-full-buttons';
     if(this.state.showAdd){
       return(
         <div className="modal-form">
-          <form className="paso-container-form">
+          <form className="paso-container-form" encType="multipart/form-data">
             <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.estilo} conection={this.pasoOptionsConection}/>
-            <textarea id="add-paso-textarea" className="paso-content-text" ref='step' placeholder="Add a new step" onChange={()=>this.setTextareaHeight($('#add-paso-textarea'))}></textarea>
+            {this.addPasoFormOptions()}
           </form>
         </div>
       )
@@ -232,7 +299,6 @@ class Proyecto extends React.Component {
   }
 
   pasosDisplay(){
-    // es aqui, esto estaba antes de procoms={paso.procoms}: showPasosDisplay={this.showPasosDisplay}
     if(this.props.doorStatus) {
       let showPasos = this.props.pasos;
       let proyecto = this.props.elproyecto;
@@ -291,10 +357,26 @@ class Proyecto extends React.Component {
   }
 
   render(){
+    let bodyStyle;
+    let containerStyle;
+    if(this.props.modalize === true && this.props.doorStatus === true) {
+      bodyStyle = {
+        width: '100vw',
+        height: '100vh',
+        zDepth: '2500',
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        background: '#fff'
+      }
+      containerStyle = {
+        maxHeight: '90vh'
+      }
+    }
     return (
-      <div>
+      <div style={bodyStyle}>
         {this.individualProject()}
-        <div className="pasos-container">
+        <div className="pasos-container" style={containerStyle}>
           {this.pasosDisplay()}
         </div>
         {this.addPasoForm()}

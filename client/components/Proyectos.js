@@ -14,7 +14,8 @@ class Proyectos extends React.Component {
       showForm: false,
       cualTopic: 'none',
       cualSubTopic: ['none'],
-      memoryBank: null
+      memoryBank: null,
+      modalize: false
     }
 
     this.memoryBankFunction = this.memoryBankFunction.bind(this);
@@ -32,10 +33,17 @@ class Proyectos extends React.Component {
 
     let full = 'full'
     this.props.dispatch(fetchProyectos(full));
+
+    let isMobile = (window.innerWidth <= 800 && window.innerHeight <= 600)
+    this.modalizeMe(isMobile);
   }
 
   componentDidUpdate() {
     // $('select').material_select();
+  }
+
+  modalizeMe(doIt){
+    this.setState({modalize: doIt})
   }
 
   // ALL MIGHTY MEMORY
@@ -143,7 +151,7 @@ class Proyectos extends React.Component {
     let subtopic = this.refs.subtopic.value;
     let difficulty = this.refs.difficulty.value;
     let order = 0;
-    this.props.dispatch(addProyecto(name, topic, subtopic, difficulty, order));
+    this.props.dispatch(addProyecto(name, topic, subtopic, difficulty, order, this.props.user.id));
     this.toggleDisplay();
   }
 
@@ -174,7 +182,7 @@ class Proyectos extends React.Component {
           doorStatus = false
         }
         // door status stuff for showing procoms
-        return(<Proyecto key={proyecto.id} elproyecto={proyecto} pasos={proyecto.pasos} memoryBankFunction={this.memoryBankFunction} doorStatus={doorStatus} newbank={newbank}/>);
+        return(<Proyecto key={proyecto.id} elproyecto={proyecto} pasos={proyecto.pasos} memoryBankFunction={this.memoryBankFunction} doorStatus={doorStatus} newbank={newbank} modalize={this.state.modalize}/>);
       })
     } else {
       return(<h4>Sin Proyectos</h4>);
@@ -186,7 +194,7 @@ class Proyectos extends React.Component {
     return (
       <div className='descripciones-container'>
         <div className='admin-title'>
-          <h1>Supersonic cheatsheet</h1>
+          <h1 onClick={() => this.setState({modalize: !this.state.modalize})}>iTuto</h1>
           {this.showSearcher()}
           <span className='right' onClick={this.toggleDisplay}><i className="material-icons btn-icon large">add</i></span>
         </div>
@@ -200,6 +208,7 @@ class Proyectos extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
+    user: state.user,
     proyectos: state.proyectos,
     pasos: state.pasos
  }

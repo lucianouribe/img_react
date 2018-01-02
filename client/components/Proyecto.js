@@ -363,7 +363,7 @@ class Proyecto extends React.Component {
       bodyStyle = {
         width: '100vw',
         height: '100vh',
-        zDepth: '2500',
+        zIndex: '2500',
         position: 'absolute',
         top: '0',
         left: '0',

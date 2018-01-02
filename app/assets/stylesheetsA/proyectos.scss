@@ -624,6 +624,17 @@
 .nothing-flash {
   text-align: center;
 }
+@media all and (max-width: 800px) {
+  .descripciones-container {
+    padding: 0;
+  }
+  .proyecto-unidad {
+    margin: 0.6rem 2rem;
+  }
+  .titulo-nombre h4 {
+    font-size: 1.8rem;
+  }
+}
 //iphone 3 y 4
 @media all and (max-width: 380px) {
 

@@ -8,12 +8,44 @@
 }
 .admin-dashboard-container {
   flex: 2 2 20%;
-  // background-color: red;
-  // border-right: 1px solid #ccc;
   box-shadow: 3px 0 3px rgba(0,0,0,0.3);
 }
 .admin-main-container {
   flex: 8 8 80%;
+}
+@media all and (max-width: 800px) {
+  .admin-container {
+    flex-wrap: wrap;
+  }
+  .admin-main-container {
+    flex: 1 1 100%;
+    order: 1;
+    height: calc(90vh - 63px);
+    overflow: hidden;
+  }
+  .admin-title {
+    height: 7rem !important;
+  }
+  .admin-dashboard-container {
+    flex: 1 1 100%;
+    width: 100%;
+    order: 2;
+    height: 10vh;
+    position: absolute;
+    bottom: 0px;
+    z-index: 300;
+  }
+
+  .admin-dash-buttons {
+    display: flex;
+    justify-content: space-between;
+
+    // padding: 0 2rem;
+  }
+  .admin-btn {
+    width: 120px;
+    margin: 1rem 0.5rem;
+  }
 }
 
 // dashboard

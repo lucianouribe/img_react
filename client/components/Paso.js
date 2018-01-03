@@ -93,6 +93,9 @@ class Paso extends React.Component {
   // PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!
   showProcomsFu(how){
     let show = !this.props.showProcom
+    console.log('showProcomsFu');
+    console.log(`entra how: ${how}`)
+    console.log(`this is show: ${show}`)
     this.memorySetter(show, how);
   }
 
@@ -102,6 +105,7 @@ class Paso extends React.Component {
     let proyecto = this.props.proyecto;
     let numeracionComment = 0;
     let numeracionProblems = 0;
+
     let comments = showProcoms.filter( comme => { if(comme.type_of_issue === 'comment') return comme })
 
     let problems = showProcoms.filter( proble => { if(proble.type_of_issue === 'problem') return proble })

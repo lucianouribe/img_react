@@ -158,6 +158,8 @@ class Proyectos extends React.Component {
   // DISPLAY PROYECTOS
   displayProyectos() {
     let proyectos = this.props.proyectos;
+    console.log('los proyectos')
+    console.table(proyectos)
     // memory bank stuff
     let bank;
     let index;
@@ -181,6 +183,9 @@ class Proyectos extends React.Component {
         } else {
           doorStatus = false
         }
+        console.log('display proyectos')
+        console.log(`elproyecto: ${proyecto}`);
+        console.log(`proyectos show pasos: ${proyecto.pasos}`);
         // door status stuff for showing procoms
         return(<Proyecto key={proyecto.id} elproyecto={proyecto} pasos={proyecto.pasos} memoryBankFunction={this.memoryBankFunction} doorStatus={doorStatus} newbank={newbank} modalize={this.state.modalize}/>);
       })

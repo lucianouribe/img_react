@@ -301,8 +301,8 @@ class Proyecto extends React.Component {
   pasosDisplay(){
     if(this.props.doorStatus) {
       let showPasos = this.props.pasos;
-      console.log('en proyecto(pasosDisplay) showPasos:')
-      console.log(showPasos)
+      // console.log('en proyecto(pasosDisplay) showPasos:')
+      // console.log(showPasos)
       let proyecto = this.props.elproyecto;
       let bank = this.props.newbank;
       let index;
@@ -361,8 +361,8 @@ class Proyecto extends React.Component {
   render(){
     let bodyStyle;
     let containerStyle;
-    console.log(`el proyecto especifico: ${this.props.elproyecto.name}`)
-    console.log(`los pasos del proyecto: ${this.props.elproyecto.pasos.length}`)
+    // console.log(`el proyecto especifico: ${this.props.elproyecto.name}`)
+    // console.log(`los pasos del proyecto: ${this.props.elproyecto.pasos.length}`)
     if(this.props.modalize === true && this.props.doorStatus === true) {
       bodyStyle = {
         width: '100vw',

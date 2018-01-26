@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.3.1'
+# ruby '2.3.1'
 
 
 gem 'rails', '~> 5.0.1'
@@ -18,7 +18,7 @@ gem 'font-awesome-rails'
 gem 'dotenv'
 gem 'dotenv-rails'
 gem 'cloudinary', '~> 1.1.7'
-gem 'paperclip'
+# gem 'paperclip'
 gem 'paperclip-cloudinary', '~> 1.3.0'
 # gem 'attachinary'
 gem 'letter_opener'

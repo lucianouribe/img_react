@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20180102110953) do
     t.text     "pro_content"
     t.string   "pro_style"
     t.integer  "pro_order"
-    t.string   "type_of_issue"
+    t.boolean  "type_of_issue"
     t.integer  "paso_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false

@@ -330,6 +330,7 @@
 .modal-form .paso-container-form {
   width: 700px;
   min-width: 320px;
+  max-height: 90vh;
 }
 .paso-container-form {
   margin: 0.5rem 3rem;
@@ -343,17 +344,18 @@
   display: flex;
   flex-direction: column;
 }
-.paso-container-form textarea{
+.paso-container-form .paso-content-text{
   background: rgba(255,255,255,1);
   border-bottom-right-radius: 0.3rem;
   border-bottom-left-radius: 0.3rem;
   padding: 0.5rem;
+  margin-top: 0;
   border: none;
   border-top: 2px solid #ccc !important;
+  max-height: calc(90vh - 3rem);
+  overflow-y: scroll;
 }
-.paso-container-form .paso-content-text{
-  margin-top: 0;
-}
+
 // second form
 .paso-second-form {
   background: rgba(255,255,255,1);

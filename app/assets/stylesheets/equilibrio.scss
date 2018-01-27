@@ -61,6 +61,10 @@
   // color: #ff6d00;
   color: #fff;
 }
+.equilibrio input::-ms-input-placeholder {
+  // color: #ff6d00;
+  color: #fff;
+}
 .equilibrio input::placeholder {
   // color: #ff6d00;
   color: #fff;
@@ -70,6 +74,10 @@
   // color: #fff;
 }
 .equilibrio input:focus:-ms-input-placeholder {
+  color: #ff6d00;
+  // color: #fff;
+}
+.equilibrio input:focus::-ms-input-placeholder {
   color: #ff6d00;
   // color: #fff;
 }

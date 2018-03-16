@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180102110953) do
+ActiveRecord::Schema.define(version: 20171207202002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,12 +20,12 @@ ActiveRecord::Schema.define(version: 20180102110953) do
     t.string   "image",                null: false
     t.string   "infopic"
     t.string   "role",                 null: false
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
   create_table "contacts", force: :cascade do |t|
@@ -66,13 +66,13 @@ ActiveRecord::Schema.define(version: 20180102110953) do
     t.string   "tuto_link"
     t.string   "video_link"
     t.string   "image_link"
-    t.integer  "proyecto_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
     t.string   "picture_file_name"
     t.string   "picture_content_type"
     t.integer  "picture_file_size"
     t.datetime "picture_updated_at"
+    t.integer  "proyecto_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
     t.index ["proyecto_id"], name: "index_pasos_on_proyecto_id", using: :btree
   end
 
@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20180102110953) do
     t.text     "pro_content"
     t.string   "pro_style"
     t.integer  "pro_order"
-    t.boolean  "type_of_issue"
+    t.string   "type_of_issue"
     t.integer  "paso_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
@@ -93,9 +93,9 @@ ActiveRecord::Schema.define(version: 20180102110953) do
     t.string   "subtopic"
     t.string   "difficulty"
     t.integer  "order"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "user_id"
   end
 
   create_table "translators", force: :cascade do |t|

@@ -48,6 +48,6 @@ class Api::ProyectosController < ApplicationController
     end
 
     def api_proyecto_params
-      params.require(:proyecto).permit(:name, :topic, :subtopic, :difficulty, :order, :user_id)
+      params.require(:proyecto).permit(:name, :topic, :subtopic, :difficulty, :orden, :user_id)
     end
 end

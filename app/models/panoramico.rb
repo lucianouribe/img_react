@@ -1,2 +1,0 @@
-class Panoramico < ApplicationRecord
-end

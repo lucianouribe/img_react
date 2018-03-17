@@ -50,8 +50,8 @@ class Proyecto extends React.Component {
   componentDidMount(){
     $('select').material_select();
     // console.log('soy proyecto');
-    let full = 'full'
-    this.props.dispatch(fetchProyectos(full));
+    // let full = 'full'
+    // this.props.dispatch(fetchProyectos(full));
 
     // put in setState this: modalize: isMobile
     let proyectoTopic = this.props.elproyecto.topic

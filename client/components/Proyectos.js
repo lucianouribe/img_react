@@ -158,8 +158,6 @@ class Proyectos extends React.Component {
   // DISPLAY PROYECTOS
   displayProyectos() {
     let proyectos = this.props.proyectos;
-    // console.log('los proyectos')
-    // console.table(proyectos)
     // memory bank stuff
     let bank;
     let index;

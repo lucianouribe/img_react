@@ -21,10 +21,7 @@ const proyectos = ( state = [], action ) => {
       // console.log('this is ADD_PASO reducer en proyectos')
       allProyectos = state;
       index = allProyectos.findIndex( proy => proy.id === action.proId)
-      // state[index].pasos = [action.paso, ...allProyectos[index].pasos]
-      // debugger;
-      // let testing =  allProyectos[index].pasos
-      // debugger;
+
       return [action.paso, ...state[index].pasos]
       break;
     case 'ADD_PROCOM':

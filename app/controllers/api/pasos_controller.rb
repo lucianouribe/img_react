@@ -46,9 +46,11 @@ class Api::PasosController < ApplicationController
   end
 
   def destroy
-    image_to_delete = @api_paso[:image_link]
+    if @api_paso[:image_link] != 'undefined'
+      image_to_delete = @api_paso[:image_link]
+      Paso.delete_me(image_to_delete)
+    end
     @api_paso.destroy
-    Paso.delete_me(image_to_delete)
     head :no_content
   end
 

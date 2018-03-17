@@ -17,13 +17,13 @@ const proyectos = ( state = [], action ) => {
       // console.log('this is ADD_PROYECTO reducer')
       return [action.proyecto, ...state]
       break;
-    case 'ADD_PASO':
-      // console.log('this is ADD_PASO reducer en proyectos')
-      allProyectos = state;
-      index = allProyectos.findIndex( proy => proy.id === action.proId)
-
-      return [action.paso, ...state[index].pasos]
-      break;
+    // case 'ADD_PASO':
+    //   // console.log('this is ADD_PASO reducer en proyectos')
+    //   allProyectos = state;
+    //   index = allProyectos.findIndex( proy => proy.id === action.proId)
+    //
+    //   return [action.paso, ...state[index].pasos]
+    //   break;
     case 'ADD_PROCOM':
       // console.log('this is ADD_PROCOM reducer')
       allProyectos = state;
@@ -40,16 +40,16 @@ const proyectos = ( state = [], action ) => {
       // debugger;
       return [...allProyectos]
       break;
-    case 'EDIT_PASO':
-      // console.log('this is edit paso reducer !')
-      allProyectos = state;
-      index = allProyectos.findIndex( proy => proy.id === action.proId)
-      indexTwo = allProyectos[index].pasos.findIndex( paso => paso.id === action.pasId)
-
-      allProyectos[index].pasos[indexTwo] = action.paso
-
-      return [...allProyectos[index].pasos]
-      break;
+    // case 'EDIT_PASO':
+    //   // console.log('this is edit paso reducer !')
+    //   allProyectos = state;
+    //   index = allProyectos.findIndex( proy => proy.id === action.proId)
+    //   indexTwo = allProyectos[index].pasos.findIndex( paso => paso.id === action.pasId)
+    //
+    //   allProyectos[index].pasos[indexTwo] = action.paso
+    //
+    //   return [...allProyectos[index].pasos]
+    //   break;
     case 'EDIT_PROCOM':
       // console.log('this is edit procom reducer !')
       allProyectos = state;

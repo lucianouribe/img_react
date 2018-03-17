@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchProyectos, editProyecto, deleteProyecto, addPaso } from '../actions/proyectos';
+import { fetchProyectos, editProyecto, deleteProyecto, addPaso, editPaso, deletePaso } from '../actions/proyectos';
 import { addMemoProyect } from '../actions/mymemory';
 
 import Paso from './Paso';
@@ -21,12 +21,15 @@ class Proyecto extends React.Component {
       cualSubTopic: null,
       estilo: 'paragraph',
       highness: '36px',
+      pasos: [],
 
       files: [],
       preview: false
     }
 
     this.memorySetter = this.memorySetter.bind(this);
+    this.pasosSetter = this.pasosSetter.bind(this);
+    this.deletePasoFunc = this.deletePasoFunc.bind(this);
 
     this.showEditContent = this.showEditContent.bind(this);
     this.handleEdit = this.handleEdit.bind(this);
@@ -43,20 +46,15 @@ class Proyecto extends React.Component {
     // upload image
     this.selectFiles = this.selectFiles.bind(this);
     this.imageRender = this.imageRender.bind(this);
-
-
   }
 
   componentDidMount(){
     $('select').material_select();
-    // console.log('soy proyecto');
-    // let full = 'full'
-    // this.props.dispatch(fetchProyectos(full));
-
     // put in setState this: modalize: isMobile
+    let pasos = this.props.elproyecto.pasos
     let proyectoTopic = this.props.elproyecto.topic
     let picked = Tutorials[proyectoTopic];
-    this.setState({cualTopic: proyectoTopic, cualSubTopic: picked});
+    this.setState({cualTopic: proyectoTopic, cualSubTopic: picked, pasos});
 
     // para que los tab funcionen en el textarea
     var textareas = document.getElementsByTagName('textarea');
@@ -108,6 +106,25 @@ class Proyecto extends React.Component {
     }
     // this.props.dispatch(addMemoProyect(whoAmI))
     this.props.memoryBankFunction(whoAmI)
+  }
+
+  pasosSetter(incoming) {
+    let pasos = this.state.pasos;
+    let index = pasos.findIndex( paso => paso.id === incoming.id)
+    pasos[index] = incoming;
+    this.setState({pasos})
+  }
+
+  deletePasoFunc(pasId, proId) {
+    let pasos = this.state.pasos;
+
+    if(typeof pasId === 'number' && (pasId % 1) === 0) {
+      this.props.dispatch(deletePaso(pasId, proId));
+    }
+
+    let index = pasos.findIndex( paso => paso.id === pasId);
+    pasos = [...pasos.slice(0, index), ...pasos.slice(index + 1)]
+    this.setState({pasos})
   }
 
   // PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!
@@ -177,16 +194,39 @@ class Proyecto extends React.Component {
   }
 
   handleEdit(){
+    console.log('handle edit!')
+    let proyecto = this.props.elproyecto;
     let id = this.refs.id.value;
     let name = this.refs.name.value;
     let topic = this.refs.topic.value;
     let subtopic = this.refs.subtopic.value;
     let difficulty = this.refs.difficulty.value;
     let order = 0;
-
+    let pasos = this.state.pasos;
     this.props.dispatch(editProyecto(id, name, topic, subtopic, difficulty, order));
+
+    for (var i = 0; i < pasos.length; i++) {
+      // console.log(pasos[i])
+      if(pasos[i].novelty === true) {
+        const step = pasos[i].step;
+        const orden = pasos[i].orden;
+        const estilo = pasos[i].estilo;
+        const tutoLink = pasos[i].tutoLink;
+        const videoLink = pasos[i].videoLink;
+        const image_link = pasos[i].image_link;
+        const picture = pasos[i].picture;
+        // if el paso tiene id numerico
+        if(typeof pasos[i].id === 'number' && (pasos[i].id % 1) === 0) {
+          const pasoId = pasos[i].id;
+          const proyectoId = proyecto.id;
+          this.props.dispatch(editPaso(proyectoId, pasoId, step, orden, estilo, tutoLink, videoLink, image_link ));
+        } else {
+          this.props.dispatch(addPaso(proyecto, step, orden, estilo, tutoLink, videoLink, image_link, picture));
+        }
+      }
+    }
     this.showEditContent();
-    this.memorySetter();
+    // this.memorySetter();
   }
 
   // PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!
@@ -202,25 +242,35 @@ class Proyecto extends React.Component {
   // PASO ADD DISPATCHER
   pasoSubmit(){
     let proyecto = this.props.elproyecto;
-
+    let pasos = this.state.pasos;
+    let id = new Date();
+    console.log('id en paso submit')
+    console.log(id)
     let step = this.refs.step.value;
     let orden;
     let estilo = this.state.estilo;
     let tutoLink;
     let videoLink;
-    let imageLink;
+    let image_link;
     let picture;
+    let procoms = [];
+    let novelty = true;
     // para upload
     if(this.state.estilo === 'download') {
-      imageLink = Math.random().toString(36).replace(/0\./i, '');
-      let image = `http://res.cloudinary.com/lucianouribe/image/upload/${imageLink}.jpg`;
+      image_link = Math.random().toString(36).replace(/0\./i, '');
+      let image = `http://res.cloudinary.com/lucianouribe/image/upload/${image_link}.jpg`;
       picture = this.refs.picture.files[0];
+    } else {
+      image_link = 'undefined';
     }
+    let new_paso = {id, step, orden, estilo, tutoLink, videoLink, image_link, picture, procoms, novelty};
+    pasos = [...pasos, new_paso]
+    this.setState({pasos: pasos});
 
-    this.props.dispatch(addPaso(proyecto, step, orden, estilo, tutoLink, videoLink, imageLink, picture));
-    this.setState({showAdd: false})
-    let show = true
-    this.memorySetter(show);
+    // this.props.dispatch(addPaso(proyecto, step, orden, estilo, tutoLink, videoLink, imageLink, picture));
+    this.setState({showAdd: false});
+    // let show = true
+    // this.memorySetter(show);
   }
 
 
@@ -250,7 +300,6 @@ class Proyecto extends React.Component {
     }
 
   }
-
 
   imageRender(){
     var images = this.state.files.map( (f, x) => {
@@ -300,9 +349,7 @@ class Proyecto extends React.Component {
 
   pasosDisplay(){
     if(this.props.doorStatus) {
-      let showPasos = this.props.pasos;
-      // console.log('en proyecto(pasosDisplay) showPasos:')
-      // console.log(showPasos)
+      let showPasos = this.state.pasos;
       let proyecto = this.props.elproyecto;
       let bank = this.props.newbank;
       let index;
@@ -323,7 +370,7 @@ class Proyecto extends React.Component {
             }
           }
 
-          return(<Paso key={paso.id} elpaso={paso} proyecto={proyecto} procoms={paso.procoms} memoryBankFunction={this.props.memoryBankFunction} showProcom={doorStatus2} typeOfProcom={typeStatus2}/>);
+          return(<Paso key={paso.id} elpaso={paso} proyectoId={proyecto.id} procoms={paso.procoms} memoryBankFunction={this.props.memoryBankFunction} showProcom={doorStatus2} typeOfProcom={typeStatus2} pasosSetter={this.pasosSetter} deletePasoFunc={this.deletePasoFunc}/>);
         })
       } else {
         return(<p className="nothing-flash">Sin Pasos</p>);
@@ -377,6 +424,7 @@ class Proyecto extends React.Component {
         maxHeight: '90vh'
       }
     }
+
     return (
       <div style={bodyStyle}>
         {this.individualProject()}
@@ -397,4 +445,5 @@ const mapStateToProps = (state) => {
  }
 }
 
+// export default Proyecto;
 export default connect(mapStateToProps)(Proyecto);

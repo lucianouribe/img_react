@@ -31,7 +31,7 @@ class Paso extends React.Component {
     this.procomSubmit = this.procomSubmit.bind(this);
     // PASO CRUDS
     this.submitEditPaso = this.submitEditPaso.bind(this);
-    this.deletePaso = this.deletePaso.bind(this);
+    // this.deletePaso = this.deletePaso.bind(this);
     // BOTONES
     this.pasoOptionsConection = this.pasoOptionsConection.bind(this);
     this.procomOptionsConection = this.procomOptionsConection.bind(this);
@@ -70,7 +70,7 @@ class Paso extends React.Component {
   memorySetter(show, how){
     // console.log('im memory setter in paso')
     let whoAmI = {
-      proyectoId: this.props.proyecto.id,
+      proyectoId: this.props.proyectoId,
       id: this.props.elpaso.id,
       state: {
         showProcom: show,
@@ -102,7 +102,7 @@ class Paso extends React.Component {
   displayProcoms(){
     let showProcoms = this.props.procoms;
     let paso = this.props.elpaso;
-    let proyecto = this.props.proyecto;
+    let proyectoId = this.props.proyectoId;
     let numeracionComment = 0;
     let numeracionProblems = 0;
 
@@ -115,7 +115,7 @@ class Paso extends React.Component {
       if(showProcoms.length > 0) {
         return comments.map( procom => {
           numeracionComment++
-          return(<Procom key={procom.id} procom={procom} paso={paso} proyecto={proyecto} numeracion={numeracionComment}/>);
+          return(<Procom key={procom.id} procom={procom} paso={paso} proyectoId={proyectoId} numeracion={numeracionComment}/>);
         })
       } else {
         return (<p className="nothing-flash">no comments</p>)
@@ -124,7 +124,7 @@ class Paso extends React.Component {
       if(showProcoms.length > 0) {
         return problems.map( procom => {
           numeracionProblems++
-          return(<Procom key={procom.id} procom={procom} paso={paso} proyecto={proyecto} numeracion={numeracionProblems}/>);
+          return(<Procom key={procom.id} procom={procom} paso={paso} proyectoId={proyectoId} numeracion={numeracionProblems}/>);
         })
       } else {
         return (<p className="nothing-flash">no problems</p>)
@@ -168,7 +168,7 @@ class Paso extends React.Component {
   // PROCOM ADD DISPATCHER
   procomSubmit(){
     let pasId = this.props.elpaso.id;
-    let proId = this.props.proyecto.id;
+    let proId = this.props.proyectoId;
 
     let pro_content = this.refs.pro_content.value;
     let type_of_issue;
@@ -195,23 +195,27 @@ class Paso extends React.Component {
 
   submitEditPaso(){
     // console.log('submiting edit paso')
-    let proyecto = this.props.proyecto;
-    let paso = this.props.elpaso;
+    let proyectoId = this.props.proyectoId;
+    let id = this.props.elpaso.id;
     let step = this.refs.step.value;
     let orden = 0;
     let estilo = this.state.estilo;
     let tutoLink;
     let videoLink;
     let imageLink;
-    this.props.dispatch(editPaso(proyecto, paso.id, step, orden, estilo, tutoLink, videoLink, imageLink));
+    let procoms = this.props.elpaso.procoms;
+    let novelty = true;
+    // this.props.dispatch(editPaso(proyectoId, paso.id, step, orden, estilo, tutoLink, videoLink, imageLink));
+    let outcome = { proyectoId, id, step, orden, estilo, tutoLink, videoLink, imageLink, procoms, novelty }
     this.setState({showEditButtons: 'hide-buttons'})
+    this.props.pasosSetter(outcome);
   }
 
-  // DELETE PASO
-  deletePaso(pasId, proyecto){
-    // console.log('delete me');
-    this.props.dispatch(deletePaso(pasId, proyecto));
-  }
+  // // DELETE PASO
+  // deletePaso(pasId, proyectoId){
+  //   // console.log('delete me');
+  //   this.props.dispatch(deletePaso(pasId, proyectoId));
+  // }
 
   // RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!
 
@@ -255,7 +259,7 @@ class Paso extends React.Component {
 
   renderPasoContent(){
     let paso = this.props.elpaso;
-    let proyecto = this.props.proyecto;
+    let proyectoId = this.props.proyectoId;
 
     let show = 'show-buttons';
     // let hide = 'hide-buttons';
@@ -285,7 +289,7 @@ class Paso extends React.Component {
               <i className="fa fa-plus-circle btn-icon" aria-hidden="true" onClick={() => this.addProcomSetter()}></i>
               <i className="fa fa-comments btn-icon" aria-hidden="true" onClick={() => this.showProcomsFu(comentario)}></i>
               <i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true" onClick={() => this.showProcomsFu(problema)}></i>
-              <i className="fa fa-trash btn-icon" aria-hidden="true" onClick={() => this.deletePaso(paso.id, proyecto)}></i>
+              <i className="fa fa-trash btn-icon" aria-hidden="true" onClick={() => this.props.deletePasoFunc(paso.id, proyectoId)}></i>
             </span>
           </span>
         </div>

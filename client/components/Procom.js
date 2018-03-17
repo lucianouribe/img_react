@@ -53,7 +53,7 @@ class Procom extends React.Component {
 
   submitEditProcom(){
     let pasId = this.props.paso.id;
-    let proId = this.props.proyecto.id;
+    let proId = this.props.proyectoId;
     let procom = this.props.procom;
     let pro_content = this.refs.pro_content.value;
     let type_of_issue;
@@ -96,7 +96,7 @@ class Procom extends React.Component {
 
     let procom = this.props.procom;
     let pasoId = this.props.paso.id;
-    let proyectoId = this.props.proyecto.id;
+    let proyectoId = this.props.proyectoId;
     let comentario = true;
     let problema = false;
     let show = 'show-buttons';

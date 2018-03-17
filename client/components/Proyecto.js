@@ -182,9 +182,9 @@ class Proyecto extends React.Component {
     let topic = this.refs.topic.value;
     let subtopic = this.refs.subtopic.value;
     let difficulty = this.refs.difficulty.value;
-    let order = 0;
+    let orden = 0;
 
-    this.props.dispatch(editProyecto(id, name, topic, subtopic, difficulty, order));
+    this.props.dispatch(editProyecto(id, name, topic, subtopic, difficulty, orden));
     this.showEditContent();
     this.memorySetter();
   }

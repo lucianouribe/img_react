@@ -4,7 +4,7 @@ class Proyecto < ApplicationRecord
   # binding.pry
   def self.order_by_id
     # binding.pry
-    Proyecto.order("id ASC")
+    Proyecto.orden("id ASC")
     # cuando se pueda cambiar el orden de verdad, este sera Proyecto.order('order ASC')
   end
 end

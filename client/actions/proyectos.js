@@ -1,7 +1,7 @@
 
 // ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!
 
-export const addProyecto = (name, topic, subtopic, difficulty, order, user_id) => {
+export const addProyecto = (name, topic, subtopic, difficulty, orden, user_id) => {
   // console.log('this is add proyectos action');
   // console.log('front end paso 2')
   // debugger;
@@ -10,7 +10,7 @@ export const addProyecto = (name, topic, subtopic, difficulty, order, user_id) =
       url: `/api/proyectos`,
       type: 'POST',
       dataType: 'JSON',
-      data: { proyecto: { name, topic, subtopic, difficulty, order, user_id } }
+      data: { proyecto: { name, topic, subtopic, difficulty, orden, user_id } }
     }).done( proyecto => {
       // console.log('add proyecto done');
       // console.log(proyecto);
@@ -154,15 +154,15 @@ export const fetchProcoms = (proyecto, paso) => {
 
 // EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!
 
-export const editProyecto = (id, name, topic, subtopic, difficulty, order) => {
+export const editProyecto = (id, name, topic, subtopic, difficulty, orden) => {
   // console.log(`this is edit proyecto con id: ${id}`)
-  // console.log(id, name, topic, subtopic, difficulty, order)
+  // console.log(id, name, topic, subtopic, difficulty, orden)
   return(dispatch) => {
     $.ajax({
       url: `/api/proyectos/${id}`,
       type: 'PUT',
       dataType: 'JSON',
-      data: { proyecto: { name, topic, subtopic, difficulty, order } }
+      data: { proyecto: { name, topic, subtopic, difficulty, orden } }
     }).done( proyecto => {
       // console.log(`edit proyecto - ${id} - done data`);
       // console.log(proyecto);

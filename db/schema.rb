@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 20171207202002) do
     t.string   "topic"
     t.string   "subtopic"
     t.string   "difficulty"
-    t.integer  "order"
+    t.integer  "orden"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

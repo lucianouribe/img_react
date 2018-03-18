@@ -5,7 +5,8 @@ class CreateProyectos < ActiveRecord::Migration[5.0]
       t.string :topic
       t.string :subtopic
       t.string :difficulty
-      t.integer :order
+      t.integer :orden
+      t.integer :user_id
 
       t.timestamps
     end

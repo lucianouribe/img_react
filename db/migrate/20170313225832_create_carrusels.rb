@@ -5,6 +5,10 @@ class CreateCarrusels < ActiveRecord::Migration[5.0]
       t.string :image, null: false
       t.string :infopic
       t.string :role, null: false
+      t.string :picture_file_name
+      t.string :picture_content_type
+      t.integer :picture_file_size
+      t.datetime :picture_updated_at
 
       t.timestamps
     end

@@ -59,37 +59,37 @@ end
 
 puts 'images made'
 
-10.times do
-  Proyecto.create(
-              name: Faker::Pokemon.name,
-              topic: ['javascript', 'ruby', 'git', 'literatura'].sample,
-              subtopic: ['rails', 'react', 'github', 'gramatica'].sample,
-              difficulty: ['basic', 'medium', 'advanced', 'sayayin'].sample,
-              order: rand(1..20)
-              )
-end
-
-puts "proyectos seeded"
-
-10.times do
-  Paso.create(
-    proyecto_id: rand(1..10),
-    step: Faker::Lorem.paragraph(2),
-    orden: rand(1..20),
-    estilo: ['basic', 'medium', 'advanced', 'sayayin'].sample
-  )
-end
-
-puts "pasos seeded"
-
-30.times do
-  Procom.create(
-    paso_id: rand(1..10),
-    pro_content: Faker::Lorem.paragraph(1),
-    pro_style: ['comentario', 'problema', 'ejemplo'].sample,
-    pro_order: rand(1..20),
-    type_of_issue: ['comment', 'problem', 'example'].sample
-  )
-end
-
-puts "procom seeded"
+# 10.times do
+#   Proyecto.create(
+#               name: Faker::Pokemon.name,
+#               topic: ['javascript', 'ruby', 'git', 'literatura'].sample,
+#               subtopic: ['rails', 'react', 'github', 'gramatica'].sample,
+#               difficulty: ['basic', 'medium', 'advanced', 'sayayin'].sample,
+#               orden: rand(1..20)
+#               )
+# end
+#
+# puts "proyectos seeded"
+#
+# 10.times do
+#   Paso.create(
+#     proyecto_id: rand(1..10),
+#     step: Faker::Lorem.paragraph(2),
+#     orden: rand(1..20),
+#     estilo: ['basic', 'medium', 'advanced', 'sayayin'].sample
+#   )
+# end
+#
+# puts "pasos seeded"
+#
+# 30.times do
+#   Procom.create(
+#     paso_id: rand(1..10),
+#     pro_content: Faker::Lorem.paragraph(1),
+#     pro_style: ['comentario', 'problema', 'ejemplo'].sample,
+#     pro_order: rand(1..20),
+#     type_of_issue: ['comment', 'problem', 'example'].sample
+#   )
+# end
+#
+# puts "procom seeded"

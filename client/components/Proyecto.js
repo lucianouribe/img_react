@@ -201,9 +201,9 @@ class Proyecto extends React.Component {
     let topic = this.refs.topic.value;
     let subtopic = this.refs.subtopic.value;
     let difficulty = this.refs.difficulty.value;
-    let order = 0;
+    let orden = 0;
     let pasos = this.state.pasos;
-    this.props.dispatch(editProyecto(id, name, topic, subtopic, difficulty, order));
+    this.props.dispatch(editProyecto(id, name, topic, subtopic, difficulty, orden));
 
     for (var i = 0; i < pasos.length; i++) {
       // console.log(pasos[i])

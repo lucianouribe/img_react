@@ -1,4 +1,4 @@
-json.extract! @api_proyecto, :id, :name, :topic, :subtopic, :difficulty, :order
+json.extract! @api_proyecto, :id, :name, :topic, :subtopic, :difficulty, :orden
 
 json.pasos @api_proyecto.pasos do |paso|
   json.(paso, :id, :step, :orden, :estilo, :tuto_link, :video_link, :image_link)

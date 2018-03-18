@@ -1,5 +1,5 @@
 json.array! @api_proyectos do |proyecto|
-  json.(proyecto, :id, :name, :topic, :subtopic, :difficulty, :order)
+  json.(proyecto, :id, :name, :topic, :subtopic, :difficulty, :orden)
 
   json.pasos proyecto.pasos.order_by_id do |paso|
     json.(paso, :id, :step, :orden, :estilo, :tuto_link, :video_link, :image_link)

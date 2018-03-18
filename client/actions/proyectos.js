@@ -1,13 +1,13 @@
 // ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!ADD!!!!
 
-export const addProyecto = (name, topic, subtopic, difficulty, order, user_id) => {
+export const addProyecto = (name, topic, subtopic, difficulty, orden, user_id) => {
   // console.log('this is add proyectos action');
   return(dispatch) => {
     $.ajax({
       url: `/api/proyectos`,
       type: 'POST',
       dataType: 'JSON',
-      data: { proyecto: { name, topic, subtopic, difficulty, order, user_id } }
+      data: { proyecto: { name, topic, subtopic, difficulty, orden, user_id } }
     }).done( proyecto => {
       // console.log('add proyecto done');
       // console.log(proyecto);
@@ -106,14 +106,14 @@ export const fetchProyectos = (wordToMatch) => {
 
 // EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!EDIT!!!!
 
-export const editProyecto = (id, name, topic, subtopic, difficulty, order) => {
+export const editProyecto = (id, name, topic, subtopic, difficulty, orden) => {
   // console.log(`this is edit proyecto con id: ${id}`)
   return(dispatch) => {
     $.ajax({
       url: `/api/proyectos/${id}`,
       type: 'PUT',
       dataType: 'JSON',
-      data: { proyecto: { name, topic, subtopic, difficulty, order } }
+      data: { proyecto: { name, topic, subtopic, difficulty, orden } }
     }).done( proyecto => {
       // console.log(`edit proyecto - ${id} - done data`);
       // console.log(proyecto);

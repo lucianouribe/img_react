@@ -38,10 +38,6 @@ class Proyectos extends React.Component {
     this.modalizeMe(isMobile);
   }
 
-  componentDidUpdate() {
-    // $('select').material_select();
-  }
-
   modalizeMe(doIt){
     this.setState({modalize: doIt})
   }
@@ -150,8 +146,8 @@ class Proyectos extends React.Component {
     let topic = this.refs.topic.value;
     let subtopic = this.refs.subtopic.value;
     let difficulty = this.refs.difficulty.value;
-    let order = 0;
-    this.props.dispatch(addProyecto(name, topic, subtopic, difficulty, order, this.props.user.id));
+    let orden = 0;
+    this.props.dispatch(addProyecto(name, topic, subtopic, difficulty, orden, this.props.user.id));
     this.toggleDisplay();
   }
 

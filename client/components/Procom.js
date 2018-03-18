@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createMarkup } from '../helpers';
-import { editProcom, deleteProcom } from '../actions/proyectos';
 import PasoOptions from './PasoOptions';
 
 class Procom extends React.Component {
@@ -14,8 +13,7 @@ class Procom extends React.Component {
       showEditButtons: 'hide-buttons',
     }
 
-    this.submitEditProcom = this.submitEditProcom.bind(this);
-    this.deleteProcom = this.deleteProcom.bind(this);
+    this.procomFormSubmiter = this.procomFormSubmiter.bind(this);
     this.setTextareaHeight = this.setTextareaHeight.bind(this);
     this.onChange4Textarea = this.onChange4Textarea.bind(this);
     this.procomOptionsConection = this.procomOptionsConection.bind(this);
@@ -43,7 +41,7 @@ class Procom extends React.Component {
   procomOptionsConection(income){
     let hide = 'hide-buttons'
     if(income === 'submit') {
-      this.submitEditProcom()
+      this.procomFormSubmiter()
     } else if (income === 'cancel') {
       this.setState({ showEditButtons: hide})
     } else {
@@ -51,8 +49,10 @@ class Procom extends React.Component {
     }
   }
 
-  submitEditProcom(){
-    let pasId = this.props.paso.id;
+  // takes info from procom form and paso options and submit them
+  procomFormSubmiter(){
+    let id = this.props.procom.id;
+    let pasId = this.props.pasoId;
     let proId = this.props.proyectoId;
     let procom = this.props.procom;
     let pro_content = this.refs.pro_content.value;
@@ -69,14 +69,11 @@ class Procom extends React.Component {
       type_of_issue = 'comment';
     }
     let pro_order = 0;
-    this.props.dispatch(editProcom(proId, pasId, procom.id, pro_content, pro_style, pro_order, type_of_issue));
-    this.setState({showEditButtons: 'hide-buttons'})
-  }
+    let novelty = true;
 
-  // DELETE PROCOM
-  deleteProcom(procomId, pasoId, proyectoId){
-    // console.log('delete me')
-    this.props.dispatch(deleteProcom(procomId, pasoId, proyectoId));
+    let outcome = { pasId, id, pro_content, pro_style, pro_order, type_of_issue, novelty }
+    this.setState({showEditButtons: 'hide-buttons'})
+    this.props.procomSetter(outcome);
   }
 
   extraContent(){
@@ -95,7 +92,7 @@ class Procom extends React.Component {
     let whichButtonsShouldIHave = 'add-procom-full-buttons'
 
     let procom = this.props.procom;
-    let pasoId = this.props.paso.id;
+    let pasoId = this.props.pasoId;
     let proyectoId = this.props.proyectoId;
     let comentario = true;
     let problema = false;
@@ -112,7 +109,7 @@ class Procom extends React.Component {
           <textarea id="edit-procom-textarea" className="procom-content-text" style={inlineStyle} ref='pro_content' onChange={()=>this.onChange4Textarea(show)}>{procom.pro_content}</textarea>
         </span>
         <span className="mini-botones">
-          <i className="fa fa-trash" aria-hidden="true" onClick={()=> this.deleteProcom(procom.id, pasoId, proyectoId)}></i>
+          <i className="fa fa-trash" aria-hidden="true" onClick={()=> this.props.deleteProcomFunc(procom.id, pasoId, proyectoId)}></i>
         </span>
       </div>
     )
@@ -120,10 +117,4 @@ class Procom extends React.Component {
 
 }
 
-
-const mapStateToProps = (state) => {
-  return {
-
-  }
-}
-export default connect(mapStateToProps)(Procom);
+export default Procom;

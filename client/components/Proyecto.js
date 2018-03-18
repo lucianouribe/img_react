@@ -244,8 +244,6 @@ class Proyecto extends React.Component {
     let proyecto = this.props.elproyecto;
     let pasos = this.state.pasos;
     let id = new Date();
-    console.log('id en paso submit')
-    console.log(id)
     let step = this.refs.step.value;
     let orden;
     let estilo = this.state.estilo;
@@ -370,7 +368,7 @@ class Proyecto extends React.Component {
             }
           }
 
-          return(<Paso key={paso.id} elpaso={paso} proyectoId={proyecto.id} procoms={paso.procoms} memoryBankFunction={this.props.memoryBankFunction} showProcom={doorStatus2} typeOfProcom={typeStatus2} pasosSetter={this.pasosSetter} deletePasoFunc={this.deletePasoFunc}/>);
+          return(<Paso key={paso.id} elpaso={paso} proyectoId={proyecto.id} memoryBankFunction={this.props.memoryBankFunction} showProcom={doorStatus2} typeOfProcom={typeStatus2} pasosSetter={this.pasosSetter} deletePasoFunc={this.deletePasoFunc}/>);
         })
       } else {
         return(<p className="nothing-flash">Sin Pasos</p>);

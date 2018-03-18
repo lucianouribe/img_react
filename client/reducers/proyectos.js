@@ -24,13 +24,13 @@ const proyectos = ( state = [], action ) => {
     //
     //   return [action.paso, ...state[index].pasos]
     //   break;
-    case 'ADD_PROCOM':
-      // console.log('this is ADD_PROCOM reducer')
-      allProyectos = state;
-      index = allProyectos.findIndex( proy => proy.id === action.proId)
-      indexTwo = allProyectos[index].pasos.findIndex( paso => paso.id === action.pasId)
-      return [action.procom, ...state[index].pasos[indexTwo]]
-      break;
+    // case 'ADD_PROCOM':
+    //   // console.log('this is ADD_PROCOM reducer')
+    //   allProyectos = state;
+    //   index = allProyectos.findIndex( proy => proy.id === action.proId)
+    //   indexTwo = allProyectos[index].pasos.findIndex( paso => paso.id === action.pasId)
+    //   return [action.procom, ...state[index].pasos[indexTwo]]
+    //   break;
     case 'EDIT_PROYECTO':
       // console.log('this is EDIT_PROYECTO reducer')
       allProyectos = state;
@@ -50,19 +50,19 @@ const proyectos = ( state = [], action ) => {
     //
     //   return [...allProyectos[index].pasos]
     //   break;
-    case 'EDIT_PROCOM':
-      // console.log('this is edit procom reducer !')
-      allProyectos = state;
-
-      index = allProyectos.findIndex( proy => proy.id === action.proId)
-      indexTwo = allProyectos[index].pasos.findIndex( paso => paso.id === action.pasId)
-
-      indexThree = allProyectos[index].pasos[indexTwo].procoms.findIndex( procom => procom.id === action.procomId)
-
-      allProyectos[index].pasos[indexTwo].procoms[indexThree] = action.procom
-
-      return [...allProyectos[index].pasos[indexTwo].procoms]
-      break;
+    // case 'EDIT_PROCOM':
+    //   // console.log('this is edit procom reducer !')
+    //   allProyectos = state;
+    //
+    //   index = allProyectos.findIndex( proy => proy.id === action.proId)
+    //   indexTwo = allProyectos[index].pasos.findIndex( paso => paso.id === action.pasId)
+    //
+    //   indexThree = allProyectos[index].pasos[indexTwo].procoms.findIndex( procom => procom.id === action.procomId)
+    //
+    //   allProyectos[index].pasos[indexTwo].procoms[indexThree] = action.procom
+    //
+    //   return [...allProyectos[index].pasos[indexTwo].procoms]
+    //   break;
     case 'DELETE_PROYECTO':
       // console.log('this is delete proyecto');
       index = state.findIndex( proy => proy.id === action.id)
@@ -71,15 +71,15 @@ const proyectos = ( state = [], action ) => {
         ...state.slice(index + 1)
       ]
       break;
-    case 'DELETE_PASO':
-      // console.log('this is delete paso');
-      index = state.findIndex( proy => proy.id === action.proId)
-      indexTwo = state[index].pasos.findIndex( paso => paso.id === action.pasId)
-      return [
-        ...state[index].pasos.slice(0, indexTwo),
-        ...state[index].pasos.slice(indexTwo + 1)
-      ]
-      break;
+    // case 'DELETE_PASO':
+    //   // console.log('this is delete paso');
+    //   index = state.findIndex( proy => proy.id === action.proId)
+    //   indexTwo = state[index].pasos.findIndex( paso => paso.id === action.pasId)
+    //   return [
+    //     ...state[index].pasos.slice(0, indexTwo),
+    //     ...state[index].pasos.slice(indexTwo + 1)
+    //   ]
+    //   break;
     case 'DELETE_PROCOM':
       // console.log('this is delete procom');
       index = state.findIndex( proy => proy.id === action.proyectoId)

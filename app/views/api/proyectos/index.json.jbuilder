@@ -1,5 +1,3 @@
-require 'pry'
-# binding.pry
 json.array! @api_proyectos do |proyecto|
   json.(proyecto, :id, :name, :topic, :subtopic, :difficulty, :orden)
 

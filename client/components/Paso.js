@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import Procom from './Procom';
 import PasoOptions from './PasoOptions';
 
-import { editPaso, deletePaso, addProcom } from '../actions/proyectos';
+import { addProcom, editProcom, deleteProcom } from '../actions/proyectos';
 import { addMemoPaso } from '../actions/mymemory';
 
 import { createMarkup } from '../helpers';
@@ -22,16 +22,20 @@ class Paso extends React.Component {
       //pasos (parent)
       estilo: 'paragraph', // standard estilo
       showEditButtons: 'hide-buttons', // show-buttons: to show the form
+      procoms: []
     }
+
     this.memorySetter = this.memorySetter.bind(this);
+    this.procomSetter = this.procomSetter.bind(this);
     // PROCOMS
     this.showProcomsFu = this.showProcomsFu.bind(this);
     this.displayProcoms = this.displayProcoms.bind(this);
     this.addProcomSetter = this.addProcomSetter.bind(this);
-    this.procomSubmit = this.procomSubmit.bind(this);
+    this.procomBuild = this.procomBuild.bind(this);
+    this.deleteProcomFunc = this.deleteProcomFunc.bind(this);
     // PASO CRUDS
     this.submitEditPaso = this.submitEditPaso.bind(this);
-    this.deletePaso = this.deletePaso.bind(this);
+    // this.deletePaso = this.deletePaso.bind(this);
     // BOTONES
     this.pasoOptionsConection = this.pasoOptionsConection.bind(this);
     this.procomOptionsConection = this.procomOptionsConection.bind(this);
@@ -45,7 +49,8 @@ class Paso extends React.Component {
     // para que textareas se ajusten a las medidas de su contenido
     this.setTextareaHeight($('textarea'));
     let estilo = this.props.elpaso.estilo;
-    this.setState({estilo})
+    let procoms = this.props.elpaso.procoms;
+    this.setState({estilo, procoms})
   }
 
   componentDidUpdate(){
@@ -54,14 +59,14 @@ class Paso extends React.Component {
     var textareas = document.getElementsByTagName('textarea');
     var count = textareas.length;
     for(var i=0;i<count;i++) {
-        textareas[i].onkeydown = function(e){
-            if(e.keyCode==9 || e.which==9){
-                e.preventDefault();
-                var s = this.selectionStart;
-                this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
-                this.selectionEnd = s+1;
-            }
+      textareas[i].onkeydown = function(e){
+        if(e.keyCode==9 || e.which==9){
+          e.preventDefault();
+          var s = this.selectionStart;
+          this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
+          this.selectionEnd = s+1;
         }
+      }
     }
 
   }
@@ -70,7 +75,7 @@ class Paso extends React.Component {
   memorySetter(show, how){
     // console.log('im memory setter in paso')
     let whoAmI = {
-      proyectoId: this.props.proyecto.id,
+      proyectoId: this.props.proyectoId,
       id: this.props.elpaso.id,
       state: {
         showProcom: show,
@@ -93,16 +98,16 @@ class Paso extends React.Component {
   // PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!
   showProcomsFu(how){
     let show = !this.props.showProcom
-    console.log('showProcomsFu');
-    console.log(`entra how: ${how}`)
-    console.log(`this is show: ${show}`)
+    // console.log('showProcomsFu');
+    // console.log(`entra how: ${how}`)
+    // console.log(`this is show: ${show}`)
     this.memorySetter(show, how);
   }
 
   displayProcoms(){
-    let showProcoms = this.props.procoms;
     let paso = this.props.elpaso;
-    let proyecto = this.props.proyecto;
+    let showProcoms = this.state.procoms;
+    let proyectoId = this.props.proyectoId;
     let numeracionComment = 0;
     let numeracionProblems = 0;
 
@@ -115,7 +120,7 @@ class Paso extends React.Component {
       if(showProcoms.length > 0) {
         return comments.map( procom => {
           numeracionComment++
-          return(<Procom key={procom.id} procom={procom} paso={paso} proyecto={proyecto} numeracion={numeracionComment}/>);
+          return(<Procom key={procom.id} procom={procom} pasoId={paso.id} proyectoId={proyectoId} numeracion={numeracionComment} procomSetter={this.procomSetter} deleteProcomFunc={this.deleteProcomFunc}/>);
         })
       } else {
         return (<p className="nothing-flash">no comments</p>)
@@ -124,7 +129,7 @@ class Paso extends React.Component {
       if(showProcoms.length > 0) {
         return problems.map( procom => {
           numeracionProblems++
-          return(<Procom key={procom.id} procom={procom} paso={paso} proyecto={proyecto} numeracion={numeracionProblems}/>);
+          return(<Procom key={procom.id} procom={procom} paso={paso.id} proyectoId={proyectoId} numeracion={numeracionProblems} procomSetter={this.procomSetter} deleteProcomFunc={this.deleteProcomFunc}/>);
         })
       } else {
         return (<p className="nothing-flash">no problems</p>)
@@ -142,7 +147,7 @@ class Paso extends React.Component {
   // procom connection with PasoOptions component
   procomOptionsConection(income){
     if(income === 'submit') {
-      this.procomSubmit()
+      this.procomBuild()
     } else if (income === 'cancel') {
       this.addProcomSetter() //check
     } else {
@@ -166,10 +171,17 @@ class Paso extends React.Component {
   }
 
   // PROCOM ADD DISPATCHER
-  procomSubmit(){
-    let pasId = this.props.elpaso.id;
-    let proId = this.props.proyecto.id;
+  procomSetter(incoming){
+    let hello = this.state.procoms;
+    let index = hello.findIndex( procom => procom.id === incoming.id);
+    hello[index] = incoming;
+    this.setState({procoms: hello})
+  }
 
+  procomBuild(){
+    let procoms = this.state.procoms;
+
+    let id = new Date();
     let pro_content = this.refs.pro_content.value;
     let type_of_issue;
     let pro_style;
@@ -184,8 +196,57 @@ class Paso extends React.Component {
       type_of_issue = 'comment';
     }
     let pro_order = 0;
-    this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
+    let novelty = true;
+
+
+    let new_procom = {id, pro_content, type_of_issue, pro_style, pro_order, novelty};
+    procoms = [...procoms, new_procom]
+    this.setState({procoms: procoms});
+
+
+    // this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
     this.addProcomSetter();
+  }
+
+  procomSubmit(){
+    let proId = this.props.proyectoId;
+    let pasId = this.props.elpaso.id;
+    let procoms = this.state.procoms;
+    for (var i = 0; i < procoms.length; i++) {
+      // console.log(pasos[i])
+      if(procoms[i].novelty === true) {
+        const pro_content = procoms[i].pro_content;
+        const type_of_issue = procoms[i].type_of_issue;
+        const pro_style = procoms[i].pro_style;
+        const pro_order = procoms[i].pro_order;
+        // if el paso tiene id numerico
+        if(typeof procoms[i].id === 'number' && (procoms[i].id % 1) === 0) {
+          const procomId = procoms[i].id;
+          // const proyectoId = proyecto.id;
+          // this.props.dispatch(editPaso(proyectoId, pasoId, step, orden, estilo, tutoLink, videoLink, image_link ));
+          this.props.dispatch(editProcom(proId, pasId, procomId, pro_content, pro_style, pro_order, type_of_issue));
+        } else {
+          this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
+          // this.props.dispatch(addPaso(proyecto, step, orden, estilo, tutoLink, videoLink, image_link, picture));
+        }
+      }
+    }
+
+
+    // this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
+  }
+
+  // DELETE PROCOMS
+  deleteProcomFunc(procomId, pasoId, proyectoId) {
+    let procoms = this.state.procoms;
+
+    if(typeof procomId === 'number' && (procomId % 1) === 0) {
+      this.props.dispatch(deleteProcom(procomId, pasoId, proyectoId));
+    }
+
+    let index = procoms.findIndex( procom => procom.id === procomId);
+    procoms = [...procoms.slice(0, index), ...procoms.slice(index + 1)]
+    this.setState({procoms})
   }
 
 
@@ -195,23 +256,27 @@ class Paso extends React.Component {
 
   submitEditPaso(){
     // console.log('submiting edit paso')
-    let proyecto = this.props.proyecto;
-    let paso = this.props.elpaso;
+    let proyectoId = this.props.proyectoId;
+    let id = this.props.elpaso.id;
     let step = this.refs.step.value;
     let orden = 0;
     let estilo = this.state.estilo;
     let tutoLink;
     let videoLink;
     let imageLink;
-    this.props.dispatch(editPaso(proyecto, paso.id, step, orden, estilo, tutoLink, videoLink, imageLink));
+    let procoms = this.props.elpaso.procoms;
+    let novelty = true;
+    // this.props.dispatch(editPaso(proyectoId, paso.id, step, orden, estilo, tutoLink, videoLink, imageLink));
+    let outcome = { proyectoId, id, step, orden, estilo, tutoLink, videoLink, imageLink, procoms, novelty }
     this.setState({showEditButtons: 'hide-buttons'})
+    this.props.pasosSetter(outcome);
   }
 
-  // DELETE PASO
-  deletePaso(pasId, proyecto){
-    // console.log('delete me');
-    this.props.dispatch(deletePaso(pasId, proyecto));
-  }
+  // // DELETE PASO
+  // deletePaso(pasId, proyectoId){
+  //   // console.log('delete me');
+  //   this.props.dispatch(deletePaso(pasId, proyectoId));
+  // }
 
   // RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!
 
@@ -255,7 +320,7 @@ class Paso extends React.Component {
 
   renderPasoContent(){
     let paso = this.props.elpaso;
-    let proyecto = this.props.proyecto;
+    let proyectoId = this.props.proyectoId;
 
     let show = 'show-buttons';
     // let hide = 'hide-buttons';
@@ -285,7 +350,8 @@ class Paso extends React.Component {
               <i className="fa fa-plus-circle btn-icon" aria-hidden="true" onClick={() => this.addProcomSetter()}></i>
               <i className="fa fa-comments btn-icon" aria-hidden="true" onClick={() => this.showProcomsFu(comentario)}></i>
               <i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true" onClick={() => this.showProcomsFu(problema)}></i>
-              <i className="fa fa-trash btn-icon" aria-hidden="true" onClick={() => this.deletePaso(paso.id, proyecto)}></i>
+              <i className="fa fa-trash btn-icon" aria-hidden="true" onClick={() => this.props.deletePasoFunc(paso.id, proyectoId)}></i>
+              <i className="fa fa-adn btn-icon" aria-hidden="true" onClick={() => this.procomSubmit()}></i>
             </span>
           </span>
         </div>

@@ -38,10 +38,6 @@ class Proyectos extends React.Component {
     this.modalizeMe(isMobile);
   }
 
-  componentDidUpdate() {
-    // $('select').material_select();
-  }
-
   modalizeMe(doIt){
     this.setState({modalize: doIt})
   }

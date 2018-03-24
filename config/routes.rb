@@ -16,9 +16,6 @@ Rails.application.routes.draw do
     resources :pasos, except: [:set_last_id] do
       resources :procoms
     end
-    resources :pasos, only: [:set_last_id] do
-      get 'pasos_id', to: 'pasos#set_last_id'
-    end
 
     get 'set_last_id', to: 'pasos#set_last_id'
 

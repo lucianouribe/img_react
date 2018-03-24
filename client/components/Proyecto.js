@@ -58,6 +58,7 @@ class Proyecto extends React.Component {
     this.setState({cualTopic: proyectoTopic, cualSubTopic: picked, pasos});
 
     // para que los tab funcionen en el textarea
+    // volver un helper?
     var textareas = document.getElementsByTagName('textarea');
     var count = textareas.length;
     for(var i=0;i<count;i++) {
@@ -70,7 +71,7 @@ class Proyecto extends React.Component {
         }
       }
     }
-
+    // pasar a actions
     $.ajax({
       url: 'api/set_last_id',
       type: 'GET',
@@ -203,7 +204,7 @@ class Proyecto extends React.Component {
       </div>
     )
   }
-
+  // change to saveProyecto
   handleEdit(){
     console.log('handle edit!')
     let proyecto = this.props.elproyecto;
@@ -254,7 +255,8 @@ class Proyecto extends React.Component {
   pasoSubmit(){
     let proyecto = this.props.elproyecto;
     let pasos = this.state.pasos;
-    let id = new Date();
+    let id = this.state.max_id + 1;
+    // take state max_id and make a rule to add +1 to the state and save the id as it is
     let step = this.refs.step.value;
     let orden;
     let estilo = this.state.estilo;
@@ -274,12 +276,7 @@ class Proyecto extends React.Component {
     }
     let new_paso = {id, step, orden, estilo, tutoLink, videoLink, image_link, picture, procoms, novelty};
     pasos = [...pasos, new_paso]
-    this.setState({pasos: pasos});
-
-    // this.props.dispatch(addPaso(proyecto, step, orden, estilo, tutoLink, videoLink, imageLink, picture));
-    this.setState({showAdd: false});
-    // let show = true
-    // this.memorySetter(show);
+    this.setState({pasos: pasos, showAdd: false, max_id: this.state.max_id + 1});
   }
 
 
@@ -418,7 +415,6 @@ class Proyecto extends React.Component {
     let bodyStyle;
     let containerStyle;
     // console.log(`el proyecto especifico: ${this.props.elproyecto.name}`)
-    // console.log(`los pasos del proyecto: ${this.props.elproyecto.pasos.length}`)
     if(this.props.modalize === true && this.props.doorStatus === true) {
       bodyStyle = {
         width: '100vw',

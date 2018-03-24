@@ -13,7 +13,6 @@ class Api::PasosController < ApplicationController
   end
 
   def show
-
   end
 
   def new
@@ -36,6 +35,7 @@ class Api::PasosController < ApplicationController
 
     @api_paso = @api_proyecto.pasos.new(new_params)
     # put a timeout here meanwhile the order issue is not fixed
+    sleep 0.2
     if @api_paso.save
       render :show, status: :created
     else

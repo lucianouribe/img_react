@@ -10,8 +10,8 @@ module.exports = {
   sql: ['postgresql', 'sql'],
   tridimax: ['modeling', 'mental', 'vray', 'texturing', 'animation', 'lighting', 'rigging', 'post_production'],
   zbrush: ['modeling', 'texturing', 'lighting', 'post_production'],
-  literatura: ['gramatica', 'estilo', 'tecnicas_narrativas'],
+  literatura: ['gramatica', 'estilo', 'tecnicas_narrativas', 'ideas_libros'],
   gastronomy: ['drinks', 'food', 'desert'],
-  otros: ['architecture', 'arts'],
+  otros: ['architecture', 'arts', 'collumino'],
   difficulty: ['basic', 'medium', 'advanced', 'sayayin']
 }

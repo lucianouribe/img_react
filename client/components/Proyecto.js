@@ -24,7 +24,8 @@ class Proyecto extends React.Component {
       pasos: [],
 
       files: [],
-      preview: false
+      preview: false,
+      max_id: 0
     }
 
     this.memorySetter = this.memorySetter.bind(this);
@@ -69,6 +70,16 @@ class Proyecto extends React.Component {
         }
       }
     }
+
+    $.ajax({
+      url: 'api/set_last_id',
+      type: 'GET',
+    }).done( last_id => {
+      this.setState({max_id: last_id.paso});
+    }).fail( err => {
+      console.log('something failed with pasos')
+      console.log(err);
+    });
   }
 
   componentDidUpdate() {

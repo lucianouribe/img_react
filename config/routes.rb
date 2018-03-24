@@ -11,12 +11,16 @@ Rails.application.routes.draw do
     resources :carrusels
     resources :descripcions
     resources :proyectos do
-      resources :pasos
+      resources :pasos, except: [:set_last_id]
     end
-    resources :pasos do
+    resources :pasos, except: [:set_last_id] do
       resources :procoms
     end
-    # resources :pasos, except: [:show]
+    resources :pasos, only: [:set_last_id] do
+      get 'pasos_id', to: 'pasos#set_last_id'
+    end
+
+    get 'set_last_id', to: 'pasos#set_last_id'
 
     post 'contact', to: 'contacts#create'
     get 'users/info'

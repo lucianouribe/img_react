@@ -196,6 +196,7 @@ export const deletePaso = (pasId, proId) => {
     })
   }
 }
+
 export const deleteProcom = (procomId, pasoId, proyectoId) => {
   // console.log(`this is delete procom con id: ${procomId} y paso id: ${pasoId}`)
   return(dispatch) => {

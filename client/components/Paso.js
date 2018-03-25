@@ -210,7 +210,7 @@ class Paso extends React.Component {
 
   procomSubmit(){
     let proId = this.props.proyectoId;
-    let pasId = this.props.elpaso.id;
+    let pasId = this.props.elpaso.procomLink;
     let procoms = this.state.procoms;
     for (var i = 0; i < procoms.length; i++) {
       // console.log(pasos[i])
@@ -223,11 +223,11 @@ class Paso extends React.Component {
         if(typeof procoms[i].id === 'number' && (procoms[i].id % 1) === 0) {
           const procomId = procoms[i].id;
           // const proyectoId = proyecto.id;
-          // this.props.dispatch(editPaso(proyectoId, pasoId, step, orden, estilo, tutoLink, videoLink, image_link ));
+          // this.props.dispatch(editPaso(proyectoId, pasoId, step, orden, estilo, procomLink, videoLink, image_link ));
           this.props.dispatch(editProcom(proId, pasId, procomId, pro_content, pro_style, pro_order, type_of_issue));
         } else {
           this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
-          // this.props.dispatch(addPaso(proyecto, step, orden, estilo, tutoLink, videoLink, image_link, picture));
+          // this.props.dispatch(addPaso(proyecto, step, orden, estilo, procomLink, videoLink, image_link, picture));
         }
       }
     }
@@ -261,13 +261,13 @@ class Paso extends React.Component {
     let step = this.refs.step.value;
     let orden = 0;
     let estilo = this.state.estilo;
-    let tutoLink;
+    let procomLink;
     let videoLink;
     let imageLink;
     let procoms = this.props.elpaso.procoms;
     let novelty = true;
-    // this.props.dispatch(editPaso(proyectoId, paso.id, step, orden, estilo, tutoLink, videoLink, imageLink));
-    let outcome = { proyectoId, id, step, orden, estilo, tutoLink, videoLink, imageLink, procoms, novelty }
+    // this.props.dispatch(editPaso(proyectoId, paso.id, step, orden, estilo, procomLink, videoLink, imageLink));
+    let outcome = { proyectoId, id, step, orden, estilo, procomLink, videoLink, imageLink, procoms, novelty }
     this.setState({showEditButtons: 'hide-buttons'})
     this.props.pasosSetter(outcome);
   }

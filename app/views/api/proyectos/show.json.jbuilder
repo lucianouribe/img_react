@@ -1,7 +1,7 @@
 json.extract! @api_proyecto, :id, :name, :topic, :subtopic, :difficulty, :orden
 
 json.pasos @api_proyecto.pasos do |paso|
-  json.(paso, :id, :step, :orden, :estilo, :tuto_link, :video_link, :image_link)
+  json.(paso, :id, :step, :orden, :estilo, :procom_link, :video_link, :image_link)
 
   json.procoms paso.procoms do |procom|
     json.(procom, :id, :pro_content, :pro_style, :pro_order, :type_of_issue)

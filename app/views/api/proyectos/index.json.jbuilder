@@ -2,7 +2,7 @@ json.array! @api_proyectos do |proyecto|
   json.(proyecto, :id, :name, :topic, :subtopic, :difficulty, :orden)
 
   json.pasos proyecto.pasos.order_by_id do |paso|
-    json.(paso, :id, :step, :orden, :estilo, :tuto_link, :video_link, :image_link)
+    json.(paso, :id, :step, :orden, :estilo, :procom_link, :video_link, :image_link)
 
     json.procoms paso.procoms.order_by_id do |procom|
       json.(procom, :id, :pro_content, :pro_style, :pro_order, :type_of_issue)

@@ -20,7 +20,7 @@ export const addProyecto = (name, topic, subtopic, difficulty, orden, user_id) =
 
 }
 
-export const addPaso = (proyecto, step, orden, estilo, tutoLink, videoLink, image_link, picture) => {
+export const addPaso = (proyecto, step, orden, estilo, procomLink, videoLink, image_link, picture) => {
   // console.log('this is add paso action');
   let proId = proyecto.id
 
@@ -28,7 +28,7 @@ export const addPaso = (proyecto, step, orden, estilo, tutoLink, videoLink, imag
   formData.append('step', step);
   formData.append('orden', orden);
   formData.append('estilo', estilo);
-  formData.append('tutoLink', tutoLink);
+  formData.append('procomLink', procomLink);
   formData.append('videoLink', videoLink);
   formData.append('image_link', image_link);
   formData.append('picture', picture);
@@ -125,14 +125,14 @@ export const editProyecto = (id, name, topic, subtopic, difficulty, orden) => {
   }
 }
 
-export const editPaso = (proyectoId, id, step, orden, estilo, tutoLink, videoLink, imageLink) => {
+export const editPaso = (proyectoId, id, step, orden, estilo, procomLink, videoLink, imageLink) => {
   // console.log(`this is edit paso con id: ${id}`)
   return(dispatch) => {
     $.ajax({
       url: `/api/proyectos/${proyectoId}/pasos/${id}`,
       type: 'PUT',
       dataType: 'JSON',
-      data: { paso: { step, orden, estilo, tutoLink, videoLink, imageLink } }
+      data: { paso: { step, orden, estilo, procomLink, videoLink, imageLink } }
     }).done( paso => {
       console.log(`edit paso - ${id} - done data`);
       // console.table(paso);

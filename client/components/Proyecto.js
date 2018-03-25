@@ -76,6 +76,7 @@ class Proyecto extends React.Component {
       url: 'api/set_last_id',
       type: 'GET',
     }).done( last_id => {
+      console.log(last_id)
       this.setState({max_id: last_id.paso});
     }).fail( err => {
       console.log('something failed with pasos')
@@ -223,7 +224,7 @@ class Proyecto extends React.Component {
         const step = pasos[i].step;
         const orden = pasos[i].orden;
         const estilo = pasos[i].estilo;
-        const tutoLink = pasos[i].tutoLink;
+        const procomLink = pasos[i].procomLink;
         const videoLink = pasos[i].videoLink;
         const image_link = pasos[i].image_link;
         const picture = pasos[i].picture;
@@ -231,9 +232,9 @@ class Proyecto extends React.Component {
         if(typeof pasos[i].id === 'number' && (pasos[i].id % 1) === 0) {
           const pasoId = pasos[i].id;
           const proyectoId = proyecto.id;
-          this.props.dispatch(editPaso(proyectoId, pasoId, step, orden, estilo, tutoLink, videoLink, image_link ));
+          this.props.dispatch(editPaso(proyectoId, pasoId, step, orden, estilo, procomLink, videoLink, image_link ));
         } else {
-          this.props.dispatch(addPaso(proyecto, step, orden, estilo, tutoLink, videoLink, image_link, picture));
+          this.props.dispatch(addPaso(proyecto, step, orden, estilo, procomLink, videoLink, image_link, picture));
         }
       }
     }
@@ -255,12 +256,12 @@ class Proyecto extends React.Component {
   pasoSubmit(){
     let proyecto = this.props.elproyecto;
     let pasos = this.state.pasos;
-    let id = this.state.max_id + 1;
+    let new_id = this.state.max_id + 1;
     // take state max_id and make a rule to add +1 to the state and save the id as it is
     let step = this.refs.step.value;
     let orden;
     let estilo = this.state.estilo;
-    let tutoLink;
+    let procomLink;
     let videoLink;
     let image_link;
     let picture;
@@ -274,7 +275,7 @@ class Proyecto extends React.Component {
     } else {
       image_link = 'undefined';
     }
-    let new_paso = {id, step, orden, estilo, tutoLink, videoLink, image_link, picture, procoms, novelty};
+    let new_paso = {new_id, step, orden, estilo, procomLink, videoLink, image_link, picture, procoms, novelty};
     pasos = [...pasos, new_paso]
     this.setState({pasos: pasos, showAdd: false, max_id: this.state.max_id + 1});
   }
@@ -375,7 +376,7 @@ class Proyecto extends React.Component {
               typeStatus2 = ''
             }
           }
-
+          // quitar elpaso, elproyecto
           return(<Paso key={paso.id} elpaso={paso} proyectoId={proyecto.id} memoryBankFunction={this.props.memoryBankFunction} showProcom={doorStatus2} typeOfProcom={typeStatus2} pasosSetter={this.pasosSetter} deletePasoFunc={this.deletePasoFunc}/>);
         })
       } else {

@@ -1,5 +1,5 @@
 require 'pry'
-json.extract! @api_paso, :id, :step, :orden, :estilo, :tuto_link, :video_link, :image_link
+json.extract! @api_paso, :id, :step, :orden, :estilo, :procom_link, :video_link, :image_link
 
 # binding.pry
 json.procoms @api_paso.procoms do |procom|

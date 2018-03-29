@@ -1,4 +1,3 @@
-require 'pry'
 class Api::ProcomsController < ApplicationController
   before_action :set_api_paso
   before_action :set_api_procom, only: [:show, :edit, :update, :destroy]
@@ -42,11 +41,11 @@ class Api::ProcomsController < ApplicationController
   end
 
   private
-    # 1
+
     def set_api_paso
       @api_paso = Paso.find(params[:paso_id])
     end
-    #3 --> #2 es el modelo
+
     def api_procom_params
       params.require(:procom).permit(:pro_content, :pro_style, :pro_order, :type_of_issue)
     end

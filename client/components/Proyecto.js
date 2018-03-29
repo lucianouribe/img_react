@@ -33,12 +33,12 @@ class Proyecto extends React.Component {
     this.deletePasoFunc = this.deletePasoFunc.bind(this);
 
     this.showEditContent = this.showEditContent.bind(this);
-    this.handleEdit = this.handleEdit.bind(this);
+    this.saveProyectoCahnges = this.saveProyectoCahnges.bind(this);
     this.editForm = this.editForm.bind(this);
 
     this.showPasosDisplay = this.showPasosDisplay.bind(this);
     this.showAddPasoOption = this.showAddPasoOption.bind(this);
-    this.pasoSubmit = this.pasoSubmit.bind(this);
+    this.addPasoToState = this.addPasoToState.bind(this);
     this.pasoOptionsConection = this.pasoOptionsConection.bind(this);
 
     this.topicChanger = this.topicChanger.bind(this);
@@ -76,7 +76,7 @@ class Proyecto extends React.Component {
       url: 'api/set_last_id',
       type: 'GET',
     }).done( last_id => {
-      console.log(last_id)
+      // console.log(last_id)
       this.setState({max_id: last_id.paso});
     }).fail( err => {
       console.log('something failed with pasos')
@@ -199,14 +199,14 @@ class Proyecto extends React.Component {
           </form>
         </span>
         <span className='botones'>
-          <i className="material-icons btn-icon btn-edit" onClick={() => this.handleEdit()}>done</i>
+          <i className="material-icons btn-icon btn-edit" onClick={() => this.saveProyectoCahnges()}>done</i>
           <i className="material-icons btn-icon btn-edit" onClick={() => this.showEditContent()}>cancel</i>
         </span>
       </div>
     )
   }
   // change to saveProyecto
-  handleEdit(){
+  saveProyectoCahnges(){
     console.log('handle edit!')
     let proyecto = this.props.elproyecto;
     let id = this.refs.id.value;
@@ -253,15 +253,16 @@ class Proyecto extends React.Component {
   }
 
   // PASO ADD DISPATCHER
-  pasoSubmit(){
+  addPasoToState(){
     let proyecto = this.props.elproyecto;
     let pasos = this.state.pasos;
-    let new_id = this.state.max_id + 1;
+    let id = new Date();
     // take state max_id and make a rule to add +1 to the state and save the id as it is
     let step = this.refs.step.value;
     let orden;
     let estilo = this.state.estilo;
-    let procomLink;
+    // let procomLink;
+    let procomLink = this.state.max_id + 1;
     let videoLink;
     let image_link;
     let picture;
@@ -275,18 +276,19 @@ class Proyecto extends React.Component {
     } else {
       image_link = 'undefined';
     }
-    let new_paso = {new_id, step, orden, estilo, procomLink, videoLink, image_link, picture, procoms, novelty};
+    let new_paso = {id, step, orden, estilo, procomLink, videoLink, image_link, picture, procoms, novelty};
     pasos = [...pasos, new_paso]
     this.setState({pasos: pasos, showAdd: false, max_id: this.state.max_id + 1});
+    // let show = true
+    // this.memorySetter(show);
   }
 
 
   // ADD PASO FORM
-
   // connector for PasoOptions
   pasoOptionsConection(income){
     if(income === 'submit') {
-      this.pasoSubmit()
+      this.addPasoToState()
     } else if (income === 'cancel') {
       this.showAddPasoOption()
     } else {

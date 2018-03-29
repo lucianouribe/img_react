@@ -28,7 +28,7 @@ export const addPaso = (proyecto, step, orden, estilo, procomLink, videoLink, im
   formData.append('step', step);
   formData.append('orden', orden);
   formData.append('estilo', estilo);
-  formData.append('procomLink', procomLink);
+  formData.append('procom_link', procomLink);
   formData.append('videoLink', videoLink);
   formData.append('image_link', image_link);
   formData.append('picture', picture);

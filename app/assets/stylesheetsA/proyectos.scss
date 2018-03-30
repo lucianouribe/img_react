@@ -653,6 +653,16 @@
     height: 20px;
     background-size: 20px;
   }
+  .name-edit-form {
+    flex-wrap: wrap;
+  }
+  .name-edit {
+    margin-top: 10px !important;
+    font-size: 1.2rem !important;
+  }
+  select.browser-default {
+    width: 80px;
+  }
 }
 //iphone 3 y 4
 @media all and (max-width: 380px) {

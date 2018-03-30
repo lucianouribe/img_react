@@ -120,7 +120,15 @@ class Paso extends React.Component {
       if(showProcoms.length > 0) {
         return comments.map( procom => {
           numeracionComment++
-          return(<Procom key={procom.id} procom={procom} pasoId={paso.id} proyectoId={proyectoId} numeracion={numeracionComment} procomSetter={this.procomSetter} deleteProcomFunc={this.deleteProcomFunc}/>);
+          return(
+            <Procom key={procom.id}
+              procom={procom}
+              pasoId={paso.id}
+              proyectoId={proyectoId}
+              numeracion={numeracionComment}
+              procomSetter={this.procomSetter}
+              deleteProcomFunc={this.deleteProcomFunc} />
+            );
         })
       } else {
         return (<p className="nothing-flash">no comments</p>)
@@ -129,7 +137,15 @@ class Paso extends React.Component {
       if(showProcoms.length > 0) {
         return problems.map( procom => {
           numeracionProblems++
-          return(<Procom key={procom.id} procom={procom} paso={paso.id} proyectoId={proyectoId} numeracion={numeracionProblems} procomSetter={this.procomSetter} deleteProcomFunc={this.deleteProcomFunc}/>);
+          return(
+            <Procom key={procom.id}
+              procom={procom}
+              paso={paso.id}
+              proyectoId={proyectoId}
+              numeracion={numeracionProblems}
+              procomSetter={this.procomSetter}
+              deleteProcomFunc={this.deleteProcomFunc} />
+            );
         })
       } else {
         return (<p className="nothing-flash">no problems</p>)
@@ -210,7 +226,7 @@ class Paso extends React.Component {
 
   procomSubmit(){
     let proId = this.props.proyectoId;
-    let pasId = this.props.elpaso.procomLink;
+    let pasId = this.props.elpaso.id;
     let procoms = this.state.procoms;
     for (var i = 0; i < procoms.length; i++) {
       // console.log(pasos[i])

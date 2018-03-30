@@ -34,7 +34,8 @@ class Proyectos extends React.Component {
     let full = 'full'
     this.props.dispatch(fetchProyectos(full));
 
-    let isMobile = (window.innerWidth <= 800 && window.innerHeight <= 600)
+    // let isMobile = (window.innerWidth <= 800 && window.innerHeight <= 600)
+    let isMobile = true
     this.modalizeMe(isMobile);
   }
 

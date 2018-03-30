@@ -155,8 +155,6 @@ class Proyectos extends React.Component {
   // DISPLAY PROYECTOS
   displayProyectos() {
     let proyectos = this.props.proyectos;
-    // console.log('los proyectos')
-    // console.table(proyectos)
     // memory bank stuff
     let bank;
     let index;
@@ -164,9 +162,9 @@ class Proyectos extends React.Component {
     let doorStatus;
 
     if(this.state.memoryBank === null) {
-      bank = []
+      bank = [];
     } else {
-      bank = this.state.memoryBank
+      bank = this.state.memoryBank;
     }
     // the loop itself
     if(proyectos.length > 0) {
@@ -175,16 +173,21 @@ class Proyectos extends React.Component {
         index = bank.findIndex( elem => elem["id"] === proyecto.id)
 
         if(index !== -1) {
-          doorStatus = bank[index].state['show']
-          newbank = bank.filter( elem => elem["proyectoId"] === proyecto.id)
+          doorStatus = bank[index].state['show'];
+          newbank = bank.filter( elem => elem["proyectoId"] === proyecto.id);
         } else {
-          doorStatus = false
+          doorStatus = false;
         }
-        // console.log('display proyectos')
-        // console.log(`elproyecto: ${proyecto}`);
-        // console.log(`proyectos show pasos: ${proyecto.pasos}`);
         // door status stuff for showing procoms
-        return(<Proyecto key={proyecto.id} elproyecto={proyecto} pasos={proyecto.pasos} memoryBankFunction={this.memoryBankFunction} doorStatus={doorStatus} newbank={newbank} modalize={this.state.modalize}/>);
+        return(
+          <Proyecto key={proyecto.id}
+            elproyecto={proyecto}
+            pasos={proyecto.pasos}
+            memoryBankFunction={this.memoryBankFunction}
+            doorStatus={doorStatus}
+            newbank={newbank}
+            modalize={this.state.modalize} />
+          );
       })
     } else {
       return(<h4>Sin Proyectos</h4>);

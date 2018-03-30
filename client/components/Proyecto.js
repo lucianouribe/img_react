@@ -5,7 +5,6 @@ import { addMemoProyect } from '../actions/mymemory';
 
 import Paso from './Paso';
 import PasoOptions from './PasoOptions';
-
 import Tutorials from '../Tutorials';
 
 
@@ -239,7 +238,8 @@ class Proyecto extends React.Component {
       }
     }
     this.showEditContent();
-    // this.memorySetter();
+    this.props.dispatch(fetchProyectos());
+    this.memorySetter();
   }
 
   // PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!
@@ -279,8 +279,8 @@ class Proyecto extends React.Component {
     let new_paso = {id, step, orden, estilo, procomLink, videoLink, image_link, picture, procoms, novelty};
     pasos = [...pasos, new_paso]
     this.setState({pasos: pasos, showAdd: false, max_id: this.state.max_id + 1});
-    // let show = true
-    // this.memorySetter(show);
+    let show = true;
+    this.memorySetter(show);
   }
 
 

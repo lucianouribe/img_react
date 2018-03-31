@@ -20,7 +20,7 @@ const mymemory = ( state = null, action ) => {
       // return action.enlightme;
       break;
     case 'ADD_MEMORY':
-      console.log('add memory reducer')
+      // console.log('add memory reducer')
       // console.log(action.memoryState)
       if(state === null) {
         // console.log("memoryBankFunction | i'm an empty array")

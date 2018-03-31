@@ -1,8 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProyectos, editProyecto, deleteProyecto, addPaso, editPaso, deletePaso } from '../actions/proyectos';
-import { addMemoProyect } from '../actions/mymemory';
-
+import { addMemory } from '../actions/mymemory';
 import Paso from './Paso';
 import PasoOptions from './PasoOptions';
 import Tutorials from '../Tutorials';
@@ -116,8 +115,7 @@ class Proyecto extends React.Component {
         show: show
       }
     }
-    // this.props.dispatch(addMemoProyect(whoAmI))
-    this.props.memoryBankFunction(whoAmI)
+    this.props.dispatch(addMemory(whoAmI));
   }
 
   pasosSetter(incoming) {
@@ -379,7 +377,15 @@ class Proyecto extends React.Component {
             }
           }
           // quitar elpaso, elproyecto
-          return(<Paso key={paso.id} elpaso={paso} proyectoId={proyecto.id} memoryBankFunction={this.props.memoryBankFunction} showProcom={doorStatus2} typeOfProcom={typeStatus2} pasosSetter={this.pasosSetter} deletePasoFunc={this.deletePasoFunc}/>);
+          return(
+            <Paso key={paso.id}
+              elpaso={paso}
+              proyectoId={proyecto.id}
+              showProcom={doorStatus2} 
+              typeOfProcom={typeStatus2}
+              pasosSetter={this.pasosSetter}
+              deletePasoFunc={this.deletePasoFunc} />
+            );
         })
       } else {
         return(<p className="nothing-flash">Sin Pasos</p>);

@@ -12,7 +12,7 @@ export const addMemoPaso = (enlightme) => {
   }
 }
 export const addMemory = (memoryState) => {
-  console.log('hit me!')
+  // console.log('hit me!')
   return(dispatch) => {
     dispatch({ type: 'ADD_MEMORY', memoryState })
   }

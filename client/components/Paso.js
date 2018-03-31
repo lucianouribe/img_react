@@ -5,7 +5,7 @@ import Procom from './Procom';
 import PasoOptions from './PasoOptions';
 
 import { addProcom, editProcom, deleteProcom } from '../actions/proyectos';
-import { addMemoPaso } from '../actions/mymemory';
+import { addMemory } from '../actions/mymemory';
 
 import { createMarkup } from '../helpers';
 
@@ -82,8 +82,7 @@ class Paso extends React.Component {
         typeOfProcom: how
       }
     }
-
-    this.props.memoryBankFunction(whoAmI)
+    this.props.dispatch(addMemory(whoAmI));
   }
 
   // VARIABLE HIGHNESS OF THE PASO CONTENT TEXTAREA
@@ -99,8 +98,8 @@ class Paso extends React.Component {
   showProcomsFu(how){
     let show = !this.props.showProcom
     // console.log('showProcomsFu');
-    // console.log(`entra how: ${how}`)
-    // console.log(`this is show: ${show}`)
+    // console.log(`entra how: ${how}`) //comment
+    // console.log(`this is show: ${show}`) // true
     this.memorySetter(show, how);
   }
 
@@ -218,9 +217,6 @@ class Paso extends React.Component {
     let new_procom = {id, pro_content, type_of_issue, pro_style, pro_order, novelty};
     procoms = [...procoms, new_procom]
     this.setState({procoms: procoms});
-
-
-    // this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
     this.addProcomSetter();
   }
 
@@ -238,18 +234,12 @@ class Paso extends React.Component {
         // if el paso tiene id numerico
         if(typeof procoms[i].id === 'number' && (procoms[i].id % 1) === 0) {
           const procomId = procoms[i].id;
-          // const proyectoId = proyecto.id;
-          // this.props.dispatch(editPaso(proyectoId, pasoId, step, orden, estilo, procomLink, videoLink, image_link ));
           this.props.dispatch(editProcom(proId, pasId, procomId, pro_content, pro_style, pro_order, type_of_issue));
         } else {
           this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
-          // this.props.dispatch(addPaso(proyecto, step, orden, estilo, procomLink, videoLink, image_link, picture));
         }
       }
     }
-
-
-    // this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
   }
 
   // DELETE PROCOMS
@@ -282,17 +272,10 @@ class Paso extends React.Component {
     let imageLink;
     let procoms = this.props.elpaso.procoms;
     let novelty = true;
-    // this.props.dispatch(editPaso(proyectoId, paso.id, step, orden, estilo, procomLink, videoLink, imageLink));
     let outcome = { proyectoId, id, step, orden, estilo, procomLink, videoLink, imageLink, procoms, novelty }
     this.setState({showEditButtons: 'hide-buttons'})
     this.props.pasosSetter(outcome);
   }
-
-  // // DELETE PASO
-  // deletePaso(pasId, proyectoId){
-  //   // console.log('delete me');
-  //   this.props.dispatch(deletePaso(pasId, proyectoId));
-  // }
 
   // RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!
 

@@ -15,11 +15,9 @@ class Proyectos extends React.Component {
       showForm: false,
       cualTopic: 'none',
       cualSubTopic: ['none'],
-      memoryBank: null,
       modalize: false
     }
 
-    this.memoryBankFunction = this.memoryBankFunction.bind(this);
     this.toggleDisplay = this.toggleDisplay.bind(this);
     this.displayChanger = this.displayChanger.bind(this);
     this.addForm = this.addForm.bind(this);
@@ -42,11 +40,6 @@ class Proyectos extends React.Component {
 
   modalizeMe(doIt){
     this.setState({modalize: doIt})
-  }
-
-  // ALL MIGHTY MEMORY
-  memoryBankFunction(etwas){
-    this.props.dispatch(addMemory(etwas))
   }
 
   // SHOW FORM
@@ -173,7 +166,6 @@ class Proyectos extends React.Component {
           <Proyecto key={proyecto.id}
             elproyecto={proyecto}
             pasos={proyecto.pasos}
-            memoryBankFunction={this.memoryBankFunction}
             doorStatus={doorStatus}
             newbank={newbank}
             modalize={this.state.modalize} />

@@ -5,7 +5,7 @@ import Procom from './Procom';
 import PasoOptions from './PasoOptions';
 
 import { addProcom, editProcom, deleteProcom } from '../actions/proyectos';
-import { addMemoPaso } from '../actions/mymemory';
+import { addMemory } from '../actions/mymemory';
 
 import { createMarkup } from '../helpers';
 
@@ -48,8 +48,8 @@ class Paso extends React.Component {
     $('select').material_select();
     // para que textareas se ajusten a las medidas de su contenido
     this.setTextareaHeight($('textarea'));
-    let estilo = this.props.elpaso.estilo;
-    let procoms = this.props.elpaso.procoms;
+    let estilo = this.props.paso.estilo;
+    let procoms = this.props.paso.procoms;
     this.setState({estilo, procoms})
   }
 
@@ -74,16 +74,9 @@ class Paso extends React.Component {
   // ALL MIGHTY MEMORY
   memorySetter(show, how){
     // console.log('im memory setter in paso')
-    let whoAmI = {
-      proyectoId: this.props.proyectoId,
-      id: this.props.elpaso.id,
-      state: {
-        showProcom: show,
-        typeOfProcom: how
-      }
-    }
-
-    this.props.memoryBankFunction(whoAmI)
+    let pasId = this.props.paso.id;
+    let proId = this.props.proyectoId;
+    this.props.dispatch(addMemory({proId, pasId, show, how}));
   }
 
   // VARIABLE HIGHNESS OF THE PASO CONTENT TEXTAREA
@@ -94,18 +87,14 @@ class Paso extends React.Component {
     });
   }
 
-
   // PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!
   showProcomsFu(how){
     let show = !this.props.showProcom
-    // console.log('showProcomsFu');
-    // console.log(`entra how: ${how}`)
-    // console.log(`this is show: ${show}`)
     this.memorySetter(show, how);
   }
 
   displayProcoms(){
-    let paso = this.props.elpaso;
+    let paso = this.props.paso;
     let showProcoms = this.state.procoms;
     let proyectoId = this.props.proyectoId;
     let numeracionComment = 0;
@@ -218,15 +207,13 @@ class Paso extends React.Component {
     let new_procom = {id, pro_content, type_of_issue, pro_style, pro_order, novelty};
     procoms = [...procoms, new_procom]
     this.setState({procoms: procoms});
-
-
-    // this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
     this.addProcomSetter();
   }
 
   procomSubmit(){
+    console.log('procom submit')
     let proId = this.props.proyectoId;
-    let pasId = this.props.elpaso.id;
+    let pasId = this.props.paso.procomLink;
     let procoms = this.state.procoms;
     for (var i = 0; i < procoms.length; i++) {
       // console.log(pasos[i])
@@ -238,18 +225,12 @@ class Paso extends React.Component {
         // if el paso tiene id numerico
         if(typeof procoms[i].id === 'number' && (procoms[i].id % 1) === 0) {
           const procomId = procoms[i].id;
-          // const proyectoId = proyecto.id;
-          // this.props.dispatch(editPaso(proyectoId, pasoId, step, orden, estilo, procomLink, videoLink, image_link ));
           this.props.dispatch(editProcom(proId, pasId, procomId, pro_content, pro_style, pro_order, type_of_issue));
         } else {
           this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
-          // this.props.dispatch(addPaso(proyecto, step, orden, estilo, procomLink, videoLink, image_link, picture));
         }
       }
     }
-
-
-    // this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
   }
 
   // DELETE PROCOMS
@@ -273,26 +254,19 @@ class Paso extends React.Component {
   submitEditPaso(){
     // console.log('submiting edit paso')
     let proyectoId = this.props.proyectoId;
-    let id = this.props.elpaso.id;
+    let id = this.props.paso.id;
     let step = this.refs.step.value;
     let orden = 0;
     let estilo = this.state.estilo;
     let procomLink;
     let videoLink;
     let imageLink;
-    let procoms = this.props.elpaso.procoms;
+    let procoms = this.props.paso.procoms;
     let novelty = true;
-    // this.props.dispatch(editPaso(proyectoId, paso.id, step, orden, estilo, procomLink, videoLink, imageLink));
     let outcome = { proyectoId, id, step, orden, estilo, procomLink, videoLink, imageLink, procoms, novelty }
     this.setState({showEditButtons: 'hide-buttons'})
     this.props.pasosSetter(outcome);
   }
-
-  // // DELETE PASO
-  // deletePaso(pasId, proyectoId){
-  //   // console.log('delete me');
-  //   this.props.dispatch(deletePaso(pasId, proyectoId));
-  // }
 
   // RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!
 
@@ -309,7 +283,7 @@ class Paso extends React.Component {
 
   // extra content can be a component
   extraContent(){
-    let paso = this.props.elpaso;
+    let paso = this.props.paso;
     if(paso.estilo === 'terminal') {
       return(<i className="fa fa-terminal paso-type" aria-hidden="true"></i>)
     } else if (paso.estilo === 'go-to') {
@@ -335,7 +309,7 @@ class Paso extends React.Component {
   }
 
   renderPasoContent(){
-    let paso = this.props.elpaso;
+    let paso = this.props.paso;
     let proyectoId = this.props.proyectoId;
 
     let show = 'show-buttons';

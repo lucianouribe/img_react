@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProyectos, addProyecto } from '../actions/proyectos';
+import { addMemory } from '../actions/mymemory';
 import { ortografica } from '../helpers';
 import Proyecto from './Proyecto';
 import Tutorials from '../Tutorials';
@@ -14,11 +15,9 @@ class Proyectos extends React.Component {
       showForm: false,
       cualTopic: 'none',
       cualSubTopic: ['none'],
-      memoryBank: null,
       modalize: false
     }
 
-    this.memoryBankFunction = this.memoryBankFunction.bind(this);
     this.toggleDisplay = this.toggleDisplay.bind(this);
     this.displayChanger = this.displayChanger.bind(this);
     this.addForm = this.addForm.bind(this);
@@ -41,22 +40,6 @@ class Proyectos extends React.Component {
 
   modalizeMe(doIt){
     this.setState({modalize: doIt})
-  }
-
-  // ALL MIGHTY MEMORY
-  memoryBankFunction(etwas){
-    let newArray;
-    let tempArray;
-    if(this.state.memoryBank === null) {
-      // console.log("memoryBankFunction | i'm an empty array")
-      tempArray = []
-      newArray = tempArray.concat(etwas)
-    } else {
-      // console.log("memoryBankFunction | i have something inside")
-      tempArray = this.state.memoryBank.filter(elected => elected['id'] !== etwas["id"])
-      newArray = tempArray.concat(etwas)
-    }
-    this.setState({memoryBank: newArray })
   }
 
   // SHOW FORM
@@ -155,18 +138,16 @@ class Proyectos extends React.Component {
   // DISPLAY PROYECTOS
   displayProyectos() {
     let proyectos = this.props.proyectos;
-    // console.log('los proyectos')
-    // console.table(proyectos)
     // memory bank stuff
     let bank;
     let index;
     let newbank;
     let doorStatus;
 
-    if(this.state.memoryBank === null) {
-      bank = []
+    if(this.props.mymemory === null) {
+      bank = [];
     } else {
-      bank = this.state.memoryBank
+      bank = this.props.mymemory;
     }
     // the loop itself
     if(proyectos.length > 0) {
@@ -175,16 +156,19 @@ class Proyectos extends React.Component {
         index = bank.findIndex( elem => elem["id"] === proyecto.id)
 
         if(index !== -1) {
-          doorStatus = bank[index].state['show']
-          newbank = bank.filter( elem => elem["proyectoId"] === proyecto.id)
+          doorStatus = bank[index].state['show'];
+          newbank = bank.filter( elem => elem["proyectoId"] === proyecto.id);
         } else {
-          doorStatus = false
+          doorStatus = false;
         }
-        // console.log('display proyectos')
-        // console.log(`elproyecto: ${proyecto}`);
-        // console.log(`proyectos show pasos: ${proyecto.pasos}`);
         // door status stuff for showing procoms
-        return(<Proyecto key={proyecto.id} elproyecto={proyecto} pasos={proyecto.pasos} memoryBankFunction={this.memoryBankFunction} doorStatus={doorStatus} newbank={newbank} modalize={this.state.modalize}/>);
+        return(
+          <Proyecto key={proyecto.id}
+            proyecto={proyecto}
+            doorStatus={doorStatus}
+            newbank={newbank}
+            modalize={this.state.modalize} />
+          );
       })
     } else {
       return(<h4>Sin Proyectos</h4>);
@@ -220,7 +204,7 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     proyectos: state.proyectos,
-    pasos: state.pasos
+    mymemory: state.mymemory
  }
 }
 

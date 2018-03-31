@@ -73,7 +73,7 @@ export const addProcom = (proId, pasId, pro_content, pro_style, pro_order, type_
 
 // FETCH!!!!FETCH!!!!FETCH!!!!FETCH!!!!FETCH!!!!FETCH!!!!FETCH!!!!FETCH!!!!
 export const fetchProyectos = (wordToMatch) => {
-  // console.log('this is fetch proyectos')
+  console.log('this is fetch proyectos')
   const regex = new RegExp(wordToMatch, 'gi');
 
   return(dispatch) => {

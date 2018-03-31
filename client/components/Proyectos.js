@@ -164,8 +164,7 @@ class Proyectos extends React.Component {
         // door status stuff for showing procoms
         return(
           <Proyecto key={proyecto.id}
-            elproyecto={proyecto}
-            pasos={proyecto.pasos}
+            proyecto={proyecto}
             doorStatus={doorStatus}
             newbank={newbank}
             modalize={this.state.modalize} />
@@ -205,7 +204,6 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     proyectos: state.proyectos,
-    pasos: state.pasos,
     mymemory: state.mymemory
  }
 }

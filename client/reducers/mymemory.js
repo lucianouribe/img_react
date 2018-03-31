@@ -1,7 +1,6 @@
 const mymemory = ( state = null, action ) => {
   let newArray = [];
   let tempArray = [];
-
   switch(action.type){
     case 'ADD_MEMORY':
       // console.log('add memory reducer')
@@ -14,6 +13,7 @@ const mymemory = ( state = null, action ) => {
         tempArray = state.filter(elected => elected['id'] !== action.whoAmI["id"])
         newArray = tempArray.concat(action.whoAmI)
       }
+
       return newArray;
       break;
     default:

@@ -87,7 +87,6 @@ class Paso extends React.Component {
     });
   }
 
-
   // PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!
   showProcomsFu(how){
     let show = !this.props.showProcom
@@ -212,8 +211,9 @@ class Paso extends React.Component {
   }
 
   procomSubmit(){
+    console.log('procom submit')
     let proId = this.props.proyectoId;
-    let pasId = this.props.elpaso.id;
+    let pasId = this.props.elpaso.procomLink;
     let procoms = this.state.procoms;
     for (var i = 0; i < procoms.length; i++) {
       // console.log(pasos[i])

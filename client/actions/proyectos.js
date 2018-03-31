@@ -21,7 +21,7 @@ export const addProyecto = (name, topic, subtopic, difficulty, orden, user_id) =
 }
 
 export const addPaso = (proyecto, step, orden, estilo, procomLink, videoLink, image_link, picture) => {
-  // console.log('this is add paso action');
+  console.log('this is add paso action');
   let proId = proyecto.id
 
   let formData = new FormData();
@@ -42,7 +42,7 @@ export const addPaso = (proyecto, step, orden, estilo, procomLink, videoLink, im
       contentType: false,
       processData: false,
     }).done( paso => {
-      // console.log('add paso done data');
+      console.log('add paso done data');
       // dispatch({ type: 'ADD_PASO', paso, proId });
     }).fail( data => {
       console.log('add paso fail data')
@@ -73,7 +73,7 @@ export const addProcom = (proId, pasId, pro_content, pro_style, pro_order, type_
 
 // FETCH!!!!FETCH!!!!FETCH!!!!FETCH!!!!FETCH!!!!FETCH!!!!FETCH!!!!FETCH!!!!
 export const fetchProyectos = (wordToMatch) => {
-  // console.log('this is fetch proyectos')
+  console.log('this is fetch proyectos')
   const regex = new RegExp(wordToMatch, 'gi');
 
   return(dispatch) => {

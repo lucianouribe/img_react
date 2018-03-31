@@ -45,13 +45,14 @@ class Proyecto extends React.Component {
     // upload image
     this.selectFiles = this.selectFiles.bind(this);
     this.imageRender = this.imageRender.bind(this);
+    this.dispatcher = this.dispatcher.bind(this);
   }
 
   componentDidMount(){
     $('select').material_select();
     // put in setState this: modalize: isMobile
-    let pasos = this.props.elproyecto.pasos
-    let proyectoTopic = this.props.elproyecto.topic
+    let pasos = this.props.proyecto.pasos
+    let proyectoTopic = this.props.proyecto.topic
     let picked = Tutorials[proyectoTopic];
     this.setState({cualTopic: proyectoTopic, cualSubTopic: picked, pasos});
 
@@ -110,7 +111,7 @@ class Proyecto extends React.Component {
   memorySetter(show){
     // console.log('im memory setter in proyecto')
     let what = 'proyecto';
-    let proId = this.props.elproyecto.id;
+    let proId = this.props.proyecto.id;
     this.props.dispatch(addMemory({show, what, proId}));
   }
 
@@ -145,7 +146,7 @@ class Proyecto extends React.Component {
 
   // EDIT FORM
   editForm(){
-    let proyecto = this.props.elproyecto
+    let proyecto = this.props.proyecto
     let topic = proyecto.topic;
     let subtopic = proyecto.subtopic;
 
@@ -201,7 +202,7 @@ class Proyecto extends React.Component {
   // change to saveProyecto
   saveProyectoCahnges(){
     console.log('handle edit!')
-    let proyecto = this.props.elproyecto;
+    let proyecto = this.props.proyecto;
     let id = this.refs.id.value;
     let name = this.refs.name.value;
     let topic = this.refs.topic.value;
@@ -232,8 +233,17 @@ class Proyecto extends React.Component {
       }
     }
     this.showEditContent();
-    this.props.dispatch(fetchProyectos());
-    this.memorySetter();
+    // cuando dispara esto, aun no se ha guardado la info
+    // this.props.dispatch(fetchProyectos())
+    setTimeout(this.dispatcher, 500)
+    // this.props.dispatch(fetchProyectos(full));
+    // let show = true
+    // this.memorySetter(show);
+  }
+
+  dispatcher(){
+    let full = 'full';
+    this.props.dispatch(fetchProyectos(full))
   }
 
   // PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!
@@ -248,7 +258,7 @@ class Proyecto extends React.Component {
 
   // PASO ADD DISPATCHER
   addPasoToState(){
-    let proyecto = this.props.elproyecto;
+    let proyecto = this.props.proyecto;
     let pasos = this.state.pasos;
     let id = new Date();
     // take state max_id and make a rule to add +1 to the state and save the id as it is
@@ -353,7 +363,7 @@ class Proyecto extends React.Component {
   pasosDisplay(){
     if(this.props.doorStatus) {
       let showPasos = this.state.pasos;
-      let proyecto = this.props.elproyecto;
+      let proyecto = this.props.proyecto;
       let bank = this.props.newbank;
       let index;
       let doorStatus2;
@@ -394,7 +404,7 @@ class Proyecto extends React.Component {
     if(this.state.showEdit) {
       return(this.editForm())
     } else {
-      let proyecto = this.props.elproyecto;
+      let proyecto = this.props.proyecto;
       let topic = proyecto.topic;
       let subtopic = proyecto.subtopic;
       return (
@@ -419,7 +429,7 @@ class Proyecto extends React.Component {
   render(){
     let bodyStyle;
     let containerStyle;
-    // console.log(`el proyecto especifico: ${this.props.elproyecto.name}`)
+    // console.log(`el proyecto especifico: ${this.props.proyecto.name}`)
     if(this.props.modalize === true && this.props.doorStatus === true) {
       bodyStyle = {
         width: '100vw',
@@ -451,7 +461,8 @@ class Proyecto extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    mymemory: state.mymemory
+    mymemory: state.mymemory,
+    proyectos: state.proyectos
  }
 }
 

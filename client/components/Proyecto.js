@@ -265,13 +265,13 @@ class Proyecto extends React.Component {
     let step = this.refs.step.value;
     let orden;
     let estilo = this.state.estilo;
+    let novelty = true;
     // let procomLink;
     let procomLink = this.state.max_id + 1;
     let videoLink;
     let image_link;
     let picture;
     let procoms = [];
-    let novelty = true;
     // para upload
     if(this.state.estilo === 'download') {
       image_link = Math.random().toString(36).replace(/0\./i, '');
@@ -382,10 +382,10 @@ class Proyecto extends React.Component {
               typeStatus2 = ''
             }
           }
-          // quitar elpaso, elproyecto
+
           return(
             <Paso key={paso.id}
-              elpaso={paso}
+              paso={paso}
               proyectoId={proyecto.id}
               showProcom={doorStatus2}
               typeOfProcom={typeStatus2}
@@ -461,10 +461,8 @@ class Proyecto extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    mymemory: state.mymemory,
-    proyectos: state.proyectos
+    mymemory: state.mymemory
  }
 }
 
-// export default Proyecto;
 export default connect(mapStateToProps)(Proyecto);

@@ -48,8 +48,8 @@ class Paso extends React.Component {
     $('select').material_select();
     // para que textareas se ajusten a las medidas de su contenido
     this.setTextareaHeight($('textarea'));
-    let estilo = this.props.elpaso.estilo;
-    let procoms = this.props.elpaso.procoms;
+    let estilo = this.props.paso.estilo;
+    let procoms = this.props.paso.procoms;
     this.setState({estilo, procoms})
   }
 
@@ -74,7 +74,7 @@ class Paso extends React.Component {
   // ALL MIGHTY MEMORY
   memorySetter(show, how){
     // console.log('im memory setter in paso')
-    let pasId = this.props.elpaso.id;
+    let pasId = this.props.paso.id;
     let proId = this.props.proyectoId;
     this.props.dispatch(addMemory({proId, pasId, show, how}));
   }
@@ -94,7 +94,7 @@ class Paso extends React.Component {
   }
 
   displayProcoms(){
-    let paso = this.props.elpaso;
+    let paso = this.props.paso;
     let showProcoms = this.state.procoms;
     let proyectoId = this.props.proyectoId;
     let numeracionComment = 0;
@@ -213,7 +213,7 @@ class Paso extends React.Component {
   procomSubmit(){
     console.log('procom submit')
     let proId = this.props.proyectoId;
-    let pasId = this.props.elpaso.procomLink;
+    let pasId = this.props.paso.procomLink;
     let procoms = this.state.procoms;
     for (var i = 0; i < procoms.length; i++) {
       // console.log(pasos[i])
@@ -254,14 +254,14 @@ class Paso extends React.Component {
   submitEditPaso(){
     // console.log('submiting edit paso')
     let proyectoId = this.props.proyectoId;
-    let id = this.props.elpaso.id;
+    let id = this.props.paso.id;
     let step = this.refs.step.value;
     let orden = 0;
     let estilo = this.state.estilo;
     let procomLink;
     let videoLink;
     let imageLink;
-    let procoms = this.props.elpaso.procoms;
+    let procoms = this.props.paso.procoms;
     let novelty = true;
     let outcome = { proyectoId, id, step, orden, estilo, procomLink, videoLink, imageLink, procoms, novelty }
     this.setState({showEditButtons: 'hide-buttons'})
@@ -283,7 +283,7 @@ class Paso extends React.Component {
 
   // extra content can be a component
   extraContent(){
-    let paso = this.props.elpaso;
+    let paso = this.props.paso;
     if(paso.estilo === 'terminal') {
       return(<i className="fa fa-terminal paso-type" aria-hidden="true"></i>)
     } else if (paso.estilo === 'go-to') {
@@ -309,7 +309,7 @@ class Paso extends React.Component {
   }
 
   renderPasoContent(){
-    let paso = this.props.elpaso;
+    let paso = this.props.paso;
     let proyectoId = this.props.proyectoId;
 
     let show = 'show-buttons';

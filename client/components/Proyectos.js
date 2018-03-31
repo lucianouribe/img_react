@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProyectos, addProyecto } from '../actions/proyectos';
+import { addMemory } from '../actions/mymemory';
 import { ortografica } from '../helpers';
 import Proyecto from './Proyecto';
 import Tutorials from '../Tutorials';
@@ -45,18 +46,7 @@ class Proyectos extends React.Component {
 
   // ALL MIGHTY MEMORY
   memoryBankFunction(etwas){
-    let newArray;
-    let tempArray;
-    if(this.state.memoryBank === null) {
-      // console.log("memoryBankFunction | i'm an empty array")
-      tempArray = []
-      newArray = tempArray.concat(etwas)
-    } else {
-      // console.log("memoryBankFunction | i have something inside")
-      tempArray = this.state.memoryBank.filter(elected => elected['id'] !== etwas["id"])
-      newArray = tempArray.concat(etwas)
-    }
-    this.setState({memoryBank: newArray })
+    this.props.dispatch(addMemory(etwas))
   }
 
   // SHOW FORM
@@ -161,10 +151,10 @@ class Proyectos extends React.Component {
     let newbank;
     let doorStatus;
 
-    if(this.state.memoryBank === null) {
+    if(this.props.mymemory === null) {
       bank = [];
     } else {
-      bank = this.state.memoryBank;
+      bank = this.props.mymemory;
     }
     // the loop itself
     if(proyectos.length > 0) {
@@ -223,7 +213,8 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     proyectos: state.proyectos,
-    pasos: state.pasos
+    pasos: state.pasos,
+    mymemory: state.mymemory
  }
 }
 

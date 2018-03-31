@@ -11,3 +11,15 @@ export const addMemoPaso = (enlightme) => {
     dispatch({ type: 'SET_MEMO_PASO', enlightme});
   }
 }
+export const addMemory = (memoryState) => {
+  console.log('hit me!')
+  return(dispatch) => {
+    dispatch({ type: 'ADD_MEMORY', memoryState })
+  }
+}
+
+export const fetchMemory = () => {
+  // return(dispatch) => {
+    // dispatch({ type: 'ADD_MEMORY', doorStatus })
+  // }
+}

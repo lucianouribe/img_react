@@ -449,7 +449,7 @@ class Proyecto extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-
+    mymemory: state.mymemory
  }
 }
 

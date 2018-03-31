@@ -233,11 +233,7 @@ class Proyecto extends React.Component {
       }
     }
     this.showEditContent();
-    // cuando dispara esto, aun no se ha guardado la info
-    // this.props.dispatch(fetchProyectos())
-    setTimeout(this.dispatcher, 500)
-    // this.props.dispatch(fetchProyectos(full));
-    // let show = true
+    // setTimeout(this.dispatcher, 500)
     // this.memorySetter(show);
   }
 

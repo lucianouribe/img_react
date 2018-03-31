@@ -34,7 +34,7 @@ class Api::PasosController < ApplicationController
 
     @api_paso = @api_proyecto.pasos.new(new_params)
 
-    sleep 0.15
+    sleep 0.3
     if @api_paso.save
       render :show, status: :created
     else

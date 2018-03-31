@@ -74,15 +74,9 @@ class Paso extends React.Component {
   // ALL MIGHTY MEMORY
   memorySetter(show, how){
     // console.log('im memory setter in paso')
-    let whoAmI = {
-      proyectoId: this.props.proyectoId,
-      id: this.props.elpaso.id,
-      state: {
-        showProcom: show,
-        typeOfProcom: how
-      }
-    }
-    this.props.dispatch(addMemory(whoAmI));
+    let pasId = this.props.elpaso.id;
+    let proId = this.props.proyectoId;
+    this.props.dispatch(addMemory({proId, pasId, show, how}));
   }
 
   // VARIABLE HIGHNESS OF THE PASO CONTENT TEXTAREA
@@ -97,9 +91,6 @@ class Paso extends React.Component {
   // PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!
   showProcomsFu(how){
     let show = !this.props.showProcom
-    // console.log('showProcomsFu');
-    // console.log(`entra how: ${how}`) //comment
-    // console.log(`this is show: ${show}`) // true
     this.memorySetter(show, how);
   }
 

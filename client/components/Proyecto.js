@@ -109,13 +109,9 @@ class Proyecto extends React.Component {
   // ALL MIGHTY MEMORY
   memorySetter(show){
     // console.log('im memory setter in proyecto')
-    let whoAmI = {
-      id: this.props.elproyecto.id,
-      state: {
-        show: show
-      }
-    }
-    this.props.dispatch(addMemory(whoAmI));
+    let what = 'proyecto';
+    let proId = this.props.elproyecto.id;
+    this.props.dispatch(addMemory({show, what, proId}));
   }
 
   pasosSetter(incoming) {
@@ -381,7 +377,7 @@ class Proyecto extends React.Component {
             <Paso key={paso.id}
               elpaso={paso}
               proyectoId={proyecto.id}
-              showProcom={doorStatus2} 
+              showProcom={doorStatus2}
               typeOfProcom={typeStatus2}
               pasosSetter={this.pasosSetter}
               deletePasoFunc={this.deletePasoFunc} />

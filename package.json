@@ -17,6 +17,7 @@
     "babel-preset-stage-0": "^6.5.0",
     "cloudinary-react": "^1.0.2",
     "image-webpack-loader": "3.0.0",
+    "immutability-helper": "^2.6.6",
     "pluralize": "^5.0.0",
     "react": "^15.1.0",
     "react-dom": "^15.1.0",

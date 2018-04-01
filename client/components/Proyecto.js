@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import update from 'immutability-helper';
 import { fetchProyectos, editProyecto, deleteProyecto, addPaso, editPaso, deletePaso } from '../actions/proyectos';
 import { addMemory } from '../actions/mymemory';
 import Paso from './Paso';
@@ -31,7 +32,7 @@ class Proyecto extends React.Component {
     this.deletePasoFunc = this.deletePasoFunc.bind(this);
 
     this.showEditContent = this.showEditContent.bind(this);
-    this.saveProyectoCahnges = this.saveProyectoCahnges.bind(this);
+    this.saveProyectoChanges = this.saveProyectoChanges.bind(this);
     this.editForm = this.editForm.bind(this);
 
     this.showPasosDisplay = this.showPasosDisplay.bind(this);
@@ -193,14 +194,14 @@ class Proyecto extends React.Component {
           </form>
         </span>
         <span className='botones'>
-          <i className="material-icons btn-icon btn-edit" onClick={() => this.saveProyectoCahnges()}>done</i>
+          <i className="material-icons btn-icon btn-edit" onClick={() => this.saveProyectoChanges()}>done</i>
           <i className="material-icons btn-icon btn-edit" onClick={() => this.showEditContent()}>cancel</i>
         </span>
       </div>
     )
   }
   // change to saveProyecto
-  saveProyectoCahnges(){
+  saveProyectoChanges(){
     console.log('handle edit!')
     let proyecto = this.props.proyecto;
     let id = this.refs.id.value;
@@ -230,9 +231,12 @@ class Proyecto extends React.Component {
         } else {
           this.props.dispatch(addPaso(proyecto, step, orden, estilo, procomLink, videoLink, image_link, picture));
         }
+        let updatedPasos = update(pasos, {[i]: {id: {$set: procomLink}, novelty: {$set: false}} })
+        this.setState({pasos: updatedPasos})
       }
     }
     this.showEditContent();
+    // check in the
     // setTimeout(this.dispatcher, 500)
     // this.memorySetter(show);
   }
@@ -257,9 +261,8 @@ class Proyecto extends React.Component {
     let proyecto = this.props.proyecto;
     let pasos = this.state.pasos;
     let id = new Date();
-    // take state max_id and make a rule to add +1 to the state and save the id as it is
     let step = this.refs.step.value;
-    let orden;
+    let orden = 0;
     let estilo = this.state.estilo;
     let novelty = true;
     // let procomLink;

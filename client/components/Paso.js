@@ -213,7 +213,8 @@ class Paso extends React.Component {
   procomSubmit(){
     console.log('procom submit')
     let proId = this.props.proyectoId;
-    let pasId = this.props.paso.procomLink;
+    let pasId = this.props.paso.procom_link;
+    // debugger;
     let procoms = this.state.procoms;
     for (var i = 0; i < procoms.length; i++) {
       // console.log(pasos[i])

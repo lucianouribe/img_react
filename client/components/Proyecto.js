@@ -216,7 +216,6 @@ class Proyecto extends React.Component {
     for (var i = 0; i < pasos.length; i++) {
       // console.log(pasos[i])
       if(pasos[i].novelty === true) {
-        const id = pasos[i].procomLink;
         const step = pasos[i].step;
         const orden = pasos[i].orden;
         const estilo = pasos[i].estilo;
@@ -262,9 +261,8 @@ class Proyecto extends React.Component {
     let proyecto = this.props.proyecto;
     let pasos = this.state.pasos;
     let id = new Date();
-    // take state max_id and make a rule to add +1 to the state and save the id as it is
     let step = this.refs.step.value;
-    let orden;
+    let orden = 0;
     let estilo = this.state.estilo;
     let novelty = true;
     // let procomLink;

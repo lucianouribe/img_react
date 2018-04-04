@@ -87,7 +87,6 @@ class Proyecto extends React.Component {
   componentDidUpdate() {
     $('select').material_select();
     this.setTextareaHeight($('textarea'));
-    console.log('this.savePasosChanges()')
     this.savePasosChanges();
     // para que los tab funcionen en el textarea
     // volver un helper?
@@ -227,7 +226,7 @@ class Proyecto extends React.Component {
         const step = pasos[i].step;
         const orden = pasos[i].orden;
         const estilo = pasos[i].estilo;
-        const procomLink = pasos[i].procomLink;
+        const procom_link = pasos[i].procom_link;
         const videoLink = pasos[i].videoLink;
         const image_link = pasos[i].image_link;
         const picture = pasos[i].picture;
@@ -236,11 +235,11 @@ class Proyecto extends React.Component {
           const pasoId = pasos[i].id;
           const proyectoId = proyecto.id;
           console.log('savePasosChanges go to edit!')
-          this.props.dispatch(editPaso(proyectoId, pasoId, step, orden, estilo, procomLink, videoLink, image_link ));
+          this.props.dispatch(editPaso(proyectoId, pasoId, step, orden, estilo, procom_link, videoLink, image_link ));
         } else {
           console.log('savePasosChanges go to add!')
-          this.props.dispatch(addPaso(proyecto, step, orden, estilo, procomLink, videoLink, image_link, picture));
-          const updatedPasos = update(pasos, {[i]: {id: {$set: procomLink}, novelty: {$set: false}} })
+          this.props.dispatch(addPaso(proyecto, step, orden, estilo, procom_link, videoLink, image_link, picture));
+          const updatedPasos = update(pasos, {[i]: {id: {$set: procom_link}, novelty: {$set: false}} })
           this.setState({pasos: updatedPasos});
         }
       }
@@ -271,8 +270,8 @@ class Proyecto extends React.Component {
     let orden = 0;
     let estilo = this.state.estilo;
     let novelty = true;
-    // let procomLink;
-    let procomLink = this.state.max_id + 1;
+    // let procom_link;
+    let procom_link = this.state.max_id + 1;
     let videoLink;
     let image_link;
     let picture;
@@ -285,13 +284,12 @@ class Proyecto extends React.Component {
     } else {
       image_link = 'undefined';
     }
-    let new_paso = {id, step, orden, estilo, procomLink, videoLink, image_link, picture, procoms, novelty};
+    let new_paso = {id, step, orden, estilo, procom_link, videoLink, image_link, picture, procoms, novelty};
     pasos = [...pasos, new_paso]
     this.setState({pasos: pasos, showAdd: false, max_id: this.state.max_id + 1});
-    let show = true;
-    this.memorySetter(show);
+    // let show = true;
+    // this.memorySetter(show);
   }
-
 
   // ADD PASO FORM
   // connector for PasoOptions

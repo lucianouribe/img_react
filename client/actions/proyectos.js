@@ -52,7 +52,6 @@ export const addPaso = (proyecto, step, orden, estilo, procomLink, videoLink, im
 
 }
 
-
 export const addProcom = (proId, pasId, pro_content, pro_style, pro_order, type_of_issue) => {
   return(dispatch) => {
     $.ajax({

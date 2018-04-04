@@ -87,6 +87,8 @@ class Proyecto extends React.Component {
   componentDidUpdate() {
     $('select').material_select();
     this.setTextareaHeight($('textarea'));
+    console.log('this.savePasosChanges()')
+    this.savePasosChanges();
     // para que los tab funcionen en el textarea
     // volver un helper?
     var textareas = document.getElementsByTagName('textarea');
@@ -203,7 +205,7 @@ class Proyecto extends React.Component {
   }
   // change to saveProyecto
   saveProyectoChanges(){
-    console.log('saveProyectoChanges!')
+    // console.log('saveProyectoChanges!')
     let proyecto = this.props.proyecto;
     let id = this.refs.id.value;
     let name = this.refs.name.value;
@@ -217,12 +219,10 @@ class Proyecto extends React.Component {
   }
 
   savePasosChanges(){
-    console.log('savePasosChanges!')
+    // console.log('savePasosChanges!')
     let proyecto = this.props.proyecto;
     let pasos = this.state.pasos;
-    console.log(pasos.length)
     for (var i = 0; i < pasos.length; i++) {
-      console.log(pasos[i])
       if(pasos[i].novelty === true) {
         const step = pasos[i].step;
         const orden = pasos[i].orden;
@@ -235,10 +235,10 @@ class Proyecto extends React.Component {
         if(typeof pasos[i].id === 'number' && (pasos[i].id % 1) === 0) {
           const pasoId = pasos[i].id;
           const proyectoId = proyecto.id;
-          console.log('savePasosChanges edit!')
+          console.log('savePasosChanges go to edit!')
           this.props.dispatch(editPaso(proyectoId, pasoId, step, orden, estilo, procomLink, videoLink, image_link ));
         } else {
-          console.log('savePasosChanges add!')
+          console.log('savePasosChanges go to add!')
           this.props.dispatch(addPaso(proyecto, step, orden, estilo, procomLink, videoLink, image_link, picture));
           const updatedPasos = update(pasos, {[i]: {id: {$set: procomLink}, novelty: {$set: false}} })
           this.setState({pasos: updatedPasos});
@@ -259,7 +259,7 @@ class Proyecto extends React.Component {
   }
 
   showAddPasoOption(){
-    this.setState({ showAdd: !this.state.showAdd })
+    this.setState({ showAdd: !this.state.showAdd });
   }
 
   // PASO ADD DISPATCHER
@@ -290,7 +290,6 @@ class Proyecto extends React.Component {
     this.setState({pasos: pasos, showAdd: false, max_id: this.state.max_id + 1});
     let show = true;
     this.memorySetter(show);
-    this.savePasosChanges();
   }
 
 
@@ -319,7 +318,7 @@ class Proyecto extends React.Component {
     }
 
   }
-
+  // should be a component itself
   imageRender(){
     var images = this.state.files.map( (f, x) => {
       return(

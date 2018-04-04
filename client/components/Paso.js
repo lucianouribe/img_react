@@ -215,6 +215,7 @@ class Paso extends React.Component {
     let proId = this.props.proyectoId;
     let pasId = this.props.paso.procom_link;
     let procoms = this.state.procoms;
+    // debugger;
     for (var i = 0; i < procoms.length; i++) {
       // console.log(pasos[i])
       if(procoms[i].novelty === true) {
@@ -246,7 +247,6 @@ class Paso extends React.Component {
     this.setState({procoms})
   }
 
-
   // PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!
 
   // EDIT PASO
@@ -258,12 +258,12 @@ class Paso extends React.Component {
     let step = this.refs.step.value;
     let orden = 0;
     let estilo = this.state.estilo;
-    let procomLink;
+    let procom_link;
     let videoLink;
     let imageLink;
     let procoms = this.props.paso.procoms;
     let novelty = true;
-    let outcome = { proyectoId, id, step, orden, estilo, procomLink, videoLink, imageLink, procoms, novelty }
+    let outcome = { proyectoId, id, step, orden, estilo, procom_link, videoLink, imageLink, procoms, novelty }
     this.setState({showEditButtons: 'hide-buttons'})
     this.props.pasosSetter(outcome);
   }

@@ -33,7 +33,8 @@ class Proyecto extends React.Component {
 
     this.showEditContent = this.showEditContent.bind(this);
     this.saveProyectoChanges = this.saveProyectoChanges.bind(this);
-    this.editForm = this.editForm.bind(this);
+    this.editProyectoForm = this.editProyectoForm.bind(this);
+    this.savePasosChanges = this.savePasosChanges.bind(this);
 
     this.showPasosDisplay = this.showPasosDisplay.bind(this);
     this.showAddPasoOption = this.showAddPasoOption.bind(this);
@@ -46,7 +47,6 @@ class Proyecto extends React.Component {
     // upload image
     this.selectFiles = this.selectFiles.bind(this);
     this.imageRender = this.imageRender.bind(this);
-    this.dispatcher = this.dispatcher.bind(this);
   }
 
   componentDidMount(){
@@ -57,8 +57,8 @@ class Proyecto extends React.Component {
     let picked = Tutorials[proyectoTopic];
     this.setState({cualTopic: proyectoTopic, cualSubTopic: picked, pasos});
 
-    // para que los tab funcionen en el textarea
-    // volver un helper?
+    // Para que los tab funcionen en el textarea
+    // convertir esto en un helper?
     var textareas = document.getElementsByTagName('textarea');
     var count = textareas.length;
     for(var i=0;i<count;i++) {
@@ -87,7 +87,9 @@ class Proyecto extends React.Component {
   componentDidUpdate() {
     $('select').material_select();
     this.setTextareaHeight($('textarea'));
+    this.savePasosChanges();
     // para que los tab funcionen en el textarea
+    // volver un helper?
     var textareas = document.getElementsByTagName('textarea');
     var count = textareas.length;
     for(var i=0;i<count;i++) {
@@ -145,13 +147,13 @@ class Proyecto extends React.Component {
     this.setState({cualTopic: aTopic, cualSubTopic: picked});
   }
 
-  // EDIT FORM
-  editForm(){
+  // EDIT PROYECTO FORM
+  editProyectoForm(){
     let proyecto = this.props.proyecto
     let topic = proyecto.topic;
     let subtopic = proyecto.subtopic;
-
     let elProyecto = Tutorials.topic;
+    // this should be one method
     let proyectoTopic = elProyecto.map((elPro, i) => {
       if(elPro === proyecto.topic) {
         return (<option type="text" key={i} selected value={elPro}>{elPro}</option>)
@@ -159,7 +161,7 @@ class Proyecto extends React.Component {
         return (<option type="text" key={i} value={elPro}>{elPro}</option>)
       }
     });
-
+    // this should be one method
     let subProyectoTopic = this.state.cualSubTopic.map((subPro, i) => {
       if(subPro === proyecto.subtopic) {
         return (<option type="text" key={i} selected value={subPro}>{subPro}</option>)
@@ -167,7 +169,7 @@ class Proyecto extends React.Component {
         return (<option type="text" key={i} value={subPro}>{subPro}</option>)
       }
     });
-
+    // this should be one method
     let proyectoDiffi = Tutorials.difficulty.map((diffiOpt, i) => {
       if(diffiOpt === proyecto.difficulty) {
         return (<option type="text" key={i} selected value={diffiOpt}>{diffiOpt}</option>)
@@ -202,7 +204,7 @@ class Proyecto extends React.Component {
   }
   // change to saveProyecto
   saveProyectoChanges(){
-    console.log('handle edit!')
+    // console.log('saveProyectoChanges!')
     let proyecto = this.props.proyecto;
     let id = this.refs.id.value;
     let name = this.refs.name.value;
@@ -210,16 +212,21 @@ class Proyecto extends React.Component {
     let subtopic = this.refs.subtopic.value;
     let difficulty = this.refs.difficulty.value;
     let orden = 0;
-    let pasos = this.state.pasos;
     this.props.dispatch(editProyecto(id, name, topic, subtopic, difficulty, orden));
+    this.savePasosChanges()
+    this.showEditContent();
+  }
 
+  savePasosChanges(){
+    // console.log('savePasosChanges!')
+    let proyecto = this.props.proyecto;
+    let pasos = this.state.pasos;
     for (var i = 0; i < pasos.length; i++) {
-      // console.log(pasos[i])
       if(pasos[i].novelty === true) {
         const step = pasos[i].step;
         const orden = pasos[i].orden;
         const estilo = pasos[i].estilo;
-        const procomLink = pasos[i].procomLink;
+        const procom_link = pasos[i].procom_link;
         const videoLink = pasos[i].videoLink;
         const image_link = pasos[i].image_link;
         const picture = pasos[i].picture;
@@ -227,18 +234,16 @@ class Proyecto extends React.Component {
         if(typeof pasos[i].id === 'number' && (pasos[i].id % 1) === 0) {
           const pasoId = pasos[i].id;
           const proyectoId = proyecto.id;
-          this.props.dispatch(editPaso(proyectoId, pasoId, step, orden, estilo, procomLink, videoLink, image_link ));
+          console.log('savePasosChanges go to edit!')
+          this.props.dispatch(editPaso(proyectoId, pasoId, step, orden, estilo, procom_link, videoLink, image_link ));
         } else {
-          this.props.dispatch(addPaso(proyecto, step, orden, estilo, procomLink, videoLink, image_link, picture));
+          console.log('savePasosChanges go to add!')
+          this.props.dispatch(addPaso(proyecto, step, orden, estilo, procom_link, videoLink, image_link, picture));
+          const updatedPasos = update(pasos, {[i]: {id: {$set: procom_link}, novelty: {$set: false}} })
+          this.setState({pasos: updatedPasos});
         }
-        let updatedPasos = update(pasos, {[i]: {id: {$set: procomLink}, novelty: {$set: false}} })
-        this.setState({pasos: updatedPasos})
       }
     }
-    this.showEditContent();
-    // check in the
-    // setTimeout(this.dispatcher, 500)
-    // this.memorySetter(show);
   }
 
   dispatcher(){
@@ -253,7 +258,7 @@ class Proyecto extends React.Component {
   }
 
   showAddPasoOption(){
-    this.setState({ showAdd: !this.state.showAdd })
+    this.setState({ showAdd: !this.state.showAdd });
   }
 
   // PASO ADD DISPATCHER
@@ -265,8 +270,8 @@ class Proyecto extends React.Component {
     let orden = 0;
     let estilo = this.state.estilo;
     let novelty = true;
-    // let procomLink;
-    let procomLink = this.state.max_id + 1;
+    // let procom_link;
+    let procom_link = this.state.max_id + 1;
     let videoLink;
     let image_link;
     let picture;
@@ -279,19 +284,18 @@ class Proyecto extends React.Component {
     } else {
       image_link = 'undefined';
     }
-    let new_paso = {id, step, orden, estilo, procomLink, videoLink, image_link, picture, procoms, novelty};
+    let new_paso = {id, step, orden, estilo, procom_link, videoLink, image_link, picture, procoms, novelty};
     pasos = [...pasos, new_paso]
     this.setState({pasos: pasos, showAdd: false, max_id: this.state.max_id + 1});
-    let show = true;
-    this.memorySetter(show);
+    // let show = true;
+    // this.memorySetter(show);
   }
-
 
   // ADD PASO FORM
   // connector for PasoOptions
   pasoOptionsConection(income){
     if(income === 'submit') {
-      this.addPasoToState()
+      this.addPasoToState();
     } else if (income === 'cancel') {
       this.showAddPasoOption()
     } else {
@@ -312,7 +316,7 @@ class Proyecto extends React.Component {
     }
 
   }
-
+  // should be a component itself
   imageRender(){
     var images = this.state.files.map( (f, x) => {
       return(
@@ -401,7 +405,7 @@ class Proyecto extends React.Component {
   //RENDER DISPLAY
   individualProject(){
     if(this.state.showEdit) {
-      return(this.editForm())
+      return(this.editProyectoForm())
     } else {
       let proyecto = this.props.proyecto;
       let topic = proyecto.topic;

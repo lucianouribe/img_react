@@ -9,7 +9,7 @@ export const addProyecto = (name, topic, subtopic, difficulty, orden, user_id) =
       dataType: 'JSON',
       data: { proyecto: { name, topic, subtopic, difficulty, orden, user_id } }
     }).done( proyecto => {
-      // console.log('add proyecto done');
+      console.log('add proyecto success');
       // console.log(proyecto);
       dispatch({ type: 'ADD_PROYECTO', proyecto });
     }).fail( data => {
@@ -42,7 +42,7 @@ export const addPaso = (proyecto, step, orden, estilo, procomLink, videoLink, im
       contentType: false,
       processData: false,
     }).done( paso => {
-      // console.log('add paso done data');
+      console.log('add paso success');
       // dispatch({ type: 'ADD_PASO', paso, proId });
     }).fail( data => {
       console.log('add paso fail data')
@@ -52,7 +52,6 @@ export const addPaso = (proyecto, step, orden, estilo, procomLink, videoLink, im
 
 }
 
-
 export const addProcom = (proId, pasId, pro_content, pro_style, pro_order, type_of_issue) => {
   return(dispatch) => {
     $.ajax({
@@ -61,7 +60,7 @@ export const addProcom = (proId, pasId, pro_content, pro_style, pro_order, type_
       dataType: 'JSON',
       data: { procom: { pro_content, pro_style, pro_order, type_of_issue } }
     }).done( procom => {
-      // console.log('add procom done data');
+      console.log('add procom success');
       // dispatch({ type: 'ADD_PROCOM', procom, pasId, proId });
     }).fail( data => {
       console.log('add procom fail data')

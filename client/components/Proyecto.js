@@ -38,7 +38,7 @@ class Proyecto extends React.Component {
 
     this.showPasosDisplay = this.showPasosDisplay.bind(this);
     this.showAddPasoOption = this.showAddPasoOption.bind(this);
-    this.addPasoToState = this.addPasoToState.bind(this);
+    this.pasoBuild = this.pasoBuild.bind(this);
     this.pasoOptionsConection = this.pasoOptionsConection.bind(this);
 
     this.topicChanger = this.topicChanger.bind(this);
@@ -71,7 +71,8 @@ class Proyecto extends React.Component {
         }
       }
     }
-    // pasar a actions
+
+    // pasar a actions y hacer redux flux
     $.ajax({
       url: 'api/set_last_id',
       type: 'GET',
@@ -234,10 +235,8 @@ class Proyecto extends React.Component {
         if(typeof pasos[i].id === 'number' && (pasos[i].id % 1) === 0) {
           const pasoId = pasos[i].id;
           const proyectoId = proyecto.id;
-          console.log('savePasosChanges go to edit!')
           this.props.dispatch(editPaso(proyectoId, pasoId, step, orden, estilo, procom_link, videoLink, image_link ));
         } else {
-          console.log('savePasosChanges go to add!')
           this.props.dispatch(addPaso(proyecto, step, orden, estilo, procom_link, videoLink, image_link, picture));
           const updatedPasos = update(pasos, {[i]: {id: {$set: procom_link}, novelty: {$set: false}} })
           this.setState({pasos: updatedPasos});
@@ -262,7 +261,7 @@ class Proyecto extends React.Component {
   }
 
   // PASO ADD DISPATCHER
-  addPasoToState(){
+  pasoBuild(){
     let proyecto = this.props.proyecto;
     let pasos = this.state.pasos;
     let id = new Date();
@@ -295,7 +294,7 @@ class Proyecto extends React.Component {
   // connector for PasoOptions
   pasoOptionsConection(income){
     if(income === 'submit') {
-      this.addPasoToState();
+      this.pasoBuild();
     } else if (income === 'cancel') {
       this.showAddPasoOption()
     } else {

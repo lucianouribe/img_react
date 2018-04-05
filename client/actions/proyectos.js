@@ -13,7 +13,7 @@ export const addProyecto = (name, topic, subtopic, difficulty, orden, user_id) =
       // console.log(proyecto);
       dispatch({ type: 'ADD_PROYECTO', proyecto });
     }).fail( data => {
-      console.log('add proyecto fail data')
+      console.log('add proyecto fail')
       console.log(data);
     })
   }
@@ -45,7 +45,7 @@ export const addPaso = (proyecto, step, orden, estilo, procomLink, videoLink, im
       console.log('add paso success');
       // dispatch({ type: 'ADD_PASO', paso, proId });
     }).fail( data => {
-      console.log('add paso fail data')
+      console.log('add paso fail')
       console.log(data);
     })
   }
@@ -63,7 +63,7 @@ export const addProcom = (proId, pasId, pro_content, pro_style, pro_order, type_
       console.log('add procom success');
       // dispatch({ type: 'ADD_PROCOM', procom, pasId, proId });
     }).fail( data => {
-      console.log('add procom fail data')
+      console.log('add procom fail')
       console.log(data);
     })
   }
@@ -96,7 +96,7 @@ export const fetchProyectos = (wordToMatch) => {
         dispatch({ type: 'FILTERED_PROYECTOS', losProyectos});
       }
     }).fail( data => {
-      console.log('fetch proyectos fail data')
+      console.log('fetch proyectos fail')
       console.log(data)
     })
   }
@@ -114,11 +114,11 @@ export const editProyecto = (id, name, topic, subtopic, difficulty, orden) => {
       dataType: 'JSON',
       data: { proyecto: { name, topic, subtopic, difficulty, orden } }
     }).done( proyecto => {
-      // console.log(`edit proyecto - ${id} - done data`);
+      console.log(`edit proyecto - ${id} - success`);
       // console.log(proyecto);
       dispatch({ type: 'EDIT_PROYECTO', proyecto });
     }).fail( data => {
-      console.log('edit proyecto fail data')
+      console.log('edit proyecto fail')
       // console.log(data);
     })
   }
@@ -133,7 +133,7 @@ export const editPaso = (proyectoId, id, step, orden, estilo, procomLink, videoL
       dataType: 'JSON',
       data: { paso: { step, orden, estilo, procomLink, videoLink, imageLink } }
     }).done( paso => {
-      console.log(`edit paso - ${id} - done data`);
+      console.log(`edit paso - ${id} - success`);
       // console.table(paso);
       // dispatch({ type: 'EDIT_PASO', paso, pasId, proId });
     }).fail( data => {
@@ -152,7 +152,7 @@ export const editProcom = (proId, pasId, id, pro_content, pro_style, pro_order, 
       dataType: 'JSON',
       data: { procom: { pro_content, pro_style, pro_order, type_of_issue } }
     }).done( procom => {
-      // console.log(`edit procom - ${id} - done data`);
+      console.log(`edit procom - ${id} - success`);
       // dispatch({ type: 'EDIT_PROCOM', procom, procomId, pasId, proId });
     }).fail( data => {
       // console.log(data);
@@ -170,7 +170,7 @@ export const deleteProyecto = (id) => {
       type: 'DELETE',
       dataType: 'JSON'
     }).done( data => {
-      // console.log('delete proyecto done data');
+      console.log('delete proyecto done');
       // console.log(data);
       dispatch({ type: 'DELETE_PROYECTO', id });
     }).fail( data => {

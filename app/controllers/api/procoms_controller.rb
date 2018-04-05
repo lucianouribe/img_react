@@ -1,9 +1,14 @@
 class Api::ProcomsController < ApplicationController
-  before_action :set_api_paso
+  before_action :set_api_paso, except: :set_last_procom_id
   before_action :set_api_procom, only: [:show, :edit, :update, :destroy]
 
   def index
     @api_procoms = @api_paso.procoms.order_by_id.all
+  end
+
+  def set_last_procom_id
+    @procom = Procom.all.maximum(:id)
+    render :set_last_procom_id, status: :ok
   end
 
   def show

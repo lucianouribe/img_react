@@ -1,14 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
+import update from 'immutability-helper';
 import Procom from './Procom';
 import PasoOptions from './PasoOptions';
-
 import { addProcom, editProcom, deleteProcom } from '../actions/proyectos';
 import { addMemory } from '../actions/mymemory';
-
 import { createMarkup } from '../helpers';
-
 
 class Paso extends React.Component {
 
@@ -22,7 +19,8 @@ class Paso extends React.Component {
       //pasos (parent)
       estilo: 'paragraph', // standard estilo
       showEditButtons: 'hide-buttons', // show-buttons: to show the form
-      procoms: []
+      procoms: [],
+      max_id: 0
     }
 
     this.memorySetter = this.memorySetter.bind(this);
@@ -50,11 +48,23 @@ class Paso extends React.Component {
     this.setTextareaHeight($('textarea'));
     let estilo = this.props.paso.estilo;
     let procoms = this.props.paso.procoms;
-    this.setState({estilo, procoms})
+    this.setState({estilo, procoms});
+
+    $.ajax({
+      url: 'api/set_last_procom_id',
+      type: 'GET',
+    }).done( last_id => {
+      // console.log(last_id)
+      this.setState({max_id: last_id.procom});
+    }).fail( err => {
+      console.log('something failed with pasos')
+      console.log(err);
+    });
   }
 
   componentDidUpdate(){
     $('select').material_select();
+    this.saveProcomChanges();
     // para que los tab funcionen en el textarea
     var textareas = document.getElementsByTagName('textarea');
     var count = textareas.length;
@@ -185,7 +195,6 @@ class Paso extends React.Component {
 
   procomBuild(){
     let procoms = this.state.procoms;
-
     let id = new Date();
     let pro_content = this.refs.pro_content.value;
     let type_of_issue;
@@ -210,25 +219,30 @@ class Paso extends React.Component {
     this.addProcomSetter();
   }
 
-  procomSubmit(){
-    console.log('procom submit')
+  saveProcomChanges(){
+    console.log('saveProcomChanges')
     let proId = this.props.proyectoId;
     let pasId = this.props.paso.procom_link;
     let procoms = this.state.procoms;
-    // debugger;
     for (var i = 0; i < procoms.length; i++) {
-      // console.log(pasos[i])
       if(procoms[i].novelty === true) {
         const pro_content = procoms[i].pro_content;
         const type_of_issue = procoms[i].type_of_issue;
         const pro_style = procoms[i].pro_style;
         const pro_order = procoms[i].pro_order;
+        const procom_max = this.state.max_id + 1;
         // if el paso tiene id numerico
         if(typeof procoms[i].id === 'number' && (procoms[i].id % 1) === 0) {
           const procomId = procoms[i].id;
+          console.log('i am EDIT procom sender')
           this.props.dispatch(editProcom(proId, pasId, procomId, pro_content, pro_style, pro_order, type_of_issue));
         } else {
           this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
+          console.log('i am ADD procom sender')
+          // fix state after addprocom
+          const updatedProcoms = update(procoms, {[i]: {id: {$set: procom_max}, novelty: {$set: false}} })
+          this.setState({procoms: updatedProcoms});
+          // try to save direct from componentDidUpdate
         }
       }
     }
@@ -341,7 +355,7 @@ class Paso extends React.Component {
               <i className="fa fa-comments btn-icon" aria-hidden="true" onClick={() => this.showProcomsFu(comentario)}></i>
               <i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true" onClick={() => this.showProcomsFu(problema)}></i>
               <i className="fa fa-trash btn-icon" aria-hidden="true" onClick={() => this.props.deletePasoFunc(paso.id, proyectoId)}></i>
-              <i className="fa fa-adn btn-icon" aria-hidden="true" onClick={() => this.procomSubmit()}></i>
+              <i className="fa fa-adn btn-icon" aria-hidden="true" onClick={() => this.saveProcomChanges()}></i>
             </span>
           </span>
         </div>

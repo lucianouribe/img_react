@@ -14,10 +14,11 @@ Rails.application.routes.draw do
       resources :pasos, except: [:set_last_id]
     end
     resources :pasos, except: [:set_last_id] do
-      resources :procoms
+      resources :procoms, except: :set_last_id
     end
 
     get 'set_last_id', to: 'pasos#set_last_id'
+    get 'set_last_procom_id', to: 'procoms#set_last_procom_id'
 
     post 'contact', to: 'contacts#create'
     get 'users/info'

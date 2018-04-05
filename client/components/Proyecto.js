@@ -77,10 +77,8 @@ class Proyecto extends React.Component {
       url: 'api/set_last_id',
       type: 'GET',
     }).done( last_id => {
-      // console.log(last_id)
       this.setState({max_id: last_id.paso});
     }).fail( err => {
-      console.log('something failed with pasos')
       console.log(err);
     });
   }

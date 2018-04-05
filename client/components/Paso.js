@@ -54,10 +54,8 @@ class Paso extends React.Component {
       url: 'api/set_last_procom_id',
       type: 'GET',
     }).done( last_id => {
-      // console.log(last_id)
       this.setState({max_id: last_id.procom});
     }).fail( err => {
-      console.log('something failed with pasos')
       console.log(err);
     });
   }
@@ -212,7 +210,6 @@ class Paso extends React.Component {
     let pro_order = 0;
     let novelty = true;
 
-
     let new_procom = {id, pro_content, type_of_issue, pro_style, pro_order, novelty};
     procoms = [...procoms, new_procom]
     this.setState({procoms: procoms});
@@ -234,15 +231,11 @@ class Paso extends React.Component {
         // if el paso tiene id numerico
         if(typeof procoms[i].id === 'number' && (procoms[i].id % 1) === 0) {
           const procomId = procoms[i].id;
-          console.log('i am EDIT procom sender')
           this.props.dispatch(editProcom(proId, pasId, procomId, pro_content, pro_style, pro_order, type_of_issue));
         } else {
           this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
-          console.log('i am ADD procom sender')
-          // fix state after addprocom
           const updatedProcoms = update(procoms, {[i]: {id: {$set: procom_max}, novelty: {$set: false}} })
           this.setState({procoms: updatedProcoms});
-          // try to save direct from componentDidUpdate
         }
       }
     }

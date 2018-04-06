@@ -29,10 +29,9 @@ class Proyectos extends React.Component {
 
   componentDidMount() {
     $('select').material_select();
-
     let full = 'full'
     this.props.dispatch(fetchProyectos(full));
-
+    // option for cellphones
     // let isMobile = (window.innerWidth <= 800 && window.innerHeight <= 600)
     let isMobile = true
     this.modalizeMe(isMobile);
@@ -92,8 +91,7 @@ class Proyectos extends React.Component {
         );
       });
     }
-
-
+    // select topics could be a component or a separated method?
     return(
         <div className="tarjeta form-edit">
           <form className="input-field" encType="multipart/form-data">
@@ -180,7 +178,7 @@ class Proyectos extends React.Component {
     let modalizeStyle;
     if(this.state.modalize) {
       modalizeStyle = {
-        fontSize: '2.3rem',
+        fontSize: '1.6rem',
         color: 'red'
       }
     }
@@ -188,7 +186,7 @@ class Proyectos extends React.Component {
       <div className='descripciones-container'>
         <div className='admin-title'>
         <i className="fa fa-arrows-alt modalize" style={modalizeStyle} aria-hidden="true" onClick={() => this.setState({modalize: !this.state.modalize})}></i>
-          <h1>iTuto</h1>
+          <h1 className="proyectos-title">iTuto</h1>
           {this.showSearcher()}
           <span className='right' onClick={this.toggleDisplay}><i className="material-icons btn-icon large">add</i></span>
         </div>

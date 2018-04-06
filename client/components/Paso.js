@@ -13,12 +13,12 @@ class Paso extends React.Component {
     super(props);
 
     this.state = {
-      //procoms (child)
-      showAddProcomForm: false, // true: to show the form
-      proStyle: 'comment', // can be comment, example, problem
       //pasos (parent)
       estilo: 'paragraph', // standard estilo
       showEditButtons: 'hide-buttons', // show-buttons: to show the form
+      //procoms (child)
+      showAddProcomForm: false, // true: to show the form
+      proStyle: 'comment', // can be comment, example, problem
       procoms: [],
       max_id: 0
     }
@@ -33,7 +33,6 @@ class Paso extends React.Component {
     this.deleteProcomFunc = this.deleteProcomFunc.bind(this);
     // PASO CRUDS
     this.submitEditPaso = this.submitEditPaso.bind(this);
-    // this.deletePaso = this.deletePaso.bind(this);
     // BOTONES
     this.pasoOptionsConection = this.pasoOptionsConection.bind(this);
     this.procomOptionsConection = this.procomOptionsConection.bind(this);
@@ -107,13 +106,10 @@ class Paso extends React.Component {
     let proyectoId = this.props.proyectoId;
     let numeracionComment = 0;
     let numeracionProblems = 0;
-
     let comments = showProcoms.filter( comme => { if(comme.type_of_issue === 'comment') return comme })
-
     let problems = showProcoms.filter( proble => { if(proble.type_of_issue === 'problem') return proble })
 
     if(this.props.showProcom && this.props.typeOfProcom === 'comment') {
-      // debugger;
       if(showProcoms.length > 0) {
         return comments.map( procom => {
           numeracionComment++
@@ -151,7 +147,6 @@ class Paso extends React.Component {
   }
 
   // ADD PROCOM STARTER
-
   addProcomSetter(){
     // console.log('add procom')
     this.setState({showAddProcomForm: !this.state.showAddProcomForm})
@@ -244,20 +239,16 @@ class Paso extends React.Component {
   // DELETE PROCOMS
   deleteProcomFunc(procomId, pasoId, proyectoId) {
     let procoms = this.state.procoms;
-
     if(typeof procomId === 'number' && (procomId % 1) === 0) {
       this.props.dispatch(deleteProcom(procomId, pasoId, proyectoId));
     }
-
     let index = procoms.findIndex( procom => procom.id === procomId);
     procoms = [...procoms.slice(0, index), ...procoms.slice(index + 1)]
     this.setState({procoms})
   }
 
   // PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!
-
   // EDIT PASO
-
   submitEditPaso(){
     // console.log('submiting edit paso')
     let proyectoId = this.props.proyectoId;
@@ -276,7 +267,6 @@ class Paso extends React.Component {
   }
 
   // RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!RENDER!!!!
-
   // connector for PasoOptions
   pasoOptionsConection(income){
     if(income === 'submit') {
@@ -318,7 +308,6 @@ class Paso extends React.Component {
   renderPasoContent(){
     let paso = this.props.paso;
     let proyectoId = this.props.proyectoId;
-
     let show = 'show-buttons';
     // let hide = 'hide-buttons';
     let comentario = 'comment';

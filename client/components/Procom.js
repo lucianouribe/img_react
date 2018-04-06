@@ -106,7 +106,7 @@ class Procom extends React.Component {
           <div className={this.state.showEditButtons}>
             <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.estilo} conection={this.procomOptionsConection} />
           </div>
-          <textarea id="edit-procom-textarea" className="procom-content-text" style={inlineStyle} ref='pro_content' onChange={()=>this.onChange4Textarea(show)}>{procom.pro_content}</textarea>
+          <textarea id="edit-procom-textarea" className="procom-content-text" style={inlineStyle} ref='pro_content' onChange={()=>this.onChange4Textarea(show)} defaultValue={procom.pro_content}></textarea>
         </span>
         <span className="mini-botones">
           <i className="fa fa-trash" aria-hidden="true" onClick={()=> this.props.deleteProcomFunc(procom.id, pasoId, proyectoId)}></i>

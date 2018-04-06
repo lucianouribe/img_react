@@ -217,7 +217,7 @@ class Paso extends React.Component {
   }
 
   saveProcomChanges(){
-    console.log('saveProcomChanges')
+    // console.log('saveProcomChanges')
     let proId = this.props.proyectoId;
     let pasId = this.props.paso.procom_link;
     let procoms = this.state.procoms;
@@ -340,7 +340,7 @@ class Paso extends React.Component {
             <div className={this.state.showEditButtons}>
               <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.estilo} conection={this.pasoOptionsConection}/>
             </div>
-            <textarea id="edit-paso-textarea" className="paso-content-text" style={inlineStyle} ref='step' onChange={()=> this.onChange4Textarea(show)}>{paso.step}</textarea>
+            <textarea id="edit-paso-textarea" className="paso-content-text" style={inlineStyle} ref='step' onChange={()=> this.onChange4Textarea(show)} defaultValue={paso.step}></textarea>
           </div>
           <span className="botones-container">
             <span className='botones'>
@@ -348,7 +348,6 @@ class Paso extends React.Component {
               <i className="fa fa-comments btn-icon" aria-hidden="true" onClick={() => this.showProcomsFu(comentario)}></i>
               <i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true" onClick={() => this.showProcomsFu(problema)}></i>
               <i className="fa fa-trash btn-icon" aria-hidden="true" onClick={() => this.props.deletePasoFunc(paso.id, proyectoId)}></i>
-              <i className="fa fa-adn btn-icon" aria-hidden="true" onClick={() => this.saveProcomChanges()}></i>
             </span>
           </span>
         </div>

@@ -1,11 +1,40 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import update from 'immutability-helper';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { fetchProyectos, editProyecto, deleteProyecto, addPaso, editPaso, deletePaso } from '../actions/proyectos';
 import { addMemory } from '../actions/mymemory';
 import Paso from './Paso';
 import PasoOptions from './PasoOptions';
 import Tutorials from '../Tutorials';
+
+const reorder = (list, startIndex, endIndex) => {
+  const result = Array.from(list);
+  const [removed] = result.splice(startIndex, 1);
+  result.splice(endIndex, 0, removed);
+
+  return result;
+};
+
+const grid = 25;
+
+const getItemStyle = (isDragging, draggableStyle) => ({
+  // some basic styles to make the items look a bit nicer
+  userSelect: 'none',
+  padding: grid * 2,
+  margin: `0 0 ${grid}px 0`,
+
+  // change background colour if dragging
+  background: isDragging ? 'lightgreen' : 'grey',
+
+  // styles we need to apply on draggables
+  ...draggableStyle,
+});
+
+const getListStyle = isDraggingOver => ({
+  background: isDraggingOver ? 'lightblue' : 'lightgrey',
+  padding: grid,
+});
 
 
 class Proyecto extends React.Component {
@@ -24,7 +53,8 @@ class Proyecto extends React.Component {
 
       files: [],
       preview: false,
-      max_id: 0
+      max_id: 0,
+      max_order: 0
     }
 
     this.memorySetter = this.memorySetter.bind(this);
@@ -47,15 +77,18 @@ class Proyecto extends React.Component {
     // upload image
     this.selectFiles = this.selectFiles.bind(this);
     this.imageRender = this.imageRender.bind(this);
+
+    this.onDragEnd = this.onDragEnd.bind(this);
   }
 
   componentDidMount(){
     $('select').material_select();
     // put in setState this: modalize: isMobile
-    let pasos = this.props.proyecto.pasos
-    let proyectoTopic = this.props.proyecto.topic
+    let pasos = this.props.proyecto.pasos;
+    let proyectoTopic = this.props.proyecto.topic;
     let picked = Tutorials[proyectoTopic];
-    this.setState({cualTopic: proyectoTopic, cualSubTopic: picked, pasos});
+    let orden = pasos.length;
+    this.setState({cualTopic: proyectoTopic, cualSubTopic: picked, pasos, max_order: orden});
 
     // Para que los tab funcionen en el textarea
     // convertir esto en un helper?
@@ -101,6 +134,20 @@ class Proyecto extends React.Component {
         }
       }
     }
+  }
+
+  onDragEnd(result) {
+    // dropped outside the list
+    if (!result.destination) { return; }
+    console.log('result');
+    console.log(result.source);
+    console.log(result.destination);
+    const pasos = reorder(
+      this.state.pasos,
+      result.source.index,
+      result.destination.index
+    );
+    this.setState({pasos: pasos});
   }
 
   setTextareaHeight(paso){
@@ -264,7 +311,7 @@ class Proyecto extends React.Component {
     let pasos = this.state.pasos;
     let id = new Date();
     let step = this.refs.step.value;
-    let orden = 0;
+    let orden = this.state.max_order + 1;
     let estilo = this.state.estilo;
     let novelty = true;
     // let procom_link;
@@ -283,7 +330,12 @@ class Proyecto extends React.Component {
     }
     let new_paso = {id, step, orden, estilo, procom_link, videoLink, image_link, picture, procoms, novelty};
     pasos = [...pasos, new_paso]
-    this.setState({pasos: pasos, showAdd: false, max_id: this.state.max_id + 1});
+    this.setState({
+      pasos,
+      showAdd: false,
+      max_id: this.state.max_id + 1,
+      max_order: this.state.max_order + 1
+    });
     // let show = true;
     // this.memorySetter(show);
   }
@@ -370,7 +422,7 @@ class Proyecto extends React.Component {
       let typeStatus2;
 
       if(showPasos.length > 0) {
-        return showPasos.map( paso => {
+        return showPasos.map( (paso, index) => {
 
           if(bank !== 'nope'){
             index = bank.findIndex( elem => elem["id"] === paso.id)
@@ -381,20 +433,34 @@ class Proyecto extends React.Component {
               doorStatus2 = false
               typeStatus2 = ''
             }
-          }
 
-          return(
-            <Paso key={paso.id}
-              paso={paso}
-              proyectoId={proyecto.id}
-              showProcom={doorStatus2}
-              typeOfProcom={typeStatus2}
-              pasosSetter={this.pasosSetter}
-              deletePasoFunc={this.deletePasoFunc} />
+            return(
+              // instead of paso.id it should be paso order!
+              <Draggable key={paso.orden} draggableId={paso.orden} index={index}>
+                {(provided, snapshot) => (
+                  <div>
+                    <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                      <Paso key={paso.id}
+                        paso={paso}
+                        proyectoId={proyecto.id}
+                        showProcom={doorStatus2}
+                        typeOfProcom={typeStatus2}
+                        pasosSetter={this.pasosSetter}
+                        deletePasoFunc={this.deletePasoFunc} />
+                    </div>
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Draggable>
+
             );
+
+
+
+          } else {
+           return(<p className="nothing-flash">Sin Pasos</p>);
+          }
         })
-      } else {
-        return(<p className="nothing-flash">Sin Pasos</p>);
       }
     }
   }
@@ -429,7 +495,7 @@ class Proyecto extends React.Component {
   render(){
     let bodyStyle;
     let containerStyle;
-    // console.log(`el proyecto especifico: ${this.props.proyecto.name}`)
+
     if(this.props.modalize === true && this.props.doorStatus === true) {
       bodyStyle = {
         width: '100vw',
@@ -449,7 +515,16 @@ class Proyecto extends React.Component {
       <div style={bodyStyle}>
         {this.individualProject()}
         <div className="pasos-container" style={containerStyle}>
-          {this.pasosDisplay()}
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <Droppable droppableId="droppable">
+              {(provided, snapshot) => (
+                <div ref={provided.innerRef}>
+                  {this.pasosDisplay()}
+                  {provided.placeholder}
+                </div>
+              )}
+            </Droppable>
+          </DragDropContext>
         </div>
         {this.addPasoForm()}
       </div>

@@ -3,7 +3,7 @@ class Api::PasosController < ApplicationController
   before_action :set_api_paso, only: [:show, :edit, :update, :destroy]
 
   def index
-    @api_pasos = @api_proyecto.pasos.order_by_id.all
+    @api_pasos = @api_proyecto.pasos.all
   end
 
   def set_last_id

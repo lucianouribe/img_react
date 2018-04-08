@@ -254,7 +254,7 @@ class Paso extends React.Component {
     let proyectoId = this.props.proyectoId;
     let id = this.props.paso.id;
     let step = this.refs.step.value;
-    let orden = 0;
+    let orden = this.props.paso.orden;
     let estilo = this.state.estilo;
     let procom_link;
     let videoLink;

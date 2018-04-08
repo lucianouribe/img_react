@@ -1,7 +1,7 @@
 json.array! @api_proyectos do |proyecto|
   json.(proyecto, :id, :name, :topic, :subtopic, :difficulty, :orden)
 
-  json.pasos proyecto.pasos.order_by_id do |paso|
+  json.pasos proyecto.pasos.order_by_orden do |paso|
     json.(paso, :id, :step, :orden, :estilo, :procom_link, :video_link, :image_link)
 
     json.procoms paso.procoms.order_by_id do |procom|

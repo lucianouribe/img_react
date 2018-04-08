@@ -7,6 +7,10 @@ class Paso < ApplicationRecord
     Paso.order('id ASC')
   end
 
+  def self.order_by_orden
+    Paso.order('orden ASC')
+  end
+
   def self.upload_image(the_info)
     Cloudinary::Uploader.upload(the_info[:picture], :public_id => the_info[:image_link].downcase, :width => 864, :crop => :limit)
   end

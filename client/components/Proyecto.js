@@ -140,13 +140,15 @@ class Proyecto extends React.Component {
     // dropped outside the list
     if (!result.destination) { return; }
     console.log('result');
-    console.log(result.source);
-    console.log(result.destination);
+    // console.log(result.source);
+    // console.log(result.destination);
+    console.log(this.state.pasos)
     const pasos = reorder(
       this.state.pasos,
       result.source.index,
       result.destination.index
     );
+    console.log(pasos);
     this.setState({pasos: pasos});
   }
 

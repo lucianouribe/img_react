@@ -180,10 +180,10 @@ class Paso extends React.Component {
 
   // PROCOM ADD DISPATCHER
   procomSetter(incoming){
-    let hello = this.state.procoms;
-    let index = hello.findIndex( procom => procom.id === incoming.id);
-    hello[index] = incoming;
-    this.setState({procoms: hello})
+    let procoms = this.state.procoms;
+    let index = procoms.findIndex( procom => procom.id === incoming.id);
+    procoms[index] = incoming;
+    this.setState({procoms})
   }
 
   procomBuild(){
@@ -202,12 +202,12 @@ class Paso extends React.Component {
       pro_style = this.state.proStyle;
       type_of_issue = 'comment';
     }
-    let pro_order = 0;
+    let pro_order;
     let novelty = true;
 
     let new_procom = {id, pro_content, type_of_issue, pro_style, pro_order, novelty};
-    procoms = [...procoms, new_procom]
-    this.setState({procoms: procoms});
+    procoms = [...procoms, new_procom];
+    this.setState({ procoms, max_id: this.state.max_id + 1 });
     this.addProcomSetter();
   }
 

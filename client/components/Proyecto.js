@@ -264,7 +264,7 @@ class Proyecto extends React.Component {
     let pasos = this.state.pasos;
     let id = new Date();
     let step = this.refs.step.value;
-    let orden = 0;
+    let orden;
     let estilo = this.state.estilo;
     let novelty = true;
     // let procom_link;

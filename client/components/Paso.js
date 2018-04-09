@@ -208,6 +208,7 @@ class Paso extends React.Component {
     let new_procom = {id, pro_content, type_of_issue, pro_style, pro_order, novelty};
     procoms = [...procoms, new_procom];
     this.setState({ procoms, max_id: this.state.max_id + 1 });
+    this.memorySetter(true, type_of_issue);
     this.addProcomSetter();
   }
 

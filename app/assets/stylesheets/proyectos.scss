@@ -34,8 +34,11 @@
 // add stuff
 // to override a style in descriptions
 .admin-title .proyectos-title {
-  flex: 3 3 30%;
+  -webkit-box-flex: 3;
+      -ms-flex: 3 3 30%;
+          flex: 3 3 30%;
 }
+
 .proyectos-section .tarjeta {
   margin: 0 3rem;
   margin-bottom: 1rem;
@@ -198,7 +201,7 @@
   background-size: 32px;
 }
 // web
-.container-logos .web {
+.container-logos .programming {
   background-image: url(asset_path("thumb_web.png"));
 }
 .container-logos .html {
@@ -312,7 +315,7 @@
   background-image: url(asset_path("thumb_zbrush.png"));
 }
 // literatura
-.container-logos .literatura {
+.container-logos .literature {
   background-image: url(asset_path("thumb_literatura.png"));
 }
 .container-logos .gramatica {

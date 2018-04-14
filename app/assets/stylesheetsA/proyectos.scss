@@ -29,6 +29,11 @@
   cursor: pointer;
 }
 // add stuff
+// to override a style in descriptions
+.admin-title .proyectos-title {
+  flex: 3 3 30%;
+}
+
 .proyectos-section .tarjeta {
   margin: 0 3rem;
   margin-bottom: 1rem;

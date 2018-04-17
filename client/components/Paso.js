@@ -301,13 +301,9 @@ class Paso extends React.Component {
     } else if (paso.estilo === 'download'){
       let afile = paso.picture;
       let areader = new FileReader();
-      let url = areader.readAsDataURL(afile);
+      areader.readAsDataURL(afile);
 
-      areader.onloadend = (e) => {
-        this.setState({
-            mamamia: [areader.result],
-        })
-      }
+      areader.onloadend = (e) => { this.setState({ mamamia: [areader.result]}) }
       return(<img className="image-link" src={this.state.mamamia}/>)
     } else {
       return(<p className="paso-type"></p>)

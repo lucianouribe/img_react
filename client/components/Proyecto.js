@@ -300,10 +300,11 @@ class Proyecto extends React.Component {
     }
   }
 
+  // try to put this one away
   selectFiles(){
     let file = this.refs.picture.files[0];
     let reader = new FileReader();
-    let url = reader.readAsDataURL(file);
+    reader.readAsDataURL(file);
 
     reader.onloadend = (e) => {
       this.setState({

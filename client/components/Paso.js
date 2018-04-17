@@ -292,6 +292,7 @@ class Paso extends React.Component {
       return(<iframe className="video-link" width="560" height="315" src={`https://www.youtube.com/embed/${paso.step}?rel=0`} allowFullScreen></iframe>)
     } else if (paso.estilo === 'link-image') {
       if(paso.image_link === 'undefined') {
+        // make rule here for the temp image
         return(<img className="image-link" src={paso.step}/>)
       } else {
         return(<img className="image-link" src={`http://res.cloudinary.com/lucianouribe/image/upload/${paso.image_link}.jpg`}/>)

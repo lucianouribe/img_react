@@ -5,6 +5,7 @@ import { fetchProyectos, editProyecto, deleteProyecto, addPaso, editPaso, delete
 import { addMemory } from '../actions/mymemory';
 import Paso from './Paso';
 import PasoOptions from './PasoOptions';
+import TempPicture from './TempPicture';
 import Tutorials from '../Tutorials';
 
 
@@ -46,7 +47,7 @@ class Proyecto extends React.Component {
 
     // upload image
     this.selectFiles = this.selectFiles.bind(this);
-    this.imageRender = this.imageRender.bind(this);
+    // this.imageRender = this.imageRender.bind(this);
   }
 
   componentDidMount(){
@@ -313,17 +314,6 @@ class Proyecto extends React.Component {
     }
 
   }
-  // should be a component itself
-  imageRender(){
-    var images = this.state.files.map( (f, x) => {
-      return(
-        <div key={x} className="paso-second-image-cont">
-          <img src={f} className="paso-second-image"/>
-        </div>
-      )
-    });
-    return(<div>{images}</div>)
-  }
 
   addPasoFormOptions(){
     if(this.state.estilo === 'download'){
@@ -334,9 +324,7 @@ class Proyecto extends React.Component {
             <input type="file" ref="picture" onChange={this.selectFiles} className="paso-second-picture"/>
             <input type="hidden" value={this.state.files} />
           </span>
-          <div className={this.state.preview ? "image-preview" : "hide"}>
-            {this.imageRender()}
-          </div>
+          <TempPicture preview={this.state.preview} files={this.state.files}/>
         </div>
       )
     } else {

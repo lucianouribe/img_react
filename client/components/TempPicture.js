@@ -3,10 +3,10 @@ import React from 'react';
 class TempPicture extends React.Component {
 
   imageRender(){
-    var images = this.props.files.map( (f, x) => {
+    var images = this.props.files.map( (file, i) => {
       return(
-        <div key={x} className="paso-second-image-cont">
-          <img src={f} className="paso-second-image"/>
+        <div key={i} className="paso-second-image-cont">
+          <img src={file} className="paso-second-image"/>
         </div>
       )
     });

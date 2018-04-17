@@ -20,7 +20,8 @@ class Paso extends React.Component {
       showAddProcomForm: false, // true: to show the form
       proStyle: 'comment', // can be comment, example, problem
       procoms: [],
-      max_id: 0
+      max_id: 0,
+      mamamia: []
     }
 
     this.memorySetter = this.memorySetter.bind(this);
@@ -297,6 +298,17 @@ class Paso extends React.Component {
       } else {
         return(<img className="image-link" src={`http://res.cloudinary.com/lucianouribe/image/upload/${paso.image_link}.jpg`}/>)
       }
+    } else if (paso.estilo === 'download'){
+      let afile = paso.picture;
+      let areader = new FileReader();
+      let url = areader.readAsDataURL(afile);
+
+      areader.onloadend = (e) => {
+        this.setState({
+            mamamia: [areader.result],
+        })
+      }
+      return(<img className="image-link" src={this.state.mamamia}/>)
     } else {
       return(<p className="paso-type"></p>)
     }

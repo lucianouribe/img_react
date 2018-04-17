@@ -47,7 +47,6 @@ class Proyecto extends React.Component {
 
     // upload image
     this.selectFiles = this.selectFiles.bind(this);
-    // this.imageRender = this.imageRender.bind(this);
   }
 
   componentDidMount(){

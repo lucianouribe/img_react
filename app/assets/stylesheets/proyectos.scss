@@ -638,7 +638,7 @@
   width: 150px;
 }
 // paso type image
-.link-image {
+.link-image, .download {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
@@ -650,14 +650,14 @@
   border: 1px solid #723025;
   border-radius: 1rem;
 }
-.link-image .paso-content {
+.link-image .paso-content, .download .paso-content {
   width: 70%;
 }
-.link-image .paso-content-text {
+.link-image .paso-content-text, .download .paso-content-text {
   height: 1.5rem !important;
   color: #723025;
 }
-.link-image .botones-container {
+.link-image .botones-container, .download .botones-container{
   width: 150px;
 }
 

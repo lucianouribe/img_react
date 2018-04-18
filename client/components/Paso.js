@@ -20,7 +20,8 @@ class Paso extends React.Component {
       showAddProcomForm: false, // true: to show the form
       proStyle: 'comment', // can be comment, example, problem
       procoms: [],
-      max_id: 0
+      max_id: 0,
+      imgFiles: []
     }
 
     this.memorySetter = this.memorySetter.bind(this);
@@ -292,10 +293,20 @@ class Paso extends React.Component {
       return(<iframe className="video-link" width="560" height="315" src={`https://www.youtube.com/embed/${paso.step}?rel=0`} allowFullScreen></iframe>)
     } else if (paso.estilo === 'link-image') {
       if(paso.image_link === 'undefined') {
+        // make rule here for the temp image
         return(<img className="image-link" src={paso.step}/>)
       } else {
         return(<img className="image-link" src={`http://res.cloudinary.com/lucianouribe/image/upload/${paso.image_link}.jpg`}/>)
       }
+    } else if (paso.estilo === 'download'){
+      let imgFile = paso.picture;
+      let reader = new FileReader();
+      reader.readAsDataURL(imgFile);
+
+      reader.onloadend = (e) => { this.setState({ imgFiles: [reader.result]}) }
+      // if you manage to put this selectFiles inside the TempPicture, the you can put here:
+      // <TempPicture preview={true} files={paso.picture} />
+      return(<img className="image-link" src={this.state.imgFiles}/>)
     } else {
       return(<p className="paso-type"></p>)
     }

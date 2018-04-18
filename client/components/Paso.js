@@ -304,6 +304,8 @@ class Paso extends React.Component {
       areader.readAsDataURL(afile);
 
       areader.onloadend = (e) => { this.setState({ mamamia: [areader.result]}) }
+      // if you manage to put this selectFiles inside the TempPicture, the you can put here:
+      // <TempPicture preview={true} files={paso.picture} />
       return(<img className="image-link" src={this.state.mamamia}/>)
     } else {
       return(<p className="paso-type"></p>)

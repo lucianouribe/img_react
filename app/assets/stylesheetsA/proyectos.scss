@@ -151,7 +151,7 @@
   height: 32px;
   background-size: 32px;
 }
-// web
+// programming
 .container-logos .programming {
   background-image: url(asset_path("thumb_web.png"));
 }
@@ -160,6 +160,12 @@
 }
 .container-logos .css {
   background-image: url(asset_path("thumb_css.png"));
+}
+.container-logos .atom {
+  background-image: url(asset_path("thumb_atom.png"));
+}
+.container-logos .command_line {
+  background-image: url(asset_path("thumb_command_line.png"));
 }
 // javascript logos
 .container-logos .javascript {
@@ -291,7 +297,14 @@
 .container-logos .desert {
   background-image: url(asset_path("thumb_desert.png"));
 }
+// ideas
+.container-logos .ideas {
+  background-image: url(asset_path("bombillo_icon_II.png"));
+}
 // otros
+.container-logos .others {
+  background-image: url(asset_path("thumb_others.png"));
+}
 .container-logos .final_cut {
   background-image: url(asset_path("thumb_final_cut.png"));
 }
@@ -300,6 +313,9 @@
 }
 .container-logos .arts {
   background-image: url(asset_path("thumb_arts.png"));
+}
+.container-logos .collumino {
+  background-image: url(asset_path("thumb_collumino.png"));
 }
 
 // PASOS

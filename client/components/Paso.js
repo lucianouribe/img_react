@@ -21,7 +21,7 @@ class Paso extends React.Component {
       proStyle: 'comment', // can be comment, example, problem
       procoms: [],
       max_id: 0,
-      mamamia: []
+      imgFiles: []
     }
 
     this.memorySetter = this.memorySetter.bind(this);
@@ -299,14 +299,14 @@ class Paso extends React.Component {
         return(<img className="image-link" src={`http://res.cloudinary.com/lucianouribe/image/upload/${paso.image_link}.jpg`}/>)
       }
     } else if (paso.estilo === 'download'){
-      let afile = paso.picture;
-      let areader = new FileReader();
-      areader.readAsDataURL(afile);
+      let imgFile = paso.picture;
+      let reader = new FileReader();
+      reader.readAsDataURL(imgFile);
 
-      areader.onloadend = (e) => { this.setState({ mamamia: [areader.result]}) }
+      reader.onloadend = (e) => { this.setState({ imgFiles: [reader.result]}) }
       // if you manage to put this selectFiles inside the TempPicture, the you can put here:
       // <TempPicture preview={true} files={paso.picture} />
-      return(<img className="image-link" src={this.state.mamamia}/>)
+      return(<img className="image-link" src={this.state.imgFiles}/>)
     } else {
       return(<p className="paso-type"></p>)
     }

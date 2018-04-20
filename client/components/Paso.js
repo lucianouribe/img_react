@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import update from 'immutability-helper';
 import Procom from './Procom';
 import PasoOptions from './PasoOptions';
+import PasoControl from './PasoControl';
+import AddProcom from './AddProcom';
 import { addProcom, editProcom, deleteProcom } from '../actions/proyectos';
 import { addMemory } from '../actions/mymemory';
 import { createMarkup } from '../helpers';
@@ -21,7 +23,10 @@ class Paso extends React.Component {
       proStyle: 'comment', // can be comment, example, problem
       procoms: [],
       max_id: 0,
-      imgFiles: []
+      imgFiles: [],
+      // Paso Control
+      comments: false,
+      problems: false
     }
 
     this.memorySetter = this.memorySetter.bind(this);
@@ -46,9 +51,12 @@ class Paso extends React.Component {
     $('select').material_select();
     // para que textareas se ajusten a las medidas de su contenido
     this.setTextareaHeight($('textarea'));
+
     let estilo = this.props.paso.estilo;
     let procoms = this.props.paso.procoms;
-    this.setState({estilo, procoms});
+    let comments = procoms.some( comme => comme.type_of_issue === 'comment' )
+    let problems = procoms.some( proble => proble.type_of_issue === 'problem' )
+    this.setState({estilo, procoms, comments, problems});
 
     $.ajax({
       url: 'api/set_last_procom_id',
@@ -124,8 +132,6 @@ class Paso extends React.Component {
               deleteProcomFunc={this.deleteProcomFunc} />
             );
         })
-      } else {
-        return (<p className="nothing-flash">no comments</p>)
       }
     } else if (this.props.showProcom && this.props.typeOfProcom === 'problem') {
       if(showProcoms.length > 0) {
@@ -141,8 +147,6 @@ class Paso extends React.Component {
               deleteProcomFunc={this.deleteProcomFunc} />
             );
         })
-      } else {
-        return (<p className="nothing-flash">no problems</p>)
       }
     }
   }
@@ -170,10 +174,7 @@ class Paso extends React.Component {
     if(this.state.showAddProcomForm){
       return(
         <div className="modal-form">
-          <form className="paso-container-form">
-            <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.proStyle} conection={this.procomOptionsConection} />
-            <textarea id="add-procom-textarea" className="paso-content-text" ref='pro_content' placeholder="Add Comment, example or Problem" onChange={()=>this.setTextareaHeight($('#add-procom-textarea'))}></textarea>
-          </form>
+          <AddProcom procomBuild={this.procomBuild} whichType={whichButtonsShouldIHave} elected={this.state.proStyle} conection={this.procomOptionsConection} />
         </div>
       )
     }
@@ -321,10 +322,6 @@ class Paso extends React.Component {
     let paso = this.props.paso;
     let proyectoId = this.props.proyectoId;
     let show = 'show-buttons';
-    // let hide = 'hide-buttons';
-    let comentario = 'comment';
-    let problema = 'problem';
-    let ejemplo = 'example';
 
     let inlineStyle = {height: '18px'};
     let emergency;
@@ -343,11 +340,9 @@ class Paso extends React.Component {
             </div>
             <textarea id="edit-paso-textarea" className="paso-content-text" style={inlineStyle} ref='step' onChange={()=> this.onChange4Textarea(show)} defaultValue={paso.step}></textarea>
           </div>
+          <PasoControl comments={this.state.comments} problems={this.state.problems} addProcomSetter={this.addProcomSetter} showProcomsFu={this.showProcomsFu}/>
           <span className="botones-container">
             <span className='botones'>
-              <i className="fa fa-plus-circle btn-icon" aria-hidden="true" onClick={() => this.addProcomSetter()}></i>
-              <i className="fa fa-comments btn-icon" aria-hidden="true" onClick={() => this.showProcomsFu(comentario)}></i>
-              <i className="fa fa-exclamation-triangle btn-icon" aria-hidden="true" onClick={() => this.showProcomsFu(problema)}></i>
               <i className="fa fa-trash btn-icon" aria-hidden="true" onClick={() => this.props.deletePasoFunc(paso.id, proyectoId)}></i>
             </span>
           </span>

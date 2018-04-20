@@ -107,6 +107,31 @@
   box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3);
 }
 
+.paso-control {
+  // flex: 2 2 20%;
+  display: flex;
+  justify-content: center;
+  z-index: 300;
+}
+
+.procom-status {
+  flex: 1 1 10%;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  height: 1.5rem;
+  padding: 1rem;
+  z-index: 300;
+}
+.comment-btn {
+  display: none;
+}
+
+.problem-btn {
+  display: none;
+}
+
 .mini-botones {
   display: flex;
   align-items: center;

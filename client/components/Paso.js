@@ -20,7 +20,6 @@ class Paso extends React.Component {
       showEditButtons: 'hide-buttons', // show-buttons: to show the form
       //procoms (child)
       showAddProcomForm: false, // true: to show the form
-      proStyle: 'comment', // can be comment, example, problem
       procoms: [],
       max_id: 0,
       imgFiles: [],
@@ -35,16 +34,18 @@ class Paso extends React.Component {
     this.showProcomsFu = this.showProcomsFu.bind(this);
     this.displayProcoms = this.displayProcoms.bind(this);
     this.addProcomSetter = this.addProcomSetter.bind(this);
-    this.procomBuild = this.procomBuild.bind(this);
     this.deleteProcomFunc = this.deleteProcomFunc.bind(this);
+    this.saveProcomChanges = this.saveProcomChanges.bind(this);
     // PASO CRUDS
     this.submitEditPaso = this.submitEditPaso.bind(this);
     // BOTONES
     this.pasoOptionsConection = this.pasoOptionsConection.bind(this);
-    this.procomOptionsConection = this.procomOptionsConection.bind(this);
     // TEXTARE HEIGHT
     this.setTextareaHeight = this.setTextareaHeight.bind(this);
     this.onChange4Textarea = this.onChange4Textarea.bind(this);
+    // ADD PROCOM
+    this.setProcom = this.setProcom.bind(this);
+    this.setMaxId = this.setMaxId.bind(this);
   }
 
   componentDidMount(){
@@ -72,8 +73,8 @@ class Paso extends React.Component {
     $('select').material_select();
     this.saveProcomChanges();
     // para que los tab funcionen en el textarea
-    var textareas = document.getElementsByTagName('textarea');
-    var count = textareas.length;
+    const textareas = document.getElementsByTagName('textarea');
+    let count = textareas.length;
     for(var i=0;i<count;i++) {
       textareas[i].onkeydown = function(e){
         if(e.keyCode==9 || e.which==9){
@@ -157,24 +158,24 @@ class Paso extends React.Component {
     this.setState({showAddProcomForm: !this.state.showAddProcomForm})
   }
 
-  // procom connection with PasoOptions component
-  procomOptionsConection(income){
-    if(income === 'submit') {
-      this.procomBuild()
-    } else if (income === 'cancel') {
-      this.addProcomSetter() //check
-    } else {
-      this.setState({ proStyle: income}) //check
-    }
-  }
-
   //PROCOM FORM
   procomForm(){
     let whichButtonsShouldIHave = 'add-procom-full-buttons'
     if(this.state.showAddProcomForm){
       return(
         <div className="modal-form">
-          <AddProcom procomBuild={this.procomBuild} whichType={whichButtonsShouldIHave} elected={this.state.proStyle} conection={this.procomOptionsConection} />
+          <AddProcom
+            proId={this.props.proyectoId}
+            pasId={this.props.paso.procom_link}
+            setProcom={this.setProcom}
+            procoms={this.state.procoms}
+            setMaxId={this.setMaxId}
+            max_id={this.state.max_id}
+            memorySetter={this.memorySetter}
+            addProcomSetter={this.addProcomSetter}
+            whichType={whichButtonsShouldIHave}
+            elected={this.state.proStyle}
+            conection={this.procomOptionsConection} />
         </div>
       )
     }
@@ -188,31 +189,8 @@ class Paso extends React.Component {
     this.setState({procoms})
   }
 
-  procomBuild(){
-    let procoms = this.state.procoms;
-    let id = new Date();
-    let pro_content = this.refs.pro_content.value;
-    let type_of_issue;
-    let pro_style;
-    if(this.state.proStyle === 'problema') {
-      pro_style = this.state.proStyle;
-      type_of_issue = 'problem';
-    } else if (this.state.proStyle === 'ejemplo'){
-      pro_style = this.state.proStyle;
-      type_of_issue = "comment";
-    } else {
-      pro_style = this.state.proStyle;
-      type_of_issue = 'comment';
-    }
-    let pro_order;
-    let novelty = true;
-
-    let new_procom = {id, pro_content, type_of_issue, pro_style, pro_order, novelty};
-    procoms = [...procoms, new_procom];
-    this.setState({ procoms, max_id: this.state.max_id + 1 });
-    this.memorySetter(true, type_of_issue);
-    this.addProcomSetter();
-  }
+  setProcom(value){ this.setState({procoms: value}) }
+  setMaxId(value){ this.setState({max_id: value}) }
 
   saveProcomChanges(){
     // console.log('saveProcomChanges')
@@ -221,10 +199,7 @@ class Paso extends React.Component {
     let procoms = this.state.procoms;
     for (var i = 0; i < procoms.length; i++) {
       if(procoms[i].novelty === true) {
-        const pro_content = procoms[i].pro_content;
-        const type_of_issue = procoms[i].type_of_issue;
-        const pro_style = procoms[i].pro_style;
-        const pro_order = procoms[i].pro_order;
+        const { pro_content, type_of_issue, pro_style, pro_order } = procoms[i]
         const procom_max = this.state.max_id + 1;
         // if el paso tiene id numerico
         if(typeof procoms[i].id === 'number' && (procoms[i].id % 1) === 0) {

@@ -23,9 +23,7 @@ class Paso extends React.Component {
       procoms: [],
       max_id: 0,
       imgFiles: [],
-      // Paso Control
-      comments: false,
-      problems: false
+      closeStuff: false
     }
 
     this.memorySetter = this.memorySetter.bind(this);
@@ -46,6 +44,7 @@ class Paso extends React.Component {
     // ADD PROCOM
     this.setProcom = this.setProcom.bind(this);
     this.setMaxId = this.setMaxId.bind(this);
+    this.setCloseStuff = this.setCloseStuff.bind(this);
   }
 
   componentDidMount(){
@@ -55,9 +54,7 @@ class Paso extends React.Component {
 
     let estilo = this.props.paso.estilo;
     let procoms = this.props.paso.procoms;
-    let comments = procoms.some( comme => comme.type_of_issue === 'comment' )
-    let problems = procoms.some( proble => proble.type_of_issue === 'problem' )
-    this.setState({estilo, procoms, comments, problems});
+    this.setState({estilo, procoms});
 
     $.ajax({
       url: 'api/set_last_procom_id',
@@ -174,7 +171,9 @@ class Paso extends React.Component {
           addProcomSetter={this.addProcomSetter}
           whichType={whichButtonsShouldIHave}
           elected={this.state.proStyle}
-          conection={this.procomOptionsConection} />
+          conection={this.procomOptionsConection}
+          closeStuff={this.state.closeStuff}
+          setCloseStuff={this.setCloseStuff}/>
       )
     }
   }
@@ -189,6 +188,7 @@ class Paso extends React.Component {
 
   setProcom(value){ this.setState({procoms: value}) }
   setMaxId(value){ this.setState({max_id: value}) }
+  setCloseStuff(value){ this.setState({closeStuff: value}) }
 
   saveProcomChanges(){
     // console.log('saveProcomChanges')
@@ -206,7 +206,7 @@ class Paso extends React.Component {
         } else {
           this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
           const updatedProcoms = update(procoms, {[i]: {id: {$set: procom_max}, novelty: {$set: false}} })
-          this.setState({procoms: updatedProcoms});
+          this.setState({procoms: updatedProcoms, closeStuff: true});
         }
       }
     }
@@ -309,11 +309,22 @@ class Paso extends React.Component {
           {this.extraContent()}
           <div className="paso-content">
             <div className={this.state.showEditButtons}>
-              <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.estilo} conection={this.pasoOptionsConection}/>
+              <PasoOptions
+                whichType={whichButtonsShouldIHave}
+                elected={this.state.estilo}
+                conection={this.pasoOptionsConection} />
             </div>
             <textarea id="edit-paso-textarea" className="paso-content-text" style={inlineStyle} ref='step' onChange={()=> this.onChange4Textarea(show)} defaultValue={paso.step}></textarea>
           </div>
-          <PasoControl pasoId={paso.id} proyectoId={proyectoId} comments={this.state.comments} problems={this.state.problems} addProcomSetter={this.addProcomSetter} showProcomsFu={this.showProcomsFu} deletePasoFunc={this.props.deletePasoFunc}/>
+          <PasoControl
+            proyectoId={proyectoId}
+            pasoId={paso.id}
+            procoms={this.state.procoms}
+            addProcomSetter={this.addProcomSetter}
+            showProcomsFu={this.showProcomsFu}
+            deletePasoFunc={this.props.deletePasoFunc}
+            closeStuff={this.state.closeStuff}
+            setCloseStuff={this.setCloseStuff}/>
         </div>
         <div className="procoms-container">
           {this.displayProcoms()}

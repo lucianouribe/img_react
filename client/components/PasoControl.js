@@ -5,12 +5,19 @@ class PasoControl extends React.Component {
     super(props);
 
     this.state = {
-      buttonPressed: false
+      buttonPressed: false,
     }
 
     this.setShow = this.setShow.bind(this);
     this.setDelete = this.setDelete.bind(this);
     this.utilitiesOptions = this.utilitiesOptions.bind(this);
+  }
+
+  componentDidUpdate(){
+    if(this.props.closeStuff === true) {
+      this.setState({ buttonPressed: false });
+      this.props.setCloseStuff(false)
+    }
   }
 
   setShow(){
@@ -26,12 +33,14 @@ class PasoControl extends React.Component {
   }
 
   utilitiesOptions(){
+    const comments = this.props.procoms.some( comme => comme.type_of_issue === 'comment' );
+    const problems = this.props.procoms.some( proble => proble.type_of_issue === 'problem' );
     const comment = 'comment';
     const problem = 'problem';
     let showComment;
     let showProblem;
-    if(this.props.comments) { showComment = { display: 'block'} }
-    if(this.props.problems) { showProblem = { display: 'block'} }
+    if(comments) { showComment = { display: 'block'} }
+    if(problems) { showProblem = { display: 'block'} }
 
     if(this.state.buttonPressed === true){
       return(

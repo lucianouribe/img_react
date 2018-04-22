@@ -453,19 +453,15 @@
   bottom: 0;
   left: 0;
   z-index: 2000;
-  width: 700px;
+  width: 100%;
   min-width: 320px;
   max-height: 90vh;
+  padding: 5px 2rem 15px;
 }
 .paso-container-form {
-  margin: 0.5rem 3rem;
-  background: rgba(0,0,0,0.1);
-  // border: 2px solid #ccc;
-  border: 4px solid #ff6d00;
-  border-top-right-radius: calc(1rem + 2px);
-  border-top-left-radius: calc(1rem + 2px);
-  border-bottom-right-radius: calc(0.3rem + 2px);
-  border-bottom-left-radius: calc(0.3rem + 2px);
+  background: #fff;
+  -webkit-box-shadow: 0 -3px 15px rgba(0,0,0,0.3);
+          box-shadow: 0 -3px 15px rgba(0,0,0,0.3);
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -475,16 +471,18 @@
           flex-direction: column;
 }
 .paso-container-form .paso-content-text{
-  background: rgba(255,255,255,1);
-  border-bottom-right-radius: 0.3rem;
-  border-bottom-left-radius: 0.3rem;
+  background: white;
   padding: 0.5rem;
   margin-top: 0;
-  border: none;
-  border-top: 2px solid #ccc !important;
-  max-height: calc(90vh - 3rem);
+  border: 1px solid rgba(0,0,0,0.3) !important;
+  border-radius: 8px;
+  -webkit-box-shadow: inset 3px 3px 3px rgba(0,0,0,0.3);
+          box-shadow: inset 3px 3px 3px rgba(0,0,0,0.3);
+  max-height: calc(50vh - 3rem);
   overflow-y: scroll;
 }
+
+
 
 // second form
 .paso-second-form {
@@ -831,8 +829,11 @@
     margin: 0 0.3rem;
     border: none;
   }
+  .paso-container-form {
+    padding: 5px 3rem;
+  }
   .proyecto-unidad {
-    margin: 0.6rem 0.1rem;
+    margin: 0.1rem;
   }
   .titulo-nombre h4 {
     font-size: 1rem;

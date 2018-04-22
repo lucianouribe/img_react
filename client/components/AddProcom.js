@@ -60,7 +60,7 @@ class AddProcom extends React.Component {
   render() {
     return (
       <form className="paso-container-form" >
-        <PasoOptions whichType={this.props.whichType} elected={this.props.proStyle} conection={this.procomOptionsConection} />
+        <PasoOptions whichType={this.props.whichType} elected={this.state.proStyle} conection={this.procomOptionsConection} />
         <textarea id="add-procom-textarea" className="paso-content-text" ref='pro_content' placeholder="Add Comment, example or Problem" onChange={()=>this.setTextareaHeight($('#add-procom-textarea'))}></textarea>
       </form>
     )

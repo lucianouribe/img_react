@@ -315,12 +315,7 @@ class Paso extends React.Component {
             </div>
             <textarea id="edit-paso-textarea" className="paso-content-text" style={inlineStyle} ref='step' onChange={()=> this.onChange4Textarea(show)} defaultValue={paso.step}></textarea>
           </div>
-          <PasoControl comments={this.state.comments} problems={this.state.problems} addProcomSetter={this.addProcomSetter} showProcomsFu={this.showProcomsFu}/>
-          <span className="botones-container">
-            <span className='botones'>
-              <i className="fa fa-trash btn-icon" aria-hidden="true" onClick={() => this.props.deletePasoFunc(paso.id, proyectoId)}></i>
-            </span>
-          </span>
+          <PasoControl pasoId={paso.id} proyectoId={proyectoId} comments={this.state.comments} problems={this.state.problems} addProcomSetter={this.addProcomSetter} showProcomsFu={this.showProcomsFu} deletePasoFunc={this.props.deletePasoFunc}/>
         </div>
         <div className="procoms-container">
           {this.displayProcoms()}

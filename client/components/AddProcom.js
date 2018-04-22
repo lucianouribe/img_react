@@ -1,6 +1,6 @@
 import React from 'react';
 import PasoOptions from './PasoOptions';
-import { addProcom, editProcom } from '../actions/proyectos';
+import { addProcom } from '../actions/proyectos';
 import update from 'immutability-helper';
 
 class AddProcom extends React.Component {
@@ -50,7 +50,6 @@ class AddProcom extends React.Component {
     let novelty = true;
     let new_procom = {id, pro_content, type_of_issue, pro_style, pro_order, novelty};
     procoms = [...procoms, new_procom];
-    // this.setState({ procoms, max_id: this.props.max_id + 1 });
     let max_id = this.props.max_id + 1
     this.props.setProcom(procoms)
     this.props.setMaxId(max_id)
@@ -60,7 +59,7 @@ class AddProcom extends React.Component {
 
   render() {
     return (
-      <form className="paso-container-form" onSubmit={() => this.props.procomBuild}>
+      <form className="paso-container-form" >
         <PasoOptions whichType={this.props.whichType} elected={this.props.proStyle} conection={this.procomOptionsConection} />
         <textarea id="add-procom-textarea" className="paso-content-text" ref='pro_content' placeholder="Add Comment, example or Problem" onChange={()=>this.setTextareaHeight($('#add-procom-textarea'))}></textarea>
       </form>

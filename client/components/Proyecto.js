@@ -337,12 +337,10 @@ class Proyecto extends React.Component {
     let whichButtonsShouldIHave = 'add-paso-full-buttons';
     if(this.state.showAdd){
       return(
-        <div className="modal-form">
-          <form className="paso-container-form" encType="multipart/form-data">
-            <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.estilo} conection={this.pasoOptionsConection}/>
-            {this.addPasoFormOptions()}
-          </form>
-        </div>
+        <form className="paso-container-form" encType="multipart/form-data">
+          <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.estilo} conection={this.pasoOptionsConection}/>
+          {this.addPasoFormOptions()}
+        </form>
       )
     }
   }

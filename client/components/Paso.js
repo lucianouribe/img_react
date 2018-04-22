@@ -163,20 +163,18 @@ class Paso extends React.Component {
     let whichButtonsShouldIHave = 'add-procom-full-buttons'
     if(this.state.showAddProcomForm){
       return(
-        <div className="modal-form">
-          <AddProcom
-            proId={this.props.proyectoId}
-            pasId={this.props.paso.procom_link}
-            setProcom={this.setProcom}
-            procoms={this.state.procoms}
-            setMaxId={this.setMaxId}
-            max_id={this.state.max_id}
-            memorySetter={this.memorySetter}
-            addProcomSetter={this.addProcomSetter}
-            whichType={whichButtonsShouldIHave}
-            elected={this.state.proStyle}
-            conection={this.procomOptionsConection} />
-        </div>
+        <AddProcom
+          proId={this.props.proyectoId}
+          pasId={this.props.paso.procom_link}
+          setProcom={this.setProcom}
+          procoms={this.state.procoms}
+          setMaxId={this.setMaxId}
+          max_id={this.state.max_id}
+          memorySetter={this.memorySetter}
+          addProcomSetter={this.addProcomSetter}
+          whichType={whichButtonsShouldIHave}
+          elected={this.state.proStyle}
+          conection={this.procomOptionsConection} />
       )
     }
   }

@@ -5,16 +5,17 @@ class PasoControl extends React.Component {
     super(props);
 
     this.state = {
-      showDelete: false
+      buttonPressed: false
     }
 
     this.setShow = this.setShow.bind(this);
     this.setDelete = this.setDelete.bind(this);
+    this.utilitiesOptions = this.utilitiesOptions.bind(this);
   }
 
   setShow(){
     this.props.addProcomSetter();
-    this.setState({ showDelete: !this.state.showDelete })
+    this.setState({ buttonPressed: !this.state.buttonPressed })
   }
 
   setDelete(){
@@ -24,28 +25,43 @@ class PasoControl extends React.Component {
     }
   }
 
-  controlOptions(){
-    if(this.state.showDelete === true) {
-      return(<i className="fa fa-trash btn-icon" aria-hidden="true" onClick={() => this.setDelete()}></i>)
-    } else {
-      return(<i className="fa fa-plus-circle btn-icon" aria-hidden="true" onClick={() => this.setShow()}></i>)
-    }
-  }
-
-  render() {
+  utilitiesOptions(){
     const comment = 'comment';
     const problem = 'problem';
     let showComment;
     let showProblem;
     if(this.props.comments) { showComment = { display: 'block'} }
     if(this.props.problems) { showProblem = { display: 'block'} }
+
+    if(this.state.buttonPressed === true){
+      return(
+        <span className='procom-status'>
+          <i className="fa fa-trash btn-icon beware-btn" aria-hidden="true" onClick={() => this.setDelete()}></i>
+        </span>
+      )
+    } else {
+      return(
+        <span className='procom-status'>
+          <i className="fa fa-comments btn-icon comment-btn" aria-hidden="true" style={showComment} onClick={() => this.props.showProcomsFu(comment)}></i>
+          <i className="fa fa-exclamation-triangle btn-icon problem-btn" aria-hidden="true" style={showProblem} onClick={() => this.props.showProcomsFu(problem)}></i>
+        </span>
+      )
+    }
+  }
+
+  controlOptions(){
+    if(this.state.buttonPressed === true) {
+      return(<i className="fa fa-ban mini-btn" aria-hidden="true" onClick={() => this.setState({buttonPressed: false})}></i>)
+    } else {
+      return(<i className="fa fa-plus-circle mini-btn" aria-hidden="true"></i>)
+    }
+  }
+
+  render() {
     return (
       <div className="paso-control">
-        <span className='procom-status'>
-          <i className="fa fa-comments btn-icon problem-btn" aria-hidden="true" style={showComment} onClick={() => this.props.showProcomsFu(comment)}></i>
-          <i className="fa fa-exclamation-triangle btn-icon comment-btn" aria-hidden="true" style={showProblem} onClick={() => this.props.showProcomsFu(problem)}></i>
-        </span>
-        <span className="mini-botones">
+        {this.utilitiesOptions()}
+        <span className="mini-botones"onClick={() => this.setShow()}>
           {this.controlOptions()}
         </span>
       </div>

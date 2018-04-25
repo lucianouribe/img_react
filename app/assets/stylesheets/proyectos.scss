@@ -1,6 +1,6 @@
 // GENERAL
 .proyectos-section {
-  height: 70vh;
+  height: calc(100vh - 10rem);
   overflow-y: scroll;
 }
 .proyectos-section .fa {
@@ -822,6 +822,9 @@
   text-align: center;
 }
 @media all and (max-width: 800px) {
+  .proyectos-section {
+    height: calc(100vh - 7rem);
+  }
   .descripciones-container {
     padding: 0;
   }

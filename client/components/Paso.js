@@ -100,21 +100,17 @@ class Paso extends React.Component {
     let paso = this.props.paso;
     let showProcoms = this.state.procoms;
     let proyectoId = this.props.proyectoId;
-    let numeracionComment = 0;
-    let numeracionProblems = 0;
     let comments = showProcoms.filter( comme => { if(comme.type_of_issue === 'comment') return comme })
     let problems = showProcoms.filter( proble => { if(proble.type_of_issue === 'problem') return proble })
 
     if(this.props.showProcom && this.props.typeOfProcom === 'comment') {
       if(showProcoms.length > 0) {
         return comments.map( procom => {
-          numeracionComment++
           return(
             <Procom key={procom.id}
               procom={procom}
               pasoId={paso.id}
               proyectoId={proyectoId}
-              numeracion={numeracionComment}
               procomSetter={this.procomSetter}
               deleteProcomFunc={this.deleteProcomFunc} />
             );
@@ -123,13 +119,11 @@ class Paso extends React.Component {
     } else if (this.props.showProcom && this.props.typeOfProcom === 'problem') {
       if(showProcoms.length > 0) {
         return problems.map( procom => {
-          numeracionProblems++
           return(
             <Procom key={procom.id}
               procom={procom}
               paso={paso.id}
               proyectoId={proyectoId}
-              numeracion={numeracionProblems}
               procomSetter={this.procomSetter}
               deleteProcomFunc={this.deleteProcomFunc} />
             );

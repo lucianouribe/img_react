@@ -42,6 +42,9 @@ class AddProcom extends React.Component {
     } else if (this.state.proStyle === 'ejemplo'){
       pro_style = this.state.proStyle;
       type_of_issue = "comment";
+    } else if (this.state.proStyle === 'resultado'){
+      pro_style = this.state.proStyle;
+      type_of_issue = "comment";
     } else {
       pro_style = this.state.proStyle;
       type_of_issue = 'comment';

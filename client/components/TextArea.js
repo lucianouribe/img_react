@@ -9,11 +9,14 @@ class TextArea extends React.Component {
   }
 
   componentDidMount(){
-    this.setTextareaHeight($('#edit-textarea'));
+    this.setTextareaHeight($('textarea'));
   }
-  
-  setTextareaHeight(paso){
-    paso.each(function(index, item){
+  componentWillMount(){
+    this.setTextareaHeight($('textarea'));
+  }
+
+  setTextareaHeight(txtArea){
+    txtArea.each(function(index, item){
       item.style.height = item.scrollHeight+'px';
     });
   }
@@ -21,11 +24,11 @@ class TextArea extends React.Component {
   setOnChange(){
     let show = 'show-buttons';
     this.props.onChange4Textarea(show)
-    this.setTextareaHeight($('#edit-textarea'));
+    this.setTextareaHeight($('textarea'));
   }
 
   render() {
-    let inlineStyle = {height: '18px'};
+    let inlineStyle = {height: '2.4rem'};
     return (
   	 <textarea id="edit-textarea" className={this.props.the_class} style={inlineStyle} ref='text_content' onChange={()=> this.setOnChange()} defaultValue={this.props.the_content}></textarea>
     )

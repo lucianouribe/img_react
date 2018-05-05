@@ -4,6 +4,7 @@ import { fetchProyectos, addProyecto } from '../actions/proyectos';
 import { addMemory } from '../actions/mymemory';
 import { ortografica } from '../helpers';
 import Proyecto from './Proyecto';
+import ProyectosSearch from './ProyectosSearch';
 import Tutorials from '../Tutorials';
 
 class Proyectos extends React.Component {
@@ -22,8 +23,6 @@ class Proyectos extends React.Component {
     this.displayChanger = this.displayChanger.bind(this);
     this.addForm = this.addForm.bind(this);
     this.addHandleSubmit = this.addHandleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.showSearcher = this.showSearcher.bind(this);
     this.setTopics = this.setTopics.bind(this);
   }
 
@@ -44,18 +43,6 @@ class Proyectos extends React.Component {
   // SHOW FORM
   toggleDisplay(){
     this.setState({showForm: !this.state.showForm})
-  }
-
-  // SEARCHER FORM
-  showSearcher(){
-    return(
-      <input type="text" className="search-input" placeholder="buscar proyecto" ref='searchInput' onChange={this.handleChange} />
-    )
-  }
-
-  // SEARCHER CHANGE HANDLER
-  handleChange(){
-    this.props.dispatch(fetchProyectos(this.refs.searchInput.value));
   }
 
   // DISPLAY CHANGER
@@ -187,7 +174,7 @@ class Proyectos extends React.Component {
         <div className='admin-title'>
         <i className="fa fa-arrows-alt modalize" style={modalizeStyle} aria-hidden="true" onClick={() => this.setState({modalize: !this.state.modalize})}></i>
           <h1 className="proyectos-title">iTuto</h1>
-          {this.showSearcher()}
+          <ProyectosSearch />
           <span className='right' onClick={this.toggleDisplay}><i className="material-icons btn-icon large">add</i></span>
         </div>
         <div className='proyectos-section'>

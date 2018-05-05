@@ -57,6 +57,9 @@ class Procom extends React.Component {
     } else if (this.state.estilo === 'ejemplo'){
       pro_style = 'ejemplo';
       type_of_issue = "comment";
+    } else if (this.state.estilo === 'resultado'){
+      pro_style = 'resultado';
+      type_of_issue = "comment";
     } else {
       pro_style = "comentario"
       type_of_issue = 'comment';
@@ -80,7 +83,7 @@ class Procom extends React.Component {
 
     return (
       <div className={`procom-container ${procom.pro_style}`}>
-        <ProcomSign procom={this.props.procom}/>
+        <ProcomSign procom={procom}/>
         <span className="procom-content">
           <div className={this.state.showEditButtons}>
             <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.estilo} conection={this.procomOptionsConection} />

@@ -30,7 +30,7 @@ class TextArea extends React.Component {
   render() {
     let inlineStyle = {height: '2.4rem'};
     return (
-  	 <textarea id="edit-textarea" className={this.props.the_class} style={inlineStyle} ref='text_content' onChange={()=> this.setOnChange()} defaultValue={this.props.the_content}></textarea>
+  	 <textarea className={this.props.the_class} style={inlineStyle} ref='text_content' onChange={()=> this.setOnChange()} defaultValue={this.props.the_content}></textarea>
     )
   }
 }

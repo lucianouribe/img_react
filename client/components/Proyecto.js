@@ -147,6 +147,7 @@ class Proyecto extends React.Component {
   }
 
   // EDIT PROYECTO FORM
+  // this should be a component
   editProyectoForm(){
     let proyecto = this.props.proyecto
     let topic = proyecto.topic;

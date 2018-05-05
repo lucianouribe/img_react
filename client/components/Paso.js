@@ -214,6 +214,7 @@ class Paso extends React.Component {
 
   // PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!
   // EDIT PASO
+  // this should be a component
   submitEditPaso(){
     // console.log('submiting edit paso')
     let proyectoId = this.props.proyectoId;

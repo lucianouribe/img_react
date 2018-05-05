@@ -60,7 +60,7 @@ class Proyectos extends React.Component {
     this.setState({cualTopic: aTopic, cualSubTopic: picked});
   }
 
-  // ADD FORM
+  // ADD FORM this should be a component
   addForm(){
     let elProyecto = Tutorials.topic;
     let proyectoTopic = elProyecto.map((elPro, i) => {

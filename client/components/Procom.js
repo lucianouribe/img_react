@@ -67,7 +67,7 @@ class Procom extends React.Component {
     this.setState({showEditButtons: 'hide-buttons'})
     this.props.procomSetter(outcome);
   }
-
+  // this should be a component
   extraContent(){
     let procom = this.props.procom;
     if(procom.pro_style === 'ejemplo') {

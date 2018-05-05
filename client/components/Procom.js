@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { createMarkup } from '../helpers';
 import PasoOptions from './PasoOptions';
 import TextArea from './TextArea';
+import ProcomSign from './ProcomSign';
 
 class Procom extends React.Component {
   constructor(props) {
@@ -68,19 +69,7 @@ class Procom extends React.Component {
     this.props.procomSetter(outcome);
   }
 
-  extraContent(){
-    let procom = this.props.procom;
-    if(procom.pro_style === 'ejemplo') {
-      return(<i className="fa fa-eye procom-type" aria-hidden="true"></i>)
-    } else if (procom.pro_style === 'comentario') {
-      return(<i className="fa fa-comments procom-type" aria-hidden="true"></i>)
-    } else if (procom.pro_style === 'problema'){
-      return(<i className="fa fa-exclamation-triangle procom-type" aria-hidden="true"></i>)
-    }
-  }
-
   render(){
-    // <strong>{`${this.props.numeracion} `}</strong>
     let whichButtonsShouldIHave = 'add-procom-full-buttons'
     let procom = this.props.procom;
     let pasoId = this.props.pasoId;
@@ -91,7 +80,7 @@ class Procom extends React.Component {
 
     return (
       <div className={`procom-container ${procom.pro_style}`}>
-        {this.extraContent()}
+        <ProcomSign procom={this.props.procom}/>
         <span className="procom-content">
           <div className={this.state.showEditButtons}>
             <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.estilo} conection={this.procomOptionsConection} />

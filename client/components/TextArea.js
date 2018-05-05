@@ -11,6 +11,7 @@ class TextArea extends React.Component {
   componentDidMount(){
     this.setTextareaHeight($('textarea'));
   }
+
   componentWillMount(){
     this.setTextareaHeight($('textarea'));
   }

@@ -15,7 +15,7 @@ class ProyectoAdd extends React.Component {
     }
 
     this.setTopics = this.setTopics.bind(this);
-    this.addForm = this.addForm.bind(this);
+    // this.addForm = this.addForm.bind(this);
     this.addHandleSubmit = this.addHandleSubmit.bind(this);
   }
 
@@ -36,7 +36,7 @@ class ProyectoAdd extends React.Component {
     this.props.toggleDisplay();
   }
 
-  addForm(){
+  render(){
     let elProyecto = Tutorials.topic;
     let proyectoTopic = elProyecto.map((elPro, i) => {
       return (
@@ -82,13 +82,6 @@ class ProyectoAdd extends React.Component {
     );
   }
 
-  render() {
-    return (
-      <div>
-      	 {this.addForm()}
-      </div>
-    )
-  }
 }
 
 const mapStateToProps = (state) => {

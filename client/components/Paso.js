@@ -5,6 +5,7 @@ import Procom from './Procom';
 import PasoOptions from './PasoOptions';
 import PasoControl from './PasoControl';
 import AddProcom from './AddProcom';
+import TextArea from './TextArea';
 import { addProcom, editProcom, deleteProcom } from '../actions/proyectos';
 import { addMemory } from '../actions/mymemory';
 import { createMarkup } from '../helpers';
@@ -38,8 +39,7 @@ class Paso extends React.Component {
     this.submitEditPaso = this.submitEditPaso.bind(this);
     // BOTONES
     this.pasoOptionsConection = this.pasoOptionsConection.bind(this);
-    // TEXTARE HEIGHT
-    this.setTextareaHeight = this.setTextareaHeight.bind(this);
+    // EDIT PASO
     this.onChange4Textarea = this.onChange4Textarea.bind(this);
     // ADD PROCOM
     this.setProcom = this.setProcom.bind(this);
@@ -49,9 +49,6 @@ class Paso extends React.Component {
 
   componentDidMount(){
     $('select').material_select();
-    // para que textareas se ajusten a las medidas de su contenido
-    this.setTextareaHeight($('textarea'));
-
     let estilo = this.props.paso.estilo;
     let procoms = this.props.paso.procoms;
     this.setState({estilo, procoms});
@@ -91,14 +88,6 @@ class Paso extends React.Component {
     let pasId = this.props.paso.id;
     let proId = this.props.proyectoId;
     this.props.dispatch(addMemory({proId, pasId, show, how}));
-  }
-
-  // VARIABLE HIGHNESS OF THE PASO CONTENT TEXTAREA
-  // check if it can be a helper
-  setTextareaHeight(paso){
-    paso.each(function(index, item){
-      item.style.height = item.scrollHeight+'px';
-    });
   }
 
   // PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!
@@ -229,7 +218,7 @@ class Paso extends React.Component {
     // console.log('submiting edit paso')
     let proyectoId = this.props.proyectoId;
     let id = this.props.paso.id;
-    let step = this.refs.step.value;
+    let step = this.refs.text_area.refs.text_content.value;
     let orden = 0;
     let estilo = this.state.estilo;
     let procom_link;
@@ -288,15 +277,11 @@ class Paso extends React.Component {
 
   onChange4Textarea(viewType){
     this.setState({showEditButtons: viewType});
-    this.setTextareaHeight($('#edit-paso-textarea'));
   }
 
   renderPasoContent(){
     let paso = this.props.paso;
     let proyectoId = this.props.proyectoId;
-    let show = 'show-buttons';
-
-    let inlineStyle = {height: '18px'};
     let emergency;
     if(this.state.showEditButtons === 'show-buttons') {
       emergency = {border: '2px solid rgba(255,0,0,1)', borderRadius: '1rem'};
@@ -314,7 +299,7 @@ class Paso extends React.Component {
                 elected={this.state.estilo}
                 conection={this.pasoOptionsConection} />
             </div>
-            <textarea id="edit-paso-textarea" className="paso-content-text" style={inlineStyle} ref='step' onChange={()=> this.onChange4Textarea(show)} defaultValue={paso.step}></textarea>
+            <TextArea the_class='paso-content-text' the_content={paso.step} onChange4Textarea={this.onChange4Textarea} ref='text_area'/>
           </div>
           <PasoControl
             proyectoId={proyectoId}

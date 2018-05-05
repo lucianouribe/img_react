@@ -1,7 +1,7 @@
 module.exports = {
   topic: ['select', 'programming', 'javascript', 'ruby', 'adobe', 'git', 'server', 'sql', 'tridimax', 'zbrush', 'literature', 'gastronomy', 'ideas', 'shopping','others'],
   select: ['none'], // just for having empty options
-  programming: ['html', 'css', 'command_line', 'atom'],
+  programming: ['html', 'css', 'command_line', 'atom', 'collumino', 'img360'],
   javascript: ['vanella', 'es6', 'react', 'redux', 'json', 'ajax'],
   ruby: ['ruby', 'rails', 'active record', 'json'],
   adobe: ['photoshop', 'illustrator', 'indesign', 'afterfx', 'final_cut'],
@@ -14,6 +14,6 @@ module.exports = {
   gastronomy: ['drinks', 'food', 'desert'],
   ideas: ['literature', 'disenos', 'programming', 'gastronomy', '3d'],
   shopping: ['market', 'material', 'gadjets', 'garbage'],
-  others: ['architecture', 'arts', 'collumino', 'education','todo'],
+  others: ['architecture', 'arts', 'education', 'todo'],
   difficulty: ['basic', 'medium', 'advanced', 'sayayin']
 }

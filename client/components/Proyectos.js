@@ -15,9 +15,7 @@ class Proyectos extends React.Component {
 
     this.state = {
       showForm: false,
-      modalize: true,
-      paso_max_id: 0,
-      procom_max_id: 0
+      modalize: true
     }
 
     this.toggleDisplay = this.toggleDisplay.bind(this);

@@ -11,7 +11,7 @@ class Procom extends React.Component {
 
     this.state = {
       typeOfIssue: 'comment',
-      estilo: 'comment',
+      estilo: 'comentario',
       showEditButtons: 'hide-buttons',
     }
 
@@ -77,8 +77,6 @@ class Procom extends React.Component {
     let procom = this.props.procom;
     let pasoId = this.props.pasoId;
     let proyectoId = this.props.proyectoId;
-    let comentario = true;
-    let problema = false;
     let hide = 'hide-buttons';
 
     return (

@@ -11,6 +11,8 @@ import descripcions from './descripcions';
 import colorset from './colorset';
 import proyectos from './proyectos';
 import mymemory from './mymemory';
+import maxPasoId from './maxPaso';
+import maxProcomId from './maxProcom';
 
 const rootReducer = combineReducers({
   routing: routerReducer ,
@@ -24,7 +26,9 @@ const rootReducer = combineReducers({
   descripcions,
   colorset,
   proyectos,
-  mymemory
+  mymemory,
+  maxPasoId,
+  maxProcomId
 });
 
 export default rootReducer;

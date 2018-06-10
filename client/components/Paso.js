@@ -51,16 +51,7 @@ class Paso extends React.Component {
     $('select').material_select();
     let estilo = this.props.paso.estilo;
     let procoms = this.props.paso.procoms;
-    this.setState({estilo, procoms});
-
-    $.ajax({
-      url: 'api/set_last_procom_id',
-      type: 'GET',
-    }).done( last_id => {
-      this.setState({max_id: last_id.procom});
-    }).fail( err => {
-      console.log(err);
-    });
+    this.setState({estilo, procoms, max_id: this.props.maxProcomId});
   }
 
   componentDidUpdate(){
@@ -316,5 +307,9 @@ class Paso extends React.Component {
   render() {return(this.renderPasoContent())}
 }
 
-const mapStateToProps = (state) => {return {}}
+const mapStateToProps = (state) => {
+  return {
+    maxProcomId: state.maxProcomId
+ }
+}
 export default connect(mapStateToProps)(Paso);

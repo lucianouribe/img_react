@@ -1,6 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchProyectos } from '../actions/proyectos';
+import { maxPasoId } from '../actions/maxPaso';
+import { maxProcomId } from '../actions/maxProcom';
 import { addMemory } from '../actions/mymemory';
 import Proyecto from './Proyecto';
 import ProyectoAdd from './ProyectoAdd';
@@ -24,6 +26,8 @@ class Proyectos extends React.Component {
     $('select').material_select();
     let full = 'full'
     this.props.dispatch(fetchProyectos(full));
+    this.props.dispatch(maxPasoId());
+    this.props.dispatch(maxProcomId());
   }
 
   modalizeMe(doIt){

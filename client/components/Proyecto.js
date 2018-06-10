@@ -55,7 +55,12 @@ class Proyecto extends React.Component {
     let pasos = this.props.proyecto.pasos
     let proyectoTopic = this.props.proyecto.topic
     let picked = Tutorials[proyectoTopic];
-    this.setState({cualTopic: proyectoTopic, cualSubTopic: picked, pasos});
+    this.setState({
+      cualTopic: proyectoTopic,
+      cualSubTopic: picked,
+      pasos,
+      max_id: this.props.maxPasoId
+    });
 
     // Para que los tab funcionen en el textarea
     // convertir esto en un helper?
@@ -71,16 +76,6 @@ class Proyecto extends React.Component {
         }
       }
     }
-
-    // pasar a actions y hacer redux flux
-    $.ajax({
-      url: 'api/set_last_id',
-      type: 'GET',
-    }).done( last_id => {
-      this.setState({max_id: last_id.paso});
-    }).fail( err => {
-      console.log(err);
-    });
   }
 
   componentDidUpdate() {
@@ -447,7 +442,8 @@ class Proyecto extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    mymemory: state.mymemory
+    mymemory: state.mymemory,
+    maxPasoId: state.maxPasoId
  }
 }
 

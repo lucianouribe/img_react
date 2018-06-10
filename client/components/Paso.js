@@ -8,6 +8,7 @@ import AddProcom from './AddProcom';
 import TextArea from './TextArea';
 import { addProcom, editProcom, deleteProcom } from '../actions/proyectos';
 import { addMemory } from '../actions/mymemory';
+import { maxProcomId } from '../actions/maxProcom';
 import { createMarkup } from '../helpers';
 
 class Paso extends React.Component {
@@ -53,14 +54,7 @@ class Paso extends React.Component {
     let procoms = this.props.paso.procoms;
     this.setState({estilo, procoms});
 
-    $.ajax({
-      url: 'api/set_last_procom_id',
-      type: 'GET',
-    }).done( last_id => {
-      this.setState({max_id: last_id.procom});
-    }).fail( err => {
-      console.log(err);
-    });
+    this.setState({max_id: this.props.maxProcomId})
   }
 
   componentDidUpdate(){
@@ -316,5 +310,9 @@ class Paso extends React.Component {
   render() {return(this.renderPasoContent())}
 }
 
-const mapStateToProps = (state) => {return {}}
+const mapStateToProps = (state) => {
+  return {
+    maxProcomId: state.maxProcomId
+ }
+}
 export default connect(mapStateToProps)(Paso);

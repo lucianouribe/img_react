@@ -12,6 +12,8 @@ class ProcomSign extends React.Component {
       return(<i className="fa fa-exclamation-triangle procom-type" aria-hidden="true"></i>)
     } else if (procom.pro_style === 'resultado'){
       return(<i className="fa fa-terminal procom-type" aria-hidden="true"></i>)
+    } else {
+      return(<i className="fa fa-comments procom-type" aria-hidden="true"></i>)
     }
   }
 

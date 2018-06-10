@@ -1,5 +1,4 @@
 export const maxPasoId = () => {
-  console.log('this is set max paso id action')
   return(dispatch) => {
     $.ajax({
       url: 'api/set_last_id',

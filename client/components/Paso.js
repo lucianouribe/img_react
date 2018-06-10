@@ -8,7 +8,6 @@ import AddProcom from './AddProcom';
 import TextArea from './TextArea';
 import { addProcom, editProcom, deleteProcom } from '../actions/proyectos';
 import { addMemory } from '../actions/mymemory';
-import { maxProcomId } from '../actions/maxProcom';
 import { createMarkup } from '../helpers';
 
 class Paso extends React.Component {
@@ -52,9 +51,7 @@ class Paso extends React.Component {
     $('select').material_select();
     let estilo = this.props.paso.estilo;
     let procoms = this.props.paso.procoms;
-    this.setState({estilo, procoms});
-
-    this.setState({max_id: this.props.maxProcomId})
+    this.setState({estilo, procoms, max_id: this.props.maxProcomId});
   }
 
   componentDidUpdate(){

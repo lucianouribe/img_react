@@ -1,5 +1,4 @@
 export const maxProcomId = () => {
-  console.log('this is set max procom id action')
   return(dispatch) => {
     $.ajax({
       url: 'api/set_last_procom_id',

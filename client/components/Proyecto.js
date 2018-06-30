@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import update from 'immutability-helper';
 import { fetchProyectos, editProyecto, deleteProyecto, addPaso, editPaso, deletePaso } from '../actions/proyectos';
 import { addMemory } from '../actions/mymemory';
+import ProyectoEdit from './ProyectoEdit';
 import Paso from './Paso';
 import PasoOptions from './PasoOptions';
 import TempPicture from './TempPicture';
-import Tutorials from '../Tutorials';
 
 
 class Proyecto extends React.Component {
@@ -17,12 +17,9 @@ class Proyecto extends React.Component {
     this.state = {
       showEdit: false,
       showAdd: false,
-      cualTopic: null,
-      cualSubTopic: null,
       estilo: 'paragraph',
       highness: '36px',
       pasos: [],
-
       files: [],
       preview: false,
       max_id: 0
@@ -33,8 +30,7 @@ class Proyecto extends React.Component {
     this.deletePasoFunc = this.deletePasoFunc.bind(this);
 
     this.showEditContent = this.showEditContent.bind(this);
-    this.saveProyectoChanges = this.saveProyectoChanges.bind(this);
-    this.editProyectoForm = this.editProyectoForm.bind(this);
+    this.saveProyecto = this.saveProyecto.bind(this);
     this.savePasosChanges = this.savePasosChanges.bind(this);
 
     this.showPasosDisplay = this.showPasosDisplay.bind(this);
@@ -42,7 +38,7 @@ class Proyecto extends React.Component {
     this.pasoBuild = this.pasoBuild.bind(this);
     this.pasoOptionsConection = this.pasoOptionsConection.bind(this);
 
-    this.topicChanger = this.topicChanger.bind(this);
+    // this.topicChanger = this.topicChanger.bind(this);
     this.tabFixer = this.tabFixer.bind(this);
     this.setTextareaHeight = this.setTextareaHeight.bind(this);
 
@@ -55,11 +51,7 @@ class Proyecto extends React.Component {
     this.tabFixer(document.getElementsByTagName('textarea'));
     // put in setState this: modalize: isMobile
     let pasos = this.props.proyecto.pasos
-    let proyectoTopic = this.props.proyecto.topic
-    let picked = Tutorials[proyectoTopic];
     this.setState({
-      cualTopic: proyectoTopic,
-      cualSubTopic: picked,
       pasos,
       max_id: this.props.maxPasoId
     });
@@ -73,7 +65,6 @@ class Proyecto extends React.Component {
   }
 
   tabFixer(textareas){
-    console.log('hello')
     var count = textareas.length;
     for(var i=0;i<count;i++) {
       textareas[i].onkeydown = function(e){
@@ -95,7 +86,6 @@ class Proyecto extends React.Component {
 
   // ALL MIGHTY MEMORY
   memorySetter(show){
-    // console.log('im memory setter in proyecto')
     let what = 'proyecto';
     let proId = this.props.proyecto.id;
     this.props.dispatch(addMemory({show, what, proId}));
@@ -114,7 +104,6 @@ class Proyecto extends React.Component {
     if(typeof pasId === 'number' && (pasId % 1) === 0) {
       this.props.dispatch(deletePaso(pasId, proId));
     }
-
     let index = pasos.findIndex( paso => paso.id === pasId);
     pasos = [...pasos.slice(0, index), ...pasos.slice(index + 1)]
     this.setState({pasos})
@@ -125,76 +114,13 @@ class Proyecto extends React.Component {
     this.setState({ showEdit: !this.state.showEdit });
   }
 
-  topicChanger(aTopic){
-    let picked = Tutorials[aTopic];
-    this.setState({cualTopic: aTopic, cualSubTopic: picked});
-  }
-
-  // EDIT PROYECTO FORM
-  // this should be a component
-  editProyectoForm(){
-    let proyecto = this.props.proyecto
-    let topic = proyecto.topic;
-    let subtopic = proyecto.subtopic;
-    let elProyecto = Tutorials.topic;
-    // this should be one method
-    let proyectoTopic = elProyecto.map((elPro, i) => {
-      if(elPro === proyecto.topic) {
-        return (<option type="text" key={i} selected value={elPro}>{elPro}</option>)
-      } else {
-        return (<option type="text" key={i} value={elPro}>{elPro}</option>)
-      }
-    });
-    // this should be one method
-    let subProyectoTopic = this.state.cualSubTopic.map((subPro, i) => {
-      if(subPro === proyecto.subtopic) {
-        return (<option type="text" key={i} selected value={subPro}>{subPro}</option>)
-      } else {
-        return (<option type="text" key={i} value={subPro}>{subPro}</option>)
-      }
-    });
-    // this should be one method
-    let proyectoDiffi = Tutorials.difficulty.map((diffiOpt, i) => {
-      if(diffiOpt === proyecto.difficulty) {
-        return (<option type="text" key={i} selected value={diffiOpt}>{diffiOpt}</option>)
-      } else {
-        return (<option type="text" key={i} value={diffiOpt}>{diffiOpt}</option>)
-      }
-    });
-
-    return(
-      <div className="proyecto-unidad principal">
-        <span className='titulo-nombre'>
-          <form className="name-edit-form">
-            <select className="browser-default select-topic" ref="topic" onChange={()=> this.topicChanger(this.refs.topic.value)}>
-              {proyectoTopic}
-            </select>
-            <select className="browser-default select-topic" ref="subtopic">
-              {subProyectoTopic}
-            </select>
-            <select className="browser-default select-difficulty" ref="difficulty">
-              {proyectoDiffi}
-            </select>
-            <input type="hidden" ref='id' value={proyecto.id}/>
-            <input className="name-edit" type="text" ref='name' defaultValue={proyecto.name}/>
-          </form>
-        </span>
-        <span className='botones'>
-          <i className="material-icons btn-icon btn-edit" onClick={() => this.saveProyectoChanges()}>done</i>
-          <i className="material-icons btn-icon btn-edit" onClick={() => this.showEditContent()}>cancel</i>
-        </span>
-      </div>
-    )
-  }
-  // change to saveProyecto
-  saveProyectoChanges(){
-    // console.log('saveProyectoChanges!')
+  saveProyecto(hello){
     let proyecto = this.props.proyecto;
-    let id = this.refs.id.value;
-    let name = this.refs.name.value;
-    let topic = this.refs.topic.value;
-    let subtopic = this.refs.subtopic.value;
-    let difficulty = this.refs.difficulty.value;
+    let id = hello.id.value;
+    let name = hello.name.value;
+    let topic = hello.topic.value;
+    let subtopic = hello.subtopic.value;
+    let difficulty = hello.difficulty.value;
     let orden = 0;
     this.props.dispatch(editProyecto(id, name, topic, subtopic, difficulty, orden));
     this.savePasosChanges()
@@ -372,8 +298,12 @@ class Proyecto extends React.Component {
   //RENDER DISPLAY
   individualProject(){
     if(this.state.showEdit) {
-      // <ProyectoEdit />
-      return(this.editProyectoForm())
+      return(
+        <ProyectoEdit
+          proyecto={this.props.proyecto}
+          saveProyecto={this.saveProyecto}
+          showEditContent={this.showEditContent}/>
+      )
     } else {
       let proyecto = this.props.proyecto;
       let topic = proyecto.topic;
@@ -426,7 +356,6 @@ class Proyecto extends React.Component {
       </div>
     )
   }
-
 
 }
 

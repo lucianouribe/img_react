@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import update from 'immutability-helper';
 import { fetchProyectos, editProyecto, deleteProyecto, addPaso, editPaso, deletePaso } from '../actions/proyectos';
 import { addMemory } from '../actions/mymemory';
+import ProyectoEdit from './ProyectoEdit';
 import Paso from './Paso';
 import PasoOptions from './PasoOptions';
 import TempPicture from './TempPicture';
@@ -43,6 +44,7 @@ class Proyecto extends React.Component {
     this.pasoOptionsConection = this.pasoOptionsConection.bind(this);
 
     this.topicChanger = this.topicChanger.bind(this);
+    this.tabFixer = this.tabFixer.bind(this);
     this.setTextareaHeight = this.setTextareaHeight.bind(this);
 
     // upload image
@@ -51,6 +53,7 @@ class Proyecto extends React.Component {
 
   componentDidMount(){
     $('select').material_select();
+    this.tabFixer(document.getElementsByTagName('textarea'));
     // put in setState this: modalize: isMobile
     let pasos = this.props.proyecto.pasos
     let proyectoTopic = this.props.proyecto.topic
@@ -61,30 +64,17 @@ class Proyecto extends React.Component {
       pasos,
       max_id: this.props.maxPasoId
     });
-
-    // Para que los tab funcionen en el textarea
-    // convertir esto en un helper?
-    var textareas = document.getElementsByTagName('textarea');
-    var count = textareas.length;
-    for(var i=0;i<count;i++) {
-      textareas[i].onkeydown = function(e){
-        if(e.keyCode==9 || e.which==9){
-          e.preventDefault();
-          var s = this.selectionStart;
-          this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
-          this.selectionEnd = s+1;
-        }
-      }
-    }
   }
 
   componentDidUpdate() {
     $('select').material_select();
     this.setTextareaHeight($('textarea'));
     this.savePasosChanges();
-    // para que los tab funcionen en el textarea
-    // volver un helper?
-    var textareas = document.getElementsByTagName('textarea');
+    this.tabFixer(document.getElementsByTagName('textarea'));
+  }
+
+  tabFixer(textareas){
+    console.log('hello')
     var count = textareas.length;
     for(var i=0;i<count;i++) {
       textareas[i].onkeydown = function(e){
@@ -309,7 +299,7 @@ class Proyecto extends React.Component {
     }
 
   }
-
+  // turn into component or mix it with the existing one
   addPasoFormOptions(){
     if(this.state.estilo === 'download'){
       return(
@@ -383,6 +373,7 @@ class Proyecto extends React.Component {
   //RENDER DISPLAY
   individualProject(){
     if(this.state.showEdit) {
+      // <ProyectoEdit />
       return(this.editProyectoForm())
     } else {
       let proyecto = this.props.proyecto;

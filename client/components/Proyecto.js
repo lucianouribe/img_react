@@ -38,7 +38,6 @@ class Proyecto extends React.Component {
     this.pasoBuild = this.pasoBuild.bind(this);
     this.pasoOptionsConection = this.pasoOptionsConection.bind(this);
 
-    // this.topicChanger = this.topicChanger.bind(this);
     this.tabFixer = this.tabFixer.bind(this);
     this.setTextareaHeight = this.setTextareaHeight.bind(this);
 
@@ -114,13 +113,13 @@ class Proyecto extends React.Component {
     this.setState({ showEdit: !this.state.showEdit });
   }
 
-  saveProyecto(hello){
+  saveProyecto(proyectoRefs){
     let proyecto = this.props.proyecto;
-    let id = hello.id.value;
-    let name = hello.name.value;
-    let topic = hello.topic.value;
-    let subtopic = hello.subtopic.value;
-    let difficulty = hello.difficulty.value;
+    let id = proyectoRefs.id.value;
+    let name = proyectoRefs.name.value;
+    let topic = proyectoRefs.topic.value;
+    let subtopic = proyectoRefs.subtopic.value;
+    let difficulty = proyectoRefs.difficulty.value;
     let orden = 0;
     this.props.dispatch(editProyecto(id, name, topic, subtopic, difficulty, orden));
     this.savePasosChanges()

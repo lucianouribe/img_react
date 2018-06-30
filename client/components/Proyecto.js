@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import update from 'immutability-helper';
 import { fetchProyectos, editProyecto, deleteProyecto, addPaso, editPaso, deletePaso } from '../actions/proyectos';
 import { addMemory } from '../actions/mymemory';
-import ProyectoEdit from './ProyectoEdit';
 import Paso from './Paso';
 import PasoOptions from './PasoOptions';
 import TempPicture from './TempPicture';

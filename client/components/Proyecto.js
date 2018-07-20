@@ -239,7 +239,7 @@ class Proyecto extends React.Component {
       )
     } else {
       return(
-        <textarea id="add-paso-textarea" className="paso-content-text" ref='step' placeholder="Add a new step" onChange={()=>this.setTextareaHeight($('#add-paso-textarea'))}></textarea>
+        <textarea id="add-paso-textarea" className="paso-content-text" ref='step' autoFocus placeholder="Add a new step" onChange={()=>this.setTextareaHeight($('#add-paso-textarea'))}></textarea>
       )
     }
   }
@@ -247,11 +247,12 @@ class Proyecto extends React.Component {
   addPasoForm(){
     let whichButtonsShouldIHave = 'add-paso-full-buttons';
     if(this.state.showAdd){
-      return(
-        <form className="paso-container-form" encType="multipart/form-data">
+      return(<div>
+          <form className="paso-container-form" encType="multipart/form-data">
+            {this.addPasoFormOptions()}
+          </form>
           <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.estilo} conection={this.pasoOptionsConection}/>
-          {this.addPasoFormOptions()}
-        </form>
+        </div>
       )
     }
   }
@@ -319,24 +320,17 @@ class Proyecto extends React.Component {
   render(){
     let bodyStyle;
     let containerStyle;
+    let proyectoFull;
     // console.log(`el proyecto especifico: ${this.props.proyecto.name}`)
     if(this.props.modalize === true && this.props.doorStatus === true) {
-      bodyStyle = {
-        width: '100vw',
-        height: '100vh',
-        zIndex: '2500',
-        position: 'absolute',
-        top: '0',
-        left: '0',
-        background: '#fff'
-      }
       containerStyle = {
-        maxHeight: '90vh'
+        maxHeight: 'calc(100vh - 5rem)'
       }
+      proyectoFull = "proyecto-full"
     }
 
     return (
-      <div style={bodyStyle}>
+      <div className={proyectoFull}>
         {this.individualProject()}
         <div className="pasos-container" style={containerStyle}>
           {this.pasosDisplay()}

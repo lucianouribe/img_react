@@ -16,6 +16,21 @@
 }
 
 // PROYECTOS
+.proyecto-full {
+  width: 100vw;
+  height: 100vh;
+  z-index: 2500;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fff;
+}
+.proyecto-full .proyecto-unidad {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
 .proyecto-unidad {
   padding: 1rem;
   background-color: #fff;
@@ -367,10 +382,12 @@
 
 // PASOS
 // paso en proyecto
+.proyecto-full .pasos-container {
+  margin: 4.5rem 0.3rem 0 0.3rem;
+}
 .pasos-container {
   border: 1px dashed rgba(0,0,0,0.1);
   border-radius: 1rem;
-  margin: 0 3rem;
   max-height: 50vh;
   overflow-y: scroll;
   overflow-x: hidden;
@@ -384,28 +401,29 @@
 
 // ADD PASO IN PROYECTO
 .paso-container-form {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+  // position: absolute;
+  // bottom: 0;
+  // left: 0;
   z-index: 2000;
   width: 100%;
   min-width: 320px;
   max-height: 90vh;
   padding: 5px 2rem 15px;
+  font-family: 'Source Code Pro', monospace;
 }
 .paso-container-form {
-  background: #fff;
-  box-shadow: 0 -3px 15px rgba(0,0,0,0.3);
+  // background: #fff;
+  // box-shadow: 0 -3px 15px rgba(0,0,0,0.3);
   display: flex;
   flex-direction: column;
 }
 .paso-container-form .paso-content-text{
-  background: white;
+  // background: white;
   padding: 0.5rem;
   margin-top: 0;
-  border: 1px solid rgba(0,0,0,0.3) !important;
+  // border: 1px solid rgba(0,0,0,0.3) !important;
   border-radius: 8px;
-  box-shadow: inset 3px 3px 3px rgba(0,0,0,0.3);
+  // box-shadow: inset 3px 3px 3px rgba(0,0,0,0.3);
   max-height: calc(50vh - 3rem);
   overflow-y: scroll;
 }
@@ -455,10 +473,13 @@
 }
 // PASO OPTION COMPONENT (THE OPTIONS)
 .paso-option-container {
-  flex: 1 1 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  // flex: 1 1 100%;
+  // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
 }
 .paso-option-botones-form {
   flex: 1 1 100%;
@@ -468,9 +489,9 @@
   justify-content: space-between;
   height: 1.5rem;
   padding: 1rem;
-  border-top-right-radius: 1rem;
-  border-top-left-radius: 1rem;
-  background: #fff;
+  // border-top-right-radius: 1rem;
+  // border-top-left-radius: 1rem;
+  // background: #fff;
 }
 .paso-option-botones-form i {
   flex: 1;

@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import update from 'immutability-helper';
-import { fetchProyectos, editProyecto, deleteProyecto, addPaso, editPaso, deletePaso } from '../actions/proyectos';
+import { fetchProyectos, editProyecto, addPaso, editPaso, deletePaso } from '../actions/proyectos';
 import { addMemory } from '../actions/mymemory';
 import ProyectoEdit from './ProyectoEdit';
+import ProyectoShow from './ProyectoShow';
 import Paso from './Paso';
 import PasoOptions from './PasoOptions';
 import TempPicture from './TempPicture';
@@ -301,27 +302,16 @@ class Proyecto extends React.Component {
         <ProyectoEdit
           proyecto={this.props.proyecto}
           saveProyecto={this.saveProyecto}
-          showEditContent={this.showEditContent}/>
+          showEditContent={this.showEditContent} />
       )
     } else {
       let proyecto = this.props.proyecto;
-      let topic = proyecto.topic;
-      let subtopic = proyecto.subtopic;
       return (
-        <div className={`proyecto-unidad principal`}>
-          <span className='container-logos'>
-            <div className={`cont-log ${topic}`}></div>
-            <div className={`cont-log ${subtopic}`}></div>
-          </span>
-          <span className='titulo-nombre'>
-            <h4 onClick={() => this.showPasosDisplay()}>{proyecto.name}</h4>
-          </span>
-          <span className={`botones ${proyecto.difficulty}`}>
-            <i className="material-icons btn-icon btn-add" onClick={() => this.showAddPasoOption()}>add</i>
-            <i className="material-icons btn-icon btn-delete" onClick={() => this.props.dispatch(deleteProyecto(proyecto.id))}>delete</i>
-            <i className="material-icons btn-icon btn-edit" onClick={() => this.showEditContent(topic, subtopic)}>edit</i>
-          </span>
-        </div>
+        <ProyectoShow
+          proyecto={this.props.proyecto}
+          showPasosDisplay={this.showPasosDisplay}
+          showAddPasoOption={this.showAddPasoOption}
+          showEditContent={this.showEditContent} />
       )
     }
   }

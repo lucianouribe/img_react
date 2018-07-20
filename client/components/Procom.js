@@ -83,14 +83,14 @@ class Procom extends React.Component {
       <div className={`procom-container ${procom.pro_style}`}>
         <ProcomSign procom={procom}/>
         <span className="procom-content">
-          <div className={this.state.showEditButtons}>
-            <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.estilo} conection={this.procomOptionsConection} />
-          </div>
           <TextArea the_class='procom-content-text' the_content={procom.pro_content} onChange4Textarea={this.onChange4Textarea} ref='text_area'/>
         </span>
         <span className="mini-botones">
           <i className="fa fa-trash" aria-hidden="true" onClick={()=> this.props.deleteProcomFunc(procom.id, pasoId, proyectoId)}></i>
         </span>
+        <div className={this.state.showEditButtons}>
+          <PasoOptions whichType={whichButtonsShouldIHave} elected={this.state.estilo} conection={this.procomOptionsConection} />
+        </div>
       </div>
     )
   }

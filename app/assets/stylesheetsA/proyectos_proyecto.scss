@@ -1,0 +1,219 @@
+// PROYECTO
+// children
+.proyecto-unidad h4 {
+  font-size: 2rem;
+  margin: 0 !important;
+}
+.proyecto-unidad .titulo-nombre {
+  flex: 8 8 80%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.proyecto-unidad .container-logos {
+  flex: 2 2 20%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.botones-container {
+  flex: 2 2 20%;
+  display: flex;
+  flex-direction: column;
+  // height: 1.5rem; ojo no se puede hacer esto para arreglar los procoms
+  justify-content: center;
+}
+
+.botones {
+  flex: 2 2 20%;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  height: 1.5rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #7b7b7b;
+  box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.paso-control {
+  // flex: 2 2 20%;
+  display: flex;
+  justify-content: center;
+  z-index: 300;
+}
+
+.procom-status {
+  display: flex;
+  align-items: center;
+  height: 1.5rem;
+  padding: 1rem 0;
+}
+.procom-status i {
+  margin-right: 10px;
+  flex: 5 5 50%;
+}
+.comment-btn {
+  display: none;
+  color: #8E864B;
+}
+
+.problem-btn {
+  display: none;
+  color: #F33745
+}
+
+.beware-btn {
+  color: red;
+}
+
+.mini-btn {
+  color: #6b6b6b;
+}
+
+.mini-botones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  border: 1px solid #7b7b7b;
+  box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3);
+}
+.mini-botones:hover {
+  background: rgba(255, 238, 95, 0.2);
+  color: #000;
+}
+.mini-botones:hover i {
+  color: #9DD0FF;
+}
+
+.botones i {
+  flex: 1;
+  text-align: center;
+}
+
+.btn-icon {
+  cursor: pointer;
+}
+
+.btn-icon:hover {
+  color: #9DD0FF;
+}
+
+.hide-buttons {
+  display: none !important;
+}
+
+
+// PASOS
+// paso en proyecto
+.proyecto-full .pasos-container {
+  margin: 4.5rem 0 0 0;
+}
+.pasos-container {
+  border: 1px dashed rgba(0,0,0,0.1);
+  border-radius: 1rem;
+  max-height: 50vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.paso-container {
+  padding: 0.3rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+// ADD PASO IN PROYECTO
+.paso-container-form {
+  z-index: 2000;
+  width: 100%;
+  min-width: 320px;
+  max-height: 90vh;
+  // padding: 5px 2rem 15px;
+  font-family: 'Source Code Pro', monospace;
+}
+.paso-container-form {
+  display: flex;
+  flex-direction: column;
+}
+.paso-container-form .paso-content-text{
+  padding: 0.5rem;
+  margin-top: 0;
+  border-radius: 8px;
+  max-height: calc(50vh - 3rem);
+  overflow-y: scroll;
+}
+
+
+
+// second form
+.paso-second-form {
+  background: rgba(255,255,255,1);
+  display: flex;
+}
+.paso-second-cont {
+  flex: 6 6 60%;
+  display: block;
+}
+.paso-second-step {
+  width: 100% !important;
+  border-top: 1px dashed #ff6d00 !important;
+  border-bottom: none !important;
+  margin: 0 !important;
+  min-height: 7rem !important;
+}
+.paso-second-cont [type=file] {
+  width: 100%;
+  background: #ff6d00;
+  color: #fff;
+  padding: 0.5rem;
+  height: 3rem;
+}
+.paso-second-form .image-preview {
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dashed #ff6d00;
+}
+.image-preview div {
+  height: 100%;
+}
+.paso-second-image-cont .paso-second-image {
+  width: 100%;
+  height: 100%;
+
+}
+
+@media all and (max-width: 800px) {
+  .paso-container-form .paso-content-text{
+    max-height: calc(70vh - 3rem);
+  }
+  .pasos-container {
+    margin: 0 0.3rem;
+    border: none;
+  }
+  .paso-container-form {
+    padding: 0.5rem 2rem;
+  }
+  .proyecto-unidad {
+    margin: 0.1rem;
+  }
+  .titulo-nombre h4 {
+    font-size: 1rem;
+  }
+}
+//iphone 3 y 4
+@media all and (max-width: 380px) {
+
+}
+@media all and (max-width: 992px) {
+
+}

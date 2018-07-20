@@ -268,23 +268,12 @@ class Paso extends React.Component {
   renderPasoContent(){
     let paso = this.props.paso;
     let proyectoId = this.props.proyectoId;
-    let emergency;
-    if(this.state.showEditButtons === 'show-buttons') {
-      emergency = {border: '2px solid rgba(255,0,0,1)', borderRadius: '1rem'};
-    }
     let whichButtonsShouldIHave = 'add-paso-full-buttons';
     return(
       <div>
-        {this.procomForm()}
-        <div className={`paso-container ${paso.estilo}`} style={emergency}>
+        <div className={`paso-container ${paso.estilo}`}>
           {this.extraContent()}
           <div className="paso-content">
-            <div className={this.state.showEditButtons}>
-              <PasoOptions
-                whichType={whichButtonsShouldIHave}
-                elected={this.state.estilo}
-                conection={this.pasoOptionsConection} />
-            </div>
             <TextArea the_class='paso-content-text' the_content={paso.step} onChange4Textarea={this.onChange4Textarea} ref='text_area'/>
           </div>
           <PasoControl
@@ -299,6 +288,13 @@ class Paso extends React.Component {
         </div>
         <div className="procoms-container">
           {this.displayProcoms()}
+          {this.procomForm()}
+        </div>
+        <div className={this.state.showEditButtons}>
+          <PasoOptions
+            whichType={whichButtonsShouldIHave}
+            elected={this.state.estilo}
+            conection={this.pasoOptionsConection} />
         </div>
       </div>
     )

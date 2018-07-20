@@ -318,15 +318,15 @@ class Proyecto extends React.Component {
   }
 
   render(){
-    let containerStyle;
     let proyectoFull;
     if(this.props.modalize === true && this.props.doorStatus === true) {
-      if(this.state.showAdd){
-        containerStyle = { maxHeight: 'calc(100vh - 8rem)' }
-      }else {
-        containerStyle = { maxHeight: 'calc(100vh - 5rem)' }
-      }
       proyectoFull = "proyecto-full"
+    }
+    let containerStyle;
+    if(this.state.showAdd){
+      containerStyle = { maxHeight: 'calc(100vh - 8rem)' }
+    } else {
+      containerStyle = { maxHeight: 'calc(100vh - 5rem)' }
     }
 
     return (

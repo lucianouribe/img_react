@@ -318,13 +318,13 @@ class Proyecto extends React.Component {
   }
 
   render(){
-    let bodyStyle;
     let containerStyle;
     let proyectoFull;
-    // console.log(`el proyecto especifico: ${this.props.proyecto.name}`)
     if(this.props.modalize === true && this.props.doorStatus === true) {
-      containerStyle = {
-        maxHeight: 'calc(100vh - 5rem)'
+      if(this.state.showAdd){
+        containerStyle = { maxHeight: 'calc(100vh - 8rem)' }
+      }else {
+        containerStyle = { maxHeight: 'calc(100vh - 5rem)' }
       }
       proyectoFull = "proyecto-full"
     }
@@ -334,8 +334,8 @@ class Proyecto extends React.Component {
         {this.individualProject()}
         <div className="pasos-container" style={containerStyle}>
           {this.pasosDisplay()}
+          {this.addPasoForm()}
         </div>
-        {this.addPasoForm()}
       </div>
     )
   }

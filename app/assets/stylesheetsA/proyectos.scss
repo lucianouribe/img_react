@@ -383,7 +383,7 @@
 // PASOS
 // paso en proyecto
 .proyecto-full .pasos-container {
-  margin: 4.5rem 0.3rem 0 0.3rem;
+  margin: 4.5rem 0 0 0;
 }
 .pasos-container {
   border: 1px dashed rgba(0,0,0,0.1);
@@ -488,7 +488,8 @@
   align-items: center;
   justify-content: space-between;
   height: 1.5rem;
-  padding: 1rem;
+  padding: 1.3rem 0.8rem;
+  background: #ECEFF1;
   // border-top-right-radius: 1rem;
   // border-top-left-radius: 1rem;
   // background: #fff;
@@ -718,6 +719,9 @@
 @media all and (max-width: 800px) {
   .proyectos-section {
     height: calc(100vh - 7rem);
+  }
+  .paso-container-form .paso-content-text{
+    max-height: calc(70vh - 3rem);
   }
   .descripciones-container {
     padding: 0;

@@ -23,7 +23,7 @@ config/mail.yml
 .ENV
 gulpStyles
 app/assets/javascripts/libs
-app/assets/stylesheets/stylesheetsA.scss
+app/assets/stylesheetsA
 client/components/MainO.js
 client/components/TrisixtiH.js
 client/components/Slider.js

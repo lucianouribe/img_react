@@ -76,6 +76,12 @@
 .nothing-flash {
   text-align: center;
 }
+.show-buttons {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
 
 @media all and (max-width: 800px) {
 

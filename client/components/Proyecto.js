@@ -41,7 +41,6 @@ class Proyecto extends React.Component {
 
     this.tabFixer = this.tabFixer.bind(this);
     this.setTextareaHeight = this.setTextareaHeight.bind(this);
-    // this.mixerMethod = this.mixerMethod.bind(this);
 
     // upload image
     this.selectFiles = this.selectFiles.bind(this);
@@ -51,7 +50,7 @@ class Proyecto extends React.Component {
     $('select').material_select();
     this.tabFixer(document.getElementsByTagName('textarea'));
     // put in setState this: modalize: isMobile
-    let pasos = this.props.proyecto.pasos
+    let pasos = this.props.proyecto.pasos;
     this.setState({
       pasos,
       max_id: this.props.maxPasoId
@@ -74,10 +73,6 @@ class Proyecto extends React.Component {
           var s = this.selectionStart;
           this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
           this.selectionEnd = s+1;
-        } else if (e.keyCode==13){
-          if(e.shiftKey){
-            debugger
-          }
         }
       }
     }
@@ -98,9 +93,9 @@ class Proyecto extends React.Component {
 
   pasosSetter(incoming) {
     let pasos = this.state.pasos;
-    let index = pasos.findIndex( paso => paso.id === incoming.id)
+    let index = pasos.findIndex( paso => paso.id === incoming.id);
     pasos[index] = incoming;
-    this.setState({pasos})
+    this.setState({pasos});
   }
 
   deletePasoFunc(pasId, proId) {
@@ -110,8 +105,8 @@ class Proyecto extends React.Component {
       this.props.dispatch(deletePaso(pasId, proId));
     }
     let index = pasos.findIndex( paso => paso.id === pasId);
-    pasos = [...pasos.slice(0, index), ...pasos.slice(index + 1)]
-    this.setState({pasos})
+    pasos = [...pasos.slice(0, index), ...pasos.slice(index + 1)];
+    this.setState({pasos});
   }
 
   // PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!PROYECTO CRUD!!!!
@@ -152,7 +147,7 @@ class Proyecto extends React.Component {
           this.props.dispatch(editPaso(proyectoId, pasoId, step, orden, estilo, procom_link, videoLink, image_link ));
         } else {
           this.props.dispatch(addPaso(proyecto, step, orden, estilo, procom_link, videoLink, image_link, picture));
-          const updatedPasos = update(pasos, {[i]: {id: {$set: procom_link}, novelty: {$set: false}} })
+          const updatedPasos = update(pasos, {[i]: {id: {$set: procom_link}, novelty: {$set: false}} });
           this.setState({pasos: updatedPasos});
         }
       }
@@ -161,7 +156,7 @@ class Proyecto extends React.Component {
 
   dispatcher(){
     let full = 'full';
-    this.props.dispatch(fetchProyectos(full))
+    this.props.dispatch(fetchProyectos(full));
   }
 
   // PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!
@@ -198,7 +193,7 @@ class Proyecto extends React.Component {
       image_link = 'undefined';
     }
     let new_paso = {id, step, orden, estilo, procom_link, videoLink, image_link, picture, procoms, novelty};
-    pasos = [...pasos, new_paso]
+    pasos = [...pasos, new_paso];
     this.setState({pasos: pasos, showAdd: false, max_id: this.state.max_id + 1});
     // let show = true;
     // this.memorySetter(show);
@@ -210,9 +205,9 @@ class Proyecto extends React.Component {
     if(income === 'submit') {
       this.pasoBuild();
     } else if (income === 'cancel') {
-      this.showAddPasoOption()
+      this.showAddPasoOption();
     } else {
-      this.setState({ estilo: income})
+      this.setState({ estilo: income});
     }
   }
 
@@ -225,7 +220,7 @@ class Proyecto extends React.Component {
       this.setState({
           files: [reader.result],
           preview: true
-      })
+      });
     }
 
   }
@@ -275,13 +270,13 @@ class Proyecto extends React.Component {
         return showPasos.map( paso => {
 
           if(bank !== 'nope'){
-            index = bank.findIndex( elem => elem["id"] === paso.id)
+            index = bank.findIndex( elem => elem["id"] === paso.id);
             if(index !== -1) {
-              doorStatus2 = bank[index].state['showProcom']
-              typeStatus2 = bank[index].state['typeOfProcom']
+              doorStatus2 = bank[index].state['showProcom'];
+              typeStatus2 = bank[index].state['typeOfProcom'];
             } else {
-              doorStatus2 = false
-              typeStatus2 = ''
+              doorStatus2 = false;
+              typeStatus2 = '';
             }
           }
 
@@ -325,7 +320,7 @@ class Proyecto extends React.Component {
   render(){
     let proyectoFull;
     if(this.props.modalize === true && this.props.doorStatus === true) {
-      proyectoFull = "proyecto-full"
+      proyectoFull = "proyecto-full";
     }
     let containerStyle;
     if(this.state.showAdd){

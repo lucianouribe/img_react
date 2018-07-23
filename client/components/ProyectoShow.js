@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { deleteProyecto } from '../actions/proyectos';
 
 class ProyectoShow extends React.Component {
@@ -29,4 +30,8 @@ class ProyectoShow extends React.Component {
   }
 }
 
-export default ProyectoShow;
+const mapStateToProps = (state) => {
+  return {}
+}
+
+export default connect(mapStateToProps)(ProyectoShow);

@@ -41,6 +41,7 @@ class Proyecto extends React.Component {
 
     this.tabFixer = this.tabFixer.bind(this);
     this.setTextareaHeight = this.setTextareaHeight.bind(this);
+    // this.mixerMethod = this.mixerMethod.bind(this);
 
     // upload image
     this.selectFiles = this.selectFiles.bind(this);
@@ -64,15 +65,19 @@ class Proyecto extends React.Component {
     this.tabFixer(document.getElementsByTagName('textarea'));
   }
 
-  tabFixer(textareas){
+  tabFixer = (textareas) => {
     var count = textareas.length;
     for(var i=0;i<count;i++) {
-      textareas[i].onkeydown = function(e){
+      textareas[i].onkeydown = (e) => {
         if(e.keyCode==9 || e.which==9){
           e.preventDefault();
           var s = this.selectionStart;
           this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
           this.selectionEnd = s+1;
+        } else if (e.keyCode==13){
+          if(e.shiftKey){
+            debugger
+          }
         }
       }
     }
@@ -123,7 +128,7 @@ class Proyecto extends React.Component {
     let difficulty = proyectoRefs.difficulty.value;
     let orden = 0;
     this.props.dispatch(editProyecto(id, name, topic, subtopic, difficulty, orden));
-    this.savePasosChanges()
+    this.savePasosChanges();
     this.showEditContent();
   }
 

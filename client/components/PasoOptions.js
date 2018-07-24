@@ -86,10 +86,10 @@ class PasoOptions extends React.Component {
         <span className="paso-option-container">
           <div className="paso-option-botones-form">
             <span onClick={()=> this.props.conection(submit)}><i className="fa fa-check listo" aria-hidden="true" ></i></span>
-            <i className="fa fa-at" style={tituloS} aria-hidden="true" onClick={()=> this.props.conection(titulo)}></i>
             <i className="fa fa-long-arrow-right" style={goToS} aria-hidden="true" onClick={()=> this.props.conection(goTo)}></i>
             <i className="fa fa-terminal" style={terminalS} aria-hidden="true" onClick={()=> this.props.conection(terminal)}></i>
             <i className="fa fa-code" style={codigoS} aria-hidden="true" onClick={()=> this.props.conection(codigo)}></i>
+            <i className="fo-titulo" style={tituloS} aria-hidden="true" onClick={()=> this.props.conection(titulo)}>𝕋</i>
             <i className="fa fa-paragraph" style={paragraphS} aria-hidden="true" onClick={()=> this.props.conection(paragraph)}></i>
             <i className="fa fa-link" style={linkTutoS} aria-hidden="true" onClick={()=> this.props.conection(linkTuto)}></i>
             <i className="fa fa-video-camera" style={linkVideoS} aria-hidden="true" onClick={()=> this.props.conection(linkVideo)}></i>

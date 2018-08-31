@@ -7,6 +7,12 @@ class ProyectoShow extends React.Component {
     super(props);
   }
 
+  setDelete(proyectoId){
+    if(confirm('Are you sure?')) {
+      this.props.dispatch(deleteProyecto(proyectoId));
+    }
+  }
+
   render() {
     let proyecto = this.props.proyecto;
     let topic = proyecto.topic;
@@ -22,7 +28,7 @@ class ProyectoShow extends React.Component {
         </span>
         <span className={`botones ${proyecto.difficulty}`}>
           <i className="material-icons btn-icon btn-add" onClick={() => this.props.showAddPasoOption()}>add</i>
-          <i className="material-icons btn-icon btn-delete" onClick={() => this.props.dispatch(deleteProyecto(proyecto.id))}>delete</i>
+          <i className="material-icons btn-icon btn-delete" onClick={() => this.setDelete(proyecto.id)}>delete</i>
           <i className="material-icons btn-icon btn-edit" onClick={() => this.props.showEditContent(topic, subtopic)}>edit</i>
         </span>
       </div>

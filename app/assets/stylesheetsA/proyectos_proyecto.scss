@@ -129,6 +129,15 @@
   align-items: center;
   justify-content: center;
 }
+// exception for last paso when edit
+.pasos-container:last-child {
+  .edit-input-paso {
+    margin-bottom: 4rem;
+  }
+  .edit-input-procom {
+    margin-bottom: 3rem;
+  }
+}
 // ADD PASO IN PROYECTO
 .paso-container-form {
   z-index: 2000;

@@ -265,6 +265,13 @@ class Paso extends React.Component {
     this.setState({showEditButtons: viewType});
   }
 
+  cancelButton(){
+    let cancel = 'hide-buttons';
+    if(this.state.showEditButtons === 'show-buttons'){
+      return(<i className='material-icons cancel-button' onClick={() => this.onChange4Textarea(cancel)}>cancel</i>)
+    }
+  }
+
   // autoScrollToBottom(){
   //   this.paso_el.scrollIntoView();
   // }
@@ -288,6 +295,7 @@ class Paso extends React.Component {
         <div ref={(el) => { this.paso_el = el }} className={`paso-container ${paso.estilo} ${editInputPaso}`}>
           {this.extraContent()}
           <div className="paso-content">
+            {this.cancelButton()}
             <TextArea the_class="paso-content-text" the_content={paso.step} onChange4Textarea={this.onChange4Textarea} ref='text_area'/>
           </div>
           <PasoControl

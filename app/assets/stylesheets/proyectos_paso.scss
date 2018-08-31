@@ -13,6 +13,19 @@
   visibility: hidden;
 }
 
+.paso-content .cancel-button {
+  color: #6b6b6b;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  top: 25px;
+  right: 15px;
+}
+
+.paso-content .cancel-button:hover {
+  color: red;
+}
+
 // paso type estilos!
 .paso-type {
   -webkit-box-flex: 1;

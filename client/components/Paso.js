@@ -265,38 +265,16 @@ class Paso extends React.Component {
     this.setState({showEditButtons: viewType});
   }
 
-  cancelButton(){
-    let cancel = 'hide-buttons';
-    if(this.state.showEditButtons === 'show-buttons'){
-      return(<i className='material-icons cancel-button' onClick={() => this.onChange4Textarea(cancel)}>cancel</i>)
-    }
-  }
-
-  // autoScrollToBottom(){
-  //   this.paso_el.scrollIntoView();
-  // }
-
   renderPasoContent(){
     let paso = this.props.paso;
     let proyectoId = this.props.proyectoId;
     let whichButtonsShouldIHave = 'add-paso-full-buttons';
-    let editInputPaso;
-    let editInputProcom;
-    if(this.state.showEditButtons === 'show-buttons'){
-      editInputPaso = 'edit-input-paso';
-      // this.autoScrollToBottom();
-    }
-    if(this.state.showAddProcomForm === true){
-      editInputProcom = 'edit-input-procom';
-      // this.autoScrollToBottom();
-    }
     return(
       <div>
-        <div ref={(el) => { this.paso_el = el }} className={`paso-container ${paso.estilo} ${editInputPaso}`}>
+        <div className={`paso-container ${paso.estilo}`}>
           {this.extraContent()}
           <div className="paso-content">
-            {this.cancelButton()}
-            <TextArea the_class="paso-content-text" the_content={paso.step} onChange4Textarea={this.onChange4Textarea} ref='text_area'/>
+            <TextArea the_class='paso-content-text' the_content={paso.step} onChange4Textarea={this.onChange4Textarea} ref='text_area'/>
           </div>
           <PasoControl
             proyectoId={proyectoId}
@@ -308,7 +286,7 @@ class Paso extends React.Component {
             closeStuff={this.state.closeStuff}
             setCloseStuff={this.setCloseStuff}/>
         </div>
-        <div className={`procoms-container ${editInputProcom}`}>
+        <div className="procoms-container">
           {this.displayProcoms()}
           {this.procomForm()}
         </div>

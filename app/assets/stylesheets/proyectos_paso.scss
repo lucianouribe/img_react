@@ -13,19 +13,6 @@
   visibility: hidden;
 }
 
-.paso-content .cancel-button {
-  color: #6b6b6b;
-  width: 25px;
-  height: 25px;
-  position: relative;
-  top: 25px;
-  right: 15px;
-}
-
-.paso-content .cancel-button:hover {
-  color: red;
-}
-
 // paso type estilos!
 .paso-type {
   -webkit-box-flex: 1;
@@ -51,8 +38,8 @@
   top: -5px;
 }
 .terminal .paso-content-text {
-  background: #F9F9F9;
-  border: 1px solid #D4D4D4 !important;
+  background: rgba(138,78,42,0.2);
+  border: 1px solid #8A4E2A !important;
   border-radius: 0.6rem;
   font-size: 0.8rem;
   color: red;
@@ -61,7 +48,6 @@
 .titulo .paso-content-text {
   font-weight: 900;
   text-transform: uppercase;
-  text-decoration: underline;
   color: #8A4E2A;
 }
 // paso type go to
@@ -78,8 +64,8 @@
 }
 // paso type code
 .codigo .paso-content-text {
-  background: #F9F9F9;
-  border: 1px solid #D4D4D4 !important;
+  background: rgba(138,78,42,0.2);
+  border: 1px solid #8A4E2A !important;
   border-radius: 0.6rem;
   font-size: 0.8rem;
   padding: 8px;
@@ -127,8 +113,8 @@
           flex-direction: column;
 }
 .image-link {
-  max-width: 90%;
-  max-height: 30rem;
+  // width: 80%;
+  height: 30rem;
   border: 1px solid #723025;
   border-radius: 1rem;
 }

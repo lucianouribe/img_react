@@ -9,25 +9,26 @@ class PasoControl extends React.Component {
     }
 
     this.setShow = this.setShow.bind(this);
+    this.setDelete = this.setDelete.bind(this);
     this.utilitiesOptions = this.utilitiesOptions.bind(this);
   }
 
   componentDidUpdate(){
     if(this.props.closeStuff === true) {
       this.setState({ buttonPressed: false });
-      this.props.setCloseStuff(false);
+      this.props.setCloseStuff(false)
     }
   }
 
   setShow(){
     this.props.addProcomSetter();
-    this.setState({ buttonPressed: !this.state.buttonPressed });
+    this.setState({ buttonPressed: !this.state.buttonPressed })
   }
 
   setDelete(){
     const { pasoId, proyectoId } = this.props;
     if(confirm('Are you sure?')) {
-      this.props.deletePasoFunc(pasoId, proyectoId);
+      this.props.deletePasoFunc(pasoId, proyectoId)
     }
   }
 

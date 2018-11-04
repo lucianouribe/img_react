@@ -1,7 +1,664 @@
-1,Quas alias dolorem tenetur esse molestiae. Amet recusandae cumque optio et. Non dolores ipsum maiores et officia sunt debitis. Ut sed est.,16,medium,\N,\N,\N,\N,\N,\N,\N,3,2018-03-16 14:14:35.937464,2018-03-16 14:14:35.937464
-3,Id dolorem ut natus modi perferendis. In quibusdam cumque distinctio in.,17,advanced,\N,\N,\N,\N,\N,\N,\N,4,2018-03-16 14:14:35.974318,2018-03-16 14:14:35.974318
-5,Maxime perferendis fuga non illo et. Rerum natus aut molestiae dolores accusamus. Est enim omnis dolor sit nostrum natus. Distinctio enim aperiam velit possimus perspiciatis.,13,basic,\N,\N,\N,\N,\N,\N,\N,7,2018-03-16 14:14:35.979542,2018-03-16 14:14:35.979542
-7,Odit exercitationem corporis animi impedit tenetur non aut. Impedit cumque consequatur magni asperiores optio nostrum numquam.,15,basic,\N,\N,\N,\N,\N,\N,\N,4,2018-03-16 14:14:35.98457,2018-03-16 14:14:35.98457
-8,Et voluptas quasi omnis exercitationem ut voluptates. Fuga iusto minus explicabo sint. Cumque eligendi sint suscipit quae ut ratione fugiat. Voluptates consequatur similique saepe est.,9,basic,\N,\N,\N,\N,\N,\N,\N,5,2018-03-16 14:14:35.986834,2018-03-16 14:14:35.986834
-9,Et sint ut in et iusto eveniet. Tempora quaerat sunt. Earum minus rerum officia dolorem perferendis. Animi autem quia quod.,12,basic,\N,\N,\N,\N,\N,\N,\N,4,2018-03-16 14:14:35.989188,2018-03-16 14:14:35.989188
-10,Consequatur est corporis sed. Quia eveniet laudantium. Dolor velit maxime architecto ut tempora. Incidunt et vitae explicabo quos dolores asperiores.,4,sayayin,\N,\N,\N,\N,\N,\N,\N,6,2018-03-16 14:14:35.991392,2018-03-16 14:14:35.991392
+id,step,orden,estilo,tuto_link,video_link,image_link,picture_file_name,picture_content_type,picture_file_size,picture_updated_at,proyecto_id,created_at,updated_at
+22,DROPLET IN DIGITAL OCEAN,0,go-to,,,undefined,,,,,2,2018-01-04 10:30:07.93214,2018-01-04 10:30:07.93214
+23,https://www.phusionpassenger.com/library/walkthroughs/deploy/ruby/digital_ocean/nginx/oss/launch_server.html,0,link-tuto,,,undefined,,,,,2,2018-01-04 10:30:27.422969,2018-01-04 10:30:27.422969
+24,http://www.thegreatcodeadventure.com/deploying-rails-to-digitalocean-the-hard-way/,0,link-tuto,,,undefined,,,,,2,2018-01-04 10:31:10.291215,2018-01-04 10:31:10.291215
+25,https://www.digitalocean.com/community/tutorials/how-to-deploy-a-rails-app-with-passenger-and-nginx-on-ubuntu-14-04,0,link-tuto,,,undefined,,,,,2,2018-01-04 10:31:42.437032,2018-01-04 10:31:42.437032
+26,"- create droplet
+
+- ubuntu
+
+- new york o amsterdam
+
+- seleccionar private networking
+
+- new ssh",0,paragraph,,,undefined,,,,,2,2018-01-04 10:33:32.003951,2018-01-04 10:33:32.003951
+28,cat ~/.ssh/id_rsa.pub,0,terminal,,,undefined,,,,,2,2018-01-04 10:34:21.106931,2018-01-04 10:34:21.106931
+29,"- copy ssh.pub
+
+- choose hostname
+
+- create
+
+- copy ip address",0,paragraph,,,undefined,,,,,2,2018-01-04 10:35:05.876232,2018-01-04 10:35:05.876232
+31,--> How To Connect To Your Droplet with SSH <--,0,go-to,,,undefined,,,,,2,2018-01-04 10:36:41.123527,2018-01-04 10:36:41.123527
+32,ssh root@(paste ip address),0,terminal,,,undefined,,,,,2,2018-01-04 10:37:43.585532,2018-01-04 10:37:43.585532
+33,--> ADDING SUDO USER (Initial Server Setup with Ubuntu) <--,0,go-to,,,undefined,,,,,2,2018-01-04 10:39:31.212737,2018-01-04 10:39:31.212737
+34,https://www.digitalocean.com/community/tutorials/how-to-use-ssh-keys-with-digitalocean-droplets,0,link-tuto,,,undefined,,,,,2,2018-01-04 10:40:23.59123,2018-01-04 10:40:23.59123
+35,https://www.digitalocean.com/community/tutorials/how-to-connect-to-your-droplet-with-ssh,0,link-tuto,,,undefined,,,,,2,2018-01-04 11:27:17.644151,2018-01-04 11:27:17.644151
+36,https://www.digitalocean.com/community/tutorials/initial-server-setup-with-ubuntu-14-04,0,link-tuto,,,undefined,,,,,2,2018-01-04 11:27:44.751606,2018-01-04 11:27:44.751606
+38,ssh root@174.138.76.230,0,terminal,,,undefined,,,,,2,2018-01-04 11:31:31.11599,2018-01-04 11:31:31.11599
+39,yes,0,paragraph,,,undefined,,,,,2,2018-01-04 11:32:25.891093,2018-01-04 11:32:25.891093
+40,adduser user_name,0,terminal,,,undefined,,,,,2,2018-01-04 11:32:59.367962,2018-01-04 11:32:59.367962
+41,"password
+
+password",0,paragraph,,,undefined,,,,,2,2018-01-04 11:34:38.613199,2018-01-04 11:34:38.613199
+42,press enter to all questions ,0,paragraph,,,undefined,,,,,2,2018-01-04 11:34:58.087273,2018-01-04 11:35:13.645057
+43,Add the new user to the list of sudo priviledges ,0,go-to,,,undefined,,,,,2,2018-01-04 11:38:34.287926,2018-01-04 11:38:34.287926
+44,gpasswd -a user_name sudo,0,terminal,,,undefined,,,,,2,2018-01-04 11:40:36.178894,2018-01-04 11:40:36.178894
+45,"in another terminal window, take from the pc the ssh key",0,go-to,,,undefined,,,,,2,2018-01-04 11:41:15.168369,2018-01-04 11:41:45.787797
+46,cat ~/.ssh/id_rsa.pub,0,terminal,,,undefined,,,,,2,2018-01-04 11:42:00.52852,2018-01-04 11:42:00.52852
+47,copy ssh key,0,paragraph,,,undefined,,,,,2,2018-01-04 11:44:49.985186,2018-01-04 11:44:49.985186
+48,su - user_name,0,terminal,,,undefined,,,,,2,2018-01-04 11:45:19.955798,2018-01-04 11:45:19.955798
+49,mkdir .ssh,0,terminal,,,undefined,,,,,2,2018-01-04 11:47:32.227562,2018-01-04 11:47:32.227562
+50,chmod 700 .ssh,0,terminal,,,undefined,,,,,2,2018-01-04 11:48:04.204763,2018-01-04 11:48:04.204763
+51,nano .ssh/authorized_keys,0,terminal,,,undefined,,,,,2,2018-01-04 11:52:04.696207,2018-01-04 11:52:04.696207
+52,"paste ssh key
+
+ctrl + x, y, enter",0,paragraph,,,undefined,,,,,2,2018-01-04 11:52:47.825871,2018-01-04 11:52:47.825871
+53,chmod 600 .ssh/authorized_keys,0,terminal,,,undefined,,,,,2,2018-01-04 11:53:11.135977,2018-01-04 11:53:11.135977
+54,exit,0,paragraph,,,undefined,,,,,2,2018-01-04 11:54:11.035238,2018-01-04 11:54:11.035238
+55,"lo que sigue es para impedir que se puedan hacer ssh logins como root, solo como usuario sudo",0,go-to,,,undefined,,,,,2,2018-01-04 11:54:59.778217,2018-01-04 11:54:59.778217
+56,nano /etc/ssh/sshd_config,0,terminal,,,undefined,,,,,2,2018-01-04 11:56:21.867816,2018-01-04 11:56:21.867816
+57,"look for: PermitRootLogin yes
+
+change it for: PermitRootLogin no
+
+ctrl + x, y, enter",0,paragraph,,,undefined,,,,,2,2018-01-04 11:56:57.923403,2018-01-04 11:56:57.923403
+58,service ssh restart,0,terminal,,,undefined,,,,,2,2018-01-04 11:57:24.387745,2018-01-04 11:57:24.387745
+59,en un terminal nuevo,0,go-to,,,undefined,,,,,2,2018-01-04 11:57:50.336025,2018-01-04 11:57:50.336025
+60,ssh user_name@(ip_ocean),0,terminal,,,undefined,,,,,2,2018-01-04 11:58:30.651407,2018-01-04 11:58:30.651407
+61,--> SETTING TIME (optional) (Additional Recommended Steps for New Ubuntu) <--,0,go-to,,,undefined,,,,,2,2018-01-04 11:59:24.331146,2018-01-04 11:59:24.331146
+62,https://www.digitalocean.com/community/tutorials/additional-recommended-steps-for-new-ubuntu-14-04-servers,0,link-tuto,,,undefined,,,,,2,2018-01-04 12:00:02.503442,2018-01-04 12:00:02.503442
+63,in the server,0,go-to,,,undefined,,,,,2,2018-01-04 12:00:39.082952,2018-01-04 12:00:39.082952
+27,to grab it from computer:,0,go-to,,,undefined,,,,,2,2018-01-04 10:34:01.05152,2018-01-04 12:01:59.489781
+30,close terminal ,0,go-to,,,undefined,,,,,2,2018-01-04 10:35:28.924323,2018-01-04 12:02:33.732866
+64,"puts ""Hello World""",0,codigo,,,undefined,,,,,3,2018-01-05 11:01:50.500926,2018-01-05 11:01:50.500926
+65,"print ""Hello World""",0,codigo,,,undefined,,,,,3,2018-01-05 11:02:25.725064,2018-01-05 11:02:25.725064
+66,"puts ""Hens: #{25 + 30 / 6}""",0,codigo,,,undefined,,,,,3,2018-01-05 11:07:55.176308,2018-01-05 11:08:58.928582
+68,"formatter = ""%{first} %{second} %{third} %{fourth}""
+
+puts formatter % {first: 1, second: 2, third: 3, fourth: 4}
+puts formatter % {first: ""one"", second: ""two"", third: ""three"", fourth: ""four""}
+puts formatter % {first: true, second: false, third: true, fourth: false}",0,codigo,,,undefined,,,,,3,2018-01-05 11:13:15.612239,2018-01-05 11:13:15.612239
+70,Quoted Strings,0,go-to,,,undefined,,,,,3,2018-01-05 11:19:06.627192,2018-01-05 11:19:06.627192
+71,"puts %q{
+There's something going on here.
+With this weird quote
+We'll be able to type as much as we like.
+Even 4 lines if we want, or 5, or 6.
+}",0,codigo,,,undefined,,,,,3,2018-01-05 11:19:24.64782,2018-01-05 11:19:24.64782
+72,https://simpleror.wordpress.com/2009/03/15/q-q-w-w-x-r-s/,0,link-tuto,,,undefined,,,,,3,2018-01-05 11:20:22.41913,2018-01-05 11:20:22.41913
+74,"Symbol names
+
+# Octothorpe o pound character
++ Plus
+- Minus
+/ Slash
+\ Backslash
+* Asterisk
+% Percent
+< Less-than
+> Greater-than
+<= Less-than-equal
+>= Greater-than-equal
+_ Underscore              Es para escribir con espacios: hola_como_estas
+= equal                   Asigna el valor de la derecha de la variable de la izquierda
+== double-equal           Compara, teste si dos cosas tienen el mismo valor
+'' Single quotes
+"""" Double quotes
+"""""" Triple quotes
+&&      and
+||      or
+!       not
+!=      not equal
+==      equal
+>=      grater-than-equal
+<=      less-than-equal
+<=>     comparison
+true
+false
+",0,paragraph,,,undefined,,,,,4,2018-01-05 11:24:29.327697,2018-01-05 11:24:29.327697
+73,"Vocabulary
+
+Input:      Entrada     Informacion entrante
+Output:     Salida      Informacion saliente
+String:     Cuerda      Informacion en texto
+Integrer:   Entero      Informacion en numeros
+Encode:     Codificar
+Prompt:     Pronto, Sugerencia
+Return:     Devolver    Esto es basicamente un ""=""
+Variable:   Variable    El nombre de algo a lo que se le asignara un valor
+Embed:      Incrustar
+Bug         Bicho       Un error en el programa
+array       Formacion, lista
+hash        Picada, Picadillo",0,paragraph,,,undefined,,,,,4,2018-01-05 11:24:06.89201,2018-01-05 11:24:44.471712
+75,"ls         		lists
+pwd       		print work directory     muestra en que folder se encuentra uno
+cd          		change directory          para ir a un folder especifico se pone: /folder/otro_folder
+cd ..      		return directory
+mkdir      	make directory            	crea un nuevo folder
+touch      	make file                 	crea un archivo dentro del folder
+cp          		Copy                      		se hace desde el parent... cp carpeta/uno.txt folder/
+cp*         		copy all
+cp m* .txt  	copy selective            	copia todo lo que empiece con ""m"" y termine con "".txt""
+mv          		move                      	para mover varios: mv uno.txt dos.txt folder/",0,paragraph,,,undefined,,,,,5,2018-01-05 11:28:08.311528,2018-01-05 11:28:08.311528
+77,"puts ""Hens: #{25 + 30 / 6}""",0,codigo,,,undefined,,,,,3,2018-01-05 11:33:48.512621,2018-01-05 11:33:48.512621
+76,Interpolator #{...},0,go-to,,,undefined,,,,,3,2018-01-05 11:33:14.695238,2018-01-05 11:37:40.358649
+67,Interpolator %{...},0,go-to,,,undefined,,,,,3,2018-01-05 11:12:28.199471,2018-01-05 11:40:11.473737
+78,&&      and,0,go-to,,,undefined,,,,,6,2018-01-05 11:49:58.572885,2018-01-05 11:49:58.572885
+79,||      or,0,go-to,,,undefined,,,,,6,2018-01-05 11:50:31.369413,2018-01-05 11:50:31.369413
+80,!       not,0,go-to,,,undefined,,,,,6,2018-01-05 11:50:58.183643,2018-01-05 11:50:58.183643
+81,!=      not equal,0,go-to,,,undefined,,,,,6,2018-01-05 11:51:37.060904,2018-01-05 11:51:37.060904
+82,==      equal,0,go-to,,,undefined,,,,,6,2018-01-05 14:34:00.672282,2018-01-05 14:34:00.672282
+83,>=      greater-than-equal,0,go-to,,,undefined,,,,,6,2018-01-05 14:34:33.583267,2018-01-05 14:34:33.583267
+84,<=      less-than-equal,0,go-to,,,undefined,,,,,6,2018-01-05 14:35:12.135527,2018-01-05 14:35:12.135527
+85,<=>     comparison,0,go-to,,,undefined,,,,,6,2018-01-05 14:37:23.736492,2018-01-05 14:37:23.736492
+86,+=      increment by operator,0,go-to,,,undefined,,,,,6,2018-01-05 14:38:20.859606,2018-01-05 14:38:20.859606
+87,-=      substract by oparator,0,go-to,,,undefined,,,,,6,2018-01-05 14:38:29.955113,2018-01-05 14:38:29.955113
+88,! || 	Not Or,0,go-to,,,undefined,,,,,6,2018-01-05 14:39:00.675383,2018-01-05 14:39:41.812866
+89,! &&	Not And,0,go-to,,,undefined,,,,,6,2018-01-05 14:40:23.206147,2018-01-05 14:40:31.355832
+90,Comments #,0,go-to,,,undefined,,,,,3,2018-01-05 14:57:56.503907,2018-01-05 14:57:56.503907
+91,# Esto es un comentario en ruby.,0,codigo,,,undefined,,,,,3,2018-01-05 14:58:48.27371,2018-01-05 14:58:48.27371
+92,=begin... 	=end	Comentario para varias lineas,0,codigo,,,undefined,,,,,3,2018-01-05 15:00:55.487689,2018-01-05 15:01:18.0436
+95,puts 5 + 4 - 3,0,terminal,,,undefined,,,,,8,2018-01-05 15:05:20.607179,2018-01-05 15:05:20.607179
+96,"Ojo que la logica es rara... 
+puts 5 + 4 - 3 => 5 + (4 - 3)",0,paragraph,,,undefined,,,,,8,2018-01-05 15:08:03.49654,2018-01-05 15:10:28.002861
+97,puts (3.0 + 8) / 15,0,terminal,,,undefined,,,,,8,2018-01-05 15:11:41.788426,2018-01-05 15:11:41.788426
+98,"Se puede hacer dentro de un #{...}, esta es la forma de introducir ""interpolations"" dentro de strings de texto.",0,paragraph,,,undefined,,,,,8,2018-01-05 15:14:48.508578,2018-01-05 15:14:54.133948
+99,"puts ""Esta operacion da como resultado: #{25.0 + (30.0 / 6.0)}""",0,terminal,,,undefined,,,,,8,2018-01-05 15:15:43.751595,2018-01-05 15:15:43.751595
+94,"Se puede hacer directo: (ojo, sin """")",0,paragraph,,,undefined,,,,,8,2018-01-05 15:05:04.364004,2018-01-05 15:15:59.872449
+100,TRUE	FALSE,0,go-to,,,undefined,,,,,8,2018-01-05 15:16:50.427577,2018-01-05 15:16:50.427577
+93,Como se hacen operaciones con ruby ,0,go-to,,,undefined,,,,,8,2018-01-05 15:04:48.611922,2018-01-05 15:16:57.17575
+102,puts 3.0 + 2.0 < 5.0 - 7.0,0,terminal,,,undefined,,,,,8,2018-01-05 15:18:59.432024,2018-01-05 15:18:59.432024
+103,"puts ""Is it greater? #{5.0 > -2.0}""",0,terminal,,,undefined,,,,,8,2018-01-05 15:20:11.323186,2018-01-05 15:20:11.323186
+101,"Ruby puede decir cuando una operación es verdadera y cuando es falsa, eso es utilísimo!
+Con true y false se pueden hacer muchas cosas... después.",0,paragraph,,,undefined,,,,,8,2018-01-05 15:18:02.171335,2018-01-05 15:21:37.91394
+104,"\s          	space
+\\          	backslash
+\'          	single quote
+\""          	double quote
+\a          	ASCII bell                		Pita
+\b          	ASCII backspace (BS)      		Borra atras
+\f          	ASCII Formfeed (FF)       		Tira una linea para abajo con sangria incluida
+\n          	ASCII Linefeed  (LF)      		New line, enter.
+\r          	ASCII Carriage Return     		Enter y sangria
+\t          	Horizontal tab (TAB)      		Es un tab
+\v          	Vertical tab (VT)         		Tab hacia abajo una linea
+\uxxxx    	Character with 16bit hex value  	Simbolos
+\ooo       	Character with octal value ooo  	Simbolos
+\xhh       	Character with hex value hh     	Simbolos",0,paragraph,,,undefined,,,,,9,2018-01-05 15:39:37.5443,2018-01-05 15:40:28.373452
+105,"strings        textos           informacion escrita                        x = ""Hello""
+numbers        integrales       informacion numerica                       i = 12
+floats         decimales      	informacion decimal                        i = 12.324
+boolean        booleano         true/false                                 true && false == false
+nil            nulo             vacio o ningun valor                       x = nil
+arrays         listas          	listas de cosas                            j = [1, true, ""hola"", 5 + 6]
+hashes         objetos          listas detalladas                          e = {'x' => 1, 'y' => 2}",0,paragraph,,,undefined,,,,,10,2018-01-05 15:42:35.415838,2018-01-05 15:50:57.84966
+106,"Una variable no es nada diferente al nombre de algo (a lo que se le dara un valor)
+Las variables y sus valores se mencionan sin ""puts"" (pues no queremos imprimir esto)",0,paragraph,,,undefined,,,,,11,2018-01-05 15:55:11.951286,2018-01-05 15:55:11.951286
+148,"puts ""#{array.length}""",0,codigo,,,undefined,,,,,12,2018-01-06 23:31:30.838105,2018-01-06 23:31:30.838105
+107,"arboles = 2450.0                                La variable puede ser igual a un numero.
+arboles_en_cosecha = 1500 * 1                   La variable puede ser igual a una operacion numerica
+produccion_por_arbol = 40 #kilos
+tonelada = produccion_por_arbol / 1000.0   	La variable puede ser otra variable o una operacion entre variables
+capacidad_camion = 3.0 #toneladas
+precio_camion = 120000                        	La variable admite parentesis, operaciones, numeros y nombres de variables
+camiones = (arboles_en_cosecha * tonelada) / capacidad_camion",0,codigo,,,undefined,,,,,11,2018-01-05 15:55:31.239384,2018-01-05 16:06:31.544508
+108,"puts ""Entreaguas tiene #{arboles} plantas""
+puts ""De esas solo son productivas el #{(arboles_en_cosecha / arboles) * 100}%""
+puts ""La finca puede producir #{arboles_en_cosecha * produccion_por_arbol} kilos al ano""
+puts ""En otras palabras, esas son #{arboles_en_cosecha * tonelada} toneladas de aguacate por ano""
+puts ""Se necesitarian #{(arboles_en_cosecha * tonelada) / capacidad_camion} camiones para llevar la cosecha""
+puts ""Esto valdria #{camiones * precio_camion}""",0,codigo,,,undefined,,,,,11,2018-01-05 15:56:49.64383,2018-01-05 16:06:47.821493
+109,"Lo que esta interpolado entre #{…} tambien soporta las mismas leyes que las variables declaradas.
+es decir:
+- un numero
+- una variable
+- una operacion de numeros
+- una operacion de variables
+- una operacion de numeros y variables",0,paragraph,,,undefined,,,,,11,2018-01-05 16:06:54.543599,2018-01-05 16:06:54.543599
+110,variables and printing,0,go-to,,,undefined,,,,,11,2018-01-05 16:07:20.627357,2018-01-05 16:07:20.627357
+111,"Las variables se pueden igualar a un entero o a otra variable, sin embargo si lo que se desea es
+darle un nombre sin valor a la variable, se debe hacer entre comillas simples (''), esto para que ruby no lo compute.",0,paragraph,,,undefined,,,,,11,2018-01-05 16:08:54.059559,2018-01-05 16:08:54.059559
+112,"name = 'Luciano'
+age = 33
+height = 182 #en cms
+weight = 86 #en kilos
+eyes = 'brown'
+teeth = 'white'",0,codigo,,,undefined,,,,,11,2018-01-05 16:09:10.115133,2018-01-05 16:09:10.115133
+113,"Y asi, se puede imprimir cosas que son importantes pero no tienen ningun ""valor""
+y tambien se pueden imprimir cosas con ""valor numerico o variables""",0,paragraph,,,undefined,,,,,11,2018-01-05 16:09:35.267405,2018-01-05 16:09:35.267405
+114,"puts ""Let's talk about #{name}.""
+puts ""He's #{height} centimeters tall.""
+puts ""He's #{weight} kilos heavy.""",0,codigo,,,undefined,,,,,11,2018-01-05 16:10:09.238931,2018-01-05 16:10:09.238931
+115,string,0,go-to,,,undefined,,,,,11,2018-01-05 16:20:44.96962,2018-01-05 16:20:44.96962
+116,"A string is usually a bit of text you want to display to someone, or ""export"" out of the program you are writing.
+Ruby entiende como string lo que esta entre comillas simples (' '), dobles ("" "") o triples ("""""" """""") que son para parrafos
+
+Los strings pueden contener muchas variables.
+En ruby, ("""") le dice que reemplace lo que encuentre con #{} con variables pero,
+si encuentra ('') ruby entiende que debe imprimir el texto pero ignorar las variables que se encuentran
+dentro de #{}, es decir, no computa las operaciones y el string aparece tal cual esta digitado:",0,paragraph,,,undefined,,,,,11,2018-01-05 17:11:53.152073,2018-01-05 17:11:53.152073
+117,"types_of_people = 10
+
+    puts ""There are #{types_of_people} types of people.""""",0,codigo,,,undefined,,,,,11,2018-01-05 17:12:44.572623,2018-01-05 17:12:44.572623
+119,"puts """"""
+    There's something going on here.
+    With the three double-quotes.
+    We'll be able to type as much as we like.
+    Even 4 lines if we want, or 5, or 6.
+    """"""",0,codigo,,,undefined,,,,,11,2018-01-05 17:15:27.202041,2018-01-05 17:15:27.202041
+118,	puts 'There are #{types_of_people} types of people.',0,codigo,,,undefined,,,,,11,2018-01-05 17:13:30.134794,2018-01-05 17:17:24.112766
+120,otra forma de hacer multiples lineas...,0,paragraph,,,undefined,,,,,11,2018-01-05 17:17:43.255165,2018-01-05 17:17:43.255165
+121,"puts ""There's something going on here.\nWith the three double-quotes.\nWe'll be able to type as much as we like.\nEven 4 lines if we want, or 5, or 6.""",0,codigo,,,undefined,,,,,11,2018-01-05 17:18:06.219931,2018-01-05 17:18:06.219931
+122,"array = [1,2,3,4,5]",0,codigo,,,undefined,,,,,12,2018-01-06 22:45:36.45919,2018-01-06 22:45:36.45919
+123,array = %w(1 2 3 4 5),0,codigo,,,undefined,,,,,12,2018-01-06 22:45:51.15753,2018-01-06 22:45:51.15753
+124,puts array,0,codigo,,,undefined,,,,,12,2018-01-06 22:47:36.888586,2018-01-06 22:47:36.888586
+125,"puts ""#{array}""",0,codigo,,,undefined,,,,,12,2018-01-06 22:48:01.391193,2018-01-06 22:48:01.391193
+126,puts array[0],0,codigo,,,undefined,,,,,12,2018-01-06 22:48:59.89118,2018-01-06 22:48:59.89118
+127,puts array[4],0,codigo,,,undefined,,,,,12,2018-01-06 22:50:58.119261,2018-01-06 22:50:58.119261
+128,"puts ""#{array[4].to_i + 2}""",0,codigo,,,undefined,,,,,12,2018-01-06 22:51:37.115335,2018-01-06 22:51:37.115335
+130,"array.push('A') 		<<< The typical push
+puts ""#{array}""",0,codigo,,,undefined,,,,,12,2018-01-06 22:54:00.375479,2018-01-06 22:54:00.375479
+129,"array << 'a' 			<<< the ruby way push
+puts ""#{array}""",0,codigo,,,undefined,,,,,12,2018-01-06 22:52:57.748108,2018-01-06 22:54:32.507839
+131,"array.unshift('B') 			<<< push into the begining
+puts ""#{array}""",0,codigo,,,undefined,,,,,12,2018-01-06 22:55:26.123131,2018-01-06 22:55:26.123131
+132,"array.insert(2, 'a')
+puts ""#{array}""",0,codigo,,,undefined,,,,,12,2018-01-06 22:55:59.807719,2018-01-06 22:55:59.807719
+133,REMOVING STUFF FROM AN ARRAY,0,go-to,,,undefined,,,,,12,2018-01-06 22:56:58.866992,2018-01-06 22:56:58.866992
+134,"array.pop 			<<< pops the last element ""A""
+puts ""#{array}""",0,codigo,,,undefined,,,,,12,2018-01-06 22:57:51.151084,2018-01-06 22:57:51.151084
+135,"use_this_last_item = array.pop
+puts ""#{use_this_last_item}""",0,codigo,,,undefined,,,,,12,2018-01-06 22:59:37.987179,2018-01-06 22:59:37.987179
+136,"array.shift 			<<< pops out the first element... you can use it, offcourse.
+puts ""#{array}""",0,codigo,,,undefined,,,,,12,2018-01-06 23:13:28.24835,2018-01-06 23:13:28.24835
+137,"puts ""#{array.drop(2)}""
+
+puts ""#{array}""",0,codigo,,,undefined,,,,,12,2018-01-06 23:14:31.651304,2018-01-06 23:14:31.651304
+138,ADDING ANOTHER ARRAY,0,go-to,,,undefined,,,,,12,2018-01-06 23:15:07.511277,2018-01-06 23:15:07.511277
+139,"array_02 = ['A', 'B', 'C', 'D', 'a', 'b', 'c', 'd', (1 + 2), (2 * 4), nil] 		<<<  They can also have hashes inside
+
+array << array_02
+puts ""#{array}""",0,codigo,,,undefined,,,,,12,2018-01-06 23:16:10.927556,2018-01-06 23:16:55.909806
+140,ORGANIZE ARRAYS I,0,go-to,,,undefined,,,,,12,2018-01-06 23:17:40.575126,2018-01-06 23:17:40.575126
+141,array.flatten!,0,codigo,,,undefined,,,,,12,2018-01-06 23:17:48.627644,2018-01-06 23:17:48.627644
+143,array.uniq!,0,codigo,,,undefined,,,,,12,2018-01-06 23:21:07.118568,2018-01-06 23:21:07.118568
+144,array.compact!,0,codigo,,,undefined,,,,,12,2018-01-06 23:25:17.451825,2018-01-06 23:25:17.451825
+145,"puts ""#{array.rotate}""",0,codigo,,,undefined,,,,,12,2018-01-06 23:27:51.131239,2018-01-06 23:27:51.131239
+146,COUNTING ELEMENTS,0,go-to,,,undefined,,,,,12,2018-01-06 23:29:29.611121,2018-01-06 23:29:29.611121
+147,"puts ""#{array.count}""",0,codigo,,,undefined,,,,,12,2018-01-06 23:29:44.843785,2018-01-06 23:29:44.843785
+149,DELETING ELEMENTS OR CLEARING THE ARRAY,0,go-to,,,undefined,,,,,12,2018-01-07 17:50:06.844827,2018-01-07 17:50:06.844827
+150,"array.delete(""A"")",0,codigo,,,undefined,,,,,12,2018-01-07 17:52:14.098333,2018-01-07 17:52:14.098333
+151,array.delete_at(7),0,codigo,,,undefined,,,,,12,2018-01-07 18:35:28.996291,2018-01-07 18:35:28.996291
+152,array.clear,0,codigo,,,undefined,,,,,12,2018-01-07 18:40:31.49729,2018-01-07 18:40:31.49729
+153,ORGANIZING ARRAYS II,0,go-to,,,undefined,,,,,12,2018-01-07 18:43:34.23567,2018-01-07 18:43:34.23567
+154,"array = [1,7,3,5]
+array_02 = ['A', 'a', 'C', 'B', 'd', 'c']",0,paragraph,,,undefined,,,,,12,2018-01-07 18:51:34.864369,2018-01-07 18:51:34.864369
+155,array.sort!,0,codigo,,,undefined,,,,,12,2018-01-07 18:51:48.356169,2018-01-07 18:51:48.356169
+156,"puts ""#{array.reverse}""",0,codigo,,,undefined,,,,,12,2018-01-07 18:56:53.279915,2018-01-07 18:56:53.279915
+157,HELPERS,0,go-to,,,undefined,,,,,12,2018-01-07 19:12:00.484074,2018-01-07 19:12:20.763948
+158,MIXERS,0,go-to,,,undefined,,,,,12,2018-01-07 19:16:26.407416,2018-01-07 19:16:26.407416
+160,array.shuffle,0,codigo,,,undefined,,,,,12,2018-01-07 19:23:39.338337,2018-01-07 19:23:39.338337
+161,"# [5, 1, 7, 3]",0,paragraph,,,undefined,,,,,12,2018-01-07 19:26:33.883792,2018-01-07 19:26:33.883792
+162,array.sample,0,codigo,,,undefined,,,,,12,2018-01-07 19:29:03.053647,2018-01-07 19:29:03.053647
+164,# 3,0,paragraph,,,undefined,,,,,12,2018-01-08 20:00:34.684482,2018-01-08 20:00:34.684482
+165,array[rand(2)],0,codigo,,,undefined,,,,,12,2018-01-08 20:00:48.774836,2018-01-08 20:00:48.774836
+166,# 5,0,paragraph,,,undefined,,,,,12,2018-01-08 20:03:28.424211,2018-01-08 20:03:28.424211
+167,SPECIFICS,0,go-to,,,undefined,,,,,12,2018-01-08 20:08:53.116113,2018-01-08 20:08:53.116113
+168,array.max,0,codigo,,,undefined,,,,,12,2018-01-08 20:11:31.123548,2018-01-08 20:11:31.123548
+169,# 7,0,paragraph,,,undefined,,,,,12,2018-01-08 20:16:08.688112,2018-01-08 20:16:08.688112
+170,array.min,0,codigo,,,undefined,,,,,12,2018-01-08 20:17:35.255198,2018-01-08 20:17:35.255198
+172,bundle exec rails g controller name_of_controller(plural) index edit new show --skip-routes,0,terminal,,,undefined,,,,,13,2018-01-12 10:44:04.85114,2018-01-12 10:44:04.85114
+173,NORMAL CONTROLLER SKIPPING ALL,0,paragraph,,,undefined,,,,,13,2018-01-12 10:44:25.564859,2018-01-12 10:44:25.564859
+171,NORMAL CONTROLLER,0,paragraph,,,undefined,,,,,13,2018-01-12 10:43:48.44764,2018-01-12 10:44:43.21629
+174,bundle exec rails g controller name_of_controller(plural) index edit new show --skip-routes --no-helper --skip-assets,0,terminal,,,undefined,,,,,13,2018-01-12 10:45:06.899133,2018-01-12 10:45:06.899133
+175,CONTROLLER WITH SCAFFOLD AND API,0,paragraph,,,undefined,,,,,13,2018-01-12 10:46:09.459373,2018-01-12 10:46:09.459373
+176,bundle exec rails g scaffold_controller api/name_of_controller(plural) --no-helper --skip-assets --skip-routes,0,terminal,,,undefined,,,,,13,2018-01-12 10:46:29.975156,2018-01-12 10:46:29.975156
+177,CONTROLLER MODELS,0,go-to,,,undefined,,,,,13,2018-01-12 10:48:23.319681,2018-01-12 10:48:23.319681
+178,BASIC CONTROLLER,0,paragraph,,,undefined,,,,,13,2018-01-12 10:48:41.24311,2018-01-12 10:48:41.24311
+179,"class DoctorsController < ApplicationController
+  before_action :set_doctor, except: [:index, :new, :create]
+
+  def index
+    @doctors = Doctor.all
+  end
+
+  def show
+  end
+
+  def new
+    @doctor = Doctor.new
+  end
+
+  def edit
+  end
+
+  def create
+    @doctor = Doctor.new(doctor_params)
+    if @doctor.save
+      redirect_to doctors_path, success: ""Doctor created successfully""
+    else
+      render :new, error: ""Try again!""
+    end
+  end
+
+  def update
+    if @doctor.update(doctor_params)
+      redirect_to @doctor, success: ""Doctor updated successfully""
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @doctor.destroy
+    redirect_to doctors_url, success: ""Doctor deleted successfully""
+  end
+
+  private
+
+  def set_doctor
+    @doctor = Doctor.find(params[:id])
+  end
+
+  def doctor_params
+    params.require(:doctor).permit(:first_name, :last_name, :specialty, :greedy, :avatar)
+  end
+
+end
+",0,codigo,,,undefined,,,,,13,2018-01-12 10:49:32.767149,2018-01-12 10:49:32.767149
+180,CONTROLLER JSON,0,paragraph,,,undefined,,,,,13,2018-01-12 10:51:00.674997,2018-01-12 10:51:00.674997
+181,"class Api::ProyectosController < ApplicationController
+  before_action :set_api_proyecto, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
+
+
+  def index
+    @api_proyectos = Proyecto.all
+  end
+
+  def show
+  end
+
+  def new
+    @api_proyecto = Proyecto.new
+  end
+
+  def edit
+  end
+
+  def create
+    @api_proyecto = Proyecto.new(api_proyecto_params)
+
+    if @api_proyecto.save
+      render :show, status: :created
+    else
+      render json: @api_proyecto.errors, status: :unprocessable_entity
+    end
+
+  end
+
+  def update
+    if @api_proyecto.update(api_proyecto_params)
+      render :show, status: :ok
+    else
+      render json: @api_proyecto.errors, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @api_proyecto.destroy
+    head :no_content
+  end
+
+  private
+    def set_api_proyecto
+      @api_proyecto = Proyecto.find(params[:id])
+    end
+
+    def api_proyecto_params
+      params.require(:proyecto).permit(:name, :topic, :subtopic, :difficulty, :order)
+    end
+end
+",0,codigo,,,undefined,,,,,13,2018-01-12 10:51:51.495287,2018-01-12 10:51:51.495287
+182,CONTROLLER JSON NESTED MODEL,0,paragraph,,,undefined,,,,,13,2018-01-12 11:14:37.97754,2018-01-12 11:14:37.97754
+183,"class Api::PasosController < ApplicationController
+  before_action :set_api_proyecto
+  before_action :set_api_paso, only: [:show, :edit, :update, :destroy]
+
+  def index
+    @api_pasos = @api_proyecto.pasos.all
+  end
+
+  def show
+  end
+
+  def new
+    @api_paso = @api_proyecto.pasos.new
+  end
+
+  def edit
+  end
+
+  def create
+    @api_paso = @api_proyecto.pasos.new(api_paso_params)
+
+    if @api_paso.save
+      render :show, status: :created
+    else
+      render json: @api_paso.errors, status: :unprocessable_entity
+    end
+  end
+
+  def update
+    if @api_paso.update(api_paso_params)
+      render :show, status: :ok
+    else
+      render json: @api_paso.errors, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    @api_paso.destroy
+    head :no_content
+  end
+
+  private
+
+  def api_paso_params
+    params.require(:paso).permit(:step, :orden, :estilo)
+  end
+
+  def set_api_proyecto
+    @api_proyecto = Proyecto.find(params[:proyecto_id])
+  end
+
+  def set_api_paso
+    @api_paso = @api_proyecto.pasos.find(params[:id])
+  end
+
+end
+
+",0,codigo,,,undefined,,,,,13,2018-01-12 11:15:25.543148,2018-01-12 11:15:25.543148
+184,Create momdel,0,go-to,,,undefined,,,,,14,2018-01-12 11:18:49.735356,2018-01-12 11:18:49.735356
+185,SIMPLE MODEL,0,paragraph,,,undefined,,,,,14,2018-01-12 11:19:13.036252,2018-01-12 11:19:13.036252
+186,bundle exec rails g model name_of_model(singular)_one data1(string) data2:integer data3:date data4:boolean data5:text,0,terminal,,,undefined,,,,,14,2018-01-12 11:19:36.639077,2018-01-12 11:19:36.639077
+187,MODEL THAT BELONGS TO OTHER,0,paragraph,,,undefined,,,,,14,2018-01-12 11:20:00.311137,2018-01-12 11:20:00.311137
+188,bundle exec rails g model name_of_model_two data1 data2… name_of_model_one:belongs_to,0,terminal,,,undefined,,,,,14,2018-01-12 11:20:35.943164,2018-01-12 11:20:35.943164
+189,MADE A MISTAKE? this is how you errase it,0,go-to,,,undefined,,,,,14,2018-01-12 11:21:14.927318,2018-01-12 11:21:14.927318
+190,"MODEL VALIDATIONS, CALLBACKS, ASSOCIATIONS (make all the validations that are possible)",0,paragraph,,,undefined,,,,,14,2018-01-12 11:22:29.70509,2018-01-12 11:22:29.70509
+191,"class ExampleModel < ApplicationRecord
+
+		ASSOCIATIONS
+	  has_many :child_model
+	  belongs_to :parent_model
+	  has_one
+	  has_many_through
+	  has_one_through
+
+		CALLBACKS
+	  after_create - runs once after the model is created
+	  before_create - runs once right before the model is created
+	  after_save  - runs each time after a model is saved
+	  before_save - runs each time before a model gets saved
+	  after_initialize - runs once after a Person.new
+	  before_initialize - runs before an instance gets created in memory
+	  after_validate - runs after all of the validations
+	  before_validate - runs before all the validations
+
+		VALIDATIONS/ SECOND LAYER DEFENCE
+	  validates :data1, :data2, presence: true -> checks that is must be there
+	  validates :data1, :datat2, uniqueness: true -> check that it must be an unique name
+	  validates :data 3, inclusion { -> checks that the data is one of these… if no, you get a message
+	    in: %w(option1 option2 option3 option4),
+	    message: ""Not a valid data3!”
+	  }, allow_nil: true
+
+	  	INSTANCE METHODS (definir que es esto)
+
+	  def info
+	    ""#{name} is of age: #{age}""
+	  end
+
+	  	CLASS MOTHODS OR SCOPES (def.self.info)
+
+	  # Person.all.by_name -> thats how you can call them from the controller or like this Person.all.by_name.by_age
+	  def self.by_name
+	    order(:name)
+	  end
+
+	  # Person.all.by_age  -> thats how you can call them from the controller
+	  def self.by_age
+	    order(:age)
+	  end
+
+	end",0,codigo,,,undefined,,,,,14,2018-01-12 11:23:25.480188,2018-01-12 11:23:25.480188
+193,"number = 3
+
+case number
+  when 1, 2
+    puts number
+  when 3
+    puts 'three'
+  when 4
+    puts 'four'
+  else
+    puts 'too high'
+end",0,codigo,,,undefined,,,,,15,2018-01-12 18:55:24.799691,2018-01-12 18:55:24.799691
+195,"if number == 1 || number == 2 # es mejor el case
+  puts number
+elsif number == 3
+  puts 'three'
+elsif number == 4
+  puts 'four'
+else
+  puts 'too high'
+end",0,codigo,,,undefined,,,,,15,2018-01-12 18:56:54.69959,2018-01-12 18:56:54.69959
+196,UNLESS,0,go-to,,,undefined,,,,,15,2018-01-12 18:58:18.556327,2018-01-12 18:58:18.556327
+192,CASE,0,go-to,,,undefined,,,,,15,2018-01-12 18:54:54.143575,2018-01-12 18:58:31.50385
+194,"IF, ELSIF, ELSE",0,go-to,,,undefined,,,,,15,2018-01-12 18:56:22.927079,2018-01-12 19:00:02.648025
+197,"num = 3
+
+unless num % 2 == 0
+  puts 'Odd'
+else
+  puts 'even'
+end
+
+puts ""Odd"" unless num % 2 == 0  #unless funciona muy bien en oneliners!
+puts ""Even"" if num % 2 == 0   #otro oneliner",0,codigo,,,undefined,,,,,15,2018-01-12 19:01:21.677499,2018-01-12 19:01:21.677499
+198,TERNARY,0,go-to,,,undefined,,,,,15,2018-01-12 19:02:45.911175,2018-01-12 19:04:11.616461
+200,"Assignment = Condition ? if : else
+Assignment = Condition ? if(this is what we do if it's true) : else (this is what we do if it's false)",0,paragraph,,,undefined,,,,,15,2018-01-12 19:28:28.375962,2018-01-12 19:28:28.375962
+199,"num = 2
+
+odd_or_even = num % 2 == 0 ? 'even' : 'odd'
+
+puts odd_or_even
+
+=> even",0,codigo,,,undefined,,,,,15,2018-01-12 19:27:16.957706,2018-01-12 19:39:13.637003
+201,"num = 3
+
+puts num % 2 == 0 ? 'even' : 'odd'
+
+=>  odd",0,codigo,,,undefined,,,,,15,2018-01-12 19:42:27.947291,2018-01-12 19:42:27.947291
+202,"module ModuleWithFunctions
+
+  def ModuleWithFunctions.add_words(a, b)
+    return a + b
+  end
+
+  def self.add_numbers(a, b)
+    return a + b
+  end
+
+end
+
+first_word = ""Hello""
+second_word = "" World""
+
+puts ModuleWithFunctions.add_words(first_word, second_word)
+puts ModuleWithFunctions.add_numbers(5, 7)",0,codigo,,,undefined,,,,,16,2018-01-12 19:48:54.123246,2018-01-12 19:48:54.123246
+203,FOR LOOP,0,go-to,,,undefined,,,,,17,2018-01-13 14:48:36.523255,2018-01-13 14:48:36.523255
+204,"the_count = [1, 2, 3, 4, 5]",0,paragraph,,,undefined,,,,,17,2018-01-13 14:51:22.863845,2018-01-13 14:51:22.863845
+205,"for number in the_count do
+  puts ""I am number: #{number}""
+end",0,codigo,,,undefined,,,,,17,2018-01-13 14:56:02.708723,2018-01-13 14:56:02.708723
+206,"the_count.each do |number|
+  puts ""I am number: #{number}""
+end",0,codigo,,,undefined,,,,,17,2018-01-13 15:00:07.219281,2018-01-13 15:00:07.219281
+207,"the_count.each { |number| puts ""I am number: #{number}"" }",0,codigo,,,undefined,,,,,17,2018-01-13 15:02:25.964136,2018-01-13 15:02:25.964136
+208,"(7..10).each do |item|
+  the_count << item
+end",0,codigo,,,undefined,,,,,17,2018-01-13 15:15:47.839846,2018-01-13 15:15:47.839846
+209,WHILE LOOP,0,go-to,,,undefined,,,,,17,2018-01-13 15:18:35.903222,2018-01-13 15:18:35.903222
+210,"items = 0
+numbers = []",0,paragraph,,,undefined,,,,,17,2018-01-13 15:26:00.591074,2018-01-13 15:26:00.591074
+211,"while items < 6
+  numbers << items
+  items += 1
+  puts ""the numbers now: #{numbers}""
+end",0,codigo,,,undefined,,,,,17,2018-01-13 15:27:15.999167,2018-01-13 15:27:15.999167
+212,EACH WITH INDEX,0,go-to,,,undefined,,,,,17,2018-01-13 18:59:17.811803,2018-01-13 18:59:17.811803
+213,"the_count = [1, 2, 3, 4, 5]",0,paragraph,,,undefined,,,,,17,2018-01-13 19:00:30.167196,2018-01-13 19:00:30.167196
+214,"the_count.each_with_index do |number, i |
+ puts ""#{i} => #{number}""
+end
+
+the_count.each_with_index { |number, i| puts ""#{i} => #{number}"" }",0,codigo,,,undefined,,,,,17,2018-01-13 19:01:53.75549,2018-01-13 19:01:53.75549
+215,MAP,0,go-to,,,undefined,,,,,17,2018-01-13 19:26:47.610377,2018-01-13 19:26:47.610377
+216,the_count.map { |item| puts item += 1 },0,codigo,,,undefined,,,,,17,2018-01-13 19:28:56.613319,2018-01-13 19:28:56.613319
+217,MAP WITH INDEX,0,go-to,,,undefined,,,,,17,2018-01-13 19:32:46.619187,2018-01-13 19:32:46.619187
+218,"the_count.map.with_index { |number, i| puts ""#{i} is: #{number}""}",0,codigo,,,undefined,,,,,17,2018-01-13 19:35:31.107705,2018-01-13 19:35:31.107705
+219,# 1,0,paragraph,,,undefined,,,,,12,2018-01-14 09:34:05.478075,2018-01-14 09:34:05.478075
+220,array_02.first,0,codigo,,,undefined,,,,,12,2018-01-14 09:37:28.540399,2018-01-14 09:37:28.540399
+222,Creating a branch and entering in it,0,go-to,,,undefined,,,,,19,2018-01-15 15:50:25.807616,2018-01-15 15:50:25.807616
+223,git checkout -b name_of_the_branch,0,terminal,,,undefined,,,,,19,2018-01-15 15:50:37.883094,2018-01-15 15:50:37.883094
+224,push branch into github,0,go-to,,,undefined,,,,,19,2018-01-15 15:51:50.895164,2018-01-15 15:51:50.895164
+225,git push origin name_ot_the_branch,0,terminal,,,undefined,,,,,19,2018-01-15 15:52:55.347189,2018-01-15 15:52:55.347189
+226,To import a external database,0,go-to,,,undefined,,,,,20,2018-01-16 15:51:15.219145,2018-01-16 15:51:15.219145
+227,psql databasename < data_base_dump,0,terminal,,,undefined,,,,,20,2018-01-16 15:51:59.401991,2018-01-16 15:51:59.401991
+228,to see the git tree,0,go-to,,,undefined,,,,,19,2018-01-17 07:58:02.20373,2018-01-17 07:58:02.20373
+229,"git log --graph
+git log --graph --decorate --oneline
+git log --graph --full-history --all --pretty=format:""%h%x09%d%x20%s""
+git log --graph --full-history --all --color \
+        --pretty=format:""%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s""",0,codigo,,,undefined,,,,,19,2018-01-17 07:59:27.124782,2018-01-17 07:59:27.124782
+230,||= 	or equal,0,go-to,,,undefined,,,,,6,2018-01-17 09:16:33.167267,2018-01-17 09:16:33.167267
+231,Go to,0,go-to,,,undefined,,,,,18,2018-01-19 22:17:42.339078,2018-01-19 22:17:42.339078
+232,"* @person.errors
+* @person.errors.count
+* @person.errors.full_message
+* @person.errors.methods (me pone una lista grande de métodos con los que uno puede trabajar)",0,codigo,,,undefined,,,,,23,2018-01-20 15:49:48.946906,2018-01-20 15:49:48.946906
+233,to discard changes (not added yet),0,go-to,,,undefined,,,,,19,2018-01-27 13:43:26.731965,2018-01-27 13:43:26.731965
+234,git checkout -- .,0,codigo,,,undefined,,,,,19,2018-01-27 13:44:40.393464,2018-01-27 13:44:40.393464
+221,"<div>
+  im a code
+</div>",0,codigo,,,undefined,,,,,18,2018-01-15 09:57:40.914924,2018-02-12 18:38:29.652257
+236,Stash changes in one branch and get them in another (or later in the same one!),0,go-to,,,undefined,,,,,19,2018-02-14 14:13:51.657627,2018-02-14 14:13:51.657627
+237,git stash save test with jest feb 14,0,terminal,,,undefined,,,,,19,2018-02-14 14:15:11.895046,2018-02-14 14:15:11.895046
+238,git stash list,0,terminal,,,undefined,,,,,19,2018-02-14 14:16:52.294516,2018-02-14 14:16:52.294516
+239,git stash apply stash@{1},0,terminal,,,undefined,,,,,19,2018-02-14 14:18:43.0912,2018-02-14 14:18:43.0912
+241,In master,0,go-to,,,undefined,,,,,19,2018-02-27 13:36:30.365975,2018-02-27 13:36:30.365975
+243,git pull origin master,0,terminal,,,undefined,,,,,19,2018-02-27 13:38:31.715633,2018-02-27 13:38:31.715633
+244,In the branch,0,go-to,,,undefined,,,,,19,2018-02-27 13:40:20.775265,2018-02-27 13:40:20.775265
+245,git pull origin branch,0,terminal,,,undefined,,,,,19,2018-02-27 14:37:34.109488,2018-02-27 14:37:34.109488
+246,Hola,0,link-image,,,0gw8b6i8ruvn,,,,,21,2018-03-02 07:57:58.913489,2018-03-02 07:57:58.913489
+247,TO START,0,paragraph,,,undefined,,,,,24,2018-03-06 13:31:46.657362,2018-03-06 13:31:46.657362
+248,rails c,0,terminal,,,undefined,,,,,24,2018-03-06 13:33:03.267671,2018-03-06 13:33:03.267671
+249,TO CHANGE DATA,0,paragraph,,,undefined,,,,,24,2018-03-06 13:36:51.377364,2018-03-06 13:36:51.377364
+250,"u = User.last
+u.update_attribute :role, ""admin""",0,codigo,,,undefined,,,,,24,2018-03-06 13:45:42.926915,2018-03-06 13:45:42.926915
+251,git merge master,0,terminal,,,undefined,,,,,19,2018-03-07 13:08:36.85251,2018-03-07 13:08:36.85251
+240,<b>Update a branch with what's in the GitHub</b>,0,paragraph,,,undefined,,,,,19,2018-02-27 13:33:51.552186,2018-03-07 13:09:28.968583

@@ -1,3 +1,5 @@
 es:
   hello: "Hola mundo"
+  goodbye: "chao"
+  test: "prueba"
   chao: "chao"

@@ -20,13 +20,13 @@ class DashButtons extends Component {
   componentDidMount() {
     $('.collapsible').collapsible();
     $('.side-but').on('click', function() {
-      $('.button-collapse').sideNav('hide');
+      $('.button-collapse').sidenav('hide');
     });
   }
 
   componentDidUpdate() {
     $('.side-but').on('click', function() {
-      $('.button-collapse').sideNav('hide');
+      $('.button-collapse').sidenav('hide');
     });
   }
 

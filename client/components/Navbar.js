@@ -27,15 +27,15 @@ class Navbar extends Component {
   }
 
   componentDidMount() {
-    $('.button-collapse').sideNav();
+    $('.button-collapse').sidenav();
     // $('.side-but').on('click', function() {
-    //   $('.button-collapse').sideNav('hide');
+    //   $('.button-collapse').sidenav('hide');
     // });
   }
 
   componentDidUpdate() {
     $('.collapsible-body').on('click', function() {
-     $('.button-collapse').sideNav('hide');
+     $('.button-collapse').sidenav('hide');
     });
   }
 

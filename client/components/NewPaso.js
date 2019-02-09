@@ -1,3 +1,4 @@
+import Markdown from 'markdown-to-jsx';
 import React from 'react';
 import { connect } from 'react-redux';
 import update from 'immutability-helper';
@@ -10,7 +11,7 @@ import { addProcom, editProcom, deleteProcom } from '../actions/proyectos';
 import { addMemory } from '../actions/mymemory';
 import { createMarkup } from '../helpers';
 
-class Paso extends React.Component {
+class NewPaso extends React.Component {
 
   constructor(props){
     super(props);
@@ -28,13 +29,13 @@ class Paso extends React.Component {
     }
 
     this.memorySetter = this.memorySetter.bind(this);
-    this.procomSetter = this.procomSetter.bind(this);
+    // this.procomSetter = this.procomSetter.bind(this);
     // PROCOMS
-    this.showProcomsFu = this.showProcomsFu.bind(this);
-    this.displayProcoms = this.displayProcoms.bind(this);
-    this.addProcomSetter = this.addProcomSetter.bind(this);
-    this.deleteProcomFunc = this.deleteProcomFunc.bind(this);
-    this.saveProcomChanges = this.saveProcomChanges.bind(this);
+    // this.showProcomsFu = this.showProcomsFu.bind(this);
+    // this.displayProcoms = this.displayProcoms.bind(this);
+    // this.addProcomSetter = this.addProcomSetter.bind(this);
+    // this.deleteProcomFunc = this.deleteProcomFunc.bind(this);
+    // this.saveProcomChanges = this.saveProcomChanges.bind(this);
     // PASO CRUDS
     this.submitEditPaso = this.submitEditPaso.bind(this);
     // BOTONES
@@ -42,21 +43,21 @@ class Paso extends React.Component {
     // EDIT PASO
     this.onChange4Textarea = this.onChange4Textarea.bind(this);
     // ADD PROCOM
-    this.setProcom = this.setProcom.bind(this);
-    this.setMaxId = this.setMaxId.bind(this);
-    this.setCloseStuff = this.setCloseStuff.bind(this);
+    // this.setProcom = this.setProcom.bind(this);
+    // this.setMaxId = this.setMaxId.bind(this);
+    // this.setCloseStuff = this.setCloseStuff.bind(this);
   }
 
   componentDidMount(){
-    $('select').formSelect();
+    // $('select').material_select();
     let estilo = this.props.paso.estilo;
     let procoms = this.props.paso.procoms;
     this.setState({estilo, procoms, max_id: this.props.maxProcomId});
   }
 
   componentDidUpdate(){
-    $('select').formSelect();
-    this.saveProcomChanges();
+    // $('select').material_select();
+    // this.saveProcomChanges();
     // para que los tab funcionen en el textarea
     const textareas = document.getElementsByTagName('textarea');
     let count = textareas.length;
@@ -82,120 +83,120 @@ class Paso extends React.Component {
   }
 
   // PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!PROCOMS!!!!
-  showProcomsFu(how){
-    let show = !this.props.showProcom
-    this.memorySetter(show, how);
-  }
+  // showProcomsFu(how){
+  //   let show = !this.props.showProcom
+  //   this.memorySetter(show, how);
+  // }
 
-  displayProcoms(){
-    let paso = this.props.paso;
-    let showProcoms = this.state.procoms;
-    let proyectoId = this.props.proyectoId;
-    let comments = showProcoms.filter( comme => { if(comme.type_of_issue === 'comment') return comme })
-    let problems = showProcoms.filter( proble => { if(proble.type_of_issue === 'problem') return proble })
+  // displayProcoms(){
+  //   let paso = this.props.paso;
+  //   let showProcoms = this.state.procoms;
+  //   let proyectoId = this.props.proyectoId;
+  //   let comments = showProcoms.filter( comme => { if(comme.type_of_issue === 'comment') return comme })
+  //   let problems = showProcoms.filter( proble => { if(proble.type_of_issue === 'problem') return proble })
 
-    if(this.props.showProcom && this.props.typeOfProcom === 'comment') {
-      if(showProcoms.length > 0) {
-        return comments.map( procom => {
-          return(
-            <Procom key={procom.id}
-              procom={procom}
-              pasoId={paso.id}
-              proyectoId={proyectoId}
-              procomSetter={this.procomSetter}
-              deleteProcomFunc={this.deleteProcomFunc} />
-            );
-        })
-      }
-    } else if (this.props.showProcom && this.props.typeOfProcom === 'problem') {
-      if(showProcoms.length > 0) {
-        return problems.map( procom => {
-          return(
-            <Procom key={procom.id}
-              procom={procom}
-              paso={paso.id}
-              proyectoId={proyectoId}
-              procomSetter={this.procomSetter}
-              deleteProcomFunc={this.deleteProcomFunc} />
-            );
-        })
-      }
-    }
-  }
+  //   if(this.props.showProcom && this.props.typeOfProcom === 'comment') {
+  //     if(showProcoms.length > 0) {
+  //       return comments.map( procom => {
+  //         return(
+  //           <Procom key={procom.id}
+  //             procom={procom}
+  //             pasoId={paso.id}
+  //             proyectoId={proyectoId}
+  //             procomSetter={this.procomSetter}
+  //             deleteProcomFunc={this.deleteProcomFunc} />
+  //           );
+  //       })
+  //     }
+  //   } else if (this.props.showProcom && this.props.typeOfProcom === 'problem') {
+  //     if(showProcoms.length > 0) {
+  //       return problems.map( procom => {
+  //         return(
+  //           <Procom key={procom.id}
+  //             procom={procom}
+  //             paso={paso.id}
+  //             proyectoId={proyectoId}
+  //             procomSetter={this.procomSetter}
+  //             deleteProcomFunc={this.deleteProcomFunc} />
+  //           );
+  //       })
+  //     }
+  //   }
+  // }
 
-  // ADD PROCOM STARTER
-  addProcomSetter(){
-    // console.log('add procom')
-    this.setState({showAddProcomForm: !this.state.showAddProcomForm})
-  }
+  // // ADD PROCOM STARTER
+  // addProcomSetter(){
+  //   // console.log('add procom')
+  //   this.setState({showAddProcomForm: !this.state.showAddProcomForm})
+  // }
 
-  //PROCOM FORM
-  procomForm(){
-    let whichButtonsShouldIHave = 'add-procom-full-buttons'
-    if(this.state.showAddProcomForm){
-      return(
-        <AddProcom
-          proId={this.props.proyectoId}
-          pasId={this.props.paso.procom_link}
-          setProcom={this.setProcom}
-          procoms={this.state.procoms}
-          setMaxId={this.setMaxId}
-          max_id={this.state.max_id}
-          memorySetter={this.memorySetter}
-          addProcomSetter={this.addProcomSetter}
-          whichType={whichButtonsShouldIHave}
-          elected={this.state.proStyle}
-          conection={this.procomOptionsConection}
-          closeStuff={this.state.closeStuff}
-          setCloseStuff={this.setCloseStuff}/>
-      )
-    }
-  }
+  // //PROCOM FORM
+  // procomForm(){
+  //   let whichButtonsShouldIHave = 'add-procom-full-buttons'
+  //   if(this.state.showAddProcomForm){
+  //     return(
+  //       <AddProcom
+  //         proId={this.props.proyectoId}
+  //         pasId={this.props.paso.procom_link}
+  //         setProcom={this.setProcom}
+  //         procoms={this.state.procoms}
+  //         setMaxId={this.setMaxId}
+  //         max_id={this.state.max_id}
+  //         memorySetter={this.memorySetter}
+  //         addProcomSetter={this.addProcomSetter}
+  //         whichType={whichButtonsShouldIHave}
+  //         elected={this.state.proStyle}
+  //         conection={this.procomOptionsConection}
+  //         closeStuff={this.state.closeStuff}
+  //         setCloseStuff={this.setCloseStuff}/>
+  //     )
+  //   }
+  // }
 
-  // PROCOM ADD DISPATCHER
-  procomSetter(incoming){
-    let procoms = this.state.procoms;
-    let index = procoms.findIndex( procom => procom.id === incoming.id);
-    procoms[index] = incoming;
-    this.setState({procoms})
-  }
+  // // PROCOM ADD DISPATCHER
+  // procomSetter(incoming){
+  //   let procoms = this.state.procoms;
+  //   let index = procoms.findIndex( procom => procom.id === incoming.id);
+  //   procoms[index] = incoming;
+  //   this.setState({procoms})
+  // }
 
-  setProcom(value){ this.setState({procoms: value}) }
-  setMaxId(value){ this.setState({max_id: value}) }
-  setCloseStuff(value){ this.setState({closeStuff: value}) }
+  // setProcom(value){ this.setState({procoms: value}) }
+  // setMaxId(value){ this.setState({max_id: value}) }
+  // setCloseStuff(value){ this.setState({closeStuff: value}) }
 
-  saveProcomChanges(){
-    // console.log('saveProcomChanges')
-    let proId = this.props.proyectoId;
-    let pasId = this.props.paso.procom_link;
-    let procoms = this.state.procoms;
-    for (var i = 0; i < procoms.length; i++) {
-      if(procoms[i].novelty === true) {
-        const { pro_content, type_of_issue, pro_style, pro_order } = procoms[i]
-        const procom_max = this.state.max_id + 1;
-        // if el paso tiene id numerico
-        if(typeof procoms[i].id === 'number' && (procoms[i].id % 1) === 0) {
-          const procomId = procoms[i].id;
-          this.props.dispatch(editProcom(proId, pasId, procomId, pro_content, pro_style, pro_order, type_of_issue));
-        } else {
-          this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
-          const updatedProcoms = update(procoms, {[i]: {id: {$set: procom_max}, novelty: {$set: false}} })
-          this.setState({procoms: updatedProcoms, closeStuff: true});
-        }
-      }
-    }
-  }
+  // saveProcomChanges(){
+  //   // console.log('saveProcomChanges')
+  //   let proId = this.props.proyectoId;
+  //   let pasId = this.props.paso.procom_link;
+  //   let procoms = this.state.procoms;
+  //   for (var i = 0; i < procoms.length; i++) {
+  //     if(procoms[i].novelty === true) {
+  //       const { pro_content, type_of_issue, pro_style, pro_order } = procoms[i]
+  //       const procom_max = this.state.max_id + 1;
+  //       // if el paso tiene id numerico
+  //       if(typeof procoms[i].id === 'number' && (procoms[i].id % 1) === 0) {
+  //         const procomId = procoms[i].id;
+  //         this.props.dispatch(editProcom(proId, pasId, procomId, pro_content, pro_style, pro_order, type_of_issue));
+  //       } else {
+  //         this.props.dispatch(addProcom(proId, pasId, pro_content, pro_style, pro_order, type_of_issue));
+  //         const updatedProcoms = update(procoms, {[i]: {id: {$set: procom_max}, novelty: {$set: false}} })
+  //         this.setState({procoms: updatedProcoms, closeStuff: true});
+  //       }
+  //     }
+  //   }
+  // }
 
-  // DELETE PROCOMS
-  deleteProcomFunc(procomId, pasoId, proyectoId) {
-    let procoms = this.state.procoms;
-    if(typeof procomId === 'number' && (procomId % 1) === 0) {
-      this.props.dispatch(deleteProcom(procomId, pasoId, proyectoId));
-    }
-    let index = procoms.findIndex( procom => procom.id === procomId);
-    procoms = [...procoms.slice(0, index), ...procoms.slice(index + 1)]
-    this.setState({procoms})
-  }
+  // // DELETE PROCOMS
+  // deleteProcomFunc(procomId, pasoId, proyectoId) {
+  //   let procoms = this.state.procoms;
+  //   if(typeof procomId === 'number' && (procomId % 1) === 0) {
+  //     this.props.dispatch(deleteProcom(procomId, pasoId, proyectoId));
+  //   }
+  //   let index = procoms.findIndex( procom => procom.id === procomId);
+  //   procoms = [...procoms.slice(0, index), ...procoms.slice(index + 1)]
+  //   this.setState({procoms})
+  // }
 
   // PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!PASO_CRUDS!!!!
   // EDIT PASO
@@ -264,6 +265,15 @@ class Paso extends React.Component {
   onChange4Textarea(viewType){
     this.setState({showEditButtons: viewType});
   }
+  markdownDiv = () => {
+    let paso = this.props.paso;
+    let inlineStyle = {height: '2.4rem'};
+    if(this.state.showEditButtons){
+      <TextArea the_class='paso-content-text' the_content={paso.step} onChange4Textarea={this.onChange4Textarea} ref='text_area'/>
+    } else {
+      <div className='blabla paso-content-text'>{paso.step}</div>
+    }
+  }
 
   renderPasoContent(){
     let paso = this.props.paso;
@@ -274,7 +284,7 @@ class Paso extends React.Component {
         <div className={`paso-container ${paso.estilo}`}>
           {this.extraContent()}
           <div className="paso-content">
-            <TextArea the_class='paso-content-text' the_content={paso.step} onChange4Textarea={this.onChange4Textarea} ref='text_area'/>
+          <div className='blabla paso-content-text'><Markdown>{paso.step}</Markdown></div>
           </div>
           <PasoControl
             proyectoId={proyectoId}
@@ -286,10 +296,10 @@ class Paso extends React.Component {
             closeStuff={this.state.closeStuff}
             setCloseStuff={this.setCloseStuff}/>
         </div>
-        <div className="procoms-container">
+        {/* <div className="procoms-container">
           {this.displayProcoms()}
           {this.procomForm()}
-        </div>
+        </div> */}
         <div className={this.state.showEditButtons}>
           <PasoOptions
             whichType={whichButtonsShouldIHave}
@@ -308,4 +318,4 @@ const mapStateToProps = (state) => {
     maxProcomId: state.maxProcomId
  }
 }
-export default connect(mapStateToProps)(Paso);
+export default connect(mapStateToProps)(NewPaso);

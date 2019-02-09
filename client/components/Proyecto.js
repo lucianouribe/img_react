@@ -5,7 +5,7 @@ import { fetchProyectos, editProyecto, addPaso, editPaso, deletePaso } from '../
 import { addMemory } from '../actions/mymemory';
 import ProyectoEdit from './ProyectoEdit';
 import ProyectoShow from './ProyectoShow';
-import Paso from './Paso';
+import NewPaso from './NewPaso';
 import PasoOptions from './PasoOptions';
 import TempPicture from './TempPicture';
 
@@ -47,7 +47,7 @@ class Proyecto extends React.Component {
   }
 
   componentDidMount(){
-    $('select').material_select();
+    $('select').formSelect();
     this.tabFixer(document.getElementsByTagName('textarea'));
     // put in setState this: modalize: isMobile
     let pasos = this.props.proyecto.pasos
@@ -58,7 +58,7 @@ class Proyecto extends React.Component {
   }
 
   componentDidUpdate() {
-    $('select').material_select();
+    $('select').formSelect();
     this.setTextareaHeight($('textarea'));
     this.savePasosChanges();
     this.tabFixer(document.getElementsByTagName('textarea'));
@@ -281,7 +281,7 @@ class Proyecto extends React.Component {
           }
 
           return(
-            <Paso key={paso.id}
+            <NewPaso key={paso.id}
               paso={paso}
               proyectoId={proyecto.id}
               showProcom={doorStatus2}

@@ -14,14 +14,14 @@ import NoMatch from './components/NoMatch';
 import Panoramicos from './components/Panoramicos';
 import Proyectos from './components/Proyectos';
 
-const AdminAccess = UserAuthWrapper({
-  authSelector: state => state.user,
-  predicate: user => { return user.role === 'admin'},
-  redirectAction: () => browserHistory.push('/'),
-  wrapperDisplayName: 'UserlsAdmin'
-})
+// const AdminAccess = UserAuthWrapper({
+//   authSelector: state => state.user,
+//   predicate: user => { return user.role === 'admin'},
+//   redirectAction: () => browserHistory.push('/'),
+//   wrapperDisplayName: 'UserlsAdmin'
+// })
 
-const AdminRoutes = AdminAccess( (props) => props.children )
+// const AdminRoutes = AdminAccess( (props) => props.children )
 
 export default (
   <Route>
@@ -36,11 +36,11 @@ export default (
       <Route path="panos" component={Panoramicos} />
       <Route path="tuto" component={Proyectos} />
 
-      <Route component={AuthenticatedRoutes}>
-        <Route component={AdminRoutes}>
+      {/* <Route component={AuthenticatedRoutes}>
+        <Route component={AdminRoutes}> */}
           <Route path="/admin" component={Admin} />
-        </Route>
-      </Route>
+        {/* </Route>
+      </Route> */}
 
       <Route path="*" status={404} component={NoMatch}/>
 

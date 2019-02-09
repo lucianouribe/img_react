@@ -48,7 +48,7 @@ class Contact extends React.Component {
           <input type="email" required ref='email'  placeholder="email" />
           <textarea type="textarea" required ref='message'  placeholder="message" ></textarea>
           <button type="submit" className="btn btn-send">Send</button>
-          <Link type="button" className="btn btn-back" to='/main'>Back</Link>
+          <Link type="button" className="btn btn-back" to='/'>Back</Link>
         </form>
       </div>
     )

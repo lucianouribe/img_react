@@ -26,7 +26,7 @@ import Proyectos from './components/Proyectos';
 export default (
   <Route>
     <Route path="/" component={App} >
-      <IndexRoute component={Home} />
+      <IndexRoute component={Proyectos} />
       <Route path="home" component={Home} />
       <Route path="main" component={Main} />
       <Route path="navbar" component={Navbar} />

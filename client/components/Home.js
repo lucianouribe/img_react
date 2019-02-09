@@ -2,12 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import Navbar from './Navbar';
 import Carousel from './Carousel';
-import Panoramicos from './Panoramicos';
 import IdiomaSelector from './IdiomaSelector';
-
-import { setIdioma } from '../actions/idiomas';
 import { setQueVeo } from '../actions/queVeo';
 
 import Stuff from '../Stuff';
@@ -55,7 +51,7 @@ class Home extends Component {
           <div className="letreros valign">
             <h1 className="title">{Portada[info].titulo}</h1>
             <h3 className="title">{Portada[info].frasecita}</h3>
-            <Link className="ingresa" to='/main'>{Portada[info].botonIngreso}</Link>
+            <Link className="ingresa" to='/tuto'>{Portada[info].botonIngreso}</Link>
           </div>
         </div>
         <div className="grey-bar">
@@ -118,7 +114,7 @@ class Home extends Component {
           </div>
           <div className="third-stuff">
             <h4 className='last'>{Portada[info].ultimaSeccionUna}</h4>
-            <Link id="dos" className="ingresa" to='/main'>{Portada[info].botonIngreso}</Link>
+            <Link id="dos" className="ingresa" to='/tuto'>{Portada[info].botonIngreso}</Link>
           </div>
         </div>
         <div className="wine-bar"></div>

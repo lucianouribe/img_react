@@ -1,4 +1,3 @@
-@import 'materialize';
 @import 'font-awesome';
 @import 'carrusel';
 @import 'navbar';
@@ -17,7 +16,7 @@
 @import 'proyectos_face';
 @import 'proyectos_procom';
 @import 'proyectos_proyecto';
-@import 'proyectos_paso';
+@import 'pasos';
 @import 'proyectos_paso_option';
 @import 'proyectos';
 
@@ -31,6 +30,14 @@ body {
   // background-image: url(asset_path("background_02.png"));
   // background-repeat: repeat;
   // background-size: 4%;
+}
+html {
+  font-size: 10px;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0
 }
 .row {
   margin-bottom: 0 !important;

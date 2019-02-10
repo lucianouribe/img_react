@@ -47,7 +47,7 @@ class Proyecto extends React.Component {
   }
 
   componentDidMount(){
-    $('select').formSelect();
+    // $('select').formSelect();
     this.tabFixer(document.getElementsByTagName('textarea'));
     // put in setState this: modalize: isMobile
     let pasos = this.props.proyecto.pasos
@@ -58,7 +58,7 @@ class Proyecto extends React.Component {
   }
 
   componentDidUpdate() {
-    $('select').formSelect();
+    // $('select').formSelect();
     this.setTextareaHeight($('textarea'));
     this.savePasosChanges();
     this.tabFixer(document.getElementsByTagName('textarea'));

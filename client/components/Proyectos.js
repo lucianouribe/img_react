@@ -23,7 +23,7 @@ class Proyectos extends React.Component {
   }
 
   componentDidMount() {
-    $('select').formSelect();
+    // $('select').formSelect();
     let full = 'full'
     this.props.dispatch(fetchProyectos(full));
     this.props.dispatch(maxPasoId());

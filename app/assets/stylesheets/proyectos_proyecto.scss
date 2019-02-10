@@ -34,9 +34,9 @@
   @include flexbox();
   @include align-items(center);
   @include justify-content(space-between);
-  height: 1.5rem;
+  height: 1rem;
   padding: 1rem;
-  border-radius: 1rem;
+  border-radius: 2rem;
   border: 1px solid #7b7b7b;
   -webkit-box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3);
           box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.3);

@@ -6,13 +6,14 @@ import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import App from './containers/App';
 import Admin from './components/Admin';
-import Home from './components/Home';
+import HomeTwo from './components/HomeTwo';
 import Main from './components/Main';
 import Navbar from './components/Navbar';
 import Contact from './components/Contact';
 import NoMatch from './components/NoMatch';
 import Panoramicos from './components/Panoramicos';
 import Proyectos from './components/Proyectos';
+import Translator from './components/Translator';
 
 // const AdminAccess = UserAuthWrapper({
 //   authSelector: state => state.user,
@@ -26,15 +27,14 @@ import Proyectos from './components/Proyectos';
 export default (
   <Route>
     <Route path="/" component={App} >
-      <IndexRoute component={Proyectos} />
-      <Route path="home" component={Home} />
+      <IndexRoute component={HomeTwo} />
+      <Route path="home" component={HomeTwo} />
       <Route path="main" component={Main} />
-      <Route path="navbar" component={Navbar} />
-      <Route path="signup" component={SignUp} />
       <Route path="signin" component={SignIn} />
       <Route path="contact" component={Contact} />
       <Route path="panos" component={Panoramicos} />
-      <Route path="tuto" component={Proyectos} />
+      <Route path="tutorials" component={Proyectos} />
+      <Route path="transliterator" component={Translator} />
 
       {/* <Route component={AuthenticatedRoutes}>
         <Route component={AdminRoutes}> */}

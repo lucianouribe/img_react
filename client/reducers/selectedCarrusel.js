@@ -1,4 +1,4 @@
-const selectedCarrusel = ( state = 'intro', action ) => {
+const selectedCarrusel = ( state = 'products', action ) => {
 
   switch(action.type){
     case 'SELECTED_CARRUSEL':

@@ -29,8 +29,9 @@ class App extends React.Component {
       {id: 2, name: 'tutorials'},
       {id: 3, name: 'transliterator'},
       {id: 4, name: 'contact'},
-      {id: 5, name: 'about'},
+      // {id: 5, name: 'about'},
       {id: 6, name: 'signin'},
+      {id: 7, name: 'carrusels'},
     ]
     return (
       <div>

@@ -14,6 +14,7 @@ import NoMatch from './components/NoMatch';
 import Panoramicos from './components/Panoramicos';
 import Proyectos from './components/Proyectos';
 import Translator from './components/Translator';
+import Carrusels from './components/Carrusels';
 
 // const AdminAccess = UserAuthWrapper({
 //   authSelector: state => state.user,
@@ -35,6 +36,7 @@ export default (
       <Route path="panos" component={Panoramicos} />
       <Route path="tutorials" component={Proyectos} />
       <Route path="transliterator" component={Translator} />
+      <Route path="carrusels" component={Main} />
 
       {/* <Route component={AuthenticatedRoutes}>
         <Route component={AdminRoutes}> */}

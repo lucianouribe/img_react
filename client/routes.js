@@ -6,9 +6,8 @@ import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import App from './containers/App';
 import Admin from './components/Admin';
-import HomeTwo from './components/HomeTwo';
+import Home from './components/Home';
 import Main from './components/Main';
-import Navbar from './components/Navbar';
 import Contact from './components/Contact';
 import NoMatch from './components/NoMatch';
 import Panoramicos from './components/Panoramicos';
@@ -29,10 +28,11 @@ import Carrusels from './components/Carrusels';
 export default (
   <Route>
     <Route path="/" component={App} >
-      <IndexRoute component={HomeTwo} />
-      <Route path="home" component={HomeTwo} />
+      <IndexRoute component={Home} />
+      <Route path="home" component={Home} />
       <Route path="main" component={Main} />
       <Route path="signin" component={SignIn} />
+      <Route path="signup" component={SignUp} />
       <Route path="contact" component={Contact} />
       <Route path="panos" component={Panoramicos} />
       <Route path="tutorials" component={Proyectos} />

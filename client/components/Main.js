@@ -110,8 +110,6 @@ class Main extends Component {
     };
     return (
       <div style={divStyle} className='main-component'>
-        {/* <Navbar/> */}
-        {/* <Dashboard className="row" /> */}
         <div className="row">
           <div className="col s12 m10 l8 offset-l1 offset-m1">
             {this.mainRenderer()}

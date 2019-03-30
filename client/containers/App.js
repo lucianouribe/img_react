@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { refreshLogin } from '../actions/auth';
-import NavbarTwo from '../components/NavbarTwo';
+import Navbar from '../components/Navbar';
 
 
 class App extends React.Component {
@@ -36,7 +36,7 @@ class App extends React.Component {
     ]
     return (
       <div>
-        <NavbarTwo menuData={menuItems}/>
+        <Navbar menuData={menuItems}/>
         { this.props.children }
       </div>
     );

@@ -32,6 +32,7 @@ class App extends React.Component {
       // {id: 5, name: 'about'},
       {id: 6, name: 'signin'},
       {id: 7, name: 'carrusels'},
+      {id: 8, name: 'gramatica'},
     ]
     return (
       <div>

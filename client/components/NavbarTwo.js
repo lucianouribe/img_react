@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-
+import { logout } from '../actions/auth';
 
 class NavbarTwo extends React.Component {
 
@@ -9,6 +9,7 @@ class NavbarTwo extends React.Component {
     super(props);
 
     this.menuItems = this.menuItems.bind(this);
+    this.logout = this.logout.bind(this);
   }
 
   componentDidMount(){
@@ -70,11 +71,22 @@ class NavbarTwo extends React.Component {
     // });
   }
 
+  logout(e) {
+    e.preventDefault();
+    console.log('logout dispatcher');
+    console.log(this.props);
+    this.props.dispatch(logout(this.props.history));
+  }
+
   menuItems(){
-    let information = this.props.menuData
+    let information = this.props.menuData;
     if(information.length){
       return information.map( info => {
-        return(<Link to={`/${info.name}`} key={info.id}><span>{info.name}</span></Link>);
+        if ( info.name === 'signin' && this.props.user.role === 'admin' ) {
+          return(<Link onClick={this.logout} key={info.id}><span>logout</span></Link>)
+        } else {
+          return(<Link to={`/${info.name}`} key={info.id}><span>{info.name}</span></Link>);
+        }
       })
     } else {
       return(<div><span>menu | without | options!</span></div>);
@@ -98,7 +110,7 @@ class NavbarTwo extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-
+    user: state.user,
   }
 }
 

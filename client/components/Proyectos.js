@@ -20,6 +20,7 @@ class Proyectos extends React.Component {
 
     this.toggleDisplay = this.toggleDisplay.bind(this);
     this.displayChanger = this.displayChanger.bind(this);
+    this.displayAdd = this.displayAdd.bind(this);
   }
 
   componentDidMount() {
@@ -88,22 +89,22 @@ class Proyectos extends React.Component {
     }
   }
 
+  displayAdd(){
+    const allowed = this.props.user.role === 'admin'
+    if (allowed) {
+      return (
+    <span className='right' onClick={this.toggleDisplay}><i className="material-icons btn-icon large">add</i></span>)
+    }
+  }
+
   // THE REAL RENDER
   render(){
-    let modalizeStyle;
-    if(this.state.modalize) {
-      modalizeStyle = {
-        fontSize: '1.6rem',
-        color: 'red'
-      }
-    }
     return (
       <div className='descripciones-container'>
         <div className='admin-title'>
-        <i className="fa fa-arrows-alt modalize" style={modalizeStyle} aria-hidden="true" onClick={() => this.setState({modalize: !this.state.modalize})}></i>
-          <h1 className="proyectos-title">iTuto</h1>
+          <h1 className="proyectos-title">tuto360</h1>
           <ProyectosSearch />
-          <span className='right' onClick={this.toggleDisplay}><i className="material-icons btn-icon large">add</i></span>
+          {this.displayAdd()}
         </div>
         <div className='proyectos-section'>
           {this.displayChanger()}
@@ -116,7 +117,8 @@ class Proyectos extends React.Component {
 const mapStateToProps = (state) => {
   return {
     proyectos: state.proyectos,
-    mymemory: state.mymemory
+    mymemory: state.mymemory,
+    user: state.user
  }
 }
 

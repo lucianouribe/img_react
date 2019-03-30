@@ -1,34 +1,68 @@
 .translate {
-  padding: 10px 30px 30px 30px !important;
+  // padding: 10px 30px 30px 30px !important;
+  margin: 10px auto;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1280px;
 }
-
+.translate .admin-title {
+  flex: 0 0 100%;
+}
 .translate h5 {
   margin-bottom: 30px;
+}
+
+.translate .input-container,
+.translate .answer-container {
+  flex: 1 1 50%;
 }
 
 .translate .input {
   border: 1px solid #ccc;
   border-radius: 5px;
-  min-height: 100px;
+  min-height: 150px;
   padding: 15px;
   margin-bottom: 20px;
   margin-top: 20px;
+  width: 90%;
 }
 
 .translate .answer {
   padding: 15px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  min-height: 100px;
+  min-height: 150px;
   margin-top: 20px;
+  background: #fff;
+}
+.translate .answer p {
+  font-size: 16px;
+  font-family: 'Courier New', Courier, monospace;
+  color: #555;
+  margin: 0;
+}
+
+.translate button {
+  color: #555;
+}
+
+.translate .translate-buttons {
+  display: flex;
 }
 
 .clicked {
-  background-color: #9DD0FF !important;
+  color:#8e864b !important;
 }
 
 .translate .btn-name {
-  margin-top: 0 !important;
+  padding: 10px 20px;
+  font-size: 18px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.translate .btn-name:hover {
+  color: #8e864b;
 }
 
 .translate .btn-translate {

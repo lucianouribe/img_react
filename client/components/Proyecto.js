@@ -324,9 +324,9 @@ class Proyecto extends React.Component {
     }
     let containerStyle;
     if(this.state.showAdd){
-      containerStyle = { maxHeight: 'calc(100vh - 8rem)' }
+      containerStyle = { maxHeight: 'calc(100vh - 10rem)' }
     } else {
-      containerStyle = { maxHeight: 'calc(100vh - 5rem)' }
+      containerStyle = { maxHeight: 'calc(100vh - 10rem)' }
     }
 
     return (

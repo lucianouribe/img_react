@@ -148,21 +148,29 @@ class Translator extends React.Component {
     let latino = 'lat';
     return (
       <div className="card translate">
-        <form ref="translateForm" className="input-field">
-          <span className="center title"><h5>Cyrillic Transliterator</h5></span>
-          <div type="button" className="btn btn-lang lat1 esp clicked" onClick={() => this.language(espanol)}><p className="btn-name">español</p></div>
-          <div type="button" className="btn btn-lang eng lat1" onClick={() => this.language(english)}><p className="btn-name">english</p></div>
-          <div type="button" className="btn btn-lang deu lat1" onClick={() => this.language(deutsch)}><p className="btn-name">deutsch</p></div>
-          <div type="button" className="btn btn-lang rus cir1" onClick={() => this.language(ruso)}><p className="btn-name">ruso</p></div>
+        <div className="admin-title">
+          <h1>Cyrillic Transliterator</h1>
           <div type="button" className="btn btn-translate right" onClick={this.handleSubmit}><p className="btn-name">transliterate</p></div>
+        </div>
+        <form ref="translateForm" className="input-container">
+          <div className="translate-buttons">
+            <div type="button" className="lat1 esp clicked" onClick={() => this.language(espanol)}><p className="btn-name">es</p></div>
+            <div type="button" className="eng lat1" onClick={() => this.language(english)}><p className="btn-name">en</p></div>
+            <div type="button" className="deu lat1" onClick={() => this.language(deutsch)}><p className="btn-name">de</p></div>
+            <div type="button" className="rus cir1" onClick={() => this.language(ruso)}><p className="btn-name">ru</p></div>
+          </div>
           <textarea className="input" type="text" ref="translateMe" placeholder="Write something"></textarea>
-          <div type="button" className="btn btn-lang2 cir2 cir clicked" onClick={() => this.language2(cirilico)}><p className="btn-name">cirilico</p></div>
-          <div type="button" className="btn btn-lang2 lat2 esp" onClick={() => this.language2(espanol)}><p className="btn-name">español</p></div>
-          <div type="button" className="btn btn-lang2 lat2 eng" onClick={() => this.language2(english)}><p className="btn-name">english</p></div>
-          <div type="button" className="btn btn-lang2 lat2 deu" onClick={() => this.language2(deutsch)}><p className="btn-name">deutsch</p></div>
         </form>
+        <div className="answer-container">
+          <div className="translate-buttons">
+            <div type="button" className="cir2 cir clicked" onClick={() => this.language2(cirilico)}><p className="btn-name">ru</p></div>
+            <div type="button" className="lat2 esp" onClick={() => this.language2(espanol)}><p className="btn-name">es</p></div>
+            <div type="button" className="lat2 eng" onClick={() => this.language2(english)}><p className="btn-name">en</p></div>
+            <div type="button" className="lat2 deu" onClick={() => this.language2(deutsch)}><p className="btn-name">de</p></div>
+          </div>
         <div className="answer">
           {this.putPlease()}
+        </div>
         </div>
 
       </div>

@@ -1,0 +1,35 @@
+body
+  .home-part-1
+    display: flex
+    justify-content: center
+    align-items: center
+    height: 80vh
+    color: #555
+    span
+      font-size: 60px
+      display: flex
+      flex-wrap: wrap
+      cursor: default
+      div
+        min-width: 18px
+        -webkit-transition: transform 20s ease-in 0
+        transition: transform 20s ease-in 0
+      div:hover
+        color: red
+        -webkit-transform: translateY(-15px) scale(1.2) rotate(-10deg)
+        -o-transform: translateY(-15px) scale(1.2) rotate(-10deg)
+        transform: translateY(-15px) scale(1.2) rotate(-10deg)
+        &:nth-child(3n + 1)
+          color: blue
+        &:nth-child(4n + 1)
+          color: orange
+        &:nth-child(5n + 1)
+          color: green
+
+@media screen and (max-width: 800px)
+  body
+    .home-part-1
+      span
+        font-size: 40px
+        justify-content: center
+        line-height: 68px

@@ -14,6 +14,7 @@ import NoMatch from './components/NoMatch';
 import Panoramicos from './components/Panoramicos';
 import Proyectos from './components/Proyectos';
 import Translator from './components/Translator';
+import Grammar from './components/Grammar';
 import Carrusels from './components/Carrusels';
 
 // const AdminAccess = UserAuthWrapper({
@@ -37,6 +38,7 @@ export default (
       <Route path="tutorials" component={Proyectos} />
       <Route path="transliterator" component={Translator} />
       <Route path="carrusels" component={Main} />
+      <Route path="gramatica" component={Grammar} />
 
       {/* <Route component={AuthenticatedRoutes}>
         <Route component={AdminRoutes}> */}

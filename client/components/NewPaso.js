@@ -22,6 +22,8 @@ class NewPaso extends React.Component {
     this.submitEditPaso = this.submitEditPaso.bind(this);
     // BOTONES
     this.pasoOptionsConection = this.pasoOptionsConection.bind(this);
+    this.displayPasoControl = this.displayPasoControl.bind(this);
+    this.displayPasoOptions = this.displayPasoOptions.bind(this);
     // EDIT PASO
     this.onChange4Textarea = this.onChange4Textarea.bind(this);
     this.markdownDiv = this.markdownDiv.bind(this);
@@ -93,32 +95,45 @@ class NewPaso extends React.Component {
   markdownDiv(){
     let paso = this.props.paso;
     let show = 'show-buttons';
-    if(this.state.showEditButtons === 'show-buttons'){
+    if(this.state.showEditButtons === 'show-buttons' && this.props.user.role === 'admin'){
       return(<TextArea the_class='paso-content-text' the_content={paso.step} onChange4Textarea={this.onChange4Textarea} ref='text_area'/>)
     } else {
       return(<div className='paso-content-text' onClick={() => this.setState({showEditButtons: show})} ><Markdown>{paso.step}</Markdown></div>)
     }
   }
 
-  renderPasoContent(){  
+  displayPasoControl(){
     let paso = this.props.paso;
     let proyectoId = this.props.proyectoId;
+    if(this.props.user.role === 'admin'){
+      return (
+        <PasoControl
+        proyectoId={proyectoId}
+        pasoId={paso.id}
+        deletePasoFunc={this.props.deletePasoFunc}
+        closeStuff={this.state.closeStuff}
+        setCloseStuff={this.setCloseStuff}/>
+      )
+    }
+  }
+
+  displayPasoOptions(){
+    if(this.props.user.role === 'admin'){
+      return(<PasoOptions conection={this.pasoOptionsConection} />)
+    }
+  }
+
+  renderPasoContent(){  
     return(
       <div>
         <div className="paso-container">
           <div className="paso-content">
-            <PasoControl
-              proyectoId={proyectoId}
-              pasoId={paso.id}
-              deletePasoFunc={this.props.deletePasoFunc}
-              closeStuff={this.state.closeStuff}
-              setCloseStuff={this.setCloseStuff}/>
+            {this.displayPasoControl()}
             {this.markdownDiv()}
           </div>
         </div>
         <div className={this.state.showEditButtons}>
-          <PasoOptions
-            conection={this.pasoOptionsConection} />
+          {this.displayPasoOptions()}
         </div>
       </div>
     )
@@ -129,7 +144,8 @@ class NewPaso extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    maxProcomId: state.maxProcomId
+    maxProcomId: state.maxProcomId,
+    user: state.user
  }
 }
 export default connect(mapStateToProps)(NewPaso);

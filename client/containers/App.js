@@ -31,8 +31,8 @@ class App extends React.Component {
       {id: 4, name: 'contact'},
       // {id: 5, name: 'about'},
       {id: 6, name: 'signin'},
-      {id: 7, name: 'carrusels'},
-      {id: 8, name: 'gramatica'},
+      // {id: 7, name: 'carrusels'},
+      // {id: 8, name: 'gramatica'},
     ]
     return (
       <div>

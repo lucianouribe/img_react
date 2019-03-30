@@ -1,0 +1,126 @@
+@import 'mixins'
+
+.translate
+  margin: 10px auto
+  display: flex
+  flex-wrap: wrap
+  max-width: 1280px
+  overflow: hidden
+  .admin-title
+    flex: 0 0 100%
+  h5
+    margin-bottom: 30px
+  .input-container,
+  .answer-container
+    flex: 1 1 50%
+  .input
+    border: 1px solid #ccc
+    border-radius: 5px
+    min-height: 150px
+    padding: 15px
+    margin-bottom: 20px
+    margin-top: 20px
+    width: 90%
+  .answer
+    padding: 15px
+    border: 1px solid #ccc
+    border-radius: 5px
+    min-height: 150px
+    margin-top: 20px
+    background: #fff
+    p
+      font-size: 16px
+      font-family: 'Courier New', Courier, monospace
+      color: #555
+      margin: 0
+  button
+    color: #555
+  .translate-buttons
+    display: flex
+  .clicked
+    color: #8e864b!important
+  .btn-name
+    padding: 10px 20px
+    font-size: 18px
+    margin: 0
+    cursor: pointer
+  .btn-name:hover
+    color: #8e864b
+  .btn-translate
+    background-color: #723025
+  .morse-output
+    font-size: 2rem
+
+
+@media all and (min-width: 1100px) and (max-width: 1300px)
+  .translate
+    .btn
+      font-size: 12px!important
+      padding: auto 15px
+      margin: 5px
+  
+@media all and (min-width: 900px) and (max-width: 1099px)
+  .translate
+    .btn
+      font-size: 10px!important
+      padding: auto 1rem!important
+      margin: 2px!important
+  
+@media all and (max-width: 899px)
+  .translate
+    .input-container
+      flex: 0 0 100%
+    .btn
+      margin: 2px!important
+    .btn-name
+      visibility: hidden
+    .btn-lang, 
+    .btn-lang2, 
+    .btn-translate
+      padding: 0!important
+      background-repeat: no-repeat
+      background-position: center
+      width: 40px
+      height: 40px
+      background-size: 40px
+    .language
+      background-repeat: no-repeat
+      width: 25px
+      height: 25px
+      background-size: contain
+      margin-right: 10px
+    .esp
+      background-image: url(asset_path("esp.svg"))
+    .eng
+      background-image: url(asset_path("eng.svg"))
+    .deu
+      background-image: url(asset_path("deu.svg"))
+    .rus
+      background-image: url(asset_path("rus.svg"))
+    .cir
+      background-image: url(asset_path("cir.svg"))
+    .rom
+      background-image: url(asset_path("rom.svg"))
+    .mor
+      background-image: url(asset_path("mor.svg"))
+    .btn-translate
+      background-image: url(asset_path("go.svg"))
+    .esp:hover
+      background-image: url(asset_path("esp_o.svg"))
+    .eng:hover
+      background-image: url(asset_path("eng_o.svg"))
+    .deu:hover
+      background-image: url(asset_path("deu_o.svg"))
+    .cir:hover
+      background-image: url(asset_path("cir_o.svg"))
+    .rom:hover
+      background-image: url(asset_path("rom_o.svg"))
+    .mor:hover
+      background-image: url(asset_path("mor_o.svg"))
+    .btn-translate:hover
+      background-image: url(asset_path("go_o.svg"))
+    .input,
+    .answer
+      min-height: 90px
+  
+

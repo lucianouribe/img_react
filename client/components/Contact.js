@@ -42,13 +42,12 @@ class Contact extends React.Component {
 
   render() {
     return (
-      <div className="container">
+      <div className="contact-container">
         <form onSubmit={this.handleSubmit} ref="mailForm">
           <input type="text" required ref='name'  placeholder="name" />
           <input type="email" required ref='email'  placeholder="email" />
           <textarea type="textarea" required ref='message'  placeholder="message" ></textarea>
-          <button type="submit" className="btn btn-send">Send</button>
-          <Link type="button" className="btn btn-back" to='/main'>Back</Link>
+          <button type="submit" className="btn-send">Send</button>
         </form>
       </div>
     )

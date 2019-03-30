@@ -1,0 +1,279 @@
+@import "mixins"
+
+.paso-container
+  textarea
+// PASOS
+// paso en proyecto
+.proyecto-full 
+  .pasos-container 
+    margin: 8rem 15px 0 15px
+    max-height: 50vh
+    overflow-y: scroll
+    overflow-x: hidden
+    background: #fff
+    border-radius: 12px
+
+    .paso-container 
+      padding: 2rem
+      @include flexbox()
+      @include align-items(center)
+      @include justify-content(center)
+
+      .paso-content
+        width: 100%
+        max-height: calc(100vh - 9rem)
+        min-height: 3rem
+        font-size: 14px
+        textarea
+          font-family: 'Source Code Pro', monospace
+          width: 100%
+          height: calc(100vh - 20rem)!important
+          border: 1px solid blue
+          border-radius: 10px
+          // padding: 10px
+        .paso-control
+          // flex: 2 2 20%
+          @include flexbox()
+          @include justify-content(flex-end)
+          z-index: 300
+          position: relative
+          top: 5px
+          right: 5px
+          height: 0
+        .paso-content-text
+          // titulo
+          > *
+            font-family: 'Source Code Pro', monospace
+          h1
+            margin: 1rem 0
+            font-weight: 900
+            font-size: 20px
+            text-transform: uppercase
+            color: #8A4E2A
+            text-align: center
+          // subtitulo
+          h2
+            margin: 0.5rem 0
+            font-weight: 700
+            font-size: 16px
+            text-transform: uppercase
+            color: #8e864b
+          // go to
+            // with jquery get element, append an <i> element and add the arrow
+          blockquote
+            color: #4f3ad6
+            margin: 0
+          
+          p
+            padding: 0.5rem 0
+            display: flex
+            // terminal
+            code
+              background: rgba(138,78,42,0.2)
+              border: 1px solid #8A4E2A
+              border-radius: 0.6rem
+              font-size: 12px
+              color: red
+              padding: 8px
+            // links
+            a
+              background: rgba(4,87,166,0.3)
+              border: 1px solid #0457A6
+              border-radius: 0.6rem
+              font-size: 12px
+              padding: 8px
+              color: #0457A6
+              font-weight: 600
+              text-decoration: none
+            // images
+            img
+              border: 1px dashed #723025
+              border-radius: 1rem
+              max-width: 100%
+              max-height: 300px
+          // code block
+          pre
+            background: rgba(138,78,42,0.2)
+            border: 1px solid #8A4E2A
+            border-radius: 0.6rem
+            font-size: 12px
+            padding: 8px
+          // tables
+          // procoms
+          table 
+            border: 1px solid #1C6EA4
+            background-color: #EEEEEE
+            width: 100%
+            text-align: left
+            border-collapse: collapse
+          
+          table td, table th 
+            border: 1px solid #AAAAAA
+            padding: 3px 2px
+          
+          table tbody td 
+            font-size: 13px
+          
+          table tr:nth-child(even) 
+            background: #D0E4F5
+          
+          table thead 
+            background: #1C6EA4
+            background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%)
+            background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%)
+            background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%)
+            border-bottom: 2px solid #444444
+          
+          table thead th 
+            font-size: 15px
+            font-weight: bold
+            color: #FFFFFF
+            border-left: 2px solid #D0E4F5
+          
+          table thead th:first-child 
+            border-left: none
+          
+          table tfoot 
+            font-size: 14px
+            font-weight: bold
+            color: #FFFFFF
+            background: #D0E4F5
+            background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%)
+            background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%)
+            background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%)
+            border-top: 2px solid #444444
+          
+          table tfoot td 
+            font-size: 14px
+          
+          table tfoot .links 
+            text-align: right
+          
+          table tfoot .links a
+            display: inline-block
+            background: #1C6EA4
+            color: #FFFFFF
+            padding: 2px 8px
+            border-radius: 5px
+          
+// ADD PASO IN PROYECTO
+.paso-container-form 
+  z-index: 2000
+  width: 100%
+  min-width: 320px
+  max-height: 90vh
+  padding: 0.3rem 2rem
+  
+
+.paso-container-form 
+  @include flexbox()
+  @include flex-direction(column)
+
+.paso-container-form .paso-content-text
+  padding: 0.5rem
+  margin-top: 0
+  border-radius: 8px
+  max-height: calc(50vh - 3rem)
+  overflow-y: scroll
+
+
+
+
+// second form
+.paso-second-form 
+  background: rgba(255,255,255,1)
+  @include flexbox()
+
+.paso-second-cont 
+  @include flex(6 6 60%)
+  display: block
+
+.paso-second-step 
+  width: 100% !important
+  border-top: 1px dashed #ff6d00 !important
+  border-bottom: none !important
+  margin: 0 !important
+  min-height: 7rem !important
+
+.paso-second-cont [type=file] 
+  width: 100%
+  background: #ff6d00
+  color: #fff
+  padding: 0.5rem
+  height: 3rem
+
+.paso-second-form .image-preview 
+  width: 10rem
+  height: 10rem
+  @include flexbox()
+  @include align-items(center)
+  @include justify-content(center)
+  border: 1px dashed #ff6d00
+
+.image-preview div 
+  height: 100%
+
+.paso-second-image-cont .paso-second-image 
+  width: 100%
+  height: 100%
+
+
+
+@media all and (max-width: 800px) 
+  .paso-container-form .paso-content-text
+    max-height: calc(70vh - 3rem)
+  
+  .pasos-container 
+    margin: 0 0.3rem
+    border: none
+  
+  .paso-container-form 
+    padding: 0.5rem 2rem
+  
+  .proyecto-unidad 
+    margin: 0.1rem
+  
+  .titulo-nombre h4 
+    font-size: 2rem
+  
+
+
+
+// 
+// // paso type video
+// .link-video 
+//   @include flex-direction(column)
+//   -ms-flex-wrap: wrap !important
+//       flex-wrap: wrap !important
+// 
+// .video-link 
+//   @include flex(1 1 100%)
+// 
+// .link-video .paso-content-text 
+//   text-align: center
+//   height: 1.5rem !important
+//   color: #0457A6
+// 
+// .link-video .botones-container 
+//   width: 150px
+// 
+// // paso type image
+// .link-image, .download 
+//   @include flex-direction(column)
+// 
+// .image-link 
+//   // width: 80%
+//   height: 30rem
+//   border: 1px solid #723025
+//   border-radius: 1rem
+// 
+// .link-image .paso-content, .download .paso-content 
+//   width: 70%
+// 
+// .link-image .paso-content-text, .download .paso-content-text 
+//   height: 1.5rem !important
+//   color: #723025
+// 
+// .link-image .botones-container, .download .botones-container
+//   width: 150px
+// 

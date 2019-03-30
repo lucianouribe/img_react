@@ -21,7 +21,6 @@ class PasoControl extends React.Component {
   }
 
   setShow(){
-    this.props.addProcomSetter();
     this.setState({ buttonPressed: !this.state.buttonPressed })
   }
 
@@ -33,29 +32,29 @@ class PasoControl extends React.Component {
   }
 
   utilitiesOptions(){
-    const comments = this.props.procoms.some( comme => comme.type_of_issue === 'comment' );
-    const problems = this.props.procoms.some( proble => proble.type_of_issue === 'problem' );
-    const comment = 'comment';
-    const problem = 'problem';
-    let showComment;
-    let showProblem;
-    if(comments) { showComment = { display: 'block'} }
-    if(problems) { showProblem = { display: 'block'} }
+    // const comments = this.props.procoms.some( comme => comme.type_of_issue === 'comment' );
+    // const problems = this.props.procoms.some( proble => proble.type_of_issue === 'problem' );
+    // const comment = 'comment';
+    // const problem = 'problem';
+    // let showComment;
+    // let showProblem;
+    // if(comments) { showComment = { display: 'block'} }
+    // if(problems) { showProblem = { display: 'block'} }
 
-    if(this.state.buttonPressed === true){
+    // if(this.state.buttonPressed === true){
       return(
         <span className='procom-status'>
           <i className="fa fa-trash btn-icon beware-btn" aria-hidden="true" onClick={() => this.setDelete()}></i>
         </span>
       )
-    } else {
-      return(
-        <span className='procom-status'>
-          <i className="fa fa-comments btn-icon comment-btn" aria-hidden="true" style={showComment} onClick={() => this.props.showProcomsFu(comment)}></i>
-          <i className="fa fa-exclamation-triangle btn-icon problem-btn" aria-hidden="true" style={showProblem} onClick={() => this.props.showProcomsFu(problem)}></i>
-        </span>
-      )
-    }
+    // } else {
+    //   return(
+    //     <span className='procom-status'>
+    //       <i className="fa fa-comments btn-icon comment-btn" aria-hidden="true" style={showComment} onClick={() => this.props.showProcomsFu(comment)}></i>
+    //       <i className="fa fa-exclamation-triangle btn-icon problem-btn" aria-hidden="true" style={showProblem} onClick={() => this.props.showProcomsFu(problem)}></i>
+    //     </span>
+    //   )
+    // }
   }
 
   controlOptions(){
@@ -70,7 +69,7 @@ class PasoControl extends React.Component {
     return (
       <div className="paso-control">
         {this.utilitiesOptions()}
-        <span className="mini-botones"onClick={() => this.setShow()}>
+        <span className="mini-botones" onClick={() => this.setShow()}>
           {this.controlOptions()}
         </span>
       </div>

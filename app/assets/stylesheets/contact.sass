@@ -1,0 +1,35 @@
+@import 'mixins'
+
+body
+  .contact-container 
+    margin-top: 5rem
+    form
+      @include flexbox()
+      @include flex-direction(column)
+      max-width: 768px
+      margin: 0 auto
+      input,
+      textarea
+        border: #fff
+        border-radius: 5px
+        margin-bottom: 30px
+        box-shadow: none
+        padding-left: 20px
+      input
+        height: 40px
+      textarea
+        height: 150px
+        padding-top: 20px
+      input::placeholder,
+      textarea::placeholder
+        margin-left: 20px
+      .btn-send
+        background: #723025
+        font-family: Courier New, Courier, monospace
+        color: #ffffff
+        padding: 10px 20px 
+        border: none
+        border-radius: 8px
+        font-size: 18px
+        width: 100px
+        align-self: end

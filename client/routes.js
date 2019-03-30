@@ -8,20 +8,22 @@ import App from './containers/App';
 import Admin from './components/Admin';
 import Home from './components/Home';
 import Main from './components/Main';
-import Navbar from './components/Navbar';
 import Contact from './components/Contact';
 import NoMatch from './components/NoMatch';
 import Panoramicos from './components/Panoramicos';
 import Proyectos from './components/Proyectos';
+import Translator from './components/Translator';
+import Grammar from './components/Grammar';
+import Carrusels from './components/Carrusels';
 
-const AdminAccess = UserAuthWrapper({
-  authSelector: state => state.user,
-  predicate: user => { return user.role === 'admin'},
-  redirectAction: () => browserHistory.push('/'),
-  wrapperDisplayName: 'UserlsAdmin'
-})
+// const AdminAccess = UserAuthWrapper({
+//   authSelector: state => state.user,
+//   predicate: user => { return user.role === 'admin'},
+//   redirectAction: () => browserHistory.push('/'),
+//   wrapperDisplayName: 'UserlsAdmin'
+// })
 
-const AdminRoutes = AdminAccess( (props) => props.children )
+// const AdminRoutes = AdminAccess( (props) => props.children )
 
 export default (
   <Route>
@@ -29,18 +31,20 @@ export default (
       <IndexRoute component={Home} />
       <Route path="home" component={Home} />
       <Route path="main" component={Main} />
-      <Route path="navbar" component={Navbar} />
-      <Route path="signup" component={SignUp} />
       <Route path="signin" component={SignIn} />
+      <Route path="signup" component={SignUp} />
       <Route path="contact" component={Contact} />
       <Route path="panos" component={Panoramicos} />
-      <Route path="tuto" component={Proyectos} />
+      <Route path="tutorials" component={Proyectos} />
+      <Route path="transliterator" component={Translator} />
+      <Route path="carrusels" component={Main} />
+      <Route path="gramatica" component={Grammar} />
 
-      <Route component={AuthenticatedRoutes}>
-        <Route component={AdminRoutes}>
+      {/* <Route component={AuthenticatedRoutes}>
+        <Route component={AdminRoutes}> */}
           <Route path="/admin" component={Admin} />
-        </Route>
-      </Route>
+        {/* </Route>
+      </Route> */}
 
       <Route path="*" status={404} component={NoMatch}/>
 

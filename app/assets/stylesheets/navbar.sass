@@ -1,0 +1,46 @@
+@import 'mixins'
+
+body
+  nav
+    max-width: 600px
+    color: #555555
+    .main-nav
+      display: flex
+      flex-wrap: wrap
+      font-size: 20px
+      font-family: courier
+      padding: 12px
+      justify-content: center
+      align-items: center
+      background: #ffffff
+      border-radius: 8px
+      margin: 12px 20px
+      .prev-next
+        font-weight: 900
+      .nav-bar-main
+        display: flex
+        padding: 6px 12px
+        box-shadow: inset 0 0 3px rgba(0,0,0,0.3)
+        flex: 8 8 84%
+        margin: 0 12px
+        overflow-y: hidden
+        overflow-x: scroll
+        span
+          padding: 0 12px
+          border-right: 2px solid #555555
+          cursor: grab
+        a
+          text-decoration: none
+        a:active
+          color: #8E864B
+        a:visited, a:link
+          color: #555555
+      .nav-bar-main::-webkit-scrollbar
+        display: none
+
+@media all and (max-width: 460px)
+  body
+    nav
+      .main-nav
+        .nav-bar-main
+          flex: 8 8 70%

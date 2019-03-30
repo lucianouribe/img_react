@@ -5,7 +5,7 @@ import { fetchProyectos, editProyecto, addPaso, editPaso, deletePaso } from '../
 import { addMemory } from '../actions/mymemory';
 import ProyectoEdit from './ProyectoEdit';
 import ProyectoShow from './ProyectoShow';
-import NewPaso from './NewPaso';
+import Paso from './Paso';
 import PasoOptions from './PasoOptions';
 import TempPicture from './TempPicture';
 
@@ -281,7 +281,7 @@ class Proyecto extends React.Component {
           }
 
           return(
-            <NewPaso key={paso.id}
+            <Paso key={paso.id}
               paso={paso}
               proyectoId={proyecto.id}
               showProcom={doorStatus2}

@@ -25,6 +25,7 @@ body
         margin: 0 12px
         overflow-y: hidden
         overflow-x: scroll
+        overflow-x: -moz-hidden-unscrollable
         span
           padding: 0 12px
           border-right: 2px solid #555555
@@ -35,7 +36,7 @@ body
           color: #8E864B
         a:visited, a:link
           color: #555555
-      .nav-bar-main::-webkit-scrollbar
+      ::-webkit-scrollbar
         display: none
 
 @media all and (max-width: 460px)

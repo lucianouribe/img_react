@@ -15,6 +15,7 @@
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= render partial: 'layouts/google_tag_head.js' %>
     <%= javascript_include_tag 'application' %>
     <% if Rails.env.development? %>
       <script src="http://localhost:3808/webpack-dev-server.js"></script>
@@ -22,6 +23,7 @@
   </head>
 
   <body>
+    <%= render partial: 'layouts/google_tag_body.js' %>
     <%= yield %>
     <%= javascript_include_tag *webpack_asset_paths('application') %>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

@@ -2,9 +2,12 @@ class Api::ProyectosController < ApplicationController
   before_action :set_api_proyecto, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token
 
-
   def index
-    @api_proyectos = Proyecto.order_by_id.all
+    if current_user.role == 'admin'
+      @api_proyectos = Proyecto.order_by_id.all
+    else
+      @api_proyectos = Proyecto.order_by_id.find_by_sql("select * from proyectos where subtopic != 'collumino'")
+    end
   end
 
   def show

@@ -332,7 +332,7 @@ class Proyecto extends React.Component {
     return (
       <div className={proyectoFull}>
         {this.individualProject()}
-        <div className="pasos-container" style={containerStyle}>
+        <div className="pasos-container">
           {this.pasosDisplay()}
           {this.addPasoForm()}
         </div>

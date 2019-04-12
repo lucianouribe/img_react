@@ -14,7 +14,11 @@ body
       align-items: center
       background: #ffffff
       border-radius: 8px
-      margin: 12px 20px
+      position: fixed
+      left: calc(20px + 2rem)
+      right: 20px
+      top: 20px
+      max-width: 650px
       .prev-next
         font-weight: 900
       .nav-bar-main
@@ -38,6 +42,11 @@ body
       ::-webkit-scrollbar
         display: none
 
+@media all and (max-width: 800px)
+  body
+    nav
+      .main-nav
+        left: 20px
 @media all and (max-width: 460px)
   body
     nav

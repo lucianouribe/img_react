@@ -70,18 +70,19 @@ class SignUp extends React.Component {
 
   render() {
     return(
-      <div className="container">
-        <h2 className='center'>Sign Up</h2>
+      <div className="sign-in-up super-container">
         <form onSubmit={this.handleSubmit}>
+          <h2 className='center'>Sign Up</h2>
           <input placeholder="first_name" ref="first_name" required={true} />
           <input placeholder="last_name" ref="last_name" required={true} />
-          <input type='email' placeholder="email" ref="email" required={true} />
+          <input className='email' type='email' placeholder="email" ref="email" required={true} />
           <div className='btn-code' onClick={this.roleDefinition}>code</div>
           {this.showPassInput()}
           <input type='password' placeholder="password" ref="password" required={true} />
           <input type='password' placeholder="password_confirmation" ref="password_confirmation" required={true} />
-          <button className='btn'>Sign Up</button>
-          <div className='btn'><Link className="link" to='/'>Home</Link></div>
+          <div className="btns">
+            <button className='btn-send'>Sign Up</button>
+          </div>
         </form>
       </div>
     );

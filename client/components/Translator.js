@@ -150,7 +150,7 @@ class Translator extends React.Component {
     let latino = 'lat';
     const title = Locale[`${this.props.idiomas}`].cyrillic_transliterator;
     return (
-      <div className="card translate">
+      <div className="card translate super-container">
         <div className="admin-title">
           <h1>{title}</h1>
           <div type="button" className="btn btn-translate right" onClick={this.handleSubmit}><p className="btn-name">transliterate</p></div>

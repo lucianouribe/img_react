@@ -100,7 +100,7 @@ class Proyectos extends React.Component {
   // THE REAL RENDER
   render(){
     return (
-      <div className='descripciones-container'>
+      <div className='descripciones-container super-container'>
         <div className='admin-title'>
           <h1 className="proyectos-title">tuto360</h1>
           <ProyectosSearch />

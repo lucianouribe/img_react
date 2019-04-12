@@ -1,8 +1,9 @@
 @import 'mixins'
 
 body
-  .contact-container 
-    margin-top: 5rem
+  .sign-in-up,
+  .contact-container
+    padding-top: 30px
     form
       @include flexbox()
       @include flex-direction(column)
@@ -31,5 +32,25 @@ body
         border: none
         border-radius: 8px
         font-size: 18px
-        width: 100px
         align-self: end
+      .btn-code
+        margin: 8px
+        max-width: 56px
+        background-color: #fff
+        color: #723025
+        font-weight: 300
+        padding: 5px 10px
+        border-radius: 4px
+        border: 1px solid #723025
+        font-size: 14px
+        text-align: center
+      .btns
+        @include flexbox()
+        @include flex-direction(row-reverse)
+        @include justify-content(space-between)
+        .btn-sign
+          font-size: 14px
+          color: #723025
+          text-decoration: none
+      .email
+        margin-bottom: 0

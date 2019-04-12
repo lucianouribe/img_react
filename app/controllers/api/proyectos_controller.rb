@@ -3,8 +3,12 @@ class Api::ProyectosController < ApplicationController
   skip_before_action :verify_authenticity_token
 
   def index
-    if current_user.role == 'admin'
-      @api_proyectos = Proyecto.order_by_id.all
+    if current_user
+      if current_user.role == 'admin'
+        @api_proyectos = Proyecto.order_by_id.all
+      else current_user
+        @api_proyectos = Proyecto.order_by_id.find_by_sql("select * from proyectos where subtopic != 'collumino'")
+      end
     else
       @api_proyectos = Proyecto.order_by_id.find_by_sql("select * from proyectos where subtopic != 'collumino'")
     end

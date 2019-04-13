@@ -71,6 +71,9 @@ class SignUp extends React.Component {
   render() {
     return(
       <div className="sign-in-up super-container">
+        <div className="admin-title">
+          <h1>register</h1>
+        </div>
         <form onSubmit={this.handleSubmit}>
           <h2 className='center'>Sign Up</h2>
           <input placeholder="first_name" ref="first_name" required={true} />

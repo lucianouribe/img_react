@@ -43,6 +43,9 @@ class Contact extends React.Component {
   render() {
     return (
       <div className="contact-container super-container">
+        <div className="admin-title">
+          <h1>contact</h1>
+        </div>
         <form onSubmit={this.handleSubmit} ref="mailForm">
           <input type="text" required ref='name'  placeholder="name" />
           <input type="email" required ref='email'  placeholder="email" />

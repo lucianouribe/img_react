@@ -1,0 +1,86 @@
+@import 'mixins'
+
+body
+  .admin-title
+    @include flexbox()
+    @include justify-content(space-around)
+    @include align-items(center)
+    h1
+      font-size: 2.5rem
+      @include flex(7 7 70%)
+      color: #8E864B
+      margin: 0
+      margin-bottom: 16px
+    .add-btn
+      @include flex(3 3 30%)
+      margin: 2rem 1rem
+      margin-left: 3rem
+    .search-input
+      height: 34px
+      margin: 2rem 1rem
+      @include flex(10 10 100%)
+      border: 1px solid #ccc
+      border-radius: 1rem
+      -webkit-box-shadow: inset 3px 3px 3px rgba(0,0,0,0.3)
+              box-shadow: inset 3px 3px 3px rgba(0,0,0,0.3)
+      background: rgba(255,255,255,0.7)
+      padding-left: 1rem
+
+  .description-cards
+    height: calc(100vh - 16rem)
+    overflow-y: scroll
+    border-bottom: 3px solid rgba(0,0,0,0.3)
+
+
+  // tarjeta
+  .tarjeta
+    margin-bottom: 2rem
+    background: rgba(255,255,255,0.8)
+    border: 2px solid #ccc
+    border-radius: 1rem
+
+
+  .form-edit textarea
+    height: 6rem
+
+
+  .tarjeta-content
+    @include flexbox()
+    @include flex-wrap(wrap)
+    @include justify-content(space-between)
+    padding: 1rem
+    h3
+      margin: 0
+      @include flex(7 7 70%)
+      font-size: 1.5rem
+    h6
+      margin: 0
+      @include flex(2 2 15%)
+      font-size: 1rem
+      @include flexbox()
+      @include justify-content(center)
+      @include align-items(center)
+    .campo
+      font-weight: 400
+
+    .descripcion-contenido
+      margin: 0
+      margin-top: 1rem
+      @include flex(10 10 100%)
+      width: 100%
+
+  .tarjeta-action
+    @include flexbox()
+    @include align-items(center)
+    height: 3rem
+    padding: 5px 20px
+    background: rgba(0,0,0,0.2)
+    border-bottom-right-radius: calc(1rem - 2px)
+    border-bottom-left-radius: calc(1rem - 2px)
+    i
+      margin-right: 10px
+
+  // form edit
+  .form-edit .tarjeta-content
+    @include flex-direction(column)
+

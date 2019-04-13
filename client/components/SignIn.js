@@ -36,8 +36,10 @@ class SignIn extends React.Component {
   render() {
     return(
       <div className="super-container sign-in-up">
+        <div className="admin-title">
+          <h1>login</h1>
+        </div>
         <form className="container" onSubmit={this.handleSubmit}>
-          <h2 className="center">Sign In</h2>
           <input type="email" required={true} ref="email" placeholder="email" />
           <input type="password" required={true} ref="password" placeholder="password" />
           <div className="btns">

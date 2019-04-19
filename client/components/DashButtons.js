@@ -18,15 +18,15 @@ class DashButtons extends Component {
   }
 
   componentDidMount() {
-    $('.collapsible').collapsible();
+    // $('.collapsible').collapsible();
     $('.side-but').on('click', function() {
-      $('.button-collapse').sidenav('hide');
+      // $('.button-collapse').sidenav('hide');
     });
   }
 
   componentDidUpdate() {
     $('.side-but').on('click', function() {
-      $('.button-collapse').sidenav('hide');
+      // $('.button-collapse').sidenav('hide');
     });
   }
 
@@ -108,10 +108,10 @@ class DashButtons extends Component {
     const fotosMuelles = 'fotosMuelles';
     const fotosCuadrados = 'fotosCuadrados';
 
-    const translate = 'translate';
-    const morse = 'morse';
-    const calculator = 'calculator';
-    const equilibrio = 'equilibrio';
+    // const translate = 'translate';
+    // const morse = 'morse';
+    // const calculator = 'calculator';
+    // const equilibrio = 'equilibrio';
 
     return(
       <div className="dash-buttons">
@@ -145,18 +145,19 @@ class DashButtons extends Component {
             <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosMuelles)}><a>{Portada[info].muelles}</a></div>
             <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosCuadrados)}><a>{Portada[info].cuadrados}</a></div>
           </li>
-          <li>
-            <div className="collapsible-header"><i className="programming_icon"></i>{Portada[info].programacion}</div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, translate)}><a>{Portada[info].cirilico}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, morse)}><a>{Portada[info].morse}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, calculator)}><a>{Portada[info].calculadora}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, equilibrio)}><a>{Portada[info].equilibrio}</a></div>
-          </li>
+
         </ul>
       </div>
     )
   }
 }
+// <li>
+// <div className="collapsible-header"><i className="programming_icon"></i>{Portada[info].programacion}</div>
+// <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, translate)}><a>{Portada[info].cirilico}</a></div>
+// <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, morse)}><a>{Portada[info].morse}</a></div>
+// <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, calculator)}><a>{Portada[info].calculadora}</a></div>
+// <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, equilibrio)}><a>{Portada[info].equilibrio}</a></div>
+// </li>
 // <li>
 //   <div className="collapsible-header"><i className="material-icons">whatshot</i>Libros</div>
 //   <div className="collapsible-body"><a>Bitacora del Motoneto</a></div>

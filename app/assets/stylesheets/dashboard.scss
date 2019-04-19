@@ -8,11 +8,14 @@
     display: none !important;
   }
 }
-
+.main-component {
+  margin-top: 100px;
+}
 // botones dashboard
 .collapsible {
-  margin-top: 0;
+  margin-top: 100;
   border: none;
+  display: flex;
 }
 
 //botones principales (los que tienen iconos)
@@ -36,6 +39,7 @@
   border: 1px solid #fff;
   border-radius: 3px;
   background: rgba(0, 0, 0, 0.3);
+  width: 80px;
 
 }
 .collapsible-body a {

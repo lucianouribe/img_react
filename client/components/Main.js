@@ -32,11 +32,11 @@ class Main extends Component {
   // Main renderer card selector
   mainRenderer(){
     switch (this.props.selectedCarrusel) {
-      case 'intro':
-        return (
-          <Introduction />
-        );
-        break;
+      // case 'intro':
+      //   return (
+      //     <Introduction />
+      //   );
+      //   break;
       case "panodigital":
       case "panofotografia":
       case "panoradar":
@@ -62,59 +62,56 @@ class Main extends Component {
           <Carrusels />
         );
         break;
-      case "translate":
-        return (
-          <Translator />
-        );
-        break;
-      case "morse":
-        return (
-          <Morse />
-        );
-        break;
-      case "calculator":
-        return (
-          <Calculator />
-        );
-        break;
-      case "equilibrio":
-        return (
-          <Equilibrio />
-        );
-        break;
-      case "contact":
-        return (
-          <Contact />
-        );
-        break;
-      default:
-        return (
-          <Translator />
-        );
-        break;
+      // case "translate":
+      //   return (
+      //     <Translator />
+      //   );
+      //   break;
+      // case "morse":
+      //   return (
+      //     <Morse />
+      //   );
+      //   break;
+      // case "calculator":
+      //   return (
+      //     <Calculator />
+      //   );
+      //   break;
+      // case "equilibrio":
+      //   return (
+      //     <Equilibrio />
+      //   );
+      //   break;
+      // case "contact":
+      //   return (
+      //     <Contact />
+      //   );
+      //   break;
+      // default:
+      //   return (
+      //     <Translator />
+      //   );
+      //   break;
     }
   }
 
 
 
   render() {
-    let imgUrl = "assets/background_02.png"
+    // let imgUrl = "assets/background_02.png"
     const divStyle = {
-      backgroundColor: this.props.colorset,
-      backgroundImage: 'url(' + imgUrl + ')',
-      backgroundRepeat: 'repeat',
-      backgroundSize: '60px',
-      height: '100vh',
-      WebkitTransition: 'all',
-      msTransition: 'all'
+    //   backgroundColor: this.props.colorset,
+    //   backgroundImage: 'url(' + imgUrl + ')',
+    //   backgroundRepeat: 'repeat',
+    //   backgroundSize: '60px',
+    //   height: '100vh',
+    //   WebkitTransition: 'all',
+    //   msTransition: 'all'
     };
     return (
       <div style={divStyle} className='main-component'>
-        <div className="row">
-          <div className="col s12 m10 l8 offset-l1 offset-m1">
-            {this.mainRenderer()}
-          </div>
-        </div>
+        <DashButtons />
+        {this.mainRenderer()}
       </div>
     )
   }

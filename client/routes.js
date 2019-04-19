@@ -30,7 +30,6 @@ export default (
     <Route path="/" component={App} >
       <IndexRoute component={Home} />
       <Route path="home" component={Home} />
-      <Route path="main" component={Main} />
       <Route path="signin" component={SignIn} />
       <Route path="signup" component={SignUp} />
       <Route path="contact" component={Contact} />

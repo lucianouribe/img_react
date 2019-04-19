@@ -7,7 +7,6 @@ import CarruselsDescription from './CarruselsDescription';
 import { deleteCarrusel } from '../actions/carrusels';
 import { setIdioma } from '../actions/idiomas';
 import { reseter } from '../actions/reseter';
-
 import { createMarkup } from '../helpers';
 
 
@@ -75,7 +74,7 @@ class Carrusels extends Component {
     const add = 'add';
     const edit = 'edit';
     const errase = 'errase';
-    if(this.props.user.role == 'admin' && this.props.queVeo == 'admin') {
+    // if(this.props.user.role == 'admin' && this.props.queVeo == 'admin') {
       return(
         <div>
           <i type="button" onClick={() => this.menuButtonsMagic(add)} className="pic-options small material-icons">add</i>
@@ -83,7 +82,7 @@ class Carrusels extends Component {
           <i type="button" onClick={() => this.menuButtonsMagic(errase)} className="pic-options small material-icons">delete</i>
         </div>
       )
-    }
+    // }
   }
 
 
@@ -162,7 +161,7 @@ class Carrusels extends Component {
     }
     if(this.state.frontState === 'show') {
       return(
-        <div className="card">
+        <div className="carrusel-slider">
           <div>
             <div id="detalles" className="carousel carruholder center">
               <div className="prev detalles valign-wrapper" onClick={this.togglePrev}></div>
@@ -189,7 +188,7 @@ class Carrusels extends Component {
 
   render() {
     if(this.state.show) {
-      return(<div className='card'>{this.front()}</div>);
+      return(this.front());
     } else {
       return(<CarruselsDescription show={this.toggleCard} selectedCarrusel={this.props.selectedCarrusel}/>);
     }

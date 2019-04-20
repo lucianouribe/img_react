@@ -59,15 +59,14 @@ class Trisixti extends React.Component {
     }
     return(
       <div>
-        <div className="card">
-          <div className="card-image waves-effect waves-block waves-light">
-              <div id="detalles" className="frame">
-                <iframe src={actualPic.image} seamless></iframe>
-              </div>
-            <div className="letter"></div>
+        <div className="">
+          <div className="carrusel-header">
+            <h5>{actualPic.name}</h5>
+          </div>
+          <div id="detalles" className="frame">
+            <iframe src={actualPic.image} seamless></iframe>
           </div>
           <div className="card-info">
-            <h5 className="card-title left">{actualPic.name}</h5>
             <span>
               {this.menuButtons()}
               <div type="button" onClick={this.toggleCard} className="hamburger right"></div>

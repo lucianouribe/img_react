@@ -5,9 +5,7 @@ import CarruselsEdit from './CarruselsEdit';
 import CarruselsDescription from './CarruselsDescription';
 
 import { deleteCarrusel } from '../actions/carrusels';
-import { setIdioma } from '../actions/idiomas';
 import { reseter } from '../actions/reseter';
-import { createMarkup } from '../helpers';
 
 
 class Carrusels extends Component {
@@ -33,18 +31,6 @@ class Carrusels extends Component {
   }
 
   componentDidMount(){
-    // Text of each picture
-    $('.carruslide').on('mouseenter', function() {
-      var info = this.dataset.info || "";
-      if(info != "") {
-        $('.letter').text(info);
-        $('.letter').show();
-      };
-    });
-
-    $('.carruslide').on('mouseleave', function() {
-      $('.letter').hide();
-    });
   }
 
   componentDidUpdate(){
@@ -55,18 +41,6 @@ class Carrusels extends Component {
       })
       this.props.dispatch(reseter(false));
     }
-    // Text of each picture
-    $('.carruslide').on('mouseenter', function() {
-      var info = this.dataset.info || "";
-      if(info != "") {
-        $('.letter').text(info);
-        $('.letter').show();
-      };
-    });
-
-    $('.carruslide').on('mouseleave', function() {
-      $('.letter').hide();
-    });
   }
 
   menuButtons() {
@@ -74,7 +48,7 @@ class Carrusels extends Component {
     const add = 'add';
     const edit = 'edit';
     const errase = 'errase';
-    // if(this.props.user.role == 'admin' && this.props.queVeo == 'admin') {
+    if(this.props.user.role == 'admin') {
       return(
         <div>
           <i type="button" onClick={() => this.menuButtonsMagic(add)} className="pic-options small material-icons">add</i>
@@ -82,9 +56,8 @@ class Carrusels extends Component {
           <i type="button" onClick={() => this.menuButtonsMagic(errase)} className="pic-options small material-icons">delete</i>
         </div>
       )
-    // }
+    }
   }
-
 
   menuButtonsMagic(command) {
     switch (command) {
@@ -154,27 +127,34 @@ class Carrusels extends Component {
   }
 
   front() {
-    if(this.props.transitoryInfo.length > 0) {
-      var actualPic = this.props.transitoryInfo[this.state.currentSlide].name;
+    let photos = this.props.transitoryInfo
+    let actualPic;
+    let infopic;
+
+    if(photos.length > 0) {
+      actualPic = photos[this.state.currentSlide].name;
+      infopic = photos[this.state.currentSlide].infopic;
     } else {
-      var actualPic = "no";
+      actualPic = "no";
     }
     if(this.state.frontState === 'show') {
       return(
-        <div className="carrusel-slider">
-          <div>
-            <div id="detalles" className="carousel carruholder center">
-              <div className="prev detalles valign-wrapper" onClick={this.togglePrev}></div>
-              {this.showMeThePic()}
-              <div className="letter truncate"></div>
-              <div className="next detalles valign-wrapper" onClick={this.toggleNext}></div>
+        <div className="">
+          <div className="carrusel-header">
+            <h5>{actualPic}</h5>
+            <div className="carrusel-header_info">
+              <h5 className="prev carrusel-arrows" onClick={this.togglePrev}>&lt;</h5>
+              <h5 className="carrusel-slide-number">{this.state.currentSlide + 1}/{photos.length}</h5>
+              <h5 className="next carrusel-arrows" onClick={this.toggleNext}>&gt;</h5>
             </div>
           </div>
+          <div id="detalles" className="carousel carruholder center">
+            {this.showMeThePic()}
+          </div>
           <div className="card-info">
-            <h5 className="card-title left">{actualPic}</h5>
-            <span className="rigth">
+            <div className="letter truncate">{ infopic }</div>
+            <span className="carrusel-menu-options">
               {this.menuButtons()}
-              <i type="button" onClick={this.toggleCard} className="hamburger right"></i>
             </span>
           </div>
         </div>
@@ -193,8 +173,6 @@ class Carrusels extends Component {
       return(<CarruselsDescription show={this.toggleCard} selectedCarrusel={this.props.selectedCarrusel}/>);
     }
   }
-
-
 }
 
 

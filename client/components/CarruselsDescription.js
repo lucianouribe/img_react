@@ -27,7 +27,7 @@ class CarruselsDescription extends Component {
     if(this.props.descripcions.length > 0) {
       return(
         <div>
-          <div className="card-reveal">
+          <div className="">
             <span className="card-title"><i type="button" onClick={this.props.show} className="close material-icons right">close</i><h5>{infoForBehind.titulo}</h5></span>
             <p>{infoForBehind.contenido}</p>
             <div className="logos">
@@ -38,7 +38,7 @@ class CarruselsDescription extends Component {
     } else {
       return(
         <div>
-          <div className="card-reveal">
+          <div className="">
             <span className="card-title"><i type="button" onClick={this.props.show} className="close material-icons right">close</i><h5>Nothing</h5></span>
             <p>happens here</p>
             <div className="logos">

@@ -70,7 +70,7 @@ class Trisixti extends React.Component {
             <h5 className="card-title left">{actualPic.name}</h5>
             <span>
               {this.menuButtons()}
-              <i type="button" onClick={this.toggleCard} className="hamburger right"></i>
+              <div type="button" onClick={this.toggleCard} className="hamburger right"></div>
             </span>
           </div>
         </div>
@@ -88,6 +88,7 @@ class Trisixti extends React.Component {
         <div className="card-reveal">
           <span className="card-title"><i type="button" onClick={this.toggleCard} className="close material-icons right">close</i><h5>{explicacion.titulo}</h5></span>
           <div dangerouslySetInnerHTML={createMarkup(explicacion.contenido)} />
+          <div type="button" onClick={this.props.toggleDashButtons} className="settings-icon sub-menu"></div>
           <div className="logos">
           </div>
         </div>

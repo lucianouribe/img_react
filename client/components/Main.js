@@ -1,47 +1,41 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import Dashboard from './Dashboard';
-import DashButtons from './DashButtons';
-import Carousel from './Carousel';
 import Carrusels from './Carrusels';
 import Trisixti from './Trisixti';
-import Navbar from './Navbar';
-import Translator from './Translator';
-import Morse from './Morse';
-import Calculator from './Calculator';
-import Equilibrio from './Equilibrio';
-import Description from '../Description';
-import Introduction from './Introduction';
-
-import { setQueVeo } from '../actions/queVeo';
-import { selectedCarrusel } from '../actions/selectedCarrusel';
-import { transitoryInfo } from '../actions/transitoryInfo';
-import { setColor } from '../actions/colorset';
-
+import DashButtons from './DashButtons';
 
 class Main extends Component {
 
   constructor() {
     super();
+    this.state = {
+      showDashButtons: false,
+    }
 
+    this.toggleDashButtons = this.toggleDashButtons.bind(this);
+    this.dashButtons = this.dashButtons.bind(this);
     this.mainRenderer = this.mainRenderer.bind(this);
+  }
 
+  toggleDashButtons() {
+    this.setState({ showDashButtons: !this.state.showDashButtons });
+  }
+
+  dashButtons(){
+    if(this.state.showDashButtons){
+      return(<DashButtons />)
+    }
   }
 
   // Main renderer card selector
   mainRenderer(){
     switch (this.props.selectedCarrusel) {
-      // case 'intro':
-      //   return (
-      //     <Introduction />
-      //   );
-      //   break;
       case "panodigital":
       case "panofotografia":
       case "panoradar":
         return (
-          <Trisixti />
+          <Trisixti toggleDashButtons={this.toggleDashButtons}/>
         );
         break;
       case 'products':
@@ -59,59 +53,19 @@ class Main extends Component {
       case "fotosMuelles":
       case "fotosCuadrados":
         return (
-          <Carrusels />
+          <Carrusels toggleDashButtons={this.toggleDashButtons}/>
         );
         break;
-      // case "translate":
-      //   return (
-      //     <Translator />
-      //   );
-      //   break;
-      // case "morse":
-      //   return (
-      //     <Morse />
-      //   );
-      //   break;
-      // case "calculator":
-      //   return (
-      //     <Calculator />
-      //   );
-      //   break;
-      // case "equilibrio":
-      //   return (
-      //     <Equilibrio />
-      //   );
-      //   break;
-      // case "contact":
-      //   return (
-      //     <Contact />
-      //   );
-      //   break;
-      // default:
-      //   return (
-      //     <Translator />
-      //   );
-      //   break;
     }
   }
 
-
-
   render() {
-    // let imgUrl = "assets/background_02.png"
-    const divStyle = {
-    //   backgroundColor: this.props.colorset,
-    //   backgroundImage: 'url(' + imgUrl + ')',
-    //   backgroundRepeat: 'repeat',
-    //   backgroundSize: '60px',
-    //   height: '100vh',
-    //   WebkitTransition: 'all',
-    //   msTransition: 'all'
-    };
     return (
-      <div style={divStyle} className='main-component'>
-        <DashButtons />
-        {this.mainRenderer()}
+      <div className='main-component'>
+        <div className='carrusel-slider'>
+          {this.mainRenderer()}
+          {this.dashButtons()}
+        </div>
       </div>
     )
   }
@@ -120,13 +74,7 @@ class Main extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    user: state.user,
-    idiomas: state.idiomas,
-    queVeo: state.queVeo,
-    carrusels: state.carrusels,
     selectedCarrusel: state.selectedCarrusel,
-    transitoryInfo: state.transitoryInfo,
-    colorset: state.colorset
   }
 }
 

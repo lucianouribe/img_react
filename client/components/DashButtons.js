@@ -14,21 +14,78 @@ class DashButtons extends Component {
   constructor() {
     super();
 
+    this.state = {
+      openDash: 'panos360'
+    }
+
     this.theSettler = this.theSettler.bind(this);
+    this.theDashSettler = this.theDashSettler.bind(this);
   }
 
-  componentDidMount() {
-    // $('.collapsible').collapsible();
-    $('.side-but').on('click', function() {
-      // $('.button-collapse').sidenav('hide');
+  componentDidMount(){
+    // grab first menu
+    const slider = document.querySelector('.nav-bar-main-carousel');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
+
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return;  // stop the fn from running
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX) * 3;
+      slider.scrollLeft = scrollLeft - walk;
+    });
+
+    // grab second menu
+    const slider2 = document.querySelector('.nav-bar-sub-carousel');
+    let isDown2 = false;
+    let startX2;
+    let scrollLeft2;
+
+    slider2.addEventListener('mousedown', (e) => {
+      isDown2 = true;
+      slider2.classList.add('active');
+      startX2 = e.pageX - slider2.offsetLeft;
+      scrollLeft2 = slider2.scrollLeft;
+    });
+
+    slider2.addEventListener('mouseleave', () => {
+      isDown2 = false;
+      slider2.classList.remove('active');
+    });
+
+    slider2.addEventListener('mouseup', () => {
+      isDown2 = false;
+      slider2.classList.remove('active');
+    });
+
+    slider2.addEventListener('mousemove', (e) => {
+      if (!isDown2) return;  // stop the fn from running
+      e.preventDefault();
+      const x2 = e.pageX - slider2.offsetLeft;
+      const walk2 = (x2 - startX2) * 3;
+      slider2.scrollLeft = scrollLeft2 - walk2;
     });
   }
 
-  componentDidUpdate() {
-    $('.side-but').on('click', function() {
-      // $('.button-collapse').sidenav('hide');
-    });
-  }
 
   theSettler(e, info){
     e.preventDefault();
@@ -63,30 +120,33 @@ class DashButtons extends Component {
       case 'fotosMuelles':
       case 'fotosCuadrados':
         campo = 'galeria'
-        break;
-      case 'translate':
-        campo = 'translate'
-        break;
-      case 'morse':
-        campo = 'morse'
-        break;
-      case 'calculator':
-        campo = 'calculator'
-        break;
-      case 'equilibrio':
-        campo = 'equilibrio'
-        break;
-      default:
-        campo = ''
-        break;
     }
     this.props.dispatch(setQueVeo(campo));
   }
 
-// public/panoramicos/pano_01/index.html
-  render() {
-    let info = this.props.idiomas;
+  theDashSettler(e, info){
+    // console.log('hit', info)
+    e.preventDefault();
+    let campo;
+    switch (info) {
+      case 'panos360':
+        campo = 'panos360'
+        break;
+      case 'renders':
+        campo = 'renders'
+        break;
+      case 'fotoproductos':
+        campo = 'fotoproductos'
+        break;
+      case 'galeria':
+        campo = 'galeria'
+        break;
+    }
+    this.setState({openDash: campo})
+  }
 
+  theDashButtons(){
+    let info = this.props.idiomas;
     const panodigital = 'panodigital';
     const panofotografia = 'panofotografia';
     const panoradar = 'panoradar';
@@ -107,67 +167,68 @@ class DashButtons extends Component {
     const fotosTexturas = 'fotosTexturas';
     const fotosMuelles = 'fotosMuelles';
     const fotosCuadrados = 'fotosCuadrados';
+    if(this.state.openDash === 'panos360'){
+      return(
+        <div className='nav-bar-sub-carousel'>
+          <a onClick={(e) => this.theSettler(e, panodigital)}><span>{Portada[info].digital}</span></a>
+          <a onClick={(e) => this.theSettler(e, panofotografia)}><span>{Portada[info].fotografia}</span></a>
+          <a onClick={(e) => this.theSettler(e, panoradar)}><span>{Portada[info].radar}</span></a>
+        </div>
+      )
+    } else if(this.state.openDash === 'renders') {
+      return (
+        <div className='nav-bar-sub-carousel'>
+          <a onClick={(e) => this.theSettler(e, renderGifs)}><span>{Portada[info].gifs360}</span></a>
+          <a onClick={(e) => this.theSettler(e, products)}><span>{Portada[info].productos}</span></a>
+          <a onClick={(e) => this.theSettler(e, spaces)}><span>{Portada[info].espacios}</span></a>
+          <a onClick={(e) => this.theSettler(e, others)}><span>{Portada[info].otros}</span></a>
+        </div>
+      )
+    } else if(this.state.openDash === 'fotoproductos') {
+      return(
+        <div className='nav-bar-sub-carousel'>
+          <a onClick={(e) => this.theSettler(e, fotosGifs)}><span>{Portada[info].gifs360}</span></a>
+          <a onClick={(e) => this.theSettler(e, fotosJoyas)}><span>{Portada[info].joyas}</span></a>
+          <a onClick={(e) => this.theSettler(e, fotosComp)}><span>{Portada[info].componentes}</span></a>
+          <a onClick={(e) => this.theSettler(e, fotosCuadros)}><span>{Portada[info].cuadros}</span></a>
+        </div>
+      )
+    } else if(this.state.openDash === 'galeria') {
+      return(
+        <div className='nav-bar-sub-carousel'>
+          <a onClick={(e) => this.theSettler(e, fotosDetalles)}><span>{Portada[info].fotosDetalles}</span></a>
+          <a onClick={(e) => this.theSettler(e, fotosPaisajes)}><span>{Portada[info].paisajes}</span></a>
+          <a onClick={(e) => this.theSettler(e, fotosUrbano)}><span>{Portada[info].urbano}</span></a>
+          <a onClick={(e) => this.theSettler(e, fotosTexturas)}><span>{Portada[info].texturas}</span></a>
+          <a onClick={(e) => this.theSettler(e, fotosMuelles)}><span>{Portada[info].muelles}</span></a>
+          <a onClick={(e) => this.theSettler(e, fotosCuadrados)}><span>{Portada[info].cuadrados}</span></a>
+        </div>
+      )
+    }
+  }
 
-    // const translate = 'translate';
-    // const morse = 'morse';
-    // const calculator = 'calculator';
-    // const equilibrio = 'equilibrio';
+  render() {
+    let info = this.props.idiomas;
+    const panos360 = 'panos360';
+    const renders = 'renders';
+    const fotoproductos = 'fotoproductos';
+    const galeria = 'galeria';
 
-    return(
-      <div className="dash-buttons">
-        <ul className="collapsible" data-collapsible="accordion">
-          <li>
-            <div className="collapsible-header"><i className="world"></i>{Portada[info].panos360}</div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, panodigital)}><a>{Portada[info].digital}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, panofotografia)}><a>{Portada[info].fotografia}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, panoradar)}><a>{Portada[info].radar}</a></div>
-          </li>
-          <li>
-            <div className="collapsible-header"><i className="teapot"></i>{Portada[info].renders}</div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, renderGifs)}><a>{Portada[info].gifs360}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, products)}><a>{Portada[info].productos}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, spaces)}><a>{Portada[info].espacios}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, others)}><a>{Portada[info].otros}</a></div>
-          </li>
-          <li>
-            <div className="collapsible-header"><i className="bulb"></i>{Portada[info].fotoproductos}</div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosGifs)}><a>{Portada[info].gifs360}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosJoyas)}><a>{Portada[info].joyas}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosComp)}><a>{Portada[info].componentes}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosCuadros)}><a>{Portada[info].cuadros}</a></div>
-          </li>
-          <li>
-            <div className="collapsible-header"><i className="gallery_icon"></i>{Portada[info].galeria}</div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosDetalles)}><a>{Portada[info].detalles}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosPaisajes)}><a>{Portada[info].paisajes}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosUrbano)}><a>{Portada[info].urbano}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosTexturas)}><a>{Portada[info].texturas}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosMuelles)}><a>{Portada[info].muelles}</a></div>
-            <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, fotosCuadrados)}><a>{Portada[info].cuadrados}</a></div>
-          </li>
-
-        </ul>
-      </div>
+    return (
+      <nav>
+        <div className='main-nav-carousel'>
+          <div className='nav-bar-main-carousel'>
+            <a onClick={(e) => this.theDashSettler(e, panos360)}><span>{Portada[info].panos360}</span></a>
+            <a onClick={(e) => this.theDashSettler(e, renders)}><span>{Portada[info].renders}</span></a>
+            <a onClick={(e) => this.theDashSettler(e, fotoproductos)}><span>{Portada[info].fotoproductos}</span></a>
+            <a onClick={(e) => this.theDashSettler(e, galeria)}><span>{Portada[info].galeria}</span></a>
+          </div>
+          {this.theDashButtons()}
+        </div>
+      </nav>
     )
   }
 }
-// <li>
-// <div className="collapsible-header"><i className="programming_icon"></i>{Portada[info].programacion}</div>
-// <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, translate)}><a>{Portada[info].cirilico}</a></div>
-// <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, morse)}><a>{Portada[info].morse}</a></div>
-// <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, calculator)}><a>{Portada[info].calculadora}</a></div>
-// <div className="collapsible-body side-but" onClick={(e) => this.theSettler(e, equilibrio)}><a>{Portada[info].equilibrio}</a></div>
-// </li>
-// <li>
-//   <div className="collapsible-header"><i className="material-icons">whatshot</i>Libros</div>
-//   <div className="collapsible-body"><a>Bitacora del Motoneto</a></div>
-//   <div className="collapsible-body"><a>Rutas de Oriente</a></div>
-// </li>
-// <li>
-//   <div className="collapsible-header"><i className="material-icons">whatshot</i>Blogs</div>
-//   <div className="collapsible-body"><a>Bitacora del Motoneto</a></div>
-//   <div className="collapsible-body"><a>Tribunal de Justicia</a></div>
-// </li>
 
 const mapStateToProps = (state) => {
   return {

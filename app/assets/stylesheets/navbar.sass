@@ -5,6 +5,13 @@ body
     max-width: 600px
     color: #555555
     .main-nav
+      position: fixed
+      left: calc(20px + 2rem)
+      right: 20px
+      top: 20px
+      max-width: 650px
+    .main-nav,
+    .main-nav-carousel
       display: flex
       flex-wrap: wrap
       font-size: 20px
@@ -14,14 +21,11 @@ body
       align-items: center
       background: #ffffff
       border-radius: 8px
-      position: fixed
-      left: calc(20px + 2rem)
-      right: 20px
-      top: 20px
-      max-width: 650px
       .prev-next
         font-weight: 900
-      .nav-bar-main
+      .nav-bar-main,
+      .nav-bar-main-carousel,
+      .nav-bar-sub-carousel,
         display: flex
         padding: 6px 12px
         box-shadow: inset 0 0 3px rgba(0,0,0,0.3)
@@ -29,10 +33,15 @@ body
         margin: 0 12px
         overflow-y: hidden
         overflow-x: scroll
+        border-radius: 5px
         span
           padding: 0 12px
           border-right: 2px solid #555555
           cursor: grab
+          white-space: nowrap
+        a:last-child
+          span
+            border: none
         a
           text-decoration: none
         a:active

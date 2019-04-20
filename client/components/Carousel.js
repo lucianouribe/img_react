@@ -24,35 +24,35 @@ class Carousel extends Component {
   }
 
   componentDidMount(){
-    $('.carousel').carousel({full_width: true});
+    // $('.carousel').carousel({full_width: true});
     // Text of each picture
-    $('.carousel-item').on('mouseenter', function() {
-      var info = this.dataset.info || "";
-      if(info != "") {
-        $('.letter').text(info);
-        $('.letter').show();
-      };
-    });
+    // $('.carousel-item').on('mouseenter', function() {
+    //   var info = this.dataset.info || "";
+    //   if(info != "") {
+    //     $('.letter').text(info);
+    //     $('.letter').show();
+    //   };
+    // });
 
-    $('.carousel').on('mouseleave', function() {
-      $('.letter').hide();
-    });
+    // $('.carousel').on('mouseleave', function() {
+    //   $('.letter').hide();
+    // });
   }
 
   componentDidUpdate(){
-    $('.carousel').carousel({full_width: true});
+    // $('.carousel').carousel({full_width: true});
     // Text of each picture
-    $('.carousel-item').on('mouseenter', function() {
-      var info = this.dataset.info || "";
-      if(info != "") {
-        $('.letter').text(info);
-        $('.letter').show();
-      };
-    });
+    // $('.carousel-item').on('mouseenter', function() {
+    //   var info = this.dataset.info || "";
+    //   if(info != "") {
+    //     $('.letter').text(info);
+    //     $('.letter').show();
+    //   };
+    // });
 
-    $('.carousel').on('mouseleave', function() {
-      $('.letter').hide();
-    });
+    // $('.carousel').on('mouseleave', function() {
+    //   $('.letter').hide();
+    // });
   }
 
   showMeThePic() {

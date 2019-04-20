@@ -10,7 +10,7 @@ class Main extends Component {
   constructor() {
     super();
     this.state = {
-      showDashButtons: true,
+      showDashButtons: false,
     }
 
     this.toggleDashButtons = this.toggleDashButtons.bind(this);

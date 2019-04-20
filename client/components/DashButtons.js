@@ -53,7 +53,7 @@ class DashButtons extends Component {
       const walk = (x - startX) * 3;
       slider.scrollLeft = scrollLeft - walk;
     });
-    
+
     // grab second menu
     const slider2 = document.querySelector('.nav-bar-sub-carousel');
     let isDown2 = false;
@@ -224,7 +224,6 @@ class DashButtons extends Component {
             <a onClick={(e) => this.theDashSettler(e, galeria)}><span>{Portada[info].galeria}</span></a>
           </div>
           {this.theDashButtons()}
-          <div type="button" onClick={this.toggleCard} className="hamburger right"></div>
         </div>
       </nav>
     )

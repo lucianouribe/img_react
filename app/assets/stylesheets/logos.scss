@@ -39,6 +39,16 @@
   background-image: url(asset_path("hamburger_h.svg"));
 }
 
+// Settings Icon
+.settings-icon {
+  background-image: url(asset_path("settings-icon.svg"));
+  background-repeat: no-repeat;
+  background-size: 32px;
+  background-position: center;
+  width: 32px !important;
+  height: 32px !important;
+}
+
 @media only screen and (max-width: 800px) {
 
 }

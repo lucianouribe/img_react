@@ -39,6 +39,9 @@
 
     .card-info 
       color: #767A86
+      @include flexbox()
+      @include justify-content(space-between)
+      margin-top: 16px
       .pic-options 
         margin-left: 15px
         margin-top: 10px
@@ -49,6 +52,15 @@
         pointer-events:none
         font-size: 20px
         font-weight: 300
+        margin-right: 20px
+    .main-nav-carousel
+      padding: 12px 0
+      @include justify-content(space-between)
+      .nav-bar-main-carousel,
+      .nav-bar-sub-carousel,
+        margin: 0
+      .nav-bar-sub-carousel
+        margin-top: 12px
 
 
 
@@ -94,34 +106,27 @@
 @media only screen and (max-width: 800px) 
   .carruholder 
     padding: 0
-    // min-height: 260px!important
-
-  .card .card-info 
+  .card-info 
     height: 40px
     padding: 10px 10px
+    .hamburger,
+    .settings-icon
+      margin-top: 0
+      background-size: 24px
+      width: 24px!important
+      height: 24px!important
 
-  .card-info .hamburger 
-    margin-top: 0
-    background-size: 24px
-    width: 24px!important
-    height: 24px!important
+    .card-title 
+      font-size: 1rem
 
-  .card .card-title 
-    font-size: 1rem
+  .card-reveal 
+    h5
+      font-size: 1.5rem
+    .logos 
+      div 
+        width: 30px
+        height: 30px
 
-  .card-reveal h5
-    font-size: 1.5rem
-
-  .card-reveal .logos div 
-    width: 30px
-    height: 30px
-
-  // controllers
-  .next
-    // width: 40px!important
-
-  .prev
-    // width: 40px!important
 
 
 

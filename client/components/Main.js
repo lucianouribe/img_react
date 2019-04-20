@@ -35,7 +35,7 @@ class Main extends Component {
       case "panofotografia":
       case "panoradar":
         return (
-          <Trisixti />
+          <Trisixti toggleDashButtons={this.toggleDashButtons}/>
         );
         break;
       case 'products':
@@ -53,7 +53,7 @@ class Main extends Component {
       case "fotosMuelles":
       case "fotosCuadrados":
         return (
-          <Carrusels />
+          <Carrusels toggleDashButtons={this.toggleDashButtons}/>
         );
         break;
     }
@@ -65,7 +65,6 @@ class Main extends Component {
         <div className='carrusel-slider'>
           {this.mainRenderer()}
           {this.dashButtons()}
-          <div type="button" onClick={this.toggleDashButtons} className="hamburger sub-menu"></div>
         </div>
       </div>
     )

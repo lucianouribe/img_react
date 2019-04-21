@@ -36,7 +36,7 @@ export default (
       <Route path="panos" component={Panoramicos} />
       <Route path="tutorials" component={Proyectos} />
       <Route path="transliterator" component={Translator} />
-      <Route path="carrusels" component={Main} />
+      <Route path="graphic" component={Main} />
       <Route path="gramatica" component={Grammar} />
 
       {/* <Route component={AuthenticatedRoutes}>

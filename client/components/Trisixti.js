@@ -69,7 +69,7 @@ class Trisixti extends React.Component {
           <div className="card-info">
             <span>
               {this.menuButtons()}
-              <div type="button" onClick={this.toggleCard} className="hamburger right"></div>
+              <div type="button" onClick={this.props.toggleDashButtons} className="settings-icon sub-menu"></div>
             </span>
           </div>
         </div>
@@ -77,10 +77,9 @@ class Trisixti extends React.Component {
     )
   }
 
-
   behind() {
-    let laDescripcion = this.props.descripcions.filter( descr => { if(descr.lenguaje === this.props.idiomas) return descr })
-    let explicacion = laDescripcion[0]
+    let laDescripcion = this.props.descripcions.filter( descr => { if(descr.lenguaje === this.props.idiomas) return descr });
+    let explicacion = laDescripcion[0];
 
     return(
       <div>

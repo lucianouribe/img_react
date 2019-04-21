@@ -52,6 +52,9 @@ class Main extends Component {
       case "fotosTexturas":
       case "fotosMuelles":
       case "fotosCuadrados":
+      case "fotosLost":
+      case "fotosMonuments":
+      case "fotosMonPerspective":
         return (
           <Carrusels toggleDashButtons={this.toggleDashButtons}/>
         );

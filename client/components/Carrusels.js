@@ -152,11 +152,11 @@ class Carrusels extends Component {
             {this.showMeThePic()}
           </div>
           <div className="card-info">
+            <div type="button" onClick={this.toggleCard} className="info-icon">i</div>
             <div className="letter truncate">{ infopic }</div>
             <span className="carrusel-menu-options">
               {this.menuButtons()}
               <div type="button" onClick={this.props.toggleDashButtons} className="settings-icon sub-menu"></div>
-              <div type="button" onClick={this.toggleCard} className="hamburger right"></div>
             </span>
           </div>
         </div>

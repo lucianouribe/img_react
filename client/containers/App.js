@@ -28,7 +28,7 @@ class App extends React.Component {
       {id: 1, name: 'home'},
       {id: 2, name: 'tutorials'},
       {id: 3, name: 'transliterator'},
-      {id: 7, name: 'carrusels'},
+      {id: 7, name: 'graphic'},
       {id: 4, name: 'contact'},
       // {id: 5, name: 'about'},
       {id: 6, name: 'signin'},

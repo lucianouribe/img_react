@@ -84,3 +84,18 @@ body
   .form-edit .tarjeta-content
     @include flex-direction(column)
 
+  .carrusel-description
+    .card-title
+      @include flexbox()
+      @include justify-content(space-between)
+      @include flex-direction(row-reverse)
+      color: #555555
+      margin-bottom: 20px
+      i, h5
+        margin: 0
+      h5
+        font-size: 18px
+        color: #8E864B
+    p
+      font-size: 16px
+

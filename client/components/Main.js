@@ -12,9 +12,11 @@ class Main extends Component {
     super();
     this.state = {
       showDashButtons: false,
+      show: true
     }
 
     this.toggleDashButtons = this.toggleDashButtons.bind(this);
+    this.toggleCard = this.toggleCard.bind(this);
     this.dashButtons = this.dashButtons.bind(this);
     this.mainRenderer = this.mainRenderer.bind(this);
   }
@@ -26,6 +28,10 @@ class Main extends Component {
 
   toggleDashButtons() {
     this.setState({ showDashButtons: !this.state.showDashButtons });
+  }
+
+  toggleCard() {
+    this.setState({ show: !this.state.show });
   }
 
   dashButtons(){
@@ -41,7 +47,7 @@ class Main extends Component {
       case "panofotografia":
       case "panoradar":
         return (
-          <Trisixti toggleDashButtons={this.toggleDashButtons}/>
+          <Trisixti toggleDashButtons={this.toggleDashButtons} show={this.state.show} toggleCard={this.toggleCard}/>
         );
         break;
       case 'products':
@@ -62,18 +68,19 @@ class Main extends Component {
       case "fotosMonuments":
       case "fotosMonPerspective":
         return (
-          <Carrusels toggleDashButtons={this.toggleDashButtons}/>
+          <Carrusels toggleDashButtons={this.toggleDashButtons} show={this.state.show} toggleCard={this.toggleCard}/>
         );
         break;
     }
   }
 
   render() {
-    let {queVeo, selectedCarrusel} = this.props;
+    let {queVeo} = this.props;
     return (
       <div className='main-component'>
         <div className="main-header">
-          <h1>{queVeo} | {selectedCarrusel}</h1>
+          <div type="button" onClick={this.toggleCard} className="info-icon">i</div>
+          <h1>{queVeo}</h1>
         </div>
         <div className='carrusel-slider'>
           {this.mainRenderer()}

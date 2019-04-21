@@ -14,12 +14,12 @@ class Carrusels extends Component {
     super(props);
 
     this.state = {
-      show: true,
+      // show: true,
       frontState: 'show',
       currentSlide: 0
     }
 
-    this.toggleCard = this.toggleCard.bind(this);
+    // this.toggleCard = this.toggleCard.bind(this);
 
     this.menuButtons = this.menuButtons.bind(this);
     this.menuButtonsMagic = this.menuButtonsMagic.bind(this);
@@ -79,10 +79,6 @@ class Carrusels extends Component {
         this.setState({ frontState: 'show' });
         break;
     }
-  }
-
-  toggleCard() {
-    this.setState({ show: !this.state.show });
   }
 
   showMeThePic() {
@@ -152,7 +148,6 @@ class Carrusels extends Component {
             {this.showMeThePic()}
           </div>
           <div className="card-info">
-            <div type="button" onClick={this.toggleCard} className="info-icon">i</div>
             <div className="letter truncate">{ infopic }</div>
             <span className="carrusel-menu-options">
               {this.menuButtons()}
@@ -169,10 +164,10 @@ class Carrusels extends Component {
   }
 
   render() {
-    if(this.state.show) {
+    if(this.props.show) {
       return(this.front());
     } else {
-      return(<CarruselsDescription show={this.toggleCard} selectedCarrusel={this.props.selectedCarrusel}/>);
+      return(<CarruselsDescription show={this.props.toggleCard} selectedCarrusel={this.props.selectedCarrusel}/>);
     }
   }
 }

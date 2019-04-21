@@ -1,11 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-
-import Navbar from './Navbar';
-import AdminDashboard from './AdminDashboard';
 import Descripcions from './Descripcions';
-import Proyectos from './Proyectos';
 
 
 class Admin extends React.Component {
@@ -32,20 +28,15 @@ class Admin extends React.Component {
       case 'description':
           return(<Descripcions />)
         break;
-      case 'tutoriales':
-          return(<Proyectos />)
-        break;
       default:
-        return(<Proyectos />)
+        return(<Descripcions />)
     }
   }
 
   render(){
     return (
       <div className='main-component'>
-        <Navbar />
         <div className='admin-container'>
-          <AdminDashboard setRenderOption={this.setRenderOption}/>
           <div className='admin-main-container'>
             {this.mainRenderer()}
           </div>

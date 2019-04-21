@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import Description from '../Description';
+import CarruselsDescription from './CarruselsDescription';
 
 import { deleteCarrusel } from '../actions/carrusels';
 import { fetchDescripcions } from '../actions/descripcions';
-import { createMarkup } from '../helpers';
 
 
 class Trisixti extends React.Component {
@@ -32,7 +31,6 @@ class Trisixti extends React.Component {
   }
 
   menuButtons() {
-    // console.log('menu buttons')
     if(this.props.user.role == 'admin' && this.props.queVeo == 'admin') {
       return(
         <div>
@@ -75,30 +73,14 @@ class Trisixti extends React.Component {
     )
   }
 
-  behind() {
-    let laDescripcion = this.props.descripcions.filter( descr => { if(descr.lenguaje === this.props.idiomas) return descr });
-    let explicacion = laDescripcion[0];
-
-    return(
-      <div>
-        <div className="card-reveal">
-          <span className="card-title"><i type="button" onClick={this.toggleCard} className="close material-icons right">close</i><h5>{explicacion.titulo}</h5></span>
-          <div dangerouslySetInnerHTML={createMarkup(explicacion.contenido)} />
-          <div type="button" onClick={this.props.toggleDashButtons} className="settings-icon sub-menu"></div>
-          <div className="logos">
-          </div>
-        </div>
-      </div>
-    )
-  }
-
   render() {
-    if(this.state.show) {
+    if(this.props.show) {
       return(this.front());
     } else {
-      return(this.behind());
+      return(<CarruselsDescription show={this.props.toggleCard} selectedCarrusel={this.props.selectedCarrusel}/>);
     }
   }
+
 }
 
 const mapStateToProps = (state) => {

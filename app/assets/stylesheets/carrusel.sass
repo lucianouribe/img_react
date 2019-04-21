@@ -2,6 +2,12 @@
 
 .main-component
   .main-header
+    margin: 0 auto
+    max-width: 740px
+    @include flexbox()
+    @include justify-content(space-between)
+    @include align-items(center)
+    color: #555555
     h1
       text-align: center
       color: #8E864B

@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Description from '../Description';
-import { setQueVeo } from '../actions/queVeo';
 import { fetchDescripcions } from '../actions/descripcions';
 
 class CarruselsDescription extends Component {
@@ -27,22 +25,18 @@ class CarruselsDescription extends Component {
     if(this.props.descripcions.length > 0) {
       return(
         <div>
-          <div className="">
+          <div className="carrusel-description">
             <span className="card-title"><i type="button" onClick={this.props.show} className="close material-icons right">close</i><h5>{infoForBehind.titulo}</h5></span>
             <p>{infoForBehind.contenido}</p>
-            <div className="logos">
-            </div>
           </div>
         </div>
       )
     } else {
       return(
         <div>
-          <div className="">
-            <span className="card-title"><i type="button" onClick={this.props.show} className="close material-icons right">close</i><h5>Nothing</h5></span>
-            <p>happens here</p>
-            <div className="logos">
-            </div>
+          <div className="carrusel-description">
+            <span className="card-title"><i type="button" onClick={this.props.show} className="close material-icons right">close</i><h5>Saddly we have no content here</h5></span>
+            <p>That's why this is kind of empty</p>
           </div>
         </div>
       )
@@ -56,8 +50,6 @@ class CarruselsDescription extends Component {
 }
   const mapStateToProps = (state) => {
     return {
-      selectedCarrusel: state.selectedCarrusel,
-      transitoryInfo: state.transitoryInfo,
       idiomas: state.idiomas,
       queVeo: state.queVeo,
       descripcions: state.descripcions

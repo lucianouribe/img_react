@@ -1,6 +1,10 @@
 @import 'mixins'
 
 .main-component
+  .main-header
+    h1
+      text-align: center
+      color: #8E864B
   .carrusel-slider 
     margin: 0 auto
     max-width: 900px
@@ -12,7 +16,7 @@
       @include flexbox()
       @include justify-content(space-between)
       h5
-        font-size: 20px
+        font-size: 18px
         font-weight: 400
         margin: 0
         margin-bottom: 12px
@@ -50,7 +54,7 @@
       .letter 
         display: block
         pointer-events:none
-        font-size: 20px
+        font-size: 17px
         font-weight: 300
         margin-right: 20px
     .main-nav-carousel

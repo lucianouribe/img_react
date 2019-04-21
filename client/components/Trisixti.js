@@ -58,20 +58,18 @@ class Trisixti extends React.Component {
       var actualPic = "no images";
     }
     return(
-      <div>
-        <div className="">
-          <div className="carrusel-header">
-            <h5>{actualPic.name}</h5>
-          </div>
-          <div id="detalles" className="frame">
-            <iframe src={actualPic.image} seamless></iframe>
-          </div>
-          <div className="card-info">
-            <span>
-              {this.menuButtons()}
-              <div type="button" onClick={this.props.toggleDashButtons} className="settings-icon sub-menu"></div>
-            </span>
-          </div>
+      <div className="trisixti-container">
+        <div className="carrusel-header">
+          <h5>{actualPic.name}</h5>
+        </div>
+        <div id="detalles" className="frame">
+          <iframe src={actualPic.image} seamless></iframe>
+        </div>
+        <div className="card-info">
+          <span>
+            {this.menuButtons()}
+            <div type="button" onClick={this.props.toggleDashButtons} className="settings-icon sub-menu"></div>
+          </span>
         </div>
       </div>
     )

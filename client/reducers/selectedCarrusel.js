@@ -1,4 +1,4 @@
-const selectedCarrusel = ( state = 'fotosPaisajes', action ) => {
+const selectedCarrusel = ( state = 'panodigital', action ) => {
 
   switch(action.type){
     case 'SELECTED_CARRUSEL':

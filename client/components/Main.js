@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Carrusels from './Carrusels';
 import Trisixti from './Trisixti';
 import DashButtons from './DashButtons';
+import { transitoryInfo } from '../actions/transitoryInfo';
 
 class Main extends Component {
 
@@ -16,6 +17,11 @@ class Main extends Component {
     this.toggleDashButtons = this.toggleDashButtons.bind(this);
     this.dashButtons = this.dashButtons.bind(this);
     this.mainRenderer = this.mainRenderer.bind(this);
+  }
+
+  componentDidMount(){
+    let info = 'panodigital'
+    this.props.dispatch(transitoryInfo(info));
   }
 
   toggleDashButtons() {
@@ -63,8 +69,12 @@ class Main extends Component {
   }
 
   render() {
+    let {queVeo, selectedCarrusel} = this.props;
     return (
       <div className='main-component'>
+        <div className="main-header">
+          <h1>{queVeo} | {selectedCarrusel}</h1>
+        </div>
         <div className='carrusel-slider'>
           {this.mainRenderer()}
           {this.dashButtons()}
@@ -78,6 +88,7 @@ class Main extends Component {
 const mapStateToProps = (state) => {
   return {
     selectedCarrusel: state.selectedCarrusel,
+    queVeo: state.queVeo
   }
 }
 

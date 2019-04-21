@@ -15,11 +15,13 @@ class DashButtons extends Component {
     super();
 
     this.state = {
-      openDash: 'panos360'
+      openDash: 'fotosPaisajes',
+      showSubMenu: false
     }
 
     this.theSettler = this.theSettler.bind(this);
     this.theDashSettler = this.theDashSettler.bind(this);
+    this.renderSubMenu = this.renderSubMenu.bind(this);
   }
 
   componentDidMount(){
@@ -142,7 +144,7 @@ class DashButtons extends Component {
         campo = 'galeria'
         break;
     }
-    this.setState({openDash: campo})
+    this.setState({ openDash: campo, showSubMenu: !this.state.showSubMenu });
   }
 
   theDashButtons(){
@@ -167,6 +169,11 @@ class DashButtons extends Component {
     const fotosTexturas = 'fotosTexturas';
     const fotosMuelles = 'fotosMuelles';
     const fotosCuadrados = 'fotosCuadrados';
+
+    const fotosLost = 'fotosLost';
+    const fotosMonuments = 'fotosMonuments';
+    const fotosMonPerspective = 'fotosMonPerspective';
+
     if(this.state.openDash === 'panos360'){
       return(
         <div className='nav-bar-sub-carousel'>
@@ -207,6 +214,12 @@ class DashButtons extends Component {
     }
   }
 
+  renderSubMenu(){
+    if(this.state.showSubMenu){
+      return(this.theDashButtons())
+    }
+  }
+
   render() {
     let info = this.props.idiomas;
     const panos360 = 'panos360';
@@ -223,7 +236,7 @@ class DashButtons extends Component {
             <a onClick={(e) => this.theDashSettler(e, fotoproductos)}><span>{Portada[info].fotoproductos}</span></a>
             <a onClick={(e) => this.theDashSettler(e, galeria)}><span>{Portada[info].galeria}</span></a>
           </div>
-          {this.theDashButtons()}
+          {this.renderSubMenu()}
         </div>
       </nav>
     )
@@ -233,7 +246,6 @@ class DashButtons extends Component {
 const mapStateToProps = (state) => {
   return {
     idiomas: state.idiomas,
-    queVeo: state.queVeo,
     reseter: state.reseter
   }
 }

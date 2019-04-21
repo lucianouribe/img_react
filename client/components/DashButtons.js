@@ -15,7 +15,7 @@ class DashButtons extends Component {
     super();
 
     this.state = {
-      openDash: 'fotosPaisajes',
+      openDash: 'panodigital',
       showSubMenu: false
     }
 

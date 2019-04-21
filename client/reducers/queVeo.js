@@ -1,4 +1,4 @@
-const queVeo = ( state = "galeria", action ) => {
+const queVeo = ( state = "panoramicos", action ) => {
 
   switch(action.type){
     case 'SET_QUE_VEO':

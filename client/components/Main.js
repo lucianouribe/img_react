@@ -108,7 +108,7 @@ class Main extends Component {
       case "fotosCuadrados":
       case "fotosLost":
       case "fotosMonuments":
-      case "fotosMonPerspective":
+      case "fotosPerspective":
         return (
           <Carrusels toggleDashButtons={this.toggleDashButtons} show={this.state.show} toggleCard={this.toggleCard}/>
         );

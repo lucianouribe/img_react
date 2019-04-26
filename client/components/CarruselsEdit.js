@@ -85,6 +85,9 @@ class CarruselsEdit extends Component {
               <option type="text" value="fotosTexturas">Galeria Texturas</option>
               <option type="text" value="fotosMuelles">Galeria Muelles</option>
               <option type="text" value="fotosCuadrados">Galeria Cuadrados</option>
+              <option type="text" value="fotosLost">Galeria Lost</option>
+              <option type="text" value="fotosMonuments">Galeria Monumentos</option>
+              <option type="text" value="fotosPerspective">Galeria Perspectiva</option>
             </select>
           </div>
           <div className="card-action">

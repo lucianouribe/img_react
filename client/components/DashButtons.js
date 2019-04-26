@@ -83,6 +83,9 @@ class DashButtons extends Component {
       case 'fotosTexturas':
       case 'fotosMuelles':
       case 'fotosCuadrados':
+      case 'fotosLost':
+      case 'fotosMonuments':
+      case 'fotosPerspective':
         campo = 'galeria'
     }
     this.props.dispatch(setQueVeo(campo));
@@ -115,7 +118,7 @@ class DashButtons extends Component {
 
     const fotosLost = 'fotosLost';
     const fotosMonuments = 'fotosMonuments';
-    const fotosMonPerspective = 'fotosMonPerspective';
+    const fotosPerspective = 'fotosPerspective';
 
     if(this.props.openCarrusel === 'panos360'){
       return(
@@ -146,12 +149,15 @@ class DashButtons extends Component {
     } else if(this.props.openCarrusel === 'galeria') {
       return(
         <div className='nav-bar-sub-carousel'>
-          <a onClick={(e) => this.theSettler(e, fotosDetalles)}><span>{Portada[info].fotosDetalles}</span></a>
+          <a onClick={(e) => this.theSettler(e, fotosDetalles)}><span>{Portada[info].detalles}</span></a>
           <a onClick={(e) => this.theSettler(e, fotosPaisajes)}><span>{Portada[info].paisajes}</span></a>
           <a onClick={(e) => this.theSettler(e, fotosUrbano)}><span>{Portada[info].urbano}</span></a>
           <a onClick={(e) => this.theSettler(e, fotosTexturas)}><span>{Portada[info].texturas}</span></a>
           <a onClick={(e) => this.theSettler(e, fotosMuelles)}><span>{Portada[info].muelles}</span></a>
           <a onClick={(e) => this.theSettler(e, fotosCuadrados)}><span>{Portada[info].cuadrados}</span></a>
+          <a onClick={(e) => this.theSettler(e, fotosLost)}><span>{Portada[info].lost}</span></a>
+          <a onClick={(e) => this.theSettler(e, fotosMonuments)}><span>{Portada[info].monuments}</span></a>
+          <a onClick={(e) => this.theSettler(e, fotosPerspective)}><span>{Portada[info].perspective}</span></a>
         </div>
       )
     }

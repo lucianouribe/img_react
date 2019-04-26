@@ -14,12 +14,9 @@ class Carrusels extends Component {
     super(props);
 
     this.state = {
-      // show: true,
       frontState: 'show',
       currentSlide: 0
     }
-
-    // this.toggleCard = this.toggleCard.bind(this);
 
     this.menuButtons = this.menuButtons.bind(this);
     this.menuButtonsMagic = this.menuButtonsMagic.bind(this);
@@ -62,7 +59,7 @@ class Carrusels extends Component {
   menuButtonsMagic(command) {
     switch (command) {
       case 'errase':
-        console.log('this is errase')
+        // console.log('this is errase')
         let id = this.props.transitoryInfo[this.state.currentSlide].id
         let yes = confirm('are you sure');
         if (yes == true) {
@@ -97,12 +94,11 @@ class Carrusels extends Component {
     // console.log("this is toggle next");
     var data = this.props.transitoryInfo;
     var current = this.state.currentSlide;
-    // console.log(current)
     var next = current + 1;
     if (next > data.length - 1) {
       next = 0;
     }
-    console.log(next);
+    // console.log(next);
     this.setState({currentSlide: next});
     this.props.dispatch(reseter(false));
     // console.log(this.state.currentSlide)
@@ -116,10 +112,8 @@ class Carrusels extends Component {
     if (prev < 0) {
       prev = data.length - 1;
     }
-    // console.log(prev);
     this.setState({currentSlide: prev});
     this.props.dispatch(reseter(false));
-    // console.log(this.state.currentSlide)
   }
 
   front() {
@@ -138,6 +132,9 @@ class Carrusels extends Component {
         <div className="">
           <div className="carrusel-header">
             <h5>{actualPic}</h5>
+            <span className="carrusel-menu-options">
+              {this.menuButtons()}
+            </span>
             <div className="carrusel-header_info">
               <h5 className="prev carrusel-arrows" onClick={this.togglePrev}>&lt;</h5>
               <h5 className="carrusel-slide-number">{this.state.currentSlide + 1}/{photos.length}</h5>
@@ -149,9 +146,6 @@ class Carrusels extends Component {
           </div>
           <div className="card-info">
             <div className="letter truncate">{ infopic }</div>
-            <span className="carrusel-menu-options">
-              {this.menuButtons()}
-            </span>
           </div>
         </div>
       );

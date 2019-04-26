@@ -11,6 +11,7 @@
     h1
       text-align: center
       color: #8E864B
+
   .carrusel-slider 
     margin: 0 auto
     max-width: 740px
@@ -56,6 +57,9 @@
       .carrusel-submenu-options:first-child
         padding-top: 0
 
+      .last-option
+        border-bottom: none
+        margin-bottom: 20px
 
       .carrusel-submenu-close
         text-align: center
@@ -93,6 +97,15 @@
           background-color: rgba(255, 255, 255, 0.3)
         .carrusel-slide-number
           margin: 0 12px
+      .carrusel-menu-options
+        div
+          width: 100px
+          @include flexbox()
+          @include justify-content(space-between)
+          i
+            color: #707070
+            &:hover
+              color: #8E864B
 
     .carruholder 
       padding: 0
@@ -116,6 +129,7 @@
         font-size: 17px
         font-weight: 300
         margin-right: 20px
+
     .main-nav-carousel
       padding: 12px 0
       @include justify-content(space-between)
@@ -131,6 +145,9 @@
         @include align-items(center)
         nav
           width: 86%
+          .main-nav-carousel
+            font-size: 18px
+            padding: 6px 0
         .hamburger
           background-size: 24px 
 

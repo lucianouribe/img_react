@@ -62,9 +62,9 @@ class CarruselMenu extends Component {
           <a onClick={(e) => this.theDashSettler(e, fotoproductos)}><span>{Portada[info].fotoproductos}</span></a>
           <div className="go-to-submenu" onClick={(e) => this.theDashSettler(e, fotoproductos, true)}><span>4</span></div>
         </span>
-        <span className='carrusel-submenu-options'>
+        <span className='carrusel-submenu-options last-option'>
           <a onClick={(e) => this.theDashSettler(e, galeria)}><span>{Portada[info].galeria}</span></a>
-          <div className="go-to-submenu" onClick={(e) => this.theDashSettler(e, galeria, true)}><span>6</span></div>
+          <div className="go-to-submenu" onClick={(e) => this.theDashSettler(e, galeria, true)}><span>9</span></div>
         </span>
         <span className='carrusel-submenu-close' onClick={() => this.props.toggleMainMenu()}>
           <div><span>close</span></div>

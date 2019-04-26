@@ -66,7 +66,6 @@ class Trisixti extends React.Component {
         <div className="card-info">
           <span>
             {this.menuButtons()}
-            <div type="button" onClick={this.props.toggleDashButtons} className="settings-icon sub-menu"></div>
           </span>
         </div>
       </div>

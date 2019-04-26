@@ -107,7 +107,7 @@ class Carousel extends Component {
             <div className="next detalles valign-wrapper" onClick={this.toggleNext}></div>
           </div>
           <div className="card-content">
-            <span className="subtitle activator">{this.props.details.name}<div type="button" onClick={this.toggleCard} className="hamburger right"></div></span>
+            <span className="subtitle activator">{this.props.details.name}<div type="button" onClick={this.toggleCard} className="icons-image hamburger right"></div></span>
           </div>
         </div>
       </div>

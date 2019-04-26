@@ -39,6 +39,7 @@ class DashButtons extends Component {
     });
 
     slider.addEventListener('mouseleave', () => {
+      e.preventDefault()
       isDown = false;
       slider.classList.remove('active');
     });
@@ -54,6 +55,11 @@ class DashButtons extends Component {
       const x = e.pageX - slider.offsetLeft;
       const walk = (x - startX) * 3;
       slider.scrollLeft = scrollLeft - walk;
+    });
+
+    $('.main-nav-carousel .nav-bar-main-carousel a').on('click', function(){
+      $('.main-nav-carousel .nav-bar-main-carousel a').removeClass('active');
+      $(this).addClass('active');
     });
 
     // grab second menu

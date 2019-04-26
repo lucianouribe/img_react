@@ -1,0 +1,236 @@
+@import 'mixins'
+
+// Main Logo
+.brand-logo
+  width: 120px
+  height: 60px
+  border: 2px solid #fff
+  border-radius: 15px
+  -webkit-box-shadow: .5rem .5rem .3rem rgba(0, 0, 0, 0.4)
+          box-shadow: .5rem .5rem .3rem rgba(0, 0, 0, 0.4)
+  margin-left: 30px !important
+  margin-top: 8px !important
+  background: #6b6b6b
+  background-image: url(asset_path("logosolo200blanco.png"))
+  background-repeat: no-repeat
+  background-position: center
+  background-size: 70%
+
+
+.brand-logo:hover
+  background: #9DD0FF
+  background-image: url(asset_path("logosolo200blanco_o.png"))
+  background-repeat: no-repeat
+  background-position: center
+  background-size: 70%
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4)
+          box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.4)
+
+.icons-image
+  background-repeat: no-repeat
+  background-size: 32px
+  background-position: center
+  width: 32px !important
+  height: 32px !important
+
+// Hamburger
+.hamburger
+  background-image: url(asset_path("hamburger.svg"))
+
+.hamburger:hover
+  background-image: url(asset_path("hamburger_h.svg"))
+
+
+// Settings Icon
+.settings-icon
+  background-image: url(asset_path("settings-icon.svg"))
+
+.info-icon
+  font-size: 20px
+  font-weight: 900
+  cursor: pointer
+
+.main-component
+  .main-header
+    .settings-icon
+      background-size: 22px
+// Software Icons
+
+.logos
+  display: -webkit-inline-box
+  display: -ms-inline-flexbox
+  display: inline-flex
+
+.logos div
+  width: 60px
+  height: 60px
+  background-repeat: no-repeat
+  background-size: cover
+  margin-right: 10px
+
+.tridimax
+  background-image: url(asset_path("tridimax.png"))
+
+.vray
+  background-image: url(asset_path("vray.png"))
+
+.photoshop
+  background-image: url(asset_path("photoshop.jpg"))
+
+.illustrator
+  background-image: url(asset_path("illustrator.png"))
+
+
+// Collapsible Dashboard Icons
+// Home (casa)
+.home-icon
+  background-image: url(asset_path("icon_home.svg"))
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: center
+  width: 40px !important
+  height: 40px !important
+
+
+.collapsible-header:hover .home-icon
+  background-image: url(asset_path("icon_home_o.svg"))
+
+.side-nav .home-icon
+  background-image: url(asset_path("icon_home_side.svg"))
+
+
+// Renders (Tetera)
+.teapot
+  background-image: url(asset_path("teapot_silouete.svg"))
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: center
+  width: 40px !important
+  height: 40px !important
+
+
+.collapsible-header:hover .teapot
+  background-image: url(asset_path("teapot.png"))
+
+.side-nav .teapot
+  background-image: url(asset_path("teapot_silouete_side.svg"))
+
+
+// Panoramicos (mundo)
+.world
+  background-image: url(asset_path("world_silouete.svg"))
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: center
+  width: 40px !important
+  height: 40px !important
+
+
+.collapsible-header:hover .world
+  background-image: url(asset_path("world_icon.png"))
+
+
+.side-nav .world
+  background-image: url(asset_path("world_silouete_side.svg"))
+
+
+// Fotografia productos (bombillo)
+.bulb
+  background-image: url(asset_path("bombillo_icon.svg"))
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: center
+  width: 40px !important
+  height: 40px !important
+
+.collapsible-header:hover .bulb
+  background-image: url(asset_path("bombillo_icon_II.png"))
+
+.side-nav .bulb
+  background-image: url(asset_path("bombillo_icon_side.svg"))
+
+
+// Gallery Icon (photofilm)
+.gallery_icon
+  background-image: url(asset_path("gallery_icon.svg"))
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: center
+  width: 36px !important
+  height: 36px !important
+
+.collapsible-header:hover .gallery_icon
+  background-image: url(asset_path("foto_gallery_icon.png"))
+
+.side-nav .gallery_icon
+  background-image: url(asset_path("gallery_icon_side.svg"))
+
+
+// Programming Icon (React log and ruby)
+.programming_icon
+  background-image: url(asset_path("icon_programming.svg"))
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: center
+  width: 40px !important
+  height: 40px !important
+
+.collapsible-header:hover .programming_icon
+  background-image: url(asset_path("icon_programming.png"))
+
+.side-nav .programming_icon
+  background-image: url(asset_path("icon_programming_side.svg"))
+
+
+// Contact Icon (carta)
+.contact_icon
+  background-image: url(asset_path("icon_contact.svg"))
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: center
+  width: 40px !important
+  height: 40px !important
+
+.collapsible-header:hover .contact_icon
+  background-image: url(asset_path("icon_contact.png"))
+
+.side-nav .contact_icon
+  background-image: url(asset_path("icon_contact_side.svg"))
+
+
+// Login Icon (cara)
+.login_icon
+  background-image: url(asset_path("icon_login.svg"))
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: center
+  width: 36px !important
+  height: 36px !important
+
+.collapsible-header:hover .login_icon
+  background-image: url(asset_path("icon_login_o.svg"))
+
+.side-nav .login_icon
+  background-image: url(asset_path("icon_login_side.svg"))
+
+
+// Logout Icon (cara)
+.logout_icon
+  background-image: url(asset_path("icon_logout.svg"))
+  background-repeat: no-repeat
+  background-size: cover
+  background-position: center
+  width: 36px !important
+  height: 36px !important
+
+.collapsible-header:hover .logout_icon
+  background-image: url(asset_path("icon_logout_o.svg"))
+
+.side-nav .logout_icon
+  background-image: url(asset_path("icon_logout_side.svg"))
+
+
+
+.side-nav li > a > i
+  margin-right: 1rem
+

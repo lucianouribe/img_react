@@ -43,6 +43,11 @@ class Navbar extends React.Component {
       const walk = (x - startX) * 3;
       slider.scrollLeft = scrollLeft - walk;
     });
+
+    $('.main-nav .nav-bar-main a').on('click', function(){
+      $('.main-nav .nav-bar-main a').removeClass('active');
+      $(this).addClass('active');
+    });
   }
 
   logout(e) {
@@ -52,6 +57,7 @@ class Navbar extends React.Component {
 
   menuItems(){
     let information = this.props.menuData;
+
     if(information.length){
       return information.map( info => {
         if ( info.name === 'signin' && this.props.user.role === 'admin' ) {

@@ -81,10 +81,13 @@ class Main extends Component {
         <div className="main-header">
           <div type="button" onClick={this.toggleCard} className="info-icon">i</div>
           <h1>{queVeo}</h1>
+          <div type="button" onClick={this.toggleDashButtons} className="icons-image settings-icon sub-menu"></div>
         </div>
         <div className='carrusel-slider'>
           {this.mainRenderer()}
-          {this.dashButtons()}
+          <div className="dashli">
+            {this.dashButtons()}
+          </div>
         </div>
       </div>
     )

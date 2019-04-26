@@ -14,55 +14,10 @@ class DashButtons extends Component {
   constructor() {
     super();
 
-    this.state = {
-      openDash: 'panodigital',
-      showSubMenu: false
-    }
-
     this.theSettler = this.theSettler.bind(this);
-    this.theDashSettler = this.theDashSettler.bind(this);
-    this.renderSubMenu = this.renderSubMenu.bind(this);
   }
 
-  componentDidMount(){
-    // grab first menu
-    const slider = document.querySelector('.nav-bar-main-carousel');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    slider.addEventListener('mousedown', (e) => {
-      isDown = true;
-      slider.classList.add('active');
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    });
-
-    slider.addEventListener('mouseleave', () => {
-      e.preventDefault()
-      isDown = false;
-      slider.classList.remove('active');
-    });
-
-    slider.addEventListener('mouseup', () => {
-      isDown = false;
-      slider.classList.remove('active');
-    });
-
-    slider.addEventListener('mousemove', (e) => {
-      if (!isDown) return;  // stop the fn from running
-      e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX) * 3;
-      slider.scrollLeft = scrollLeft - walk;
-    });
-
-    $('.main-nav-carousel .nav-bar-main-carousel a').on('click', function(){
-      $('.main-nav-carousel .nav-bar-main-carousel a').removeClass('active');
-      $(this).addClass('active');
-    });
-
-    // grab second menu
+  componentDidUpdate(){
     const slider2 = document.querySelector('.nav-bar-sub-carousel');
     let isDown2 = false;
     let startX2;
@@ -92,11 +47,12 @@ class DashButtons extends Component {
       const walk2 = (x2 - startX2) * 3;
       slider2.scrollLeft = scrollLeft2 - walk2;
     });
+
   }
 
 
   theSettler(e, info){
-    e.preventDefault();
+    // console.log('theSettler', info);
     let campo;
     this.props.dispatch(reseter(true));
     this.props.dispatch(transitoryInfo(info));
@@ -130,30 +86,11 @@ class DashButtons extends Component {
         campo = 'galeria'
     }
     this.props.dispatch(setQueVeo(campo));
-  }
-
-  theDashSettler(e, info){
-    // console.log('hit', info)
-    e.preventDefault();
-    let campo;
-    switch (info) {
-      case 'panos360':
-        campo = 'panos360'
-        break;
-      case 'renders':
-        campo = 'renders'
-        break;
-      case 'fotoproductos':
-        campo = 'fotoproductos'
-        break;
-      case 'galeria':
-        campo = 'galeria'
-        break;
-    }
-    this.setState({ openDash: campo, showSubMenu: !this.state.showSubMenu });
+    this.props.toggleDashButtons();
   }
 
   theDashButtons(){
+    // console.log('theDashButtons', this.props.openCarrusel)
     let info = this.props.idiomas;
     const panodigital = 'panodigital';
     const panofotografia = 'panofotografia';
@@ -180,7 +117,7 @@ class DashButtons extends Component {
     const fotosMonuments = 'fotosMonuments';
     const fotosMonPerspective = 'fotosMonPerspective';
 
-    if(this.state.openDash === 'panos360'){
+    if(this.props.openCarrusel === 'panos360'){
       return(
         <div className='nav-bar-sub-carousel'>
           <a onClick={(e) => this.theSettler(e, panodigital)}><span>{Portada[info].digital}</span></a>
@@ -188,7 +125,7 @@ class DashButtons extends Component {
           <a onClick={(e) => this.theSettler(e, panoradar)}><span>{Portada[info].radar}</span></a>
         </div>
       )
-    } else if(this.state.openDash === 'renders') {
+    } else if(this.props.openCarrusel === 'renders') {
       return (
         <div className='nav-bar-sub-carousel'>
           <a onClick={(e) => this.theSettler(e, renderGifs)}><span>{Portada[info].gifs360}</span></a>
@@ -197,7 +134,7 @@ class DashButtons extends Component {
           <a onClick={(e) => this.theSettler(e, others)}><span>{Portada[info].otros}</span></a>
         </div>
       )
-    } else if(this.state.openDash === 'fotoproductos') {
+    } else if(this.props.openCarrusel === 'fotoproductos') {
       return(
         <div className='nav-bar-sub-carousel'>
           <a onClick={(e) => this.theSettler(e, fotosGifs)}><span>{Portada[info].gifs360}</span></a>
@@ -206,7 +143,7 @@ class DashButtons extends Component {
           <a onClick={(e) => this.theSettler(e, fotosCuadros)}><span>{Portada[info].cuadros}</span></a>
         </div>
       )
-    } else if(this.state.openDash === 'galeria') {
+    } else if(this.props.openCarrusel === 'galeria') {
       return(
         <div className='nav-bar-sub-carousel'>
           <a onClick={(e) => this.theSettler(e, fotosDetalles)}><span>{Portada[info].fotosDetalles}</span></a>
@@ -220,29 +157,11 @@ class DashButtons extends Component {
     }
   }
 
-  renderSubMenu(){
-    if(this.state.showSubMenu){
-      return(this.theDashButtons())
-    }
-  }
-
   render() {
-    let info = this.props.idiomas;
-    const panos360 = 'panos360';
-    const renders = 'renders';
-    const fotoproductos = 'fotoproductos';
-    const galeria = 'galeria';
-
     return (
       <nav>
         <div className='main-nav-carousel'>
-          <div className='nav-bar-main-carousel'>
-            <a onClick={(e) => this.theDashSettler(e, panos360)}><span>{Portada[info].panos360}</span></a>
-            <a onClick={(e) => this.theDashSettler(e, renders)}><span>{Portada[info].renders}</span></a>
-            <a onClick={(e) => this.theDashSettler(e, fotoproductos)}><span>{Portada[info].fotoproductos}</span></a>
-            <a onClick={(e) => this.theDashSettler(e, galeria)}><span>{Portada[info].galeria}</span></a>
-          </div>
-          {this.renderSubMenu()}
+            {this.theDashButtons()}
         </div>
       </nav>
     )

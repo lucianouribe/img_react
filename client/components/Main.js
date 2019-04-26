@@ -1,24 +1,34 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { transitoryInfo } from '../actions/transitoryInfo';
+import { selectedCarrusel } from '../actions/selectedCarrusel';
+import { reseter } from '../actions/reseter';
 
 import Carrusels from './Carrusels';
 import Trisixti from './Trisixti';
 import DashButtons from './DashButtons';
-import { transitoryInfo } from '../actions/transitoryInfo';
+import CarruselMenu from './CarruselMenu';
+
 
 class Main extends Component {
 
   constructor() {
     super();
     this.state = {
-      showDashButtons: false,
+      openCarrusel: '',
+      showDashButtons: true,
+      showMainMenu: false,
       show: true
     }
 
+    this.toggleMainMenu = this.toggleMainMenu.bind(this);
     this.toggleDashButtons = this.toggleDashButtons.bind(this);
+    this.showMeDashButtons = this.showMeDashButtons.bind(this);
     this.toggleCard = this.toggleCard.bind(this);
     this.dashButtons = this.dashButtons.bind(this);
+    this.mainMenu = this.mainMenu.bind(this);
     this.mainRenderer = this.mainRenderer.bind(this);
+    this.whichCarrusel = this.whichCarrusel.bind(this);
   }
 
   componentDidMount(){
@@ -30,13 +40,45 @@ class Main extends Component {
     this.setState({ showDashButtons: !this.state.showDashButtons });
   }
 
+  showMeDashButtons(showDashButtons) {
+    this.setState({ showDashButtons });
+  }
+
+  toggleMainMenu() {
+    this.setState({ showMainMenu: !this.state.showMainMenu });
+  }
+
   toggleCard() {
     this.setState({ show: !this.state.show });
   }
 
+  whichCarrusel(campo, campoField) {
+    this.setState({ openCarrusel: campo });
+    this.props.dispatch(reseter(true));
+    this.props.dispatch(transitoryInfo(campoField));
+    this.props.dispatch(selectedCarrusel(campoField));
+  }
+
   dashButtons(){
     if(this.state.showDashButtons){
-      return(<DashButtons />)
+      return(
+        <div className='sub-slider'>
+          <DashButtons openCarrusel={this.state.openCarrusel} toggleDashButtons={this.toggleDashButtons}/>
+          <div onClick={this.toggleDashButtons} className="icons-image hamburger"></div>
+        </div>
+        );
+    } else {
+      return(<div className='sub-slider'><div onClick={this.toggleDashButtons} className="icons-image hamburger"></div></div>);
+    }
+  }
+
+  mainMenu(){
+    if(this.state.showMainMenu){
+      return(
+        <div className="carrusel-main-menu settings-menu">
+          <CarruselMenu whichCarrusel={this.whichCarrusel} toggleMainMenu={this.toggleMainMenu} showMeDashButtons={this.showMeDashButtons} />
+        </div>
+      )
     }
   }
 
@@ -81,9 +123,10 @@ class Main extends Component {
         <div className="main-header">
           <div type="button" onClick={this.toggleCard} className="info-icon">i</div>
           <h1>{queVeo}</h1>
-          <div type="button" onClick={this.toggleDashButtons} className="icons-image settings-icon sub-menu"></div>
+          <div type="button" onClick={this.toggleMainMenu} className="icons-image settings-icon sub-menu"></div>
         </div>
         <div className='carrusel-slider'>
+          {this.mainMenu()}
           {this.mainRenderer()}
           <div className="dashli">
             {this.dashButtons()}

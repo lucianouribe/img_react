@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tour start="node4">
+  <panorama id="node4" hideabout="1">
+    <view fovmode="0" pannorth="0">
+      <start pan="0" fov="70" tilt="0"/>
+      <min pan="0" fov="5" tilt="-90"/>
+      <max pan="360" fov="120" tilt="90"/>
+    </view>
+    <userdata title="Hacienda Arrayanes" datetime="2015:07:07 12:11:50" description="" copyright="" tags="0" author="" source="" comment="" info="" longitude="" latitude=""/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" backgroundalpha="0.6078431372549019" enabled="0" height="20" backgroundcolor="0x000000" bordercolor="0xffffff" border="1" textcolor="0xeafef2" borderalpha="1" borderradius="5" wordwrap="1" textalpha="1"/>
+      <polystyle mode="0" backgroundalpha="0.2509803921568627" backgroundcolor="0x0000ff" bordercolor="0x0000ff" borderalpha="1"/>
+      <hotspot title="Vista desde el mirador de Arrayanes" target="" pan="89.92059999999999" skinid="popduda" url="" id="dud_01" tilt="-24.1707"/>
+    </hotspots>
+    <media>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_camera.mp3" id="camera" level="1"/>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_click_close.mp3" id="click_close" level="1"/>
+    </media>
+    <input tile0url="images/DSC_7750 Panorama2_o_0.jpg" tile5url="images/DSC_7750 Panorama2_o_5.jpg" tilesize="724" tile4url="images/DSC_7750 Panorama2_o_4.jpg" tile3url="images/DSC_7750 Panorama2_o_3.jpg" tilescale="1.013812154696133" tile2url="images/DSC_7750 Panorama2_o_2.jpg" tile1url="images/DSC_7750 Panorama2_o_1.jpg"/>
+    <control simulatemass="1" lockedmouse="0" lockedkeyboard="0" dblclickfullscreen="0" invertwheel="0" lockedwheel="0" invertcontrol="1" speedwheel="1" sensitivity="8"/>
+  </panorama>
+  <panorama id="node5" hideabout="1">
+    <view fovmode="0" pannorth="0">
+      <start pan="0" fov="70" tilt="0"/>
+      <min pan="0" fov="5" tilt="-90"/>
+      <max pan="360" fov="120" tilt="90"/>
+    </view>
+    <userdata title="P1" datetime="2015:07:07 12:11:50" description="" copyright="" tags="1|46" author="" source="" comment="" info="" longitude="" latitude=""/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" backgroundalpha="0.6078431372549019" enabled="0" height="20" backgroundcolor="0x000000" bordercolor="0xffffff" border="1" textcolor="0xeafef2" borderalpha="1" borderradius="5" wordwrap="1" textalpha="1"/>
+      <polystyle mode="0" backgroundalpha="0.2509803921568627" backgroundcolor="0x0000ff" bordercolor="0x0000ff" borderalpha="1"/>
+      <hotspot title="" target="" pan="-39.209" skinid="" url="{node6}" id="Point01" tilt="7.90257"/>
+    </hotspots>
+    <media>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_camera.mp3" id="camera" level="1"/>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_click_close.mp3" id="click_close" level="1"/>
+    </media>
+    <input tile0url="images/DSC_7585 Panorama_+2_-2_fused_o_0.jpg" tile5url="images/DSC_7585 Panorama_+2_-2_fused_o_5.jpg" tilesize="724" tile4url="images/DSC_7585 Panorama_+2_-2_fused_o_4.jpg" tile3url="images/DSC_7585 Panorama_+2_-2_fused_o_3.jpg" tilescale="1.013812154696133" tile2url="images/DSC_7585 Panorama_+2_-2_fused_o_2.jpg" tile1url="images/DSC_7585 Panorama_+2_-2_fused_o_1.jpg"/>
+    <control simulatemass="1" lockedmouse="0" lockedkeyboard="0" dblclickfullscreen="0" invertwheel="0" lockedwheel="0" invertcontrol="1" speedwheel="1" sensitivity="8"/>
+  </panorama>
+  <panorama id="node6" hideabout="1">
+    <view fovmode="0" pannorth="0">
+      <start pan="0" fov="70" tilt="0"/>
+      <min pan="0" fov="5" tilt="-90"/>
+      <max pan="360" fov="120" tilt="90"/>
+    </view>
+    <userdata title="P2" datetime="2015:07:07 12:11:50" description="" copyright="" tags="2|46" author="" source="" comment="" info="" longitude="" latitude=""/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" backgroundalpha="0.6078431372549019" enabled="0" height="20" backgroundcolor="0x000000" bordercolor="0xffffff" border="1" textcolor="0xeafef2" borderalpha="1" borderradius="5" wordwrap="1" textalpha="1"/>
+      <polystyle mode="0" backgroundalpha="0.2509803921568627" backgroundcolor="0x0000ff" bordercolor="0x0000ff" borderalpha="1"/>
+      <hotspot title="" target="" pan="86.5857" skinid="" url="{node7}" id="Point01" tilt="2.10231"/>
+      <hotspot title="" target="" pan="19.1134" skinid="" url="{node8}" id="Point02" tilt="0.386079"/>
+      <hotspot title="" target="" pan="36.447" skinid="" url="{node9}" id="Point03" tilt="9.08187"/>
+      <hotspot title="" target="" pan="-149.09" skinid="" url="{node5}" id="Point04" tilt="-12.1624"/>
+      <hotspot title="P6" target="" pan="-117.414" skinid="" url="{node10}" id="Point05" tilt="-10.4447"/>
+    </hotspots>
+    <media>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_camera.mp3" id="camera" level="1"/>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_click_close.mp3" id="click_close" level="1"/>
+    </media>
+    <input tile0url="images/DSC_7595 Panorama_o_0.jpg" tile5url="images/DSC_7595 Panorama_o_5.jpg" tilesize="724" tile4url="images/DSC_7595 Panorama_o_4.jpg" tile3url="images/DSC_7595 Panorama_o_3.jpg" tilescale="1.013812154696133" tile2url="images/DSC_7595 Panorama_o_2.jpg" tile1url="images/DSC_7595 Panorama_o_1.jpg"/>
+    <control simulatemass="1" lockedmouse="0" lockedkeyboard="0" dblclickfullscreen="0" invertwheel="0" lockedwheel="0" invertcontrol="1" speedwheel="1" sensitivity="8"/>
+  </panorama>
+  <panorama id="node7" hideabout="1">
+    <view fovmode="0" pannorth="0">
+      <start pan="0" fov="70" tilt="0"/>
+      <min pan="0" fov="5" tilt="-90"/>
+      <max pan="360" fov="120" tilt="90"/>
+    </view>
+    <userdata title="P3" datetime="2015:07:14 18:56:27" description="" copyright="" tags="3|46" author="" source="" comment="" info="" longitude="" latitude=""/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" backgroundalpha="0.6078431372549019" enabled="0" height="20" backgroundcolor="0x000000" bordercolor="0xffffff" border="1" textcolor="0xeafef2" borderalpha="1" borderradius="5" wordwrap="1" textalpha="1"/>
+      <polystyle mode="0" backgroundalpha="0.2509803921568627" backgroundcolor="0x0000ff" bordercolor="0x0000ff" borderalpha="1"/>
+      <hotspot title="" target="" pan="120.319" skinid="" url="{node9}" id="Point01" tilt="6.65893"/>
+      <hotspot title="" target="" pan="76.10339999999999" skinid="" url="{node8}" id="Point02" tilt="3.02486"/>
+      <hotspot title="" target="" pan="12.5507" skinid="" url="{node6}" id="Point03" tilt="2.44102"/>
+      <hotspot title="" target="" pan="45.0455" skinid="popflag" url="" id="flag_01" tilt="11.2912"/>
+    </hotspots>
+    <media>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_camera.mp3" id="camera" level="1"/>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_click_close.mp3" id="click_close" level="1"/>
+    </media>
+    <input tile0url="images/bandera_46_02_o_0.jpg" tile5url="images/bandera_46_02_o_5.jpg" tilesize="724" tile4url="images/bandera_46_02_o_4.jpg" tile3url="images/bandera_46_02_o_3.jpg" tilescale="1.013812154696133" tile2url="images/bandera_46_02_o_2.jpg" tile1url="images/bandera_46_02_o_1.jpg"/>
+    <control simulatemass="1" lockedmouse="0" lockedkeyboard="0" dblclickfullscreen="0" invertwheel="0" lockedwheel="0" invertcontrol="1" speedwheel="1" sensitivity="8"/>
+  </panorama>
+  <panorama id="node8" hideabout="1">
+    <view fovmode="0" pannorth="0">
+      <start pan="0" fov="70" tilt="0"/>
+      <min pan="0" fov="5" tilt="-90"/>
+      <max pan="360" fov="120" tilt="90"/>
+    </view>
+    <userdata title="P4" datetime="2015:07:07 12:11:50" description="" copyright="" tags="4|46" author="" source="" comment="" info="" longitude="" latitude=""/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" backgroundalpha="0.6078431372549019" enabled="0" height="20" backgroundcolor="0x000000" bordercolor="0xffffff" border="1" textcolor="0xeafef2" borderalpha="1" borderradius="5" wordwrap="1" textalpha="1"/>
+      <polystyle mode="0" backgroundalpha="0.2509803921568627" backgroundcolor="0x0000ff" bordercolor="0x0000ff" borderalpha="1"/>
+      <hotspot title="" target="" pan="77.61879999999999" skinid="" url="{node9}" id="Point01" tilt="6.33369"/>
+      <hotspot title="" target="" pan="-100.534" skinid="" url="{node6}" id="Point02" tilt="-3.46259"/>
+      <hotspot title="" target="" pan="154.919" skinid="" url="{node7}" id="Point03" tilt="-1.36815"/>
+    </hotspots>
+    <media>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_camera.mp3" id="camera" level="1"/>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_click_close.mp3" id="click_close" level="1"/>
+    </media>
+    <input tile0url="images/DSC_7618 Panorama_o_0.jpg" tile5url="images/DSC_7618 Panorama_o_5.jpg" tilesize="724" tile4url="images/DSC_7618 Panorama_o_4.jpg" tile3url="images/DSC_7618 Panorama_o_3.jpg" tilescale="1.013812154696133" tile2url="images/DSC_7618 Panorama_o_2.jpg" tile1url="images/DSC_7618 Panorama_o_1.jpg"/>
+    <control simulatemass="1" lockedmouse="0" lockedkeyboard="0" dblclickfullscreen="0" invertwheel="0" lockedwheel="0" invertcontrol="1" speedwheel="1" sensitivity="8"/>
+  </panorama>
+  <panorama id="node9" hideabout="1">
+    <view fovmode="0" pannorth="0">
+      <start pan="0" fov="70" tilt="0"/>
+      <min pan="0" fov="5" tilt="-90"/>
+      <max pan="360" fov="120" tilt="90"/>
+    </view>
+    <userdata title="P5" datetime="2015:07:07 12:11:50" description="" copyright="" tags="5|46" author="" source="" comment="" info="" longitude="" latitude=""/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" backgroundalpha="0.6078431372549019" enabled="0" height="20" backgroundcolor="0x000000" bordercolor="0xffffff" border="1" textcolor="0xeafef2" borderalpha="1" borderradius="5" wordwrap="1" textalpha="1"/>
+      <polystyle mode="0" backgroundalpha="0.2509803921568627" backgroundcolor="0x0000ff" bordercolor="0x0000ff" borderalpha="1"/>
+      <hotspot title="" target="" pan="36.9932" skinid="" url="{node8}" id="Point01" tilt="-9.23338"/>
+      <hotspot title="" target="" pan="1.7895" skinid="" url="{node7}" id="Point02" tilt="-9.69445"/>
+      <hotspot title="" target="" pan="32.5265" skinid="popflag" url="" id="flag_01" tilt="-6.10278"/>
+    </hotspots>
+    <media>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_camera.mp3" id="camera" level="1"/>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_click_close.mp3" id="click_close" level="1"/>
+    </media>
+    <input tile0url="images/DSC_7631 Panorama_o_0.jpg" tile5url="images/DSC_7631 Panorama_o_5.jpg" tilesize="724" tile4url="images/DSC_7631 Panorama_o_4.jpg" tile3url="images/DSC_7631 Panorama_o_3.jpg" tilescale="1.013812154696133" tile2url="images/DSC_7631 Panorama_o_2.jpg" tile1url="images/DSC_7631 Panorama_o_1.jpg"/>
+    <control simulatemass="1" lockedmouse="0" lockedkeyboard="0" dblclickfullscreen="0" invertwheel="0" lockedwheel="0" invertcontrol="1" speedwheel="1" sensitivity="8"/>
+  </panorama>
+  <panorama id="node10" hideabout="1">
+    <view fovmode="0" pannorth="0">
+      <start pan="0" fov="70" tilt="0"/>
+      <min pan="0" fov="5" tilt="-90"/>
+      <max pan="360" fov="120" tilt="90"/>
+    </view>
+    <userdata title="P6" datetime="2015:07:07 12:11:50" description="" copyright="" tags="6|46" author="" source="" comment="" info="" longitude="" latitude=""/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" backgroundalpha="0.6078431372549019" enabled="0" height="20" backgroundcolor="0x000000" bordercolor="0xffffff" border="1" textcolor="0xeafef2" borderalpha="1" borderradius="5" wordwrap="1" textalpha="1"/>
+      <polystyle mode="0" backgroundalpha="0.2509803921568627" backgroundcolor="0x0000ff" bordercolor="0x0000ff" borderalpha="1"/>
+      <hotspot title="" target="" pan="-68.7966" skinid="" url="{node5}" id="Point01" tilt="-9.24283"/>
+    </hotspots>
+    <media>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_camera.mp3" id="camera" level="1"/>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_click_close.mp3" id="click_close" level="1"/>
+    </media>
+    <input tile0url="images/DSC_7654 Panorama+1_o_0.jpg" tile5url="images/DSC_7654 Panorama+1_o_5.jpg" tilesize="724" tile4url="images/DSC_7654 Panorama+1_o_4.jpg" tile3url="images/DSC_7654 Panorama+1_o_3.jpg" tilescale="1.013812154696133" tile2url="images/DSC_7654 Panorama+1_o_2.jpg" tile1url="images/DSC_7654 Panorama+1_o_1.jpg"/>
+    <control simulatemass="1" lockedmouse="0" lockedkeyboard="0" dblclickfullscreen="0" invertwheel="0" lockedwheel="0" invertcontrol="1" speedwheel="1" sensitivity="8"/>
+  </panorama>
+  <panorama id="node11" hideabout="1">
+    <view fovmode="0" pannorth="0">
+      <start pan="0" fov="70" tilt="0"/>
+      <min pan="0" fov="5" tilt="-90"/>
+      <max pan="360" fov="120" tilt="90"/>
+    </view>
+    <userdata title="P7" datetime="2015:07:07 12:11:50" description="" copyright="" tags="7|101" author="" source="" comment="" info="" longitude="" latitude=""/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" backgroundalpha="0.6078431372549019" enabled="0" height="20" backgroundcolor="0x000000" bordercolor="0xffffff" border="1" textcolor="0xeafef2" borderalpha="1" borderradius="5" wordwrap="1" textalpha="1"/>
+      <polystyle mode="0" backgroundalpha="0.2509803921568627" backgroundcolor="0x0000ff" bordercolor="0x0000ff" borderalpha="1"/>
+      <hotspot title="" target="" pan="-14.1322" skinid="" url="{node12}" id="Point01" tilt="-4.99083"/>
+    </hotspots>
+    <media>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_camera.mp3" id="camera" level="1"/>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_click_close.mp3" id="click_close" level="1"/>
+    </media>
+    <input tile0url="images/DSC_7666 Panorama_o_0.jpg" tile5url="images/DSC_7666 Panorama_o_5.jpg" tilesize="724" tile4url="images/DSC_7666 Panorama_o_4.jpg" tile3url="images/DSC_7666 Panorama_o_3.jpg" tilescale="1.013812154696133" tile2url="images/DSC_7666 Panorama_o_2.jpg" tile1url="images/DSC_7666 Panorama_o_1.jpg"/>
+    <control simulatemass="1" lockedmouse="0" lockedkeyboard="0" dblclickfullscreen="0" invertwheel="0" lockedwheel="0" invertcontrol="1" speedwheel="1" sensitivity="8"/>
+  </panorama>
+  <panorama id="node12" hideabout="1">
+    <view fovmode="0" pannorth="0">
+      <start pan="0" fov="70" tilt="0"/>
+      <min pan="0" fov="5" tilt="-90"/>
+      <max pan="360" fov="120" tilt="90"/>
+    </view>
+    <userdata title="P8" datetime="2015:07:14 20:10:17" description="" copyright="" tags="8|101" author="" source="" comment="" info="" longitude="" latitude=""/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" backgroundalpha="0.6078431372549019" enabled="0" height="20" backgroundcolor="0x000000" bordercolor="0xffffff" border="1" textcolor="0xeafef2" borderalpha="1" borderradius="5" wordwrap="1" textalpha="1"/>
+      <polystyle mode="0" backgroundalpha="0.2509803921568627" backgroundcolor="0x0000ff" bordercolor="0x0000ff" borderalpha="1"/>
+      <hotspot title="" target="" pan="-25.4843" skinid="" url="{node11}" id="Point01" tilt="10.1339"/>
+      <hotspot title="" target="" pan="-157.432" skinid="" url="{node1}" id="Point02" tilt="-13.2801"/>
+      <hotspot title="" target="" pan="23.7129" skinid="popflag" url="" id="flag_01" tilt="16.5851"/>
+    </hotspots>
+    <media>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_camera.mp3" id="camera" level="1"/>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_click_close.mp3" id="click_close" level="1"/>
+    </media>
+    <input tile0url="images/bandera_101_01_o_0.jpg" tile5url="images/bandera_101_01_o_5.jpg" tilesize="724" tile4url="images/bandera_101_01_o_4.jpg" tile3url="images/bandera_101_01_o_3.jpg" tilescale="1.013812154696133" tile2url="images/bandera_101_01_o_2.jpg" tile1url="images/bandera_101_01_o_1.jpg"/>
+    <control simulatemass="1" lockedmouse="0" lockedkeyboard="0" dblclickfullscreen="0" invertwheel="0" lockedwheel="0" invertcontrol="1" speedwheel="1" sensitivity="8"/>
+  </panorama>
+  <panorama id="node1" hideabout="1">
+    <view fovmode="0" pannorth="0">
+      <start pan="0" fov="70" tilt="0"/>
+      <min pan="0" fov="5" tilt="-90"/>
+      <max pan="360" fov="120" tilt="90"/>
+    </view>
+    <userdata title="P9" datetime="2015:07:07 12:11:50" description="" copyright="" tags="9|101" author="" source="" comment="" info="" longitude="" latitude=""/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" backgroundalpha="0.6078431372549019" enabled="0" height="20" backgroundcolor="0x000000" bordercolor="0xffffff" border="1" textcolor="0xeafef2" borderalpha="1" borderradius="5" wordwrap="1" textalpha="1"/>
+      <polystyle mode="0" backgroundalpha="0.2509803921568627" backgroundcolor="0x0000ff" bordercolor="0x0000ff" borderalpha="1"/>
+      <hotspot title="" target="" pan="-1.29056" skinid="" url="{node12}" id="Point01" tilt="4.86323"/>
+      <hotspot title="" target="" pan="143.532" skinid="" url="{node13}" id="Point02" tilt="-3.52574"/>
+      <hotspot title="" target="" pan="32.7718" skinid="popflag" url="" id="flag_01" tilt="3.45967"/>
+    </hotspots>
+    <media>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_camera.mp3" id="camera" level="1"/>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_click_close.mp3" id="click_close" level="1"/>
+    </media>
+    <input tile0url="images/DSC_7706 Panorama Panorama_o_0.jpg" tile5url="images/DSC_7706 Panorama Panorama_o_5.jpg" tilesize="724" tile4url="images/DSC_7706 Panorama Panorama_o_4.jpg" tile3url="images/DSC_7706 Panorama Panorama_o_3.jpg" tilescale="1.013812154696133" tile2url="images/DSC_7706 Panorama Panorama_o_2.jpg" tile1url="images/DSC_7706 Panorama Panorama_o_1.jpg"/>
+    <control simulatemass="1" lockedmouse="0" lockedkeyboard="0" dblclickfullscreen="0" invertwheel="0" lockedwheel="0" invertcontrol="1" speedwheel="1" sensitivity="8"/>
+  </panorama>
+  <panorama id="node13" hideabout="1">
+    <view fovmode="0" pannorth="0">
+      <start pan="0" fov="70" tilt="0"/>
+      <min pan="0" fov="5" tilt="-90"/>
+      <max pan="360" fov="120" tilt="90"/>
+    </view>
+    <userdata title="P10" datetime="2015:07:13 16:47:29" description="" copyright="" tags="10" author="" source="" comment="" info="" longitude="" latitude=""/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" backgroundalpha="0.6078431372549019" enabled="0" height="20" backgroundcolor="0x000000" bordercolor="0xffffff" border="1" textcolor="0xeafef2" borderalpha="1" borderradius="5" wordwrap="1" textalpha="1"/>
+      <polystyle mode="0" backgroundalpha="0.2509803921568627" backgroundcolor="0x0000ff" bordercolor="0x0000ff" borderalpha="1"/>
+      <hotspot title="" target="" pan="0.105299" skinid="" url="{node1}" id="Point01" tilt="1.15813"/>
+      <hotspot title="" target="" pan="128.153" skinid="" url="{node3}" id="Point02" tilt="-14.2114"/>
+    </hotspots>
+    <media>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_camera.mp3" id="camera" level="1"/>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_click_close.mp3" id="click_close" level="1"/>
+    </media>
+    <input tile0url="images/DSC_7719 Panorama+0jpg_+2_-2jpg_fused_o_0.jpg" tile5url="images/DSC_7719 Panorama+0jpg_+2_-2jpg_fused_o_5.jpg" tilesize="724" tile4url="images/DSC_7719 Panorama+0jpg_+2_-2jpg_fused_o_4.jpg" tile3url="images/DSC_7719 Panorama+0jpg_+2_-2jpg_fused_o_3.jpg" tilescale="1.013812154696133" tile2url="images/DSC_7719 Panorama+0jpg_+2_-2jpg_fused_o_2.jpg" tile1url="images/DSC_7719 Panorama+0jpg_+2_-2jpg_fused_o_1.jpg"/>
+    <control simulatemass="1" lockedmouse="0" lockedkeyboard="0" dblclickfullscreen="0" invertwheel="0" lockedwheel="0" invertcontrol="1" speedwheel="1" sensitivity="8"/>
+  </panorama>
+  <panorama id="node3" hideabout="1">
+    <view fovmode="0" pannorth="0">
+      <start pan="0" fov="70" tilt="0"/>
+      <min pan="0" fov="5" tilt="-90"/>
+      <max pan="360" fov="120" tilt="90"/>
+    </view>
+    <userdata title="P11" datetime="2015:07:07 12:11:50" description="" copyright="" tags="11|101" author="" source="" comment="" info="" longitude="" latitude=""/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" backgroundalpha="0.6078431372549019" enabled="0" height="20" backgroundcolor="0x000000" bordercolor="0xffffff" border="1" textcolor="0xeafef2" borderalpha="1" borderradius="5" wordwrap="1" textalpha="1"/>
+      <polystyle mode="0" backgroundalpha="0.2509803921568627" backgroundcolor="0x0000ff" bordercolor="0x0000ff" borderalpha="1"/>
+      <hotspot title="" target="" pan="-106.186" skinid="" url="{node11}" id="Point02" tilt="10.15"/>
+      <hotspot title="" target="" pan="33.1056" skinid="" url="{node13}" id="Point01" tilt="-8.694190000000001"/>
+    </hotspots>
+    <media>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_camera.mp3" id="camera" level="1"/>
+      <sound mode="0" loop="1000" keep="1" url="images/skin_snd_click_close.mp3" id="click_close" level="1"/>
+    </media>
+    <input tile0url="images/DSC_7739 Panorama_o_0.jpg" tile5url="images/DSC_7739 Panorama_o_5.jpg" tilesize="724" tile4url="images/DSC_7739 Panorama_o_4.jpg" tile3url="images/DSC_7739 Panorama_o_3.jpg" tilescale="1.013812154696133" tile2url="images/DSC_7739 Panorama_o_2.jpg" tile1url="images/DSC_7739 Panorama_o_1.jpg"/>
+    <control simulatemass="1" lockedmouse="0" lockedkeyboard="0" dblclickfullscreen="0" invertwheel="0" lockedwheel="0" invertcontrol="1" speedwheel="1" sensitivity="8"/>
+  </panorama>
+</tour>

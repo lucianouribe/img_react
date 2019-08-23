@@ -46,6 +46,7 @@
             font-family: 'Source Code Pro', monospace
           h1
             margin: 1rem 0
+            margin-top: 40px
             font-weight: 900
             font-size: 20px
             text-transform: uppercase
@@ -54,10 +55,18 @@
           // subtitulo
           h2
             margin: 0.5rem 0
+            margin-top: 34px
             font-weight: 700
             font-size: 16px
             text-transform: uppercase
             color: #8e864b
+          // sub-subtitulo
+          h3
+            margin-top: 24px
+            color: #8B3B2B
+            font-size: 14px
+            text-transform: uppercase
+            text-indent: 5px
           // go to
             // with jquery get element, append an <i> element and add the arrow
           blockquote
@@ -69,47 +78,43 @@
             display: flex
             // terminal
             code
-              background: rgba(138,78,42,0.2)
-              border: 1px solid #8A4E2A
-              border-radius: 0.6rem
-              font-size: 12px
-              color: red
-              padding: 8px
+              background: rgba(27,31,35,.05)
+              border-radius: 3px
+              font-size: 85%
+              padding: 0.2em 0.8em
             // links
             a
               background: rgba(4,87,166,0.3)
-              border: 1px solid #0457A6
-              border-radius: 0.6rem
-              font-size: 12px
-              padding: 8px
+              border-radius: 3px
+              font-size: 85%
+              padding: 0.2em 0.8em
               color: #0457A6
-              font-weight: 600
               text-decoration: none
             // images
             img
-              border: 1px dashed #723025
-              border-radius: 1rem
+              border-radius: 3px
               max-width: 100%
               max-height: 300px
+              box-shadow: 3px 3px 3px rgba(0,0,0,0.1)
           // code block
           pre
-            background: rgba(138,78,42,0.2)
-            border: 1px solid #8A4E2A
-            border-radius: 0.6rem
-            font-size: 12px
-            padding: 8px
+            background: #f6f8fa
+            border-radius: 3px
+            font-size: 85%
+            padding: 16px
           // tables
           // procoms
           table 
-            border: 1px solid #1C6EA4
-            background-color: #EEEEEE
+            margin: 24px 0
+            background-color: rgba(27,31,35,.05)
             width: 100%
             text-align: left
             border-collapse: collapse
-          
+            border-radius: 3px
+            -moz-border-radius: 3px
+            box-shadow: 3px 3px 3px rgba(0,0,0,0.1)
           table td, table th 
-            border: 1px solid #AAAAAA
-            padding: 3px 2px
+            padding: 3px 6px
           
           table tbody td 
             font-size: 13px
@@ -118,30 +123,28 @@
             background: #D0E4F5
           
           table thead 
-            background: #1C6EA4
-            background: -moz-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%)
-            background: -webkit-linear-gradient(top, #5592bb 0%, #327cad 66%, #1C6EA4 100%)
-            background: linear-gradient(to bottom, #5592bb 0%, #327cad 66%, #1C6EA4 100%)
-            border-bottom: 2px solid #444444
+            background: rgba(4,87,166,0.3)
           
           table thead th 
             font-size: 15px
             font-weight: bold
             color: #FFFFFF
-            border-left: 2px solid #D0E4F5
+            border: none
+            border-left: 1px solid #D0E4F5
           
-          table thead th:first-child 
+          table thead th:first-child,
+          table tbody td:first-child
             border-left: none
+
+          table tbody td
+            border: none
+            border-left: 1px solid #f6f8fa
           
           table tfoot 
             font-size: 14px
             font-weight: bold
             color: #FFFFFF
             background: #D0E4F5
-            background: -moz-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%)
-            background: -webkit-linear-gradient(top, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%)
-            background: linear-gradient(to bottom, #dcebf7 0%, #d4e6f6 66%, #D0E4F5 100%)
-            border-top: 2px solid #444444
           
           table tfoot td 
             font-size: 14px
@@ -175,9 +178,6 @@
   border-radius: 8px
   max-height: calc(50vh - 3rem)
   overflow-y: scroll
-
-
-
 
 // second form
 .paso-second-form 
@@ -217,8 +217,6 @@
   width: 100%
   height: 100%
 
-
-
 @media all and (max-width: 800px) 
   .paso-container-form .paso-content-text
     max-height: calc(70vh - 3rem)
@@ -235,45 +233,3 @@
   
   .titulo-nombre h4 
     font-size: 2rem
-  
-
-
-
-// 
-// // paso type video
-// .link-video 
-//   @include flex-direction(column)
-//   -ms-flex-wrap: wrap !important
-//       flex-wrap: wrap !important
-// 
-// .video-link 
-//   @include flex(1 1 100%)
-// 
-// .link-video .paso-content-text 
-//   text-align: center
-//   height: 1.5rem !important
-//   color: #0457A6
-// 
-// .link-video .botones-container 
-//   width: 150px
-// 
-// // paso type image
-// .link-image, .download 
-//   @include flex-direction(column)
-// 
-// .image-link 
-//   // width: 80%
-//   height: 30rem
-//   border: 1px solid #723025
-//   border-radius: 1rem
-// 
-// .link-image .paso-content, .download .paso-content 
-//   width: 70%
-// 
-// .link-image .paso-content-text, .download .paso-content-text 
-//   height: 1.5rem !important
-//   color: #723025
-// 
-// .link-image .botones-container, .download .botones-container
-//   width: 150px
-// 

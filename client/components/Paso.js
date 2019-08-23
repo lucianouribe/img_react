@@ -98,7 +98,7 @@ class Paso extends React.Component {
     if(this.state.showEditButtons === 'show-buttons' && this.props.user.role === 'admin'){
       return(<TextArea the_class='paso-content-text' the_content={paso.step} onChange4Textarea={this.onChange4Textarea} ref='text_area'/>)
     } else {
-      return(<div className='paso-content-text' onClick={() => this.setState({showEditButtons: show})} ><Markdown>{paso.step}</Markdown></div>)
+      return(<div className='paso-content-text' onDoubleClick={() => this.setState({showEditButtons: show})} ><Markdown>{paso.step}</Markdown></div>)
     }
   }
 

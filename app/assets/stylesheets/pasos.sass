@@ -168,62 +168,61 @@
             border-radius: 5px
           
 // ADD PASO IN PROYECTO
-.paso-container-form 
-  z-index: 2000
-  width: 100%
-  min-width: 320px
-  max-height: 90vh
-  padding: 0.3rem 2rem
-  
-
-.paso-container-form 
+.paso-container-form
   @include flexbox()
   @include flex-direction(column)
-
-.paso-container-form .paso-content-text
-  padding: 0.5rem
-  margin-top: 0
-  border-radius: 8px
-  max-height: calc(50vh - 3rem)
-  overflow-y: scroll
+  position: absolute
+  width: 90%
+  min-width: 320px
+  max-height: 80vh
+  margin: 0 auto
+  margin-top: 20px
+  top: 10%
+  padding: 0.3rem 2rem
+  z-index: 2000
+  .paso-content-text
+    padding: 0.5rem
+    margin-top: 0
+    border: 1px solid #1C6EA4
+    border-radius: 8px
+    min-height: 200px
+    max-height: calc(50vh - 3rem)
+    overflow-y: scroll
 
 // second form
 .paso-second-form 
-  background: rgba(255,255,255,1)
+  background: #eceff1
   @include flexbox()
-
-.paso-second-cont 
-  @include flex(6 6 60%)
-  display: block
-
-.paso-second-step 
-  width: 100% !important
-  border-top: 1px dashed #ff6d00 !important
-  border-bottom: none !important
-  margin: 0 !important
-  min-height: 7rem !important
-
-.paso-second-cont [type=file] 
-  width: 100%
-  background: #ff6d00
-  color: #fff
-  padding: 0.5rem
-  height: 3rem
-
-.paso-second-form .image-preview 
-  width: 10rem
-  height: 10rem
-  @include flexbox()
-  @include align-items(center)
-  @include justify-content(center)
-  border: 1px dashed #ff6d00
-
-.image-preview div 
-  height: 100%
-
-.paso-second-image-cont .paso-second-image 
-  width: 100%
-  height: 100%
+  border: 1px solid #1C6EA4
+  border-radius: 8px
+  overflow: hidden
+  .paso-second-cont 
+    @include flex(6 6 60%)
+    display: block
+    .paso-second-step 
+      width: 100% !important
+      // margin: 0 !important
+      min-height: 7rem !important
+      border: none
+    [type=file]
+      width: 100%
+      background: #eceff1
+      color: #707070
+      padding: 0.5rem
+      height: 3rem
+  .image-preview
+    width: 10rem
+    // height: 10rem
+    @include flexbox()
+    @include align-items(center)
+    @include justify-content(center)
+    @include flex(4 4 40%)
+    div
+      height: 100%
+    .paso-second-image-cont 
+      .paso-second-image 
+        width: 100%
+        // height: 100%
 
 @media all and (max-width: 800px) 
   .paso-container-form .paso-content-text
@@ -234,7 +233,7 @@
     border: none
   
   .paso-container-form 
-    padding: 0.5rem 2rem
+    padding: 0
   
   .proyecto-unidad 
     margin: 0.1rem

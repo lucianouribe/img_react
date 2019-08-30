@@ -231,7 +231,7 @@ class Proyecto extends React.Component {
       return(
         <div className="paso-second-form" >
           <span className="paso-second-cont">
-            <input type="text" ref="step" className="paso-second-step" placeholder=" >_  picture name"/>
+            <input type="text" ref="step" className="paso-second-step" placeholder="Alt Text"/>
             <input type="file" ref="picture" onChange={this.selectFiles} className="paso-second-picture"/>
             <input type="hidden" value={this.state.files} />
           </span>

@@ -1,0 +1,44 @@
+@import "mixins"
+
+// PASO OPTION COMPONENT (THE OPTIONS)
+.paso-option-container
+  position: absolute
+  bottom: 0
+  right: 0
+  width: 100%
+  z-index: 2000
+
+.paso-option-botones-form
+  @include flex(1 1 100%)
+  @include flexbox()
+  @include align-content(center)
+  @include align-items(center)
+  @include justify-content(space-between)
+  height: 1.5rem
+  padding: 1.3rem 0.8rem
+  background: #ECEFF1
+  i
+    -webkit-box-flex: 1
+        -ms-flex: 1
+            flex: 1
+    text-align: center
+    color: #767A86
+    &:hover
+      color: #9DD0FF
+  .elegida
+    color: red
+  .listo
+    color: green
+  .pues-no
+    color: red
+
+@media all and (max-width: 800px)
+
+
+//iphone 3 y 4
+@media all and (max-width: 380px)
+
+
+@media all and (max-width: 992px)
+
+

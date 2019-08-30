@@ -186,8 +186,9 @@ class Proyecto extends React.Component {
     let procoms = [];
     // para upload
     if(this.state.estilo === 'download') {
+      let name = step;
       image_link = Math.random().toString(36).replace(/0\./i, '');
-      let image = `http://res.cloudinary.com/lucianouribe/image/upload/${image_link}.jpg`;
+      step = `![alt text](http://res.cloudinary.com/lucianouribe/image/upload/${image_link}.jpg "${name}")`
       picture = this.refs.picture.files[0];
     } else {
       image_link = 'undefined';
@@ -321,12 +322,6 @@ class Proyecto extends React.Component {
     let proyectoFull;
     if(this.props.modalize === true && this.props.doorStatus === true) {
       proyectoFull = "proyecto-full"
-    }
-    let containerStyle;
-    if(this.state.showAdd){
-      containerStyle = { maxHeight: 'calc(100vh - 10rem)' }
-    } else {
-      containerStyle = { maxHeight: 'calc(100vh - 10rem)' }
     }
 
     return (

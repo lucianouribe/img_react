@@ -33,6 +33,7 @@ body
         margin: 0 12px
         overflow-y: hidden
         overflow-x: scroll
+        scrollbar-width: none
         border-radius: 5px
         span
           padding: 0 12px
@@ -47,7 +48,8 @@ body
           color: #555555
         a.active
           color: #8E864B
-          
+        &::-webkit-scrollbar
+          display: none
       ::-webkit-scrollbar
         display: none
 

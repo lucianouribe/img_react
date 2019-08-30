@@ -1,4 +1,3 @@
-require 'pry'
 class Api::TranslatorsController < ApplicationController
 
   def translate

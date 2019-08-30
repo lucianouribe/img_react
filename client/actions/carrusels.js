@@ -1,5 +1,5 @@
 export const addCarrusel = (name, image, infopic, role, picture) => {
-  // console.log('this is add carrusels action');
+  // console.log('this is add carrusels action', name, image, infopic, role, picture);
   let formData = new FormData();
   formData.append('name', name);
   formData.append('image', image);

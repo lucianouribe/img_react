@@ -13,6 +13,7 @@ const carrusels = ( state = [], action ) => {
     //   return filteredProfesors;
     //   break;
     case 'ADD_CARRUSEL':
+      // console.log('reducer add carousel', action.carrusel, ...state)
       return [action.carrusel, ...state]
       break;
     case 'EDIT_CARRUSEL':

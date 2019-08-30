@@ -1,4 +1,3 @@
-require 'pry'
 class Api::CarruselsController < ApplicationController
   before_action :set_api_carrusel, only: [:show, :edit, :update, :destroy]
   skip_before_action :verify_authenticity_token

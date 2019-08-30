@@ -1,4 +1,3 @@
-require 'pry'
 class Api::MorsesController < ApplicationController
 
   def go_to_model

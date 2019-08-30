@@ -20,7 +20,6 @@ end
 #   json.subtopic proyecto.subtopic
 #   json.difficulty proyecto.difficulty
 #   json.order proyecto.order
-#     # binding.pry
 #   json.pasos proyecto.pasos do |paso|
 #     json.id paso.id
 #     json.step paso.step
@@ -29,9 +28,7 @@ end
 #     json.tuto_link paso.tuto_link
 #     json.video_link paso.video_link
 #     json.image_link paso.image_link
-#     # binding.pry
 #     json.procoms paso.procoms do |procom|
-#       # binding.pry
 #       json.id procom.id
 #       json.pro_content procom.pro_content
 #       json.pro_style procom.pro_style

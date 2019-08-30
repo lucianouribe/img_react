@@ -108,6 +108,7 @@ class CarruselsEdit extends Component {
 
     let image = `http://res.cloudinary.com/lucianouribe/image/upload/${filename}.jpg`;
     let picture = this.refs.picture.files[0];
+    console.log(name, image, infopic, role, picture);
     this.props.dispatch(addCarrusel(name, image, infopic, role, picture));
     let change = "show";
     this.props.menuButtonsMagic(change);

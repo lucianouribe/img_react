@@ -1,4 +1,3 @@
-require 'pry'
 class ContactMailer < ApplicationMailer
   default from: ENV['MAIL_FROM']
 

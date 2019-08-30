@@ -1,4 +1,3 @@
-require 'pry'
 class Carrusel < ApplicationRecord
   validates_presence_of :name, :image, :role
 
@@ -13,7 +12,4 @@ class Carrusel < ApplicationRecord
     delete_this_name = first[2]
     Cloudinary::Uploader.destroy(delete_this_name)
   end
-
-
-
 end

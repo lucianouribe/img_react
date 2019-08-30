@@ -1,4 +1,3 @@
-require 'pry'
 class Translator < ApplicationRecord
 
   def self.start_process(info)

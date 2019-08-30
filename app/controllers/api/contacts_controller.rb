@@ -1,4 +1,3 @@
-require 'pry'
 class Api::ContactsController < ApplicationController
   def index
   end

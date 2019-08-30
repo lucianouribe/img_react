@@ -1,4 +1,3 @@
-require 'pry'
 class Morse < ApplicationRecord
 
   def self.start_process(info)

@@ -44,8 +44,39 @@ export function ortografica(word){
   }
 }
 
-// export function setTextareaHeight(paso){
-//     paso.each(function(index, item){
-//       item.style.height = item.scrollHeight+'px';
-//     });
-//   }
+export function setTextareaHeight(){
+  console.log('hello')
+  const textareas = document.getElementsByTagName('textarea');
+  let count = textareas.length;
+  for(var i=0;i<count;i++) {
+    textareas[i].onkeydown = function(e){
+      if(e.keyCode==9 || e.which==9){
+        e.preventDefault();
+        var s = this.selectionStart;
+        this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
+        this.selectionEnd = s+1;
+      }
+    }
+  }
+}
+
+export function setProcomClass(){
+  let problems = document.getElementsByClassName('lang-pro')
+  for (let problem of problems) {
+    if (problem.className !== 'problem') {
+      problem.parentElement.classList.add('problem');
+    }
+  }
+  let comments = document.getElementsByClassName('lang-com')
+  for (let comment of comments) {
+    if (comment.className !== 'comment') {
+      comment.parentElement.classList.add('comment');
+    }
+  }
+  let examples = document.getElementsByClassName('lang-exa')
+  for (let example of examples) {
+    if (example.className !== 'example') {
+      example.parentElement.classList.add('example');
+    }
+  }
+}

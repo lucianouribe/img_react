@@ -1,7 +1,3 @@
-@import "mixins"
-
-.paso-container
-  textarea
 // PASOS
 // paso en proyecto
 .proyecto-full 
@@ -25,14 +21,12 @@
         min-height: 3rem
         font-size: 14px
         textarea
-          font-family: 'Source Code Pro', monospace
+          font-family: $monospace
           width: 100%
           height: calc(100vh - 20rem)!important
           border: 1px solid blue
           border-radius: 10px
-          // padding: 10px
         .paso-control
-          // flex: 2 2 20%
           @include flexbox()
           @include justify-content(flex-end)
           z-index: 300
@@ -43,7 +37,7 @@
         .paso-content-text
           // titulo
           > *
-            font-family: 'Source Code Pro', monospace
+            font-family: $monospace
           h1
             margin: 1rem 0
             margin-top: 40px
@@ -71,30 +65,7 @@
             // with jquery get element, append an <i> element and add the arrow
           blockquote
             color: #4f3ad6
-            margin: 0
-            p 
-              em,
-              strong,
-              code
-                width: 100%
-                padding: 10px 24px
-                background: rgba(246, 248, 250, 0.6)
-                font-style: normal
-                font-weight: 300
-                font-size: 90%
-                border-radius: 5px
-                -webkit-box-shadow: inset 3px 3px 3px rgba(0, 0, 0, 0.1)
-                box-shadow: inset 0px 3px 3px rgba(0, 0, 0, 0.1)
-              // comment
-              em
-                color: #8E864B
-              //problem
-              strong
-                color: red
-              //example
-              code
-                color: #A36E02
-          
+            margin: 0          
           p
             padding: 0.5rem 0
             display: flex
@@ -133,8 +104,19 @@
             font-size: 85%
             line-height: 20px
             padding: 16px
-          // tables
           // procoms
+          .problem,
+          .comment,
+          .example
+            margin-left: 20px
+          .problem
+            color: $problem
+          .comment
+            color: $comment
+          .example
+            color: $example
+
+          // tables
           table 
             margin: 24px 0
             background-color: rgba(27,31,35,.05)

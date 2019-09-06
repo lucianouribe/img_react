@@ -5,6 +5,7 @@ import PasoOptions from './PasoOptions';
 import PasoControl from './PasoControl';
 import TextArea from './TextArea';
 import { addMemory } from '../actions/mymemory';
+import { setProcomClass } from '../helpers';
 
 class Paso extends React.Component {
 
@@ -30,25 +31,11 @@ class Paso extends React.Component {
   }
 
   componentDidMount(){
-    // $('select').formSelect();
+    setProcomClass()
   }
 
   componentDidUpdate(){
-    // $('select').formSelect();
-    // para que los tab funcionen en el textarea
-    const textareas = document.getElementsByTagName('textarea');
-    let count = textareas.length;
-    for(var i=0;i<count;i++) {
-      textareas[i].onkeydown = function(e){
-        if(e.keyCode==9 || e.which==9){
-          e.preventDefault();
-          var s = this.selectionStart;
-          this.value = this.value.substring(0,this.selectionStart) + "\t" + this.value.substring(this.selectionEnd);
-          this.selectionEnd = s+1;
-        }
-      }
-    }
-
+    setProcomClass()
   }
 
   // ALL MIGHTY MEMORY

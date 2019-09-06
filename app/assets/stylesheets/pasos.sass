@@ -1,5 +1,7 @@
 // PASOS
 // paso en proyecto
+.hidden
+  display: none
 .proyecto-full 
   .pasos-container 
     margin: 8rem 15px 0 15px
@@ -111,9 +113,25 @@
             margin-left: 20px
           .problem
             color: $problem
+            &:before
           .comment
             color: $comment
           .example
+            color: $example
+          .fa.fa-exclamation-triangle,
+          .fa.fa-comments,
+          .fa.fa-eye
+            position: absolute
+            font-size: 14px
+            left: 21px
+            line-height: 0px
+            &:hover
+              color: $azul_cunita
+          .fa.fa-exclamation-triangle
+            color: $problem
+          .fa.fa-comments
+            color: $comment
+          .fa.fa-eye
             color: $example
 
           // tables

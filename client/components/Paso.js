@@ -5,7 +5,7 @@ import PasoOptions from './PasoOptions';
 import PasoControl from './PasoControl';
 import TextArea from './TextArea';
 import { addMemory } from '../actions/mymemory';
-import { setProcomClass } from '../helpers';
+import { setProcomClass, clickProcomIcon } from '../helpers';
 
 class Paso extends React.Component {
 
@@ -31,11 +31,13 @@ class Paso extends React.Component {
   }
 
   componentDidMount(){
-    setProcomClass()
+    setProcomClass();
+    clickProcomIcon();
   }
 
   componentDidUpdate(){
-    setProcomClass()
+    setProcomClass();
+    clickProcomIcon();
   }
 
   // ALL MIGHTY MEMORY

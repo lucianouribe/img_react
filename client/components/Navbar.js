@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import { logout } from '../actions/auth';
+import { toggleFullScreen } from '../helpers';
 
 class Navbar extends React.Component {
 
@@ -75,7 +76,7 @@ class Navbar extends React.Component {
     return (
     <nav>
       <div className='main-nav'>
-        <div className='prev-next'>&lt;</div>
+        <div className='prev-next' onClick={() => toggleFullScreen()}>&lt;</div>
         <div className='nav-bar-main'>
           {this.menuItems()}
         </div>

@@ -41,7 +41,7 @@ export default (
 
       {/* <Route component={AuthenticatedRoutes}>
         <Route component={AdminRoutes}> */}
-          <Route path="/admin" component={Admin} />
+          {/* <Route path="/admin" component={Admin} /> */}
         {/* </Route>
       </Route> */}
 

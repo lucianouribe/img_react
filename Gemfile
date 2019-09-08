@@ -27,6 +27,7 @@ gem 'ambethia-smtp-tls'
 gem "sentry-raven"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
+gem 'activeadmin'
 
 group :development, :test do
   gem 'pry'

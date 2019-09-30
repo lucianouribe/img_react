@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     resources :carrusels
     resources :descripcions
     resources :german_games
+    resources :themes
     resources :proyectos do
       resources :pasos, except: [:set_last_id]
     end

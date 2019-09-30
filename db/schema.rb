@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190908134244) do
+ActiveRecord::Schema.define(version: 20190930163007) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -69,6 +69,17 @@ ActiveRecord::Schema.define(version: 20190908134244) do
     t.string "lenguaje"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "german_games", force: :cascade do |t|
+    t.integer "lifes"
+    t.integer "punctuation"
+    t.integer "punctuation_4_total"
+    t.integer "level"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_german_games_on_user_id"
   end
 
   create_table "morses", id: :serial, force: :cascade do |t|
@@ -144,10 +155,12 @@ ActiveRecord::Schema.define(version: 20190908134244) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
+    t.integer "german_game"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "german_games", "users"
   add_foreign_key "pasos", "proyectos"
   add_foreign_key "procoms", "pasos"
 end

@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   validates_presence_of :first_name, :last_name
   validates_inclusion_of :role, in: %w(visitor admin)
-
+  
+  has_one :german_game
   # has_many :proyectos
 end

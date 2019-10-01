@@ -46,6 +46,6 @@ class Api::VerbsController < ApplicationController
     end
 
     def api_verb_params
-      params.require(:german_game).permit(:verb_type, :theme, :subtheme, :infinitive, :praesens, :praeteritum, :futur_i, :perfekt, :plusquamperfekt, :futur_ii, :ch, :level, :picture)
+      params.require(:german_game).permit(:verb_type, :theme, :subtheme, :infinitive, :praesens, :praeteritum, :futur_i, :perfekt, :plusquamperfekt, :futur_ii, :ch, :level, :picture, :partizip_perfekt)
     end
 end

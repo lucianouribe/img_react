@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191001195957) do
+ActiveRecord::Schema.define(version: 20191001210121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -166,12 +166,12 @@ ActiveRecord::Schema.define(version: 20191001195957) do
     t.string "theme"
     t.string "subtheme"
     t.string "infinitive"
-    t.string "praesens"
-    t.string "praeteritum"
-    t.string "futur_i"
-    t.string "perfekt"
-    t.string "plusquamperfekt"
-    t.string "futur_ii"
+    t.text "praesens"
+    t.text "praeteritum"
+    t.text "futur_i"
+    t.text "perfekt"
+    t.text "plusquamperfekt"
+    t.text "futur_ii"
     t.string "ch"
     t.string "level"
     t.string "picture"

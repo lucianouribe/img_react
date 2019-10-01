@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190930184022) do
+ActiveRecord::Schema.define(version: 20191001175030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20190930184022) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "themes"
     t.index ["user_id"], name: "index_german_games_on_user_id"
   end
 
@@ -130,19 +131,6 @@ ActiveRecord::Schema.define(version: 20190930184022) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "themes", force: :cascade do |t|
-    t.string "theme_name"
-    t.integer "hearts"
-    t.integer "points"
-    t.integer "status"
-    t.integer "level"
-    t.string "subtheme"
-    t.bigint "german_game_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["german_game_id"], name: "index_themes_on_german_game_id"
-  end
-
   create_table "translators", id: :serial, force: :cascade do |t|
     t.string "inphrase"
     t.string "outphrase"
@@ -176,5 +164,4 @@ ActiveRecord::Schema.define(version: 20190930184022) do
   add_foreign_key "german_games", "users"
   add_foreign_key "pasos", "proyectos"
   add_foreign_key "procoms", "pasos"
-  add_foreign_key "themes", "german_games"
 end

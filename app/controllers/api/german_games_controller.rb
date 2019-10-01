@@ -46,6 +46,6 @@ class Api::GermanGamesController < ApplicationController
     end
 
     def api_german_game_params
-      params.require(:german_game).permit(:lifes, :punctuation, :punctuation_4_total, :level)
+      params.require(:german_game).permit(:lifes, :punctuation, :punctuation_4_total, :level, :themes)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191001210121) do
+ActiveRecord::Schema.define(version: 20191002200506) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -107,6 +107,23 @@ ActiveRecord::Schema.define(version: 20191001210121) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["proyecto_id"], name: "index_pasos_on_proyecto_id"
+  end
+
+  create_table "phrases", force: :cascade do |t|
+    t.string "phrase_type"
+    t.string "theme"
+    t.string "subtheme"
+    t.text "phrase_praesens"
+    t.text "phrase_praeteritum"
+    t.text "phrase_futur_i"
+    t.text "phrase_perfekt"
+    t.text "phrase_plusquamperfekt"
+    t.text "phrase_futur_ii"
+    t.string "phrase_ch"
+    t.string "phrase_verb"
+    t.integer "level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "procoms", id: :serial, force: :cascade do |t|

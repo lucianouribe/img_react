@@ -44,13 +44,17 @@ ActiveAdmin.register Phrase do
               as: :select,
               collection: Themes.theme,
               include_blank: false
-      Themes.theme.map do |x,y|
-        f.input :subtheme,
-                as: :select,
-                collection: Themes.subtheme(y),
-                include_blank: false,
-                input_html: { class: "#{y} phrase_subtheme" }
-      end
+      f.input :subtheme,
+              as: :select,
+              collection: Themes.full_subtheme,
+              include_blank: false
+      # Themes.theme.map do |x,y|
+      #   f.input :subtheme,
+      #           as: :select,
+      #           collection: Themes.subtheme(y),
+      #           include_blank: false,
+      #           input_html: { class: "#{y} phrase_subtheme" }
+      # end
       f.input :level
     end
     f.actions

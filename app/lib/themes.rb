@@ -20,12 +20,20 @@ module Themes
     }
   end
 
+  def self.full_subtheme
+    subtheme.merge(korper)
+            .merge(essen)
+            .merge(einkaufen)
+            .merge(kleidung)
+  end
+
   def self.subtheme(option = 'familie')
     prefix = send(option.to_s)
   end
 
   def self.familie
     {
+      '-- FAMILIE --' => '',
       'zusammen' => 'zusammen',
       'verwandten' => 'verwandten',
       'mensch' => 'mensch',
@@ -35,6 +43,7 @@ module Themes
 
   def self.korper
     {
+      '-- KÖRPER --' => '',
       'kann1' => 'kann1',
       'kann2' => 'kann2',
       'sinne' => 'sinne',
@@ -47,6 +56,7 @@ module Themes
 
   def self.essen
     {
+      '-- ESSEN & TRINKEN --' => '',
       'fruhstuck' => 'fruhstuck',
       'appetit' => 'appetit',
       'hunger' => 'hunger',
@@ -57,6 +67,7 @@ module Themes
 
   def self.einkaufen
     {
+      '-- EINKAUFEN --' => '',
       'kaufen' => 'kaufen',
       'wie_viel' => 'wie_viel',
       'kasse' => 'kasse',
@@ -65,6 +76,7 @@ module Themes
 
   def self.kleidung
     {
+      '-- KLEIDUNG --' => '',
       'ziehen' => 'ziehen',
       'kapuze' => 'kapuze',
       'hose' => 'hose',

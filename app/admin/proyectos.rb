@@ -1,5 +1,5 @@
 ActiveAdmin.register Proyecto do
-  menu label: "Proyectos", priority: 3
+  menu parent: 'iTuto', priority: 0
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

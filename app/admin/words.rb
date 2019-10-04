@@ -1,5 +1,5 @@
 ActiveAdmin.register Word do
-  menu label: "Words", priority: 7
+  menu parent: 'Deutsch', priority: 1
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

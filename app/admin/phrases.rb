@@ -1,5 +1,5 @@
 ActiveAdmin.register Phrase do
-  menu label: "Phrases", priority: 9
+  menu parent: 'Deutsch', priority: 4
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

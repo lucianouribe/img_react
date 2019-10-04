@@ -21,3 +21,10 @@ jQuery ->
     $("#verb_subtheme.#{event.target.value}").parent().show()
 
   #phrases
+  $('.phrase_subtheme').each ->
+    $(this).parent().hide()
+
+  $('#phrase_theme').on 'change', (event) ->
+    $('.phrase_subtheme').each ->
+      $(this).parent().hide()
+    $("#phrase_subtheme.#{event.target.value}").parent().show()

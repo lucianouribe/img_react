@@ -3,7 +3,7 @@ ActiveAdmin.register Phrase do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :phrase_type, :theme, :subtheme, :phrase_praesens, :phrase_praeteritum, :phrase_futur_i, :phrase_perfekt, :phrase_plusquamperfekt, :phrase_futur_ii, :phrase_ch, :phrase_verb, :level
+permit_params :phrase_type, :theme, :subtheme, :phrase_praesens, :phrase_praeteritum, :phrase_futur_i, :phrase_perfekt, :phrase_plusquamperfekt, :phrase_futur_ii, :phrase_ch, :phrase_verb, :level, :spanish, :example
 #
 # or
 #

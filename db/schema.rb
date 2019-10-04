@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191002200506) do
+ActiveRecord::Schema.define(version: 20191004081820) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,8 @@ ActiveRecord::Schema.define(version: 20191002200506) do
     t.integer "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "spanish"
+    t.string "example"
   end
 
   create_table "procoms", id: :serial, force: :cascade do |t|
@@ -195,6 +197,7 @@ ActiveRecord::Schema.define(version: 20191002200506) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "partizip_perfekt"
+    t.string "spanish"
   end
 
   create_table "words", force: :cascade do |t|
@@ -208,6 +211,7 @@ ActiveRecord::Schema.define(version: 20191002200506) do
     t.integer "level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "spanish"
   end
 
   add_foreign_key "german_games", "users"

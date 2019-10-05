@@ -95,13 +95,6 @@ class PaperRockScissors extends React.Component {
     )
     
   }
-  // <div className="ppt img-rock" onClick={()=> this.elector(rock)}></div>
-  // <div className="ppt img-paper" onClick={()=> this.elector(paper)}></div>
-  // <div className="ppt img-scissors" onClick={()=> this.elector(scissors)}></div>
-  // <div className="rppt space"></div>
-  // <div className="rppt rimg-rock"></div>
-  // <div className="rppt rimg-paper"></div>
-  // <div className="rppt rimg-scissors"></div>
 
   choiseContainer(){
     return(

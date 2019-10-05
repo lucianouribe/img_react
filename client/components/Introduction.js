@@ -36,7 +36,6 @@ class Introduction extends React.Component {
             <span className="game-color-form">
               <h2>Since you won, you get to change the color of this site</h2>
               <ColorForm />
-              <h2>{`<--- Or go straight to the menu`}</h2>
             </span>
           </div>
         )

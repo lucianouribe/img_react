@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { refreshLogin } from '../actions/auth';
 import Navbar from '../components/Navbar';
+import { setColor } from '../actions/colorset';
 
 
 class App extends React.Component {
@@ -34,8 +35,13 @@ class App extends React.Component {
       {id: 6, name: 'signin'},
       // {id: 8, name: 'gramatica'},
     ]
+    const divStyle = {
+      backgroundColor: this.props.colorset,
+      WebkitTransition: 'all',
+      msTransition: 'all'
+    };
     return (
-      <div>
+      <div style={divStyle}>
         <Navbar menuData={menuItems}/>
         { this.props.children }
       </div>
@@ -45,7 +51,10 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-  return { user: state.user }
+  return { 
+    user: state.user,
+    colorset: state.colorset
+  }
 }
 
 export default connect(mapStateToProps)(App);

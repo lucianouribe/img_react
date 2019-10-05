@@ -1,4 +1,4 @@
-const colorset = ( state = '#fff', action ) => {
+const colorset = ( state = '#f4f4f4', action ) => {
 
   switch(action.type){
     case 'SET_COLOR':

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Introduction from './Introduction';
 import Locale from '../Locale';
 
 class Home extends Component {
@@ -24,6 +25,7 @@ class Home extends Component {
           <span className="cool-website">{theTitle}</span>
         </div>
         <div className="home-part-2">Luciano Uribe Piedrahita</div>
+        <Introduction />
       </div>
     )
   }

@@ -84,17 +84,24 @@ class PaperRockScissors extends React.Component {
 
     return(
       <div className="the-rps-container">
-        <div className="ppt img-rock" onClick={()=> this.elector(rock)}></div>
-        <div className="ppt img-paper" onClick={()=> this.elector(paper)}></div>
-        <div className="ppt img-scissors" onClick={()=> this.elector(scissors)}></div>
-        <div className="rppt space"></div>
-        <div className="rppt rimg-rock"></div>
-        <div className="rppt rimg-paper"></div>
-        <div className="rppt rimg-scissors"></div>
+        <i className="ppt fa fa-hand-scissors-o" onClick={()=> this.elector(scissors)}></i>
+        <i className="ppt fa fa-hand-paper-o" onClick={()=> this.elector(paper)}></i>
+        <i className="ppt fa fa-hand-rock-o" onClick={()=> this.elector(rock)}></i>
+        <i className="rppt space"></i>
+        <i className="rppt fa fa-hand-rock-o"></i>
+        <i className="rppt fa fa-hand-paper-o"></i>
+        <i className="rppt fa fa-hand-scissors-o"></i>
       </div>
     )
-
+    
   }
+  // <div className="ppt img-rock" onClick={()=> this.elector(rock)}></div>
+  // <div className="ppt img-paper" onClick={()=> this.elector(paper)}></div>
+  // <div className="ppt img-scissors" onClick={()=> this.elector(scissors)}></div>
+  // <div className="rppt space"></div>
+  // <div className="rppt rimg-rock"></div>
+  // <div className="rppt rimg-paper"></div>
+  // <div className="rppt rimg-scissors"></div>
 
   choiseContainer(){
     return(

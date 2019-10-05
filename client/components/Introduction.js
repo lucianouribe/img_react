@@ -28,7 +28,7 @@ class Introduction extends React.Component {
     if(this.state.finishGame){
       if(this.state.whatToShow === 'gameWon') {
         return(
-          <div>
+          <div className="paper-rock-scissors-container">
             <span className="game-lost-won">
               <p className='bienvenido'>You Won!!!</p>
               <div className="play-again-btn" onClick={()=> this.setState({finishGame: false})}><span>play again</span></div>
@@ -41,7 +41,7 @@ class Introduction extends React.Component {
         )
       } else if (this.state.whatToShow === 'gameLost'){
         return(
-          <div>
+          <div className="paper-rock-scissors-container">
             <span className="game-lost-won">
               <p className='bienvenido'>You loose!!!</p>
               <div className="play-again-btn" onClick={()=> this.setState({finishGame: false})}><span>play again</span></div>

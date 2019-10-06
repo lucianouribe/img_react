@@ -37,6 +37,7 @@ ActiveAdmin.register Verb do
       f.input :partizip_perfekt
       f.input :perfekt
       f.input :plusquamperfekt
+      f.input :futur_ii
       f.input :ch
       f.input :spanish
       f.input :theme,

@@ -76,7 +76,7 @@ ActiveAdmin.register Verb do
       f.input :subtheme,
               as: :select,
               collection: Themes.subthemes
-      f.input :level, input_html: { value: 1 }
+      f.input :level, input_html: { default_value: 1 }
     end
     f.actions
   end

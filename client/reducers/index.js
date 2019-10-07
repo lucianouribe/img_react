@@ -13,6 +13,7 @@ import proyectos from './proyectos';
 import mymemory from './mymemory';
 import maxPasoId from './maxPaso';
 import maxProcomId from './maxProcom';
+import germanGame from './germanGame';
 
 const rootReducer = combineReducers({
   routing: routerReducer ,
@@ -28,7 +29,8 @@ const rootReducer = combineReducers({
   proyectos,
   mymemory,
   maxPasoId,
-  maxProcomId
+  maxProcomId,
+  germanGame
 });
 
 export default rootReducer;

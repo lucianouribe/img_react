@@ -23,6 +23,29 @@ ActiveAdmin.register Verb do
     actions
   end
 
+  show do |verb|
+    attributes_table do
+      row :infinitive
+      row :praesens
+      row :praeteritum
+      row :futur_i
+      row :partizip_perfekt
+      row :perfekt
+      row :plusquamperfekt
+      row :futur_ii
+      row :ch
+      row :spanish
+      row :verb_type
+      row :theme
+      row 'SUBTHEME' do
+        Themes.variable_name(verb.subtheme.to_i).name
+      end
+      row :level
+      row :created_at
+      row :updated_at
+    end
+  end
+
 
   form html: { enctype: 'multipart/form-data' } do |f|
     f.inputs 'Verb Form' do

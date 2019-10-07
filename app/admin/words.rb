@@ -18,6 +18,24 @@ ActiveAdmin.register Word do
     actions
   end
 
+  show do |word|
+    attributes_table do
+      row :article
+      row :noun
+      row :plural
+      row :ch
+      row :spanish
+      row :word_type
+      row :theme
+      row 'SUBTHEME' do
+        Themes.variable_name(word.subtheme.to_i).name
+      end
+      row :level
+      row :created_at
+      row :updated_at
+    end
+  end
+
   form html: { enctype: 'multipart/form-data' } do |f|
     f.inputs 'Words Form' do
       f.input :article,

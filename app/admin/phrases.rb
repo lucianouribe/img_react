@@ -23,6 +23,29 @@ ActiveAdmin.register Phrase do
     actions
   end
 
+  show do |phrase|
+    attributes_table do
+      row :phrase_praesens
+      row :phrase_praeteritum
+      row :phrase_futur_i
+      row :phrase_perfekt
+      row :phrase_plusquamperfekt
+      row :phrase_futur_ii
+      row :phrase_ch
+      row :example
+      row :spanish
+      row :phrase_verb
+      row :phrase_type
+      row :theme
+      row 'SUBTHEME' do
+        Themes.variable_name(phrase.subtheme.to_i).name
+      end
+      row :level
+      row :created_at
+      row :updated_at
+    end
+  end
+
 
   form html: { enctype: 'multipart/form-data' } do |f|
     f.inputs 'Phrase Form' do

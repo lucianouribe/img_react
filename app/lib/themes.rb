@@ -19,8 +19,12 @@ module Themes
     ]
   end
 
-  def self.subthemes
-    Subtheme.all.map { |s| ["#{s.name}", "#{s.name}", {:class => "#{s.theme}"}] }
+  def self.variable_name(variable)
+    Subtheme.find_by id: "#{variable}"
   end
 
+  def self.subthemes
+    Subtheme.all.map { |s| ["#{s.name}", "#{s.id}", {:class => "#{s.theme}"}] }
+  end
+  
 end

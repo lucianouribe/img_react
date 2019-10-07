@@ -13,7 +13,13 @@ ActiveAdmin.register Word do
     column :spanish
     column :word_type
     column :theme
-    column :subtheme
+    column :subtheme do |word|
+      if word.subtheme.to_i > 0
+        Themes.variable_name(word.subtheme.to_i).name
+      else
+        "#{word.subtheme} *"
+      end
+    end
     column :level
     actions
   end

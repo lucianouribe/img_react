@@ -18,7 +18,13 @@ ActiveAdmin.register Verb do
     column :spanish
     column :verb_type
     column :theme
-    column :subtheme
+    column :subtheme do |verb|
+      if verb.subtheme.to_i > 0
+        Themes.variable_name(verb.subtheme.to_i).name
+      else
+        "#{verb.subtheme} *"
+      end
+    end
     column :level
     actions
   end

@@ -18,7 +18,13 @@ ActiveAdmin.register Phrase do
     column :phrase_verb
     column :phrase_type
     column :theme
-    column :subtheme
+    column :subtheme do |phrase|
+      if phrase.subtheme.to_i > 0
+        Themes.variable_name(phrase.subtheme.to_i).name
+      else
+        "#{phrase.subtheme} *"
+      end
+    end
     column :level
     actions
   end

@@ -19,7 +19,7 @@ gem 'materialize-sass'
 gem 'dotenv'
 gem 'dotenv-rails'
 gem 'cloudinary', '~> 1.11.1'
-# gem 'paperclip'
+gem "paperclip", "~> 6.0.0"
 gem 'paperclip-cloudinary', '~> 1.3.2'
 # gem 'attachinary'
 gem 'letter_opener'

@@ -1,7 +1,7 @@
 ActiveAdmin.register Word do
   menu parent: 'Deutsch', priority: 2
 
-  permit_params :word_type, :theme, :subtheme, :noun, :article, :plural, :ch, :level, :spanish
+  permit_params :word_type, :theme, :subtheme, :noun, :article, :plural, :ch, :level, :spanish, :picture
 
   index do
     selectable_column
@@ -21,6 +21,10 @@ ActiveAdmin.register Word do
       end
     end
     column :level
+    column 'Picture', sortable: :picture_file_name do |word| 
+      image_tag(word.picture.url, width: '64') 
+    end
+    column :picture_file_size, sortable: :picture_file_size do |word| "#{word.picture_file_size.to_i / 1024} KB" end
     actions
   end
 
@@ -37,6 +41,9 @@ ActiveAdmin.register Word do
         Themes.variable_name(word.subtheme.to_i).name
       end
       row :level
+      row 'Picture', sortable: :picture_file_name do |word| 
+        image_tag(word.picture.url, width: '64') 
+      end
       row :created_at
       row :updated_at
     end
@@ -64,6 +71,9 @@ ActiveAdmin.register Word do
               as: :select,
               collection: Themes.subthemes
       f.input :level, input_html: { default_value: 1 }
+      f.inputs "Upload" do
+        f.input :picture, required: true, as: :file
+      end
     end
     f.actions
   end

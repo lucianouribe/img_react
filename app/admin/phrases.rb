@@ -25,7 +25,7 @@ ActiveAdmin.register Phrase do
 
 
   form html: { enctype: 'multipart/form-data' } do |f|
-    f.inputs 'Add a Verb' do
+    f.inputs 'Phrase Form' do
       f.input :phrase_type,
               as: :select,
               collection: Phrases.phrase_type,
@@ -42,20 +42,12 @@ ActiveAdmin.register Phrase do
       f.input :phrase_verb
       f.input :theme,
               as: :select,
-              collection: Themes.theme,
+              collection: Themes.themes,
               include_blank: false
       f.input :subtheme,
               as: :select,
-              collection: Themes.full_subtheme,
-              include_blank: false
-      # Themes.theme.map do |x,y|
-      #   f.input :subtheme,
-      #           as: :select,
-      #           collection: Themes.subtheme(y),
-      #           include_blank: false,
-      #           input_html: { class: "#{y} phrase_subtheme" }
-      # end
-      f.input :level
+              collection: Themes.subthemes
+      f.input :level, input_html: { value: 1 }
     end
     f.actions
   end

@@ -1,5 +1,5 @@
 ActiveAdmin.register Verb do
-  menu parent: 'Deutsch', priority: 2
+  menu parent: 'Deutsch', priority: 3
 
   permit_params :verb_type, :theme, :subtheme, :infinitive, :praesens, :praeteritum, :futur_i, :perfekt, :plusquamperfekt, :futur_ii, :ch, :level, :picture, :partizip_perfekt, :spanish
 
@@ -25,7 +25,7 @@ ActiveAdmin.register Verb do
 
 
   form html: { enctype: 'multipart/form-data' } do |f|
-    f.inputs 'Add a Verb' do
+    f.inputs 'Verb Form' do
       f.input :verb_type,
               as: :select,
               collection: Verbs.verb_type,
@@ -42,13 +42,12 @@ ActiveAdmin.register Verb do
       f.input :spanish
       f.input :theme,
               as: :select,
-              collection: Themes.theme,
+              collection: Themes.themes,
               include_blank: false
       f.input :subtheme,
               as: :select,
-              collection: Themes.full_subtheme,
-              include_blank: false
-      f.input :level
+              collection: Themes.subthemes
+      f.input :level, input_html: { value: 1 }
     end
     f.actions
   end

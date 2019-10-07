@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191004081820) do
+ActiveRecord::Schema.define(version: 20191007085408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -150,6 +150,19 @@ ActiveRecord::Schema.define(version: 20191004081820) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "subthemes", force: :cascade do |t|
+    t.string "name"
+    t.string "theme"
+    t.integer "hearts"
+    t.integer "points"
+    t.string "status"
+    t.integer "level"
+    t.bigint "german_game_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["german_game_id"], name: "index_subthemes_on_german_game_id"
+  end
+
   create_table "translators", id: :serial, force: :cascade do |t|
     t.string "inphrase"
     t.string "outphrase"
@@ -217,4 +230,5 @@ ActiveRecord::Schema.define(version: 20191004081820) do
   add_foreign_key "german_games", "users"
   add_foreign_key "pasos", "proyectos"
   add_foreign_key "procoms", "pasos"
+  add_foreign_key "subthemes", "german_games"
 end

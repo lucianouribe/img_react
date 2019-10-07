@@ -33,7 +33,9 @@ ActiveAdmin.register Word do
     column 'Picture', sortable: :picture_file_name do |word| 
       image_tag(word.picture.url, width: '64') 
     end
-    column :picture_file_size, sortable: :picture_file_size do |word| "#{word.picture_file_size.to_i / 1024} KB" end
+    column :picture_file_size, sortable: :picture_file_size do |word|
+      "#{word.picture_file_size.to_i / 1024} KB" 
+    end
     actions
   end
 

@@ -17,11 +17,11 @@ ActiveAdmin.register Subtheme do
   end
 
   form html: { enctype: 'multipart/form-data' } do |f|
-    f.inputs 'Add a Word' do
+    f.inputs 'Subthemes folder' do
       f.input :name
       f.input :theme,
               as: :select,
-              collection: Themes.theme,
+              collection: Themes.themes,
               include_blank: false
       f.input :hearts, input_html: {value: 3}
       f.input :points, input_html: {value: 0}

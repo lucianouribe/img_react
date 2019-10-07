@@ -9,6 +9,11 @@ class ProyectoShow extends React.Component {
     this.displayButtons = this.displayButtons.bind(this);
   }
 
+  componentDidMount(){
+    let url = window.location.search
+    console.log(url)
+  }
+
   displayButtons(){
     const allowed = this.props.user.role === 'admin';
     let proyecto = this.props.proyecto;
@@ -29,14 +34,15 @@ class ProyectoShow extends React.Component {
     let proyecto = this.props.proyecto;
     let topic = proyecto.topic;
     let subtopic = proyecto.subtopic;
+    let proyecto_name = proyecto.name.replace(/[^a-zA-Z0-9]/g, "_").toLowerCase()
     return (
-      <div className={`proyecto-unidad principal`}>
+      <div id={`${proyecto_name}_project`} className={`proyecto-unidad principal`}>
         <span className='container-logos'>
           <div className={`cont-log ${topic}`}></div>
           <div className={`cont-log ${subtopic}`}></div>
         </span>
-        <span className='titulo-nombre'>
-          <h4 onClick={() => this.props.showPasosDisplay()}>{proyecto.name}</h4>
+        <span className='titulo-nombre' onClick={() => this.props.showPasosDisplay(proyecto_name)}>
+          <h4>{proyecto.name}</h4>
         </span>
         {this.displayButtons()}
       </div>

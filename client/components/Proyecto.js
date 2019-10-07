@@ -160,9 +160,10 @@ class Proyecto extends React.Component {
   }
 
   // PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!PASO!!!!
-  showPasosDisplay(){
+  showPasosDisplay(x){
     let show = !this.props.doorStatus;
     this.memorySetter(show);
+    window.location.href = `${window.location.origin}/tutorials?=${x}`;
   }
 
   showAddPasoOption(){

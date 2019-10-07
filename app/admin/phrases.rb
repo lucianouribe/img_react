@@ -1,6 +1,15 @@
 ActiveAdmin.register Phrase do
   menu parent: 'Deutsch', priority: 4
 
+
+  action_item :add, only: :show do
+    link_to "New Phrase", new_admin_phrase_path
+  end
+
+  action_item :add, only: :show do
+    link_to "All Phrases", admin_phrases_path
+  end
+
   permit_params :phrase_type, :theme, :subtheme, :phrase_praesens, :phrase_praeteritum, :phrase_futur_i, :phrase_perfekt, :phrase_plusquamperfekt, :phrase_futur_ii, :phrase_ch, :phrase_verb, :level, :spanish, :example
 
   index do

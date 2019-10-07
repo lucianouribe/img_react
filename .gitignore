@@ -17,6 +17,7 @@
 .byebug_history
 /node_modules
 /public/webpack
+/public/system
 npm-debug.log
 
 config/mail.yml

@@ -1,6 +1,15 @@
 ActiveAdmin.register Verb do
   menu parent: 'Deutsch', priority: 3
 
+
+  action_item :add, only: :show do
+    link_to "New Verb", new_admin_verb_path
+  end
+
+  action_item :add, only: :show do
+    link_to "All Verbs", admin_verbs_path
+  end
+
   permit_params :verb_type, :theme, :subtheme, :infinitive, :praesens, :praeteritum, :futur_i, :perfekt, :plusquamperfekt, :futur_ii, :ch, :level, :picture, :partizip_perfekt, :spanish
 
   index do

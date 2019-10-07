@@ -1,6 +1,15 @@
 ActiveAdmin.register Subtheme do
   menu parent: 'Deutsch', priority: 1
 
+
+  action_item :add, only: :show do
+    link_to "New Subtheme", new_admin_subtheme_path
+  end
+
+  action_item :add, only: :show do
+    link_to "All Subthemes", admin_subthemes_path
+  end
+
   permit_params :name, :theme, :hearts, :points, :status, :level, :german_game_id
 
   index do

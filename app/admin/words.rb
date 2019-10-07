@@ -1,6 +1,15 @@
 ActiveAdmin.register Word do
   menu parent: 'Deutsch', priority: 2
 
+  action_item :add, only: :show do
+    link_to "New Word", new_admin_word_path
+  end
+
+  action_item :add, only: :show do
+    link_to "All Words", admin_words_path
+  end
+  
+
   permit_params :word_type, :theme, :subtheme, :noun, :article, :plural, :ch, :level, :spanish, :picture
 
   index do
@@ -76,6 +85,14 @@ ActiveAdmin.register Word do
       end
     end
     f.actions
+  end
+
+  controller do
+    def create
+      create! do |format|
+        format.html { redirect_to new_admin_word_path(resource, add_more: true) }
+      end
+    end
   end
 
 end

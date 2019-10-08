@@ -10,7 +10,7 @@ ActiveAdmin.register Verb do
     link_to "All Verbs", admin_verbs_path
   end
 
-  permit_params :verb_type, :theme, :subtheme, :infinitive, :praesens, :praeteritum, :futur_i, :perfekt, :plusquamperfekt, :futur_ii, :ch, :level, :picture, :partizip_perfekt, :spanish
+  permit_params :verb_type, :theme, :subtheme, :infinitive, :praesens, :praeteritum, :futur_i, :perfekt, :plusquamperfekt, :futur_ii, :ch, :level, :picture, :partizip_perfekt, :spanish, :picture
 
   index do
     selectable_column
@@ -35,6 +35,12 @@ ActiveAdmin.register Verb do
       end
     end
     column :level
+    column 'Picture', sortable: :picture_file_name do |word| 
+      image_tag(word.picture.url, width: '64') 
+    end
+    column :picture_file_size, sortable: :picture_file_size do |word|
+      "#{word.picture_file_size.to_i / 1024} KB" 
+    end
     actions
   end
 
@@ -56,6 +62,9 @@ ActiveAdmin.register Verb do
         Themes.variable_name(verb.subtheme.to_i).name
       end
       row :level
+      row 'Picture', sortable: :picture_file_name do |word| 
+        image_tag(word.picture.url, width: '64') 
+      end
       row :created_at
       row :updated_at
     end
@@ -86,6 +95,9 @@ ActiveAdmin.register Verb do
               as: :select,
               collection: Themes.subthemes
       f.input :level, input_html: { default_value: 1 }
+      f.inputs "Upload" do
+        f.input :picture, required: true, as: :file
+      end
     end
     f.actions
   end

@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchGermanGame } from '../actions/germanGame';
 import World from './World';
+import PlayerStats from './PlayerStats';
 
 class Deutsch extends React.Component {
 
@@ -27,10 +28,7 @@ class Deutsch extends React.Component {
     const player = this.props.germanGame;
     return (
       <div id="deutsch">
-        <p>Lifes: {player.lifes}</p>
-        <p>Points: {player.punctuation}</p>
-        <p>Total points: {player.punctuation_4_total}</p>
-        <p>Level: {player.level}</p>
+        <PlayerStats player={player}/>
         {this.worlds()}
       </div>
     )

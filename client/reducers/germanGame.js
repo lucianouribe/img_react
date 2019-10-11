@@ -1,10 +1,10 @@
 const germanGame = ( state = [], action ) => {
   let index;
-  console.log('reducer german_game');
+  // console.log('reducer german_game');
   switch(action.type){
     case 'GERMAN_GAME':
-      console.log('state', state)
-      console.log('action', action.game)
+      // console.log('state', state)
+      // console.log('action', action.game)
       return action.game;
       break;
     // case 'ADD_GERMAN_GAME':

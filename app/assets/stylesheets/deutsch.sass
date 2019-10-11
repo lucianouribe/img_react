@@ -3,3 +3,16 @@ body
   #world_subthemes
     margin-top: 100px
     padding: 0 30px
+    @include flexbox()
+    @include flex-wrap(wrap)
+    .player_stats
+      @include flex(0 0 100%)
+    .world_theme,
+    .world_subtheme
+      width: 260px
+      height: 200px
+      margin: 10px
+      padding: 10px
+      border: 1px solid red
+      border-radius: 10px
+

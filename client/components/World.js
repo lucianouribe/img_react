@@ -11,9 +11,9 @@ class World extends React.Component {
   render() {
     const theme = this.props.theme;
     return (
-      <div className="world_theme">
-        <h2><Link to={`/subthemes?theme=${theme}`}><span>{theme}</span></Link></h2>
-      </div>
+      <Link to={`/subthemes?theme=${theme}`} className="world_theme">
+        <h2><span>{theme}</span></h2>
+      </Link>
     )
   }
 }

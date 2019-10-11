@@ -10,7 +10,7 @@ ActiveAdmin.register Subtheme do
     link_to "All Subthemes", admin_subthemes_path
   end
 
-  permit_params :name, :theme, :hearts, :points, :status, :level, :german_game_id
+  permit_params :name, :theme, :hearts, :points, :status, :level, :german_game_id, :image
 
   index do
     selectable_column
@@ -22,7 +22,31 @@ ActiveAdmin.register Subtheme do
     column :status
     column :level
     column :german_game_id
+    column 'Image', sortable: :image_file_name do |subtheme| 
+      image_tag(subtheme.image.url, width: '64') 
+    end
+    column :image_file_size, sortable: :image_file_size do |subtheme|
+      "#{subtheme.image_file_size.to_i / 1024} KB" 
+    end
     actions
+  end
+
+  show do
+    attributes_table do
+      row :id
+      row :name
+      row :theme
+      row :hearts
+      row :points
+      row :status
+      row :level
+      row :german_game_id
+      row 'Image', sortable: :image_file_name do |subtheme| 
+        image_tag(subtheme.image.url, width: '64') 
+      end
+      row :created_at
+      row :updated_at
+    end
   end
 
   form html: { enctype: 'multipart/form-data' } do |f|
@@ -43,6 +67,9 @@ ActiveAdmin.register Subtheme do
               as: :select,
               collection: GermanGame.all.map {|game| "#{game.id}"},
               include_blank: false
+      f.inputs "Upload" do
+        f.input :image, required: true, as: :file
+      end
     end
     f.actions
   end

@@ -22,13 +22,31 @@ ActiveAdmin.register Subtheme do
     column :status
     column :level
     column :german_game_id
-    column 'Image', sortable: :image_file_name do |word| 
-      image_tag(word.image.url, width: '64') 
+    column 'Image', sortable: :image_file_name do |subtheme| 
+      image_tag(subtheme.image.url, width: '64') 
     end
-    column :image_file_size, sortable: :image_file_size do |word|
-      "#{word.image_file_size.to_i / 1024} KB" 
+    column :image_file_size, sortable: :image_file_size do |subtheme|
+      "#{subtheme.image_file_size.to_i / 1024} KB" 
     end
     actions
+  end
+
+  show do
+    attributes_table do
+      row :id
+      row :name
+      row :theme
+      row :hearts
+      row :points
+      row :status
+      row :level
+      row :german_game_id
+      row 'Image', sortable: :image_file_name do |subtheme| 
+        image_tag(subtheme.image.url, width: '64') 
+      end
+      row :created_at
+      row :updated_at
+    end
   end
 
   form html: { enctype: 'multipart/form-data' } do |f|

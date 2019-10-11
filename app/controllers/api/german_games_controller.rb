@@ -2,9 +2,17 @@ class Api::GermanGamesController < ApplicationController
   # before_action :set_api_german_game, only: [:show, :edit, :update, :destroy]
 
 
-  # def index
-  #   @api_german_games = GermanGame.all
-  # end
+  def index
+    @german_game = current_user.german_game
+    @subthemes = Subtheme.all
+    getWorldTheme
+  end
+
+  def getWorldTheme
+    @themes = []
+    Themes.themes.each {|t| @themes << t}
+    return @themes
+  end
 
   # def show
   # end

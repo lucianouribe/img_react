@@ -28,6 +28,7 @@ class App extends React.Component {
     let menuItems = [
       {id: 1, name: 'home'},
       {id: 2, name: 'tutorials'},
+      // {id: 9, name: 'deutsch'},
       {id: 3, name: 'transliterator'},
       {id: 7, name: 'graphic'},
       {id: 4, name: 'contact'},

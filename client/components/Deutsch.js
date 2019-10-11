@@ -8,37 +8,33 @@ class Deutsch extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {}
+    this.state = {
+      worlds: []
+    }
   }
 
   componentDidMount(){
     this.props.dispatch(fetchGermanGame());
   }
 
-  worlds =()=> {
-    console.log('world', this.props.germanGame.world_themes)
-    const world = this.props.germanGame.world_themes;
-    if(world){
-      return world.forEach(element => {
-        console.log(element)
-      });
-      // for (const item in world) {
-      //   console.log(item)
-      // }
+
+  worlds = () => {
+    let worldThemes = this.props.germanGame.world_themes;
+    if(typeof worldThemes !== 'undefined') {
+      return worldThemes.map(theme => {
+        return(<div>{theme}</div>)
+      })
     }
-    // let worldThemes = this.props.germanGame.world_themes;
-    // if(worldThemes > 0) {
-      // return worldThemes.map(theme => {
-      //   console.log(theme)
-      //   return(<div>{theme}</div>)
-      // })
-    // }
   }
   
   render() {
+    const player = this.props.germanGame;
     return (
       <div id="deutsch">
-        <p>Lifes: {this.props.germanGame.lifes}</p>
+        <p>Lifes: {player.lifes}</p>
+        <p>Points: {player.punctuation}</p>
+        <p>Total points: {player.punctuation_4_total}</p>
+        <p>Level: {player.level}</p>
         {this.worlds()}
       </div>
     )

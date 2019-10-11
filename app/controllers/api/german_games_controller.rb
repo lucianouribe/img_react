@@ -1,16 +1,16 @@
-require 'pry'
 class Api::GermanGamesController < ApplicationController
   before_action :set_api_german_game, only: [:show, :edit, :update, :destroy]
 
 
   def index
     @german_game = current_user.german_game
+    @subworlds = Subtheme.all
     getWorldTheme
   end
 
   def getWorldTheme
     @themes = []
-    Themes.theme.each {|x,y| @themes << y}
+    Themes.themes.each {|t| @themes << t}
     return @themes
   end
 

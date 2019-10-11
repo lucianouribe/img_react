@@ -14,6 +14,7 @@ import mymemory from './mymemory';
 import maxPasoId from './maxPaso';
 import maxProcomId from './maxProcom';
 import germanGame from './germanGame';
+import subThemes from './subThemes';
 
 const rootReducer = combineReducers({
   routing: routerReducer ,
@@ -30,7 +31,8 @@ const rootReducer = combineReducers({
   mymemory,
   maxPasoId,
   maxProcomId,
-  germanGame
+  germanGame,
+  subThemes
 });
 
 export default rootReducer;

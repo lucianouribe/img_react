@@ -16,6 +16,7 @@ import Translator from './components/Translator';
 import Grammar from './components/Grammar';
 import Deutsch from './components/Deutsch';
 import Carrusels from './components/Carrusels';
+import SubWorld from './components/SubWorld';
 
 // const AdminAccess = UserAuthWrapper({
 //   authSelector: state => state.user,
@@ -40,6 +41,7 @@ export default (
       <Route path="graphic" component={Main} />
       <Route path="gramatica" component={Grammar} />
       <Route path="deutsch" component={Deutsch} />
+      <Route path="subthemes" component={SubWorld} />
 
       {/* <Route component={AuthenticatedRoutes}>
         <Route component={AdminRoutes}> */}

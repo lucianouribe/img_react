@@ -1,16 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import { fetchGermanGame } from '../actions/germanGame';
+import World from './World';
 
 class Deutsch extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      worlds: []
-    }
   }
 
   componentDidMount(){
@@ -21,8 +17,8 @@ class Deutsch extends React.Component {
   worlds = () => {
     let worldThemes = this.props.germanGame.world_themes;
     if(typeof worldThemes !== 'undefined') {
-      return worldThemes.map(theme => {
-        return(<div>{theme}</div>)
+      return worldThemes.map((theme, i) => {
+        return(<World key={i} theme={theme}/>)
       })
     }
   }

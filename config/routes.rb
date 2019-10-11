@@ -13,10 +13,12 @@ Rails.application.routes.draw do
     resources :german_games, path: 'deutsch'
     resources :carrusels
     resources :descripcions
-    resources :themes
+    # resources :subthemes
     resources :proyectos do
       resources :pasos, except: [:set_last_id]
     end
+
+    get 'subthemes', to: 'subthemes#index'
 
     get 'set_last_id', to: 'pasos#set_last_id'
     get 'set_last_procom_id', to: 'procoms#set_last_procom_id'

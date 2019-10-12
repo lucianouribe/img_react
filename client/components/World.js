@@ -10,10 +10,16 @@ class World extends React.Component {
   }
 
   render() {
-    let theme = this.props.theme;
+    const theme = this.props.theme;
     return (
-      <Link to={`/subthemes?theme=${deUmlauter(theme)}`} className="world_theme">
-        <h2><span>{theme}</span></h2>
+      <Link to={`/subthemes?theme=${deUmlauter(theme)}`} className={`world_theme ${deUmlauter(theme)}`}>
+        <div className='img_container'>
+          <h2><span>{theme}</span></h2>
+        </div>
+        <div className='data_container'>
+          <span className='level_container'></span>
+          <span className='points_container'></span>
+        </div>
       </Link>
     )
   }
@@ -21,7 +27,8 @@ class World extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    germanGame: state.germanGame
+    germanGame: state.germanGame,
+    subThemes: state.subThemes
   }
 }
 export default connect(mapStateToProps)(World);

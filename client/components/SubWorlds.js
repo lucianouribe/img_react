@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchSubThemes } from '../actions/subThemes';
 import PlayerStats from './PlayerStats';
 import SubWorld from './SubWorld';
+import Game from './Game';
 
 class SubWorlds extends React.Component {
 
@@ -10,7 +11,8 @@ class SubWorlds extends React.Component {
     super(props);
 
     this.state = {
-      theme: ''
+      theme: '',
+      game: false
     }
   }
 
@@ -20,21 +22,34 @@ class SubWorlds extends React.Component {
     this.props.dispatch(fetchSubThemes(search))
   }
 
+  toggleView = () => {
+    this.setState({game: !this.state.game});
+  }
+
   renderSubWorlds = () => {
     const world = this.props.subThemes;
     return world.map(subtheme => {
-      return(<SubWorld key={subtheme.id} subtheme={subtheme} theme={this.state.theme}/> )
+      return(<SubWorld key={subtheme.id} subtheme={subtheme} theme={this.state.theme} toggleView={this.toggleView} /> )
     })
   }
 
-  render() {
+  renderView = () => {
     const player = this.props.germanGame;
+    if(this.state.game) {
+      return(<Game />)
+    } else {
+      return(
+        <div id="world_subthemes">
+          <PlayerStats player={player} title={this.state.theme}/>
+          {this.renderSubWorlds()}
+        </div>
+      )
+    }
+  }
+
+  render() {
     return (
-      <div id="world_subthemes">
-        <PlayerStats player={player}/>
-        <h1>{this.state.theme}</h1>
-        {this.renderSubWorlds()}
-      </div>
+      this.renderView()
     )
   }
 }

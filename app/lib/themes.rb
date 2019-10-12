@@ -2,7 +2,7 @@ module Themes
   def self.themes
     [
       'familie',
-      'korper',
+      'körper',
       'essen',
       'einkaufen',
       'kleidung',

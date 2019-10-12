@@ -5,8 +5,8 @@ export const fetchSubThemes = (theme) => {
       type: 'GET',
       dataType: 'JSON'
     }).done( subworlds => {
-      console.log('fetchSubThemes done');
-      console.log(subworlds);
+      // console.log('fetchSubThemes done');
+      // console.log(subworlds);
       dispatch({ type: 'FETCH_SUBTHEMES', subworlds })
     }).fail( err => {
       console.log('fetchSubThemes fail', err);

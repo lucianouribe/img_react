@@ -14,6 +14,7 @@ class PlayerStats extends React.Component {
     const player = this.props.player;
     return (
       <div className="player_stats">
+        <h3>{this.props.title}</h3>
         <p>Lifes: {player.lifes}</p>
         <p>Points: {player.punctuation}</p>
         <p>Total points: {player.punctuation_4_total}</p>

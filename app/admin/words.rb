@@ -76,7 +76,7 @@ ActiveAdmin.register Word do
               include_blank: false
       f.input :theme,
               as: :select,
-              collection: Themes.themes,
+              collection: Themes.worlds,
               include_blank: false
       f.input :subtheme,
               as: :select,

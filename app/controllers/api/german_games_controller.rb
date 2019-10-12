@@ -4,13 +4,12 @@ class Api::GermanGamesController < ApplicationController
 
   def index
     @german_game = current_user.german_game
-    @subthemes = Subtheme.all
     getWorldTheme
   end
 
   def getWorldTheme
     @themes = []
-    Themes.themes.each {|t| @themes << t}
+    World.all.each {|t| @themes << t.name}
     return @themes
   end
 

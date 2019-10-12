@@ -23,6 +23,13 @@ module Themes
     Subtheme.find_by id: "#{variable}"
   end
 
+  def self.worlds
+    World.all.map do |s| 
+      f = s.name.gsub('ä', 'a').gsub('ë', 'e').gsub('ï', 'i').gsub('ö', 'o').gsub('ü', 'u')
+      ["#{s.name}", "#{f}"]
+    end
+  end
+
   def self.subthemes
     Subtheme.all.map { |s| ["#{s.name}", "#{s.id}", {:class => "#{s.theme}"}] }
   end

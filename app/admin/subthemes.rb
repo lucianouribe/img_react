@@ -54,7 +54,8 @@ ActiveAdmin.register Subtheme do
       f.input :name
       f.input :theme,
               as: :select,
-              collection: Themes.themes,
+              # collection: Themes.themes,
+              collection: Themes.worlds,
               include_blank: false
       f.input :hearts, input_html: {value: 3}
       f.input :points, input_html: {value: 0}

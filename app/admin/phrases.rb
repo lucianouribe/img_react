@@ -80,7 +80,7 @@ ActiveAdmin.register Phrase do
       f.input :phrase_verb
       f.input :theme,
               as: :select,
-              collection: Themes.themes,
+              collection: Themes.worlds,
               include_blank: false
       f.input :subtheme,
               as: :select,

@@ -150,3 +150,6 @@ export function toggleFullScreen() {
   }
 }
 
+export function deUmlauter(word){
+  return word.replace('ä', 'a').replace('ë', 'e').replace('ï', 'i').replace('ö', 'o').replace('ü', 'u')
+}

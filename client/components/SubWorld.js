@@ -7,13 +7,13 @@ class SubWorld extends React.Component {
     super(props);
   }
 
-  componentDidMount(){
+  componentDidMount() {
   }
 
   render() {
     const subtheme = this.props.subtheme;
     return (
-      <div className="world_subtheme">
+      <div onClick={this.props.toggleView} className="world_subtheme">
         <h1>{subtheme.name}</h1>
       </div>
     )

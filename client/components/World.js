@@ -9,17 +9,45 @@ class World extends React.Component {
     super(props);
   }
 
+  getWorldData = (theme) => {
+    const worlds = this.props.germanGame.worlds;
+    // console.log(worlds)
+    let level;
+    let points;
+    let status;
+    worlds.map(world => {
+      if(world.name === theme) {
+        level = world.level
+        points = world.points
+        status = world.status
+      }
+    })
+    return(
+      <div className='data_container'>
+        <span className='level_container'>
+          <p>level</p>
+          <h4>{level}</h4>
+        </span>
+        <span className={`status_container ${status}`}></span>
+        <span className='points_container'>
+          <p>punkt</p>
+          <h4>{points}</h4>
+        </span>
+      </div>
+    )
+  }
+
   render() {
-    const theme = this.props.theme;
+    const {theme, picture} = this.props;
+    const divStyle = {
+      backgroundImage: `url(${picture})`
+    };
     return (
       <Link to={`/subthemes?theme=${deUmlauter(theme)}`} className={`world_theme ${deUmlauter(theme)}`}>
-        <div className='img_container'>
+        <div className='img_container' style={divStyle}>
           <h2><span>{theme}</span></h2>
         </div>
-        <div className='data_container'>
-          <span className='level_container'></span>
-          <span className='points_container'></span>
-        </div>
+        {this.getWorldData(theme)}
       </Link>
     )
   }

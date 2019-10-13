@@ -19,7 +19,7 @@ class Deutsch extends React.Component {
     let worldThemes = this.props.germanGame.world_themes;
     if(typeof worldThemes !== 'undefined') {
       return worldThemes.map((theme, i) => {
-        return(<World key={i} theme={theme}/>)
+        return(<World key={i} theme={theme[0]} picture={theme[1]}/>)
       })
     }
   }

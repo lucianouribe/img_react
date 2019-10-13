@@ -17,15 +17,18 @@ body
       border-radius: 10px
       @include box-shadow(0px, 0px, 6px, rgba(0,0,0,0.1))
       @include flexbox()
-  #deutsch
-    .world_theme
+  #deutsch,
+  #world_subthemes
+    .world_theme,
+    .world_subtheme
       text-decoration: none
       color: #fff
       font-size: 22px
       font-weight: bold
       font-family: Courier New
-      span
-        text-transform: capitalize
+      h2
+        span
+          text-transform: capitalize
       .img_container
         @include flex(0 0 70%)
         @include flexbox()
@@ -38,12 +41,25 @@ body
         border-bottom-left-radius: 10px
       .data_container
         @include flex(0 0 30%)
-        background: green
+        @include flexbox()
+        @include flex-direction(column)
+        @include justify-content(space-around)
+        background: #fff
         border-top-right-radius: 10px
         border-bottom-right-radius: 10px
-    .familie,
-    .korper,
-    .essen,
-    .einkaufen
-      .img_container
-        background-image:  url(asset_path("game/familie.jpg"))
+        color: #707070
+        span
+          padding: 0 10px
+        p,
+        h4,
+        span
+          margin: 0
+        p,
+        h4
+          text-align: center
+        p
+          font-size: 18px
+          font-weight: 100
+        h4
+          font-size: 22px
+          font-weight: 700

@@ -2,7 +2,7 @@ class Api::SubthemesController < ApplicationController
   before_action :set_api_world, only: [:index]
 
   def index
-    render json: @api_subthemes
+    render :json => @api_subthemes.to_json(:methods => [:avatar_url])
   end
 
   private

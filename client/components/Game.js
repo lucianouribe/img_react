@@ -6,10 +6,14 @@ class Game extends React.Component {
   constructor(props) {
     super(props);
   }
+  componentDidMount(){
+    // const search = window.location.search.replace("?theme=", "");
+  }
 
   render() {
+    const search = window.location.search.replace("?theme=", "");
     return (
-      <div>Hello Game!</div>
+      <div>{`Hello Game! ${search}`}</div>
     )
   }
 }

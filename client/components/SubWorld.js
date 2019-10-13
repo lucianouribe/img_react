@@ -1,5 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
+import { deUmlauter } from '../helpers';
 
 class SubWorld extends React.Component {
 
@@ -11,12 +13,12 @@ class SubWorld extends React.Component {
   }
 
   render() {
-    const subtheme = this.props.subtheme;
+    const {subtheme} = this.props;
     const divStyle = {
       backgroundImage: `url(${subtheme.avatar_url})`
     };
     return (
-      <div onClick={this.props.toggleView} className="world_subtheme">
+      <Link to={`/game?theme=${deUmlauter(subtheme.name)}`} className={`world_subtheme ${deUmlauter(subtheme.name)}`}>
         <div className='img_container' style={divStyle}>
           <h2><span>{subtheme.name}</span></h2>
         </div>
@@ -31,7 +33,7 @@ class SubWorld extends React.Component {
             <h4></h4>
           </span>
         </div>
-      </div>
+      </Link>
     )
   }
 }

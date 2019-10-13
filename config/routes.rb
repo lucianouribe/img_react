@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     end
 
     get 'subthemes', to: 'subthemes#index'
+    get 'game', to: 'subthemes#game'
 
     get 'set_last_id', to: 'pasos#set_last_id'
     get 'set_last_procom_id', to: 'procoms#set_last_procom_id'

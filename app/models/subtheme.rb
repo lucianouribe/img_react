@@ -6,4 +6,8 @@ class Subtheme < ApplicationRecord
   def avatar_url
     image.url(:medium)
   end
+
+  def self.order_by_id
+    Subtheme.order('id ASC')
+  end
 end

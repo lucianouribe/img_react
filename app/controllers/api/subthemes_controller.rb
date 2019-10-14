@@ -2,7 +2,7 @@ class Api::SubthemesController < ApplicationController
   before_action :set_theme, only: [:index, :game]
 
   def index
-    @api_subthemes = Subtheme.where(theme: "#{@theme}")
+    @api_subthemes = Subtheme.where(theme: "#{@theme}").order_by_id
     render :json => @api_subthemes.to_json(:methods => [:avatar_url])
   end
 

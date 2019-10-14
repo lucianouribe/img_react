@@ -7,7 +7,7 @@ class Api::GermanGamesController < ApplicationController
 
   def getWorldTheme
     @themes = []
-    World.all.each {|t| @themes << [t.name, t.image.url]}
+    World.all.order_by_id.each {|t| @themes << [t.name, t.image.url]}
     return @themes
   end
 end

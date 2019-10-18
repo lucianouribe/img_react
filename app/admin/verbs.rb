@@ -18,10 +18,10 @@ ActiveAdmin.register Verb do
     column :infinitive
     column :praesens
     column :praeteritum
-    column :futur_i
     column :partizip_perfekt
     column :perfekt
     column :plusquamperfekt
+    column :futur_i
     column :futur_ii
     column :ch
     column :spanish
@@ -49,10 +49,10 @@ ActiveAdmin.register Verb do
       row :infinitive
       row :praesens
       row :praeteritum
-      row :futur_i
       row :partizip_perfekt
       row :perfekt
       row :plusquamperfekt
+      row :futur_i
       row :futur_ii
       row :ch
       row :spanish
@@ -80,10 +80,10 @@ ActiveAdmin.register Verb do
       f.input :infinitive
       f.input :praesens
       f.input :praeteritum
-      f.input :futur_i
       f.input :partizip_perfekt
       f.input :perfekt
       f.input :plusquamperfekt
+      f.input :futur_i
       f.input :futur_ii
       f.input :ch
       f.input :spanish

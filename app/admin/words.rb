@@ -72,7 +72,7 @@ ActiveAdmin.register Word do
       f.input :spanish
       f.input :word_type,
               as: :select,
-              collection: ['noun'],
+              collection: ['noun', 'preposition', 'adverb'],
               include_blank: false
       f.input :theme,
               as: :select,
@@ -87,14 +87,6 @@ ActiveAdmin.register Word do
       end
     end
     f.actions
-  end
-
-  controller do
-    def create
-      create! do |format|
-        format.html { redirect_to new_admin_word_path(resource, add_more: true) }
-      end
-    end
   end
 
 end

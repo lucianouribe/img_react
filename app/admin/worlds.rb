@@ -46,8 +46,8 @@ ActiveAdmin.register World do
   form html: { enctype: 'multipart/form-data' } do |f|
     f.inputs 'Subthemes folder' do
       f.input :name
-      f.input :level, input_html: {value: 1}
-      f.input :points, input_html: {value: 0}
+      f.input :level, input_html: {default_value: 1}
+      f.input :points, input_html: {default_value: 0}
       f.input :status,
               as: :select,
               collection: ['open', 'closed', 'won', 'lost'],

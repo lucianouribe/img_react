@@ -7,9 +7,11 @@ class Api::SubthemesController < ApplicationController
   end
 
   def game
-    # here you pass the word
-    @words = Word.where(subtheme: "#{@theme}")
-    render json: @words
+    subtheme = Subtheme.where(name: @theme).first
+    @words = Word.where(subtheme: "#{subtheme.id}").where(level: "#{subtheme.level}").shuffle
+    @verbs = Verb.where(subtheme: "#{subtheme.id}").where(level: "#{subtheme.level}").shuffle
+    @phrases = Phrase.where(subtheme: "#{subtheme.id}").where(level: "#{subtheme.level}").shuffle
+    render json: { words: @words, verbs: @verbs, phrases: @phrases }
   end
 
   private

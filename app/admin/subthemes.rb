@@ -57,13 +57,13 @@ ActiveAdmin.register Subtheme do
               # collection: Themes.themes,
               collection: Themes.worlds,
               include_blank: false
-      f.input :hearts, input_html: {value: 3}
-      f.input :points, input_html: {value: 0}
+      f.input :hearts, input_html: {default_value: 3}
+      f.input :points, input_html: {default_value: 0}
       f.input :status,
               as: :select,
               collection: ['open', 'closed', 'won', 'lost'],
               include_blank: false
-      f.input :level, input_html: {value: 1}
+      f.input :level, input_html: {default_value: 1}
       f.input :german_game_id,
               as: :select,
               collection: GermanGame.all.map {|game| "#{game.id}"},

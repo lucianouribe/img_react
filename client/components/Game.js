@@ -1,26 +1,34 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { fetchGameData } from '../actions/game';
 
 class Game extends React.Component {
 
   constructor(props) {
     super(props);
+
+    this.state = {
+      subtheme: ''
+    }
   }
   componentDidMount(){
-    // const search = window.location.search.replace("?theme=", "");
+    const subtheme = window.location.search.replace("?theme=", "");
+    this.setState({subtheme});
+    this.props.dispatch(fetchGameData(subtheme))
   }
 
   render() {
-    const search = window.location.search.replace("?theme=", "");
     return (
-      <div>{`Hello Game! ${search}`}</div>
+      <div id="game">
+        <p>{`Subtheme: ${this.state.subtheme}`}</p>
+      </div>
     )
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    germanGame: state.germanGame
+    gameData: state.gameData
   }
 }
 export default connect(mapStateToProps)(Game);

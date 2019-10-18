@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-class GameNav extends React.Component {
+class GameComparer extends React.Component {
 
   constructor(props) {
     super(props);
@@ -9,13 +9,11 @@ class GameNav extends React.Component {
 
   componentDidMount(){
   }
-  
+
   render() {
     return (
-      <div className="game-nav">
-        <span>{this.props.subtheme.level}</span>
-        <span>{this.props.subtheme.theme}</span>
-        <span>{this.props.subtheme.points}</span>
+      <div className="game-image">
+        game comparer
       </div>
     )
   }
@@ -26,4 +24,4 @@ const mapStateToProps = (state) => {
     // gameData: state.gameData
   }
 }
-export default connect(mapStateToProps)(GameNav);
+export default connect(mapStateToProps)(GameComparer);

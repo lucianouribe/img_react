@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { fetchGameData } from '../actions/game';
 
 import GameNav from './GameNav';
+import GameContainer from './GameContainer';
 
 class Game extends React.Component {
 
@@ -27,10 +28,10 @@ class Game extends React.Component {
   }
 
   render() {
-    
     return (
       <div id="game">
         {this.gameNav()}
+        <GameContainer />
       </div>
     )
   }

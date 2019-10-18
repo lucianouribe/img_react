@@ -2,6 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { fetchGameData } from '../actions/game';
 
+import GameNav from './GameNav';
+import GameContainer from './GameContainer';
+
 class Game extends React.Component {
 
   constructor(props) {
@@ -17,10 +20,18 @@ class Game extends React.Component {
     this.props.dispatch(fetchGameData(subtheme))
   }
 
+  gameNav = () => {
+    let subtheme = this.props.gameData.subtheme;
+    if(typeof subtheme !== 'undefined') {
+      return(<GameNav subtheme={subtheme} />)
+    }
+  }
+
   render() {
     return (
       <div id="game">
-        <p>{`Subtheme: ${this.state.subtheme}`}</p>
+        {this.gameNav()}
+        <GameContainer />
       </div>
     )
   }

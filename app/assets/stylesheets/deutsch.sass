@@ -64,5 +64,37 @@ body
           font-size: 22px
           font-weight: 700
   #game
+    margin: 0 auto
     margin-top: 100px
     padding: 0 30px
+    max-width: 500px
+    .game-nav
+      @include flexbox()
+      @include justify-content(space-between)
+      font-size: 18px
+      font-weight: 500
+      color: #707070
+      text-transform: capitalize
+
+    .game-container
+      margin-top: 30px
+      padding: 12px 16px
+      background: #fff
+      border-radius: 12px
+
+    .game-sub-nav
+      @include flexbox()
+      @include justify-content(space-between)
+      padding: 0 6px
+      font-size: 18px
+      font-weight: 500
+      color: #707070
+      text-transform: capitalize
+      .hearts
+        @include flexbox()
+        p
+          font-size: 12px
+          line-height: 25px
+          margin: 0 3px
+      i
+        color: red

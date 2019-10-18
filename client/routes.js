@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, IndexRoute, browserHistory } from 'react-router';
-import { UserAuthWrapper } from 'redux-auth-wrapper';
-import AuthenticatedRoutes from './components/AuthenticatedRoutes';
+// import { UserAuthWrapper } from 'redux-auth-wrapper';
+// import AuthenticatedRoutes from './components/AuthenticatedRoutes';
 import SignUp from './components/SignUp';
 import SignIn from './components/SignIn';
 import App from './containers/App';
-import Admin from './components/Admin';
+// import Admin from './components/Admin';
 import Home from './components/Home';
 import Main from './components/Main';
 import Contact from './components/Contact';
@@ -13,9 +13,9 @@ import NoMatch from './components/NoMatch';
 import Panoramicos from './components/Panoramicos';
 import Proyectos from './components/Proyectos';
 import Translator from './components/Translator';
-import Grammar from './components/Grammar';
+// import Grammar from './components/Grammar';
 import Deutsch from './components/Deutsch';
-import Carrusels from './components/Carrusels';
+// import Carrusels from './components/Carrusels';
 import SubWorlds from './components/SubWorlds';
 import Game from './components/Game';
 
@@ -40,7 +40,7 @@ export default (
       <Route path="tutorials" component={Proyectos} />
       <Route path="transliterator" component={Translator} />
       <Route path="graphic" component={Main} />
-      <Route path="gramatica" component={Grammar} />
+      {/* <Route path="gramatica" component={Grammar} /> */}
       <Route path="deutsch" component={Deutsch} />
       <Route path="subthemes" component={SubWorlds} />
       <Route path="game" component={Game} />

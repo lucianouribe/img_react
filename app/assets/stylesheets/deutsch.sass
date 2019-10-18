@@ -64,5 +64,14 @@ body
           font-size: 22px
           font-weight: 700
   #game
+    margin: 0 auto
     margin-top: 100px
     padding: 0 30px
+    max-width: 500px
+    .game-nav
+      @include flexbox()
+      @include justify-content(space-between)
+      font-size: 18px
+      font-weight: 500
+      color: #707070
+      text-transform: capitalize

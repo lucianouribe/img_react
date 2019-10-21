@@ -7,14 +7,11 @@ class GameComparer extends React.Component {
     super(props);
 
     this.state = {
-      pronoun: 'ich'
+      nominative: 'ich'
     }
   }
 
   componentDidMount(){
-    const pronouns = ['ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'sie'];
-    var pronoun = pronouns[Math.floor(Math.random()*pronouns.length)];
-    this.setState({pronoun});
   }
 
   getWord = (word) => {
@@ -22,18 +19,62 @@ class GameComparer extends React.Component {
   }
 
   getVerb = (verb) => {
-    //check! get randombly a pronoun -> ich, du, er, sie, es, wir, ihr, sie 
+    if(this.props.actualLevel === 1){
+      let verbArray = verb.praesens.split("\n")
+      return this.getLine(verbArray)
+    } else if (this.props.actualLevel === 2) {
+      let verbArray = verb.perfekt.split("\n")
+      return this.getLine(verbArray)
+    } else if (this.props.actualLevel === 3) {
+      let verbArray = verb.futur_i.split("\n")
+      return this.getLine(verbArray)
+    } else if (this.props.actualLevel === 4) {
+      let verbArray = verb.praeteritum.split("\n")
+      return this.getLine(verbArray)
+    } else if (this.props.actualLevel === 5) {
+      let verbArray = verb.plusquanperfekt.split("\n")
+      return this.getLine(verbArray)
+    } else {
+      let verbArray = verb.futur_ii.split("\n")
+      return this.getLine(verbArray)
+    }
+  }
 
-    // if level 1 get praesens
-    // if level 2 get perfekt
-    // if level 3 get futur 1
-    // if level 4 get praeteritum
-    // if level 5 get plusquanperfekt
+  getLine = (array) => {
+    const nominatives = ['ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'Sie'];
+    var nominative = nominatives[Math.floor(Math.random()*nominatives.length)];
 
-    // get the line that corresponds to the pronoun
-    //===========
+    for (const line of array) {
+      if (line.includes(nominative)){
+        if (line.includes('er/sie/es')){
+          return line.replace('er/sie/es', `${nominative}`)
+        } else {
+          return line
+        }
+      }
+    }
+  }
 
-    return verb.infinitive
+  getPhrase = (phrase) => {
+    if(this.props.actualLevel === 1){
+      let phraseArray = phrase.phrase_praesens.split("\n")
+      return this.getLine(phraseArray)
+    } else if (this.props.actualLevel === 2) {
+      let phraseArray = phrase.phrase_perfekt.split("\n")
+      return this.getLine(phraseArray)
+    } else if (this.props.actualLevel === 3) {
+      let phraseArray = phrase.phrase_futur_i.split("\n")
+      return this.getLine(phraseArray)
+    } else if (this.props.actualLevel === 4) {
+      let phraseArray = phrase.phrase_praeteritum.split("\n")
+      return this.getLine(phraseArray)
+    } else if (this.props.actualLevel === 5) {
+      let phraseArray = phrase.phrase_plusquanperfekt.split("\n")
+      return this.getLine(phraseArray)
+    } else {
+      let phraseArray = phrase.phrase_futur_ii.split("\n")
+      return this.getLine(phraseArray)
+    }
   }
 
   getObject = () => {
@@ -43,7 +84,7 @@ class GameComparer extends React.Component {
     } else if (thematic === 'verbs') {
       return this.getVerb(compareMe)
     } else {
-      return compareMe.phrase_praesens
+      return this.getPhrase(compareMe)
     }
   }
 

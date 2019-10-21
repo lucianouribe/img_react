@@ -11,8 +11,8 @@ class GameImage extends React.Component {
   }
 
   getStyle = () => {
-
     const {subthemeImage, compareMe} = this.props;
+    // console.log(compareMe)
     let divStyle;
     divStyle = {
       backgroundImage: `url(${subthemeImage})`

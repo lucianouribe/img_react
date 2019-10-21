@@ -16,7 +16,8 @@ class GameContainer extends React.Component {
       actualObject: {},
       actualThematic: 'words',
       actualLevel: 0,
-      subthemeImage: ''
+      subthemeImage: '',
+      show: true
     }
   }
 
@@ -57,7 +58,8 @@ class GameContainer extends React.Component {
     this.setState({
       actualObject, 
       subthemeImage: gameData.subtheme_img, 
-      actualLevel: gameData.subtheme.level
+      actualLevel: gameData.subtheme.level,
+      show: false
     });
   }
 
@@ -112,15 +114,31 @@ class GameContainer extends React.Component {
         thematic={actualThematic} /> 
       )
   }
+
+  swapViews = () => {
+    if (this.state.show) {
+      return(
+        <div className="start-me" onClick={() => this.startGame()}>
+          <h1>Anfang!</h1>
+        </div>
+      )
+    } else {
+      return(
+        <div>
+          {this.gameSubNav()}
+          {this.gameImage()}
+          {this.gameComparer()}
+          <button onClick={() => this.nextGame()}>Nächste</button>
+        </div>
+      )
+
+    }
+  }
   
   render() {
     return (
       <div className="game-container">
-        {this.gameSubNav()}
-        {this.gameImage()}
-        {this.gameComparer()}
-        <button onClick={() => this.startGame()}>start</button>
-        <button onClick={() => this.nextGame()}>next</button>
+        {this.swapViews()}
       </div>
     )
   }

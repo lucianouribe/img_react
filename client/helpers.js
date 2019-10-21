@@ -153,3 +153,23 @@ export function toggleFullScreen() {
 export function deUmlauter(word){
   return word.replace('ä', 'a').replace('ë', 'e').replace('ï', 'i').replace('ö', 'o').replace('ü', 'u')
 }
+
+export function replaceConsonants(word){
+  word = word.replace('die ', '').replace('das ', '').replace('der ', '')
+  return word.replace(/[bcdfghjklmnpqrstvwxyz]/gi, '_')
+}
+
+export function getFirstLetter(word){
+  word = word.replace('die ', '').replace('das ', '').replace('der ', '')
+  var word1 = word.replace(/[bcdfghjklmnpqrstvwxyz]/gi, '_').split('')
+  var word2 = word[0]
+  word1[0] = word2
+  word1 = word1.join('')
+  return word1
+}
+
+export function getDashes(word){
+  word = word.replace('die ', '').replace('das ', '').replace('der ', '')
+  var amount = word.length
+  return '_'.repeat(amount)
+}

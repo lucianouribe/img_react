@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { replaceConsonants, getFirstLetter, getDashes } from '../helpers';
 
 class GameComparer extends React.Component {
 
@@ -7,7 +8,9 @@ class GameComparer extends React.Component {
     super(props);
 
     this.state = {
-      nominative: 'ich'
+      nominative: 'ich',
+      hintCounter: 0,
+      hint: ''
     }
   }
 
@@ -15,7 +18,12 @@ class GameComparer extends React.Component {
   }
 
   getWord = (word) => {
-    return `${word.article} ${word.noun}`
+    // if level 3, 5, 7, 9 get plural word
+    if (this.props.actualLevel % 2 === 0) {
+      return `${word.article} ${word.noun}`
+    } else {
+      return `die ${word.plural}`
+    }
   }
 
   getVerb = (verb) => {
@@ -88,10 +96,27 @@ class GameComparer extends React.Component {
     }
   }
 
+  getHint = () => {
+    const { thematic } = this.props;
+    let word = this.getObject();
+    if (thematic === 'words'){
+      if (this.state.hintCounter === 0) {
+        return '?'
+      } else if (this.state.hintCounter === 1) {
+        return `___ ${getDashes(word)}`
+      } else if (this.state.hintCounter === 2 ) {
+        return `D__ ${replaceConsonants(word)}`
+      } else {
+        return `D__ ${getFirstLetter(word)}`
+      }
+    }
+  }
+
   render() {
     return (
       <div className="game-comparer">
-        {this.getObject()}
+        <span className="hint" onClick={() => this.setState({hintCounter: this.state.hintCounter + 1})}>{this.getHint()}</span>
+        <input placeholder={this.getObject()}/>
       </div>
     )
   }

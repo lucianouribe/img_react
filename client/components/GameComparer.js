@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { replaceConsonants, getFirstLetter, getDashes } from '../helpers';
+import { replaceConsonants, getFirstLetter, getDashes, capitalize } from '../helpers';
 
 class GameComparer extends React.Component {
 
@@ -20,9 +20,9 @@ class GameComparer extends React.Component {
   getWord = (word) => {
     // if level 3, 5, 7, 9 get plural word
     if (this.props.actualLevel % 2 === 0) {
-      return `${word.article} ${word.noun}`
+      return `${word.article} ${capitalize(word.noun)}`
     } else {
-      return `die ${word.plural}`
+      return `die ${capitalize(word.plural)}`
     }
   }
 

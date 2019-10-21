@@ -173,3 +173,7 @@ export function getDashes(word){
   var amount = word.length
   return '_'.repeat(amount)
 }
+
+export function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}

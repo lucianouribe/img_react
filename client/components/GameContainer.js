@@ -111,7 +111,8 @@ class GameContainer extends React.Component {
       <GameComparer 
         compareMe={actualObject} 
         actualLevel={actualLevel}
-        thematic={actualThematic} /> 
+        thematic={actualThematic}
+        nextGame={this.nextGame} /> 
       )
   }
 
@@ -128,7 +129,6 @@ class GameContainer extends React.Component {
           {this.gameSubNav()}
           {this.gameImage()}
           {this.gameComparer()}
-          <button onClick={() => this.nextGame()}>Nächste</button>
         </div>
       )
 

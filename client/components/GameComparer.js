@@ -116,7 +116,10 @@ class GameComparer extends React.Component {
     return (
       <div className="game-comparer">
         <span className="hint" onClick={() => this.setState({hintCounter: this.state.hintCounter + 1})}>{this.getHint()}</span>
-        <input placeholder={this.getObject()}/>
+        <span className="word-input">
+          <input placeholder="... "/>
+          <button onClick={() => this.props.nextGame()}><i className="fa fa-search"></i></button>
+        </span>
       </div>
     )
   }

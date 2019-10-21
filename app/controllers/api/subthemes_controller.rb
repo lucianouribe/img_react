@@ -8,10 +8,11 @@ class Api::SubthemesController < ApplicationController
 
   def game
     subtheme = Subtheme.where(name: @theme).first
+    subtheme.img_url = subtheme.image.url
     @words = Word.where(subtheme: "#{subtheme.id}").where(level: "#{subtheme.level}").shuffle.sample(8)
     @verbs = Verb.where(subtheme: "#{subtheme.id}").where(level: "#{subtheme.level}").shuffle.sample(8)
     @phrases = Phrase.where(subtheme: "#{subtheme.id}").where(level: "#{subtheme.level}").shuffle.sample(8)
-    render json: { words: @words, verbs: @verbs, phrases: @phrases, subtheme: subtheme }
+    render json: { words: @words, verbs: @verbs, phrases: @phrases, subtheme: subtheme, subtheme_img: subtheme.img_url}
   end
 
   private

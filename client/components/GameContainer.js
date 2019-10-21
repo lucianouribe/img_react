@@ -12,10 +12,10 @@ class GameContainer extends React.Component {
 
     this.state = {
       actual: 0,
-      subtheme: {},
-      words: [],
-      verbs: [],
-      phrases: []
+      actualIndex: 0,
+      actualObject: {},
+      actualThematic: 'words',
+      subthemeImage: ''
     }
   }
 
@@ -49,12 +49,64 @@ class GameContainer extends React.Component {
     return word_length + verb_length + phrase_length
   }
 
+  startGame = () => {
+    let words = this.props.gameData.words;
+    let actualObject = words[0];
+    this.setState({actualObject, subthemeImage: this.props.gameData.subtheme_img});
+  }
+
+  nextGame = () => {
+    let {words, verbs, phrases} = this.props.gameData;
+    if(this.state.actualThematic === 'words'){
+      if(this.state.actualIndex + 1 < words.length){
+        let actualObject = words[this.state.actualIndex + 1];
+        this.setState({actualIndex: this.state.actualIndex + 1, actualObject, actual: this.state.actual + 1});
+        console.log(actualObject.noun);
+      } else {
+        let actualObject = verbs[0];
+        this.setState({actualIndex: 0, actualObject, actualThematic: 'verbs', actual: this.state.actual + 1});
+        console.log(actualObject.infinitive);
+      }
+    }
+
+    if(this.state.actualThematic === 'verbs'){
+      if(this.state.actualIndex + 1 < verbs.length){
+        let actualObject = verbs[this.state.actualIndex + 1];
+        this.setState({actualIndex: this.state.actualIndex + 1, actualObject, actual: this.state.actual + 1});
+        console.log(actualObject.infinitive);
+      } else {
+        let actualObject = phrases[0];
+        this.setState({actualIndex: 0, actualObject, actualThematic: 'phrases', actual: this.state.actual + 1});
+        console.log(actualObject.phrase_praesens);
+      }
+    }
+
+    if(this.state.actualThematic === 'phrases'){
+      if(this.state.actualIndex + 1 < phrases.length){
+        let actualObject = phrases[this.state.actualIndex + 1];
+        this.setState({actualIndex: this.state.actualIndex + 1, actualObject, actual: this.state.actual + 1});
+        console.log(actualObject.phrase_praesens);
+      } else {
+        console.log('time to evaluate results!')
+      }
+    }
+
+  }
+
   gameImage = () => {
-    return( <GameImage /> )
+    return( 
+      <GameImage
+        compareMe={this.state.actualObject} 
+        subthemeImage={this.state.subthemeImage} /> 
+    )
   }
 
   gameComparer = () => {
-    return( <GameComparer /> )
+    return( 
+      <GameComparer 
+        compareMe={this.state.actualObject} 
+        thematic={this.state.actualThematic} /> 
+      )
   }
   
   render() {
@@ -63,6 +115,8 @@ class GameContainer extends React.Component {
         {this.gameSubNav()}
         {this.gameImage()}
         {this.gameComparer()}
+        <button onClick={() => this.startGame()}>start</button>
+        <button onClick={() => this.nextGame()}>next</button>
       </div>
     )
   }

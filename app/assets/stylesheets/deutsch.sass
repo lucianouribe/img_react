@@ -170,8 +170,17 @@ body
           h1
             font-size: 5rem
         .game-comparer
-          span,
-          input
+          .word-input
+            @include flex(0 0 100%)
+            max-width: 100%
+            width: 100%
+            input
+              font-size: 18px
+              width: 74%
+            button
+              max-width: 30px
+
+          span
             font-size: 20px
       .game-image
         height: 184px

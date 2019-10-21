@@ -19,10 +19,10 @@ class GameComparer extends React.Component {
 
   getWord = (word) => {
     // if level 3, 5, 7, 9 get plural word
-    if (this.props.actualLevel % 2 === 0) {
+    if (this.props.actualLevel % 2 === 0 || this.props.actualLevel === 1) {
       return `${word.article} ${capitalize(word.noun)}`
     } else {
-      return `die ${capitalize(word.plural)}`
+      return `Die ${capitalize(word.plural)}`
     }
   }
 

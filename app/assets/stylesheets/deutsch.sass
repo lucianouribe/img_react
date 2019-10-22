@@ -1,10 +1,17 @@
 body
   #deutsch,
   #world_subthemes
-    margin-top: 100px
-    padding: 0 30px
     @include flexbox()
     @include flex-wrap(wrap)
+    position: fixed
+    top: 90px
+    right: 0
+    left: 0
+    height: calc(96vh - 90px)
+    padding: 0 30px
+    overflow: hidden
+    overflow-y: scroll
+
     .player_stats
       @include flex(0 0 100%)
     .world_theme,
@@ -39,6 +46,7 @@ body
         background-size: cover
         border-top-left-radius: 10px
         border-bottom-left-radius: 10px
+        max-width: 70%
       .data_container
         @include flex(0 0 30%)
         @include flexbox()
@@ -184,3 +192,11 @@ body
             font-size: 20px
       .game-image
         height: 184px
+
+    #deutsch,
+    #world_subthemes
+      .world_theme,
+      .world_subtheme
+        width: 100%
+        h2
+          span

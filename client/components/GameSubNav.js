@@ -11,11 +11,11 @@ class GameSubNav extends React.Component {
   }
 
   render() {
-    const {subthemeName, subthemeHearts, actual, amount} = this.props;
+    const {subthemeName, subthemeHearts, actual, amount, hintCounter} = this.props;
     return (
       <div className="game-sub-nav">
         <span>{subthemeName}</span>
-        <span className="hearts"><i className="fa fa-heart"></i><p>x</p><span>{subthemeHearts}</span></span>
+        <span className="hearts"><i className="fa fa-heart"></i><p>x</p><span>{subthemeHearts - hintCounter}</span></span>
         <span>{actual + 1}|{amount}</span>
       </div>
     )

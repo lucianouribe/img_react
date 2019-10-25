@@ -8,9 +8,7 @@ class GameComparer extends React.Component {
     super(props);
 
     this.state = {
-      nominative: 'ich',
-      hintCounter: 0,
-      hint: ''
+      nominative: 'ich'
     }
   }
 
@@ -89,10 +87,12 @@ class GameComparer extends React.Component {
     const { compareMe, thematic } = this.props;
     if (thematic === 'words'){
       return this.getWord(compareMe)
-    } else if (thematic === 'verbs') {
+    } else if ((thematic === 'verbs') && (typeof compareMe !== 'undefined')) {
       return this.getVerb(compareMe)
     } else {
-      return this.getPhrase(compareMe)
+      if (typeof compareMe !== 'undefined'){
+        return this.getPhrase(compareMe)
+      }
     }
   }
 
@@ -100,11 +100,11 @@ class GameComparer extends React.Component {
     const { thematic } = this.props;
     let word = this.getObject();
     if (thematic === 'words'){
-      if (this.state.hintCounter === 0) {
+      if (this.props.hintCounter === 0) {
         return '?'
-      } else if (this.state.hintCounter === 1) {
+      } else if (this.props.hintCounter === 1) {
         return `___ ${getDashes(word)}`
-      } else if (this.state.hintCounter === 2 ) {
+      } else if (this.props.hintCounter === 2 ) {
         return `D__ ${replaceConsonants(word)}`
       } else {
         return `D__ ${getFirstLetter(word)}`
@@ -112,13 +112,25 @@ class GameComparer extends React.Component {
     }
   }
 
+  hintMagikChild = () => {
+    if (this.props.hintCounter < 3){
+      this.props.hintMagik(this.props.hintCounter + 1)
+    }
+  }
+
+  submitBtn = () => {
+    this.props.hintMagik(0)
+    this.props.nextGame();
+  }
+
   render() {
+    console.log(this.getObject())
     return (
       <div className="game-comparer">
-        <span className="hint" onClick={() => this.setState({hintCounter: this.state.hintCounter + 1})}>{this.getHint()}</span>
+        <span className="hint" onClick={() => this.hintMagikChild()}>{this.getHint()}</span>
         <span className="word-input">
-          <input placeholder="... "/>
-          <button onClick={() => this.props.nextGame()}><i className="fa fa-search"></i></button>
+          <input placeholder="..."/>
+          <button onClick={() => this.submitBtn()}><i className="fa fa-search"></i></button>
         </span>
       </div>
     )

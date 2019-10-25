@@ -17,7 +17,8 @@ class GameContainer extends React.Component {
       actualThematic: 'words',
       actualLevel: 0,
       subthemeImage: '',
-      show: true
+      show: true,
+      hintCounter: 0
     }
   }
 
@@ -39,7 +40,8 @@ class GameContainer extends React.Component {
           subthemeName={subthemeName}
           subthemeHearts={subthemeHearts}
           amount={amount}
-          actual={this.state.actual} />
+          actual={this.state.actual}
+          hintCounter={this.state.hintCounter} />
       )
     }
   }
@@ -49,6 +51,11 @@ class GameContainer extends React.Component {
     let verb_length = gameData.verbs.length
     let phrase_length = gameData.phrases.length
     return word_length + verb_length + phrase_length
+  }
+
+  // sets how many hints are left
+  hintMagik = (hintCounter) => {
+    this.setState({hintCounter})
   }
 
   startGame = () => {
@@ -112,7 +119,9 @@ class GameContainer extends React.Component {
         compareMe={actualObject} 
         actualLevel={actualLevel}
         thematic={actualThematic}
-        nextGame={this.nextGame} /> 
+        nextGame={this.nextGame}
+        hintCounter={this.state.hintCounter}
+        hintMagik={this.hintMagik} /> 
       )
   }
 

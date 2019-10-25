@@ -1,19 +1,29 @@
 body
   #deutsch,
   #world_subthemes
-    @include flexbox()
-    @include flex-wrap(wrap)
-    position: fixed
-    top: 90px
-    right: 0
-    left: 0
-    height: calc(96vh - 90px)
-    padding: 0 30px
-    overflow: hidden
-    overflow-y: scroll
 
+
+
+    .worlds-container
+      @include flexbox()
+      @include flex-wrap(wrap)
+      @include justify-content(space-between)
+      position: fixed
+      top: 180px
+      right: 0
+      left: 0
+      height: calc(96vh - 180px)
+      padding: 0 30px
+      overflow: hidden
+      overflow-y: scroll
     .player_stats
       @include flex(0 0 100%)
+      @include flexbox()
+      @include justify-content(space-around)
+      position: fixed
+      top: 90px
+      right: 0
+      left: 0
     .world_theme,
     .world_subtheme
       width: 260px

@@ -30,7 +30,9 @@ class Deutsch extends React.Component {
     return (
       <div id="deutsch">
         <PlayerStats player={player} title={title}/>
-        {this.worlds()}
+        <div className="worlds-container">
+          {this.worlds()}
+        </div>
       </div>
     )
   }

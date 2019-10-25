@@ -8,9 +8,7 @@ class GameComparer extends React.Component {
     super(props);
 
     this.state = {
-      nominative: 'ich',
-      hintCounter: 0,
-      hint: ''
+      nominative: 'ich'
     }
   }
 
@@ -27,24 +25,31 @@ class GameComparer extends React.Component {
   }
 
   getVerb = (verb) => {
-    if(this.props.actualLevel === 1){
-      let verbArray = verb.praesens.split("\n")
-      return this.getLine(verbArray)
-    } else if (this.props.actualLevel === 2) {
-      let verbArray = verb.perfekt.split("\n")
-      return this.getLine(verbArray)
-    } else if (this.props.actualLevel === 3) {
-      let verbArray = verb.futur_i.split("\n")
-      return this.getLine(verbArray)
-    } else if (this.props.actualLevel === 4) {
-      let verbArray = verb.praeteritum.split("\n")
-      return this.getLine(verbArray)
-    } else if (this.props.actualLevel === 5) {
-      let verbArray = verb.plusquanperfekt.split("\n")
-      return this.getLine(verbArray)
-    } else {
-      let verbArray = verb.futur_ii.split("\n")
-      return this.getLine(verbArray)
+    let verbArray;
+    switch (this.props.actualLevel) {
+      case 1:
+        verbArray = verb.praesens.split("\n")
+        return this.getLine(verbArray)
+        break;
+      case 2:
+        verbArray = verb.perfekt.split("\n")
+        return this.getLine(verbArray)
+        break;
+      case 3:
+        verbArray = verb.futur_i.split("\n")
+        return this.getLine(verbArray)
+        break
+      case 4:
+        verbArray = verb.praeteritum.split("\n")
+        return this.getLine(verbArray)
+        break;
+      case 5:
+        verbArray = verb.plusquanperfekt.split("\n")
+        return this.getLine(verbArray)
+        break;
+      default:
+        verbArray = verb.futur_ii.split("\n")
+        return this.getLine(verbArray)
     }
   }
 
@@ -64,24 +69,31 @@ class GameComparer extends React.Component {
   }
 
   getPhrase = (phrase) => {
-    if(this.props.actualLevel === 1){
-      let phraseArray = phrase.phrase_praesens.split("\n")
-      return this.getLine(phraseArray)
-    } else if (this.props.actualLevel === 2) {
-      let phraseArray = phrase.phrase_perfekt.split("\n")
-      return this.getLine(phraseArray)
-    } else if (this.props.actualLevel === 3) {
-      let phraseArray = phrase.phrase_futur_i.split("\n")
-      return this.getLine(phraseArray)
-    } else if (this.props.actualLevel === 4) {
-      let phraseArray = phrase.phrase_praeteritum.split("\n")
-      return this.getLine(phraseArray)
-    } else if (this.props.actualLevel === 5) {
-      let phraseArray = phrase.phrase_plusquanperfekt.split("\n")
-      return this.getLine(phraseArray)
-    } else {
-      let phraseArray = phrase.phrase_futur_ii.split("\n")
-      return this.getLine(phraseArray)
+    let phraseArray;
+    switch (this.props.actualLevel) {
+      case 1:
+        phraseArray = phrase.phrase_praesens.split("\n")
+        return this.getLine(phraseArray)
+        break;
+      case 2:
+        phraseArray = phrase.phrase_perfekt.split("\n")
+        return this.getLine(phraseArray)
+        break;
+      case 3:
+        phraseArray = phrase.phrase_futur_i.split("\n")
+        return this.getLine(phraseArray)
+        break
+      case 4:
+        phraseArray = phrase.phrase_praeteritum.split("\n")
+        return this.getLine(phraseArray)
+        break;
+      case 5:
+        phraseArray = phrase.phrase_plusquanperfekt.split("\n")
+        return this.getLine(phraseArray)
+        break;
+      default:
+        phraseArray = phrase.phrase_futur_ii.split("\n")
+        return this.getLine(phraseArray)
     }
   }
 
@@ -89,36 +101,86 @@ class GameComparer extends React.Component {
     const { compareMe, thematic } = this.props;
     if (thematic === 'words'){
       return this.getWord(compareMe)
-    } else if (thematic === 'verbs') {
+    } else if ((thematic === 'verbs') && (typeof compareMe !== 'undefined')) {
       return this.getVerb(compareMe)
     } else {
-      return this.getPhrase(compareMe)
-    }
-  }
-
-  getHint = () => {
-    const { thematic } = this.props;
-    let word = this.getObject();
-    if (thematic === 'words'){
-      if (this.state.hintCounter === 0) {
-        return '?'
-      } else if (this.state.hintCounter === 1) {
-        return `___ ${getDashes(word)}`
-      } else if (this.state.hintCounter === 2 ) {
-        return `D__ ${replaceConsonants(word)}`
-      } else {
-        return `D__ ${getFirstLetter(word)}`
+      if (typeof compareMe !== 'undefined'){
+        return this.getPhrase(compareMe)
       }
     }
   }
 
+  getHint = () => {
+    const { thematic, hintCounter } = this.props;
+    let word = this.getObject();
+    if (thematic === 'words'){
+      switch (hintCounter) {
+        case 0:
+          return '?'
+          break;
+        case 1:
+          return `___ ${getDashes(word)}`
+          break;
+        case 2:
+          return `D__ ${replaceConsonants(word)}`
+          break
+        case 3:
+          return `D__ ${getFirstLetter(word)}`
+          break;
+        default:
+          return('Viel Spass!')
+      }
+    }
+    if (thematic === 'verbs'){
+      return ('verb hint')
+    }
+    if (thematic === 'phrases'){
+      return ('phrase hint')
+    }
+  }
+
+  hintMagikChild = () => {
+    if (this.props.hintCounter < 3){
+      this.props.hintMagik(this.props.hintCounter + 1)
+    }
+  }
+
+  getKeywords = () =>{
+    const {actualLevel, thematic, compareMe} = this.props;
+
+    switch (thematic) {
+      case 'words':
+        if (actualLevel % 2 === 0 || this.props.actualLevel === 1) {
+          return `${compareMe.word_type}`
+        } else {
+          return `${compareMe.word_type} plural`
+        }
+        break;
+      case 'verbs':
+        return 'verb keywords'
+        break;
+      case 'phrases':
+        return 'phrase keywords'
+        break;
+      default:
+        return('Viel Spass!')
+    }
+  }
+
+  submitBtn = () => {
+    this.props.hintMagik(0)
+    this.props.nextGame();
+  }
+
   render() {
+    console.log(this.getObject())
     return (
       <div className="game-comparer">
-        <span className="hint" onClick={() => this.setState({hintCounter: this.state.hintCounter + 1})}>{this.getHint()}</span>
+        <span className="keywords">{this.getKeywords()}</span>
+        <span className="hint" onClick={() => this.hintMagikChild()}>{this.getHint()}</span>
         <span className="word-input">
-          <input placeholder="... "/>
-          <button onClick={() => this.props.nextGame()}><i className="fa fa-search"></i></button>
+          <input placeholder="..."/>
+          <button onClick={() => this.submitBtn()}><i className="fa fa-search"></i></button>
         </span>
       </div>
     )

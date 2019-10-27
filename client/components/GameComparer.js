@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { replaceConsonants, getFirstLetter, getDashes, capitalize } from '../helpers';
+import Comparer from './Comparer';
 
 class GameComparer extends React.Component {
 
@@ -174,13 +175,19 @@ class GameComparer extends React.Component {
 
   render() {
     console.log(this.getObject())
-    return (
+    return(
       <div className="game-comparer">
         <span className="keywords">{this.getKeywords()}</span>
         <span className="hint" onClick={() => this.hintMagikChild()}>{this.getHint()}</span>
         <span className="word-input">
-          <input placeholder="..."/>
-          <button onClick={() => this.submitBtn()}><i className="fa fa-search"></i></button>
+          <Comparer 
+            submitBtn={this.submitBtn} 
+            objective={this.getObject()} 
+            setResult={this.props.setResult} 
+            setResultCard={this.props.setResultCard} 
+            thematic={this.props.thematic} 
+            setIncorrectChar={this.setIncorrectChar} 
+            subthemeId={this.props.subthemeId} />
         </span>
       </div>
     )

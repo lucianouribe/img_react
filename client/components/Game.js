@@ -9,37 +9,40 @@ class Game extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      subtheme: ''
-    }
   }
+
   componentDidMount(){
     const subtheme = window.location.search.replace("?theme=", "");
-    this.setState({subtheme});
-    this.props.dispatch(fetchGameData(subtheme))
+    this.props.dispatch(fetchGameData(subtheme));
   }
 
   gameNav = () => {
     let subtheme = this.props.gameData.subtheme;
     if(typeof subtheme !== 'undefined') {
-      return(<GameNav subtheme={subtheme} />)
+      return(<GameNav subtheme={subtheme.id} />)
     }
   }
 
   render() {
-    return (
-      <div id="game">
-        {this.gameNav()}
-        <GameContainer />
-      </div>
-    )
+    let subtheme = this.props.gameData.subtheme;
+    if(typeof subtheme !== 'undefined') {
+      return (
+        <div id="game">
+          <GameNav subthemeId={subtheme.id} />
+          <GameContainer subthemeId={subtheme.id} />
+        </div>
+      )
+    } else {
+      return(<div>Kein Spiel!</div>)
+    }
+
   }
 }
 
 const mapStateToProps = (state) => {
   return {
-    gameData: state.gameData
+    gameData: state.gameData,
+    subThemes: state.subThemes
   }
 }
 export default connect(mapStateToProps)(Game);

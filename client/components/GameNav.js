@@ -3,19 +3,25 @@ import { connect } from 'react-redux';
 
 class GameNav extends React.Component {
 
-  constructor(props) {
-    super(props);
-  }
-
-  componentDidMount(){
+  getInfo = () => {
+    const {subThemes, subthemeId} = this.props;
+    for (const subT of subThemes) {
+      if (subT.id === subthemeId) {
+        return (
+          <div className="game-nav">
+            <span>{subT.level}</span>
+            <span>{subT.theme}</span>
+            <span>{subT.points}</span>
+          </div>
+        )
+      }
+    }
   }
   
   render() {
     return (
-      <div className="game-nav">
-        <span>{this.props.subtheme.level}</span>
-        <span>{this.props.subtheme.theme}</span>
-        <span>{this.props.subtheme.points}</span>
+      <div>
+        {this.getInfo()}
       </div>
     )
   }
@@ -23,7 +29,7 @@ class GameNav extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    // gameData: state.gameData
+    subThemes: state.subThemes
   }
 }
 export default connect(mapStateToProps)(GameNav);

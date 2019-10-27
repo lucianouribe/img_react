@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Markdown from 'markdown-to-jsx';
 
 import GameSubNav from './GameSubNav';
 import GameImage from './GameImage';
@@ -18,11 +19,19 @@ class GameContainer extends React.Component {
       actualLevel: 0,
       subthemeImage: '',
       show: true,
-      hintCounter: 0
+      hintCounter: 0,
+      showResult: false,
+      resultCard: ''
     }
   }
-
-  componentDidMount(){
+  
+  setResult = () => {
+    this.setState({showResult: true})
+  }
+  
+  // the result card is a string with all the divs! or a markdown thing!
+  setResultCard = (resultCard) => {
+    this.setState({resultCard})
   }
 
   gameSubNav = () => {
@@ -121,7 +130,10 @@ class GameContainer extends React.Component {
         thematic={actualThematic}
         nextGame={this.nextGame}
         hintCounter={this.state.hintCounter}
-        hintMagik={this.hintMagik} /> 
+        hintMagik={this.hintMagik}
+        setResult={this.setResult}
+        setResultCard={this.setResultCard} 
+        subthemeId={this.props.subthemeId} /> 
       )
   }
 
@@ -143,11 +155,23 @@ class GameContainer extends React.Component {
 
     }
   }
+
+  renderGameOrResult = () => {
+    if (this.state.showResult) {
+      return (
+        <div className="game-comparer" onClick={() => this.setState({showResult: false})}>
+          <Markdown>{this.state.resultCard}</Markdown>
+        </div>
+      )
+    } else {
+      return this.swapViews()
+    }
+  }
   
   render() {
     return (
       <div className="game-container">
-        {this.swapViews()}
+        {this.renderGameOrResult()}
       </div>
     )
   }

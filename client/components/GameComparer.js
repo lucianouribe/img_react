@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { replaceConsonants, getFirstLetter, getDashes, capitalize } from '../helpers';
+import { replaceConsonants, getFirstLetter, getDashes, capitalize, getVerbDashes } from '../helpers';
 import Comparer from './Comparer';
 
 class GameComparer extends React.Component {
@@ -9,11 +9,14 @@ class GameComparer extends React.Component {
     super(props);
 
     this.state = {
-      nominative: 'ich'
+      nominative: 'ich',
+      object: ''
     }
   }
 
   componentDidMount(){
+    const object = this.getObject();
+    this.setState({object});
   }
 
   getWord = (word) => {
@@ -113,27 +116,42 @@ class GameComparer extends React.Component {
 
   getHint = () => {
     const { thematic, hintCounter } = this.props;
-    let word = this.getObject();
+    let object = this.state.object;
     if (thematic === 'words'){
       switch (hintCounter) {
         case 0:
           return '?'
           break;
         case 1:
-          return `___ ${getDashes(word)}`
+          return `___ ${getDashes(object)}`
           break;
         case 2:
-          return `D__ ${replaceConsonants(word)}`
+          return `d__ ${replaceConsonants(object)}`
           break
         case 3:
-          return `D__ ${getFirstLetter(word)}`
+          return `d__ ${getFirstLetter(object)}`
           break;
         default:
           return('Viel Spass!')
       }
     }
     if (thematic === 'verbs'){
-      return ('verb hint')
+      switch (hintCounter) {
+        case 0:
+          return '?'
+          break;
+        case 1:
+          return `${getVerbDashes(object)}`
+          break;
+        case 2:
+          return `${replaceVerbConsonants(object)}`
+          break
+        case 3:
+          return `${getVerbFirstLetter(object)}`
+          break;
+        default:
+          return('Viel Spass!')
+      }
     }
     if (thematic === 'phrases'){
       return ('phrase hint')
@@ -181,7 +199,7 @@ class GameComparer extends React.Component {
         <span className="word-input">
           <Comparer 
             submitBtn={this.submitBtn} 
-            objective={this.getObject()} 
+            objective={this.state.object} 
             setResult={this.props.setResult} 
             setResultCard={this.props.setResultCard} 
             thematic={this.props.thematic} 

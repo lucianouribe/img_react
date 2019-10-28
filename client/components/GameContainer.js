@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { history } from '../store';
 import Markdown from 'markdown-to-jsx';
 
 import GameSubNav from './GameSubNav';
@@ -21,6 +22,7 @@ class GameContainer extends React.Component {
       show: true,
       hintCounter: 0,
       showResult: false,
+      showTotal: false,
       resultCard: ''
     }
   }
@@ -67,6 +69,33 @@ class GameContainer extends React.Component {
     this.setState({hintCounter})
   }
 
+  // pass the punctuation to the user
+  passPunctuation = () => {
+    this.setState({showTotal: true});
+    // get subthemes
+    // let subthemes = this.props.subThemes;
+    let theSubTheme;
+    const {subThemes, subthemeId} = this.props;
+    for (const subT of subThemes) {
+      if (subT.id === subthemeId) {
+        theSubTheme = subT;
+      }
+    }
+    // get points ofspecific subtheme
+    console.log(theSubTheme)
+
+    // get player lifes
+    let player = this.props.germanGame;
+    console.log(player.lifes)
+    // get player punctuation
+    console.log(player.punctuation)
+
+    // if points are negative player looses one life
+    // if points are positive theme gets the points. if points are above 100. the extra points go to the player
+    // once all subthemes are passed, theme changes status, player gets extra 100 points
+    // player gets 1000 points, he gets a life. && player points get 1000 points less
+  }
+
   startGame = () => {
     let gameData = this.props.gameData;
     let words = gameData.words;
@@ -88,7 +117,12 @@ class GameContainer extends React.Component {
         this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
       } else {
         let actualObject = verbs[0];
-        this.setState({actualIndex: 0, actualObject, actualThematic: 'verbs', actual: actual + 1});
+        if (typeof actualObject !== 'undefined'){
+          this.setState({actualIndex: 0, actualObject, actualThematic: 'verbs', actual: actual + 1});
+        } else {
+          this.passPunctuation();
+          // redirect to url
+        }
       }
     }
 
@@ -108,6 +142,10 @@ class GameContainer extends React.Component {
         this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
       } else {
         console.log('time to evaluate results!')
+        console.log('if points are negative player looses one life')
+        console.log('if points are positive theme gets the points. if points are above 100. the extra points go to the player')
+        console.log('once all subthemes are passed, theme changes status, player gets extra 100 points')
+        console.log('player gets 1000 points, he gets a life. && player points get 1000 points less')
       }
     }
 
@@ -163,6 +201,12 @@ class GameContainer extends React.Component {
           <Markdown>{this.state.resultCard}</Markdown>
         </div>
       )
+    } else if (this.state.showTotal){
+      return (
+        <div className="game-comparer markdown" onClick={() => history.push("/deutsch")}>
+          <Markdown>total</Markdown>
+        </div>
+      )
     } else {
       return this.swapViews()
     }
@@ -179,7 +223,9 @@ class GameContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    gameData: state.gameData
+    gameData: state.gameData,
+    subThemes: state.subThemes,
+    germanGame: state.germanGame
   }
 }
 export default connect(mapStateToProps)(GameContainer);

@@ -174,7 +174,6 @@ class GameComparer extends React.Component {
   }
 
   render() {
-    console.log(this.getObject())
     return(
       <div className="game-comparer">
         <span className="keywords">{this.getKeywords()}</span>

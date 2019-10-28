@@ -12,18 +12,9 @@ class Comparer extends React.Component {
   }
 
   getCardMessage = (result, objective, answer, message, points) => {
-   const resultCard = 
-        `
-        ${result}
-      
-        ${objective}
 
-        ${answer}
+   const resultCard = '###' + result + '\n' + '###' + objective + '\n' + '###' + answer + '\n' + message + '\n' + '\n' + 'Points: ' + points + '\n'
 
-        ${message}
-        
-        Points: ${points}
-      `
     return(resultCard)
   }
 
@@ -57,7 +48,7 @@ class Comparer extends React.Component {
 
       if (answer_article !== objective_article){
         points += -2;
-        message = '-2 der Artikel';
+        message = message + '\n -2 der Artikel';
         answer_article = `**${answer_article}**`
       }
 
@@ -70,14 +61,15 @@ class Comparer extends React.Component {
           }
         }
 
-        if ((answer_word.toLowerCase() === objective_word.toLowerCase()) && incorrectChar.indexOf(0) === 0){
+        if ((deUmlauter(answer_word).toLowerCase() === deUmlauter(objective_word).toLowerCase()) && incorrectChar.indexOf(0) === 0){
           points += -1;
           message = message + '\n -1 Großbuchstabe Substantiv'
-        // } 
-        // if ( ( deUmlauter(answer_word).toLowerCase() === deUmlauter(objective_word).toLowerCase() ) && (answer_word !== objective_word) ) {
-        //   points += -2;
-        //   message = message + '\n -2 Umlaut'
-        } else {
+        } 
+        if ( ( deUmlauter(answer_word).toLowerCase() === deUmlauter(objective_word).toLowerCase() ) && (answer_word.toLowerCase() !== objective_word.toLowerCase()) ) {
+          points += -2;
+          message = message + '\n -2 Umlaut'
+        } 
+        if (deUmlauter(answer_word).toLowerCase() !== deUmlauter(objective_word).toLowerCase()) {
           points += -6;
           message = message + '\n -6 Falsch Wort!'
         }

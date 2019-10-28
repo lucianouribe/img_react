@@ -159,8 +159,8 @@ class GameContainer extends React.Component {
   renderGameOrResult = () => {
     if (this.state.showResult) {
       return (
-        <div className="game-comparer" onClick={() => this.setState({showResult: false})}>
-          <Markdown>{this.state.resultCard.replace('\`', '')}</Markdown>
+        <div className="game-comparer markdown" onClick={() => this.setState({showResult: false})}>
+          <Markdown>{this.state.resultCard}</Markdown>
         </div>
       )
     } else {

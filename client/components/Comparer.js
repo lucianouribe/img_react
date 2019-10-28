@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetchGameData } from '../actions/game';
+import { deUmlauter } from '../helpers';
+
 import { updateThemePoints } from '../actions/themes'
 import { updateSubthemePoints } from '../actions/subThemes'
 
@@ -8,42 +9,7 @@ class Comparer extends React.Component {
 
   constructor(props) {
     super(props);
-
-    this.state = {
-      incorrectChar: []
-    }
   }
-
-  componentDidMount(){
-
-  }
-
-    // first step
-  // get answer
-  // get objective
-  // get result
-  // if result is correct
-    // render results card with punctuation
-  // if result is incorrect
-    // render results cart with answer and objective 
-    // show punctuation
-
-// CREATE A MARKDOWN OR DIV STRING LITERAL AND SEND IT TO GAMECONTAINER
-// IT MUST HAVE: ANSWER, OBJECTIVE AND PUNCTUATION!
-
-  // idea 4 the future
-  // get answer
-  // get objective
-  // get result
-  // if result is correct
-    // render results card with punctuation
-  // if result is incorrect
-    // render results cart with answer and objective
-    // if answer issues are umlaut, article and cap leter
-      // highlight them
-      // show punctuation
-    // if answer is incorrect
-      // show punctuation
 
   getCardMessage = (result, objective, answer, message, points) => {
    const resultCard = 
@@ -62,11 +28,11 @@ class Comparer extends React.Component {
   }
 
   handleSubmitWords = () => {
-    const correct = 'correct';
-    const incorrect = 'incorrect';
+    const correct = 'Richtig!';
+    const incorrect = 'Falsch!';
     let result = '';
     const objective = this.props.objective;
-    const answer = this.refs.answer.value;
+    let answer = this.refs.answer.value;
     let message = '';
     let points = 0;
 
@@ -77,33 +43,45 @@ class Comparer extends React.Component {
       +1 der Artikel
       `;
       points = 6;
-    }
-
-    if (answer !== objective){
+    } else {
       result = incorrect;
-      const objectiveArray = objective.split('');
-      const answerArray = answer.split('');
-  
+      let answer_article = answer.slice(0, 3);
+      const objective_article = objective.slice(0, 3);
+
+      const answer_word = answer.replace(/^(.){4}/, '');
+      const objective_word = objective.replace(/^(.){4}/, '');
+
+      let answerArray = answer_word.split('');
+      const objectiveArray = objective_word.split('');
       let incorrectChar = []
-      for (let letter of answerArray.entries()) {
-        if (objectiveArray[letter[0]] !== letter[1]){
-          // check article
-            // -2 points
 
-          // get the wrong characters
-          incorrectChar.push(letter[0])
-          this.setState({incorrectChar})
-          // if with no umlaut and downcase they are the same
+      if (answer_article !== objective_article){
+        points += -2;
+        message = '-2 der Artikel';
+        answer_article = `**${answer_article}**`
+      }
 
-            // check capital letter for noun
-            // -1 point
-            // check umlauts
-            // -2 points
+      if (answer_word !== objective_word){
 
-          // else
-            // check other spelling
-            // -6 points
+        for (let letter of answerArray.entries()) {
+          if (objectiveArray[letter[0]] !== letter[1]){
+            incorrectChar.push(letter[0])
+            answerArray[letter[0]] = `**${answerArray[letter[0]]}**`
+          }
         }
+
+        if ((answer_word.toLowerCase() === objective_word.toLowerCase()) && incorrectChar.indexOf(0) === 0){
+          points += -1;
+          message = message + '\n -1 Großbuchstabe Substantiv'
+        // } 
+        // if ( ( deUmlauter(answer_word).toLowerCase() === deUmlauter(objective_word).toLowerCase() ) && (answer_word !== objective_word) ) {
+        //   points += -2;
+        //   message = message + '\n -2 Umlaut'
+        } else {
+          points += -6;
+          message = message + '\n -6 Falsch Wort!'
+        }
+        answer = answer_article + ' ' + answerArray.join('')
       }
 
     }

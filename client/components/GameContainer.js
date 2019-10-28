@@ -160,7 +160,7 @@ class GameContainer extends React.Component {
     if (this.state.showResult) {
       return (
         <div className="game-comparer" onClick={() => this.setState({showResult: false})}>
-          <Markdown>{this.state.resultCard}</Markdown>
+          <Markdown>{this.state.resultCard.replace('\`', '')}</Markdown>
         </div>
       )
     } else {

@@ -1,5 +1,6 @@
 class Api::SubthemesController < ApplicationController
   before_action :set_theme, only: [:index, :game]
+  before_action :set_api_subtheme, only: [:update]
 
   def index
     @api_subthemes = Subtheme.where(theme: "#{@theme}").order_by_id
@@ -14,6 +15,14 @@ class Api::SubthemesController < ApplicationController
     @phrases = Phrase.where(subtheme: "#{subtheme.id}").where(level: "#{subtheme.level}").shuffle.sample(8)
     render json: { words: @words, verbs: @verbs, phrases: @phrases, subtheme: subtheme, subtheme_img: subtheme.img_url}
   end
+  
+  def update
+    if @api_subtheme.update(api_subtheme_params)
+      render :json => @api_subtheme, status: :ok
+    else
+      render json: @api_subtheme.errors, status: :unprocessable_entity
+    end
+  end
 
   private
   
@@ -24,5 +33,13 @@ class Api::SubthemesController < ApplicationController
   
   def get_url
     @url_path = request.query_parameters
+  end
+
+  def set_api_subtheme
+    @api_subtheme = Subtheme.find(params[:id])
+  end
+
+  def api_subtheme_params
+    params.require(:subtheme).permit(:points, :level)
   end
 end

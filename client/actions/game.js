@@ -8,7 +8,7 @@ export const fetchGameData = (theme) => {
       // console.log('fetch gameData done', gameData);
       dispatch({ type: 'FETCH_GAME_DATA', gameData })
     }).fail( err => {
-      console.log('fetchSubThemes fail', err);
+      console.log('fetch Game Data fail', err);
     });
 
   }

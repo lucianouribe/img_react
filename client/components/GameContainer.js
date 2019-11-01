@@ -7,6 +7,10 @@ import GameSubNav from './GameSubNav';
 import GameImage from './GameImage';
 import GameComparer from './GameComparer';
 
+import { updateGame } from '../actions/germanGame'
+import { updateThemePoints } from '../actions/themes'
+import { updateSubthemePoints } from '../actions/subThemes'
+
 class GameContainer extends React.Component {
 
   constructor(props) {
@@ -83,17 +87,44 @@ class GameContainer extends React.Component {
     }
     // get points ofspecific subtheme
     console.log(theSubTheme)
+    const subthemePoints = theSubTheme.points;
 
     // get player lifes
-    let player = this.props.germanGame;
-    console.log(player.lifes)
+    const player = this.props.germanGame;
+    const playerLifes = player.lifes;
     // get player punctuation
     console.log(player.punctuation)
+    const playerPunctuation = player.punctuation;
 
     // if points are negative player looses one life
-    // if points are positive theme gets the points. if points are above 100. the extra points go to the player
-    // once all subthemes are passed, theme changes status, player gets extra 100 points
-    // player gets 1000 points, he gets a life. && player points get 1000 points less
+    if (subthemePoints < 0) {
+      console.log('player losses one life');
+      console.log('subtheme stats reset');
+      console.log('theme gets the points until 0');
+      console.log('if level > 1 then loose a level');
+    } else {
+      console.log('theme gets 50 points');
+      if (subthemePoints > 70){
+        console.log('if subtheme points more than 70 -> pass level, reset points to 0')
+        this.props.dispatch(updateSubthemePoints(theSubTheme.id, 0, theSubTheme.level + 1))
+        console.log('player wins points');
+        if (subthemePoints > 100) {
+          console.log('if subtheme points more than 100 -> extra points go to the player points');
+        }
+      } else {
+        console.log('show punctuation');
+      }
+      console.log('player is redirected to german game');
+      
+    }
+    // if () {
+    //   console.log('once all subthemes are passed, theme changes status, player gets extra 100 points');
+    // }
+
+    if (playerPunctuation > 1000){
+      console.log('player gets 1000 points, he gets a life. && player points get 1000 points less');
+    }
+
   }
 
   startGame = () => {
@@ -116,38 +147,35 @@ class GameContainer extends React.Component {
         let actualObject = words[actualIndex + 1];
         this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
       } else {
-        let actualObject = verbs[0];
-        if (typeof actualObject !== 'undefined'){
-          this.setState({actualIndex: 0, actualObject, actualThematic: 'verbs', actual: actual + 1});
-        } else {
-          this.passPunctuation();
-          // redirect to url
-        }
+        this.passPunctuation();
+        // let actualObject = verbs[0];
+        // if (typeof actualObject !== 'undefined'){
+        //   this.setState({actualIndex: 0, actualObject, actualThematic: 'verbs', actual: actual + 1});
+        // } else {
+        //   this.passPunctuation();
+        //   // redirect to url
+        // }
       }
     }
 
-    if(actualThematic === 'verbs'){
-      if(actualIndex + 1 < verbs.length){
-        let actualObject = verbs[actualIndex + 1];
-        this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
-      } else {
-        let actualObject = phrases[0];
-        this.setState({actualIndex: 0, actualObject, actualThematic: 'phrases', actual: actual + 1});
-      }
-    }
+    // if(actualThematic === 'verbs'){
+    //   if(actualIndex + 1 < verbs.length){
+    //     let actualObject = verbs[actualIndex + 1];
+    //     this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
+    //   } else {
+    //     let actualObject = phrases[0];
+    //     this.setState({actualIndex: 0, actualObject, actualThematic: 'phrases', actual: actual + 1});
+    //   }
+    // }
 
-    if(actualThematic === 'phrases'){
-      if(actualIndex + 1 < phrases.length){
-        let actualObject = phrases[actualIndex + 1];
-        this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
-      } else {
-        console.log('time to evaluate results!')
-        console.log('if points are negative player looses one life')
-        console.log('if points are positive theme gets the points. if points are above 100. the extra points go to the player')
-        console.log('once all subthemes are passed, theme changes status, player gets extra 100 points')
-        console.log('player gets 1000 points, he gets a life. && player points get 1000 points less')
-      }
-    }
+    // if(actualThematic === 'phrases'){
+    //   if(actualIndex + 1 < phrases.length){
+    //     let actualObject = phrases[actualIndex + 1];
+    //     this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
+    //   } else {
+    //     console.log('time to evaluate results!')
+    //   }
+    // }
 
   }
 

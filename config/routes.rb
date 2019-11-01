@@ -11,9 +11,12 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :german_games, path: 'deutsch'
+    resources :themes
     resources :subthemes
+
     resources :carrusels
     resources :descripcions
+    
     resources :proyectos do
       resources :pasos, except: [:set_last_id]
     end

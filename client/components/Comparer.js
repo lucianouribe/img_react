@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { deUmlauter } from '../helpers';
 
-import { updateThemePoints } from '../actions/themes'
 import { updateSubthemePoints } from '../actions/subThemes'
 
 class Comparer extends React.Component {

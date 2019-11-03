@@ -9,7 +9,7 @@ class Api::GermanGamesController < ApplicationController
 
   def getWorldTheme
     @themes = []
-    World.all.order_by_id.each {|t| @themes << [t.name, t.image.url]}
+    World.all.order_by_id.each {|t| @themes << [t.name, t.image.url, t.id]}
     return @themes
   end
 
@@ -23,10 +23,10 @@ class Api::GermanGamesController < ApplicationController
 
   private
   def set_api_game
-    @game = GemanGame.find(params[:id])
+    @game = GermanGame.find(params[:id])
   end
 
   def game_params
-    params.require(:game).permit(:points, :level)
+    params.require(:game).permit(:lifes, :punctuation, :punctuation_4_total, :level)
   end
 end

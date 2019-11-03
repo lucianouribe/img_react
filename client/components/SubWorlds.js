@@ -31,7 +31,7 @@ class SubWorlds extends React.Component {
     const player = this.props.germanGame;
     return (
       <div id="world_subthemes">
-        <PlayerStats player={player} title={this.state.theme}/>
+        <PlayerStats player={player} />
         <div className="worlds-container">
           {this.renderSubWorlds()}
         </div>

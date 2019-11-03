@@ -11,7 +11,7 @@ class Api::ThemesController < ApplicationController
 
   private
   def set_api_theme
-    @api_theme = Theme.find(params[:id])
+    @api_theme = World.find(params[:id])
   end
 
   def api_theme_params

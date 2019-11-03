@@ -26,10 +26,9 @@ class Deutsch extends React.Component {
   
   render() {
     const player = this.props.germanGame;
-    const title = 'Deutsch Spiel'
     return (
       <div id="deutsch">
-        <PlayerStats player={player} title={title}/>
+        <PlayerStats player={player} />
         <div className="worlds-container">
           {this.worlds()}
         </div>

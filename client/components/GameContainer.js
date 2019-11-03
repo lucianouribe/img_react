@@ -8,7 +8,7 @@ import GameImage from './GameImage';
 import GameComparer from './GameComparer';
 
 import { updateGame } from '../actions/germanGame'
-import { updateThemePoints } from '../actions/themes'
+import { updateWorldPoints } from '../actions/themes'
 import { updateSubthemePoints } from '../actions/subThemes'
 
 class GameContainer extends React.Component {
@@ -27,7 +27,8 @@ class GameContainer extends React.Component {
       hintCounter: 0,
       showResult: false,
       showTotal: false,
-      resultCard: ''
+      resultCard: '',
+      totalCard: ''
     }
   }
   
@@ -76,8 +77,9 @@ class GameContainer extends React.Component {
   // pass the punctuation to the user
   passPunctuation = () => {
     this.setState({showTotal: true});
+
+
     // get subthemes
-    // let subthemes = this.props.subThemes;
     let theSubTheme;
     const {subThemes, subthemeId} = this.props;
     for (const subT of subThemes) {
@@ -85,45 +87,88 @@ class GameContainer extends React.Component {
         theSubTheme = subT;
       }
     }
-    // get points ofspecific subtheme
-    console.log(theSubTheme)
+    // get points of specific subtheme
     const subthemePoints = theSubTheme.points;
 
-    // get player lifes
+
+    // get player data
     const player = this.props.germanGame;
     const playerLifes = player.lifes;
-    // get player punctuation
-    console.log(player.punctuation)
     const playerPunctuation = player.punctuation;
+    const playerTotal = player.punctuation_4_total;
 
+    // get actual theme!!!!!!!
+    const theThemeName = theSubTheme.theme;
+    let theTheme;
+    // get theme id!
+    for (const t of player.worlds) {
+      if (t.name === theThemeName) {
+        theTheme = t;
+      }
+    }
+
+
+    // let totalCard = '';
+    let subthemeTotalPoints = 0;
+    let themeTotalPoints = 0;
+    let playerTotalPoints = 0;
+
+    subthemeTotalPoints = subthemePoints
     // if points are negative player looses one life
     if (subthemePoints < 0) {
-      console.log('player losses one life');
-      console.log('subtheme stats reset');
-      console.log('theme gets the points until 0');
-      console.log('if level > 1 then loose a level');
-    } else {
-      console.log('theme gets 50 points');
-      if (subthemePoints > 70){
-        console.log('if subtheme points more than 70 -> pass level, reset points to 0')
-        this.props.dispatch(updateSubthemePoints(theSubTheme.id, 0, theSubTheme.level + 1))
-        console.log('player wins points');
-        if (subthemePoints > 100) {
-          console.log('if subtheme points more than 100 -> extra points go to the player points');
-        }
-      } else {
-        console.log('show punctuation');
+      // console.log('player losses one life');
+      this.props.dispatch(updateGame(player.id, playerLifes - 1, playerPunctuation + subthemePoints, player.punctuation_4_total + subthemePoints, player.level));
+      playerTotalPoints = subthemePoints;
+      // console.log('subtheme stats reset');
+      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 0, theSubTheme.level));
+      // console.log('theme gets -20 points');
+      this.props.dispatch(updateWorldPoints(theTheme.id, theTheme.points - 50, theTheme.level ));
+      themeTotalPoints = -50;
+      // console.log('if level > 1 then loose a level');
+      if (theSubTheme.level > 1){
+        this.props.dispatch(updateSubthemePoints(theSubTheme.id, 0, theSubTheme.level - 1));
       }
-      console.log('player is redirected to german game');
-      
+    } else {
+      if (subthemePoints < 70) {
+        // console.log('theme gets 20 points');
+        this.props.dispatch(updateWorldPoints(theTheme.id, theTheme.points + 20, theTheme.level ));
+        themeTotalPoints = 20;
+        // console.log('player wins 15 points');
+        this.props.dispatch(updateGame(player.id, playerLifes, playerPunctuation + 15, player.punctuation_4_total + subthemePoints, player.level));
+        playerTotalPoints = 15;
+      } else {
+        // console.log('theme gets 50 points');
+        this.props.dispatch(updateWorldPoints(theTheme.id, theTheme.points + 50, theTheme.level ));
+        themeTotalPoints = 50;
+        // console.log('player wins 15 points');
+        this.props.dispatch(updateGame(player.id, playerLifes, playerPunctuation + 15, player.punctuation_4_total + subthemePoints, player.level));
+        playerTotalPoints = 15;
+        // console.log('if subtheme points more than 70 -> pass level, reset points to 0')
+        this.props.dispatch(updateSubthemePoints(theSubTheme.id, 0, theSubTheme.level + 1));
+        if (subthemePoints > 100) {
+          // console.log('if subtheme points more than 100 -> extra points go to the player points');
+          this.props.dispatch(updateGame(player.id, playerLifes, playerPunctuation + subthemePoints - 100, player.punctuation_4_total, player.level));
+          playerTotalPoints += (subthemePoints - 100);
+        }
+      }
     }
     // if () {
     //   console.log('once all subthemes are passed, theme changes status, player gets extra 100 points');
     // }
 
     if (playerPunctuation > 1000){
-      console.log('player gets 1000 points, he gets a life. && player points get 1000 points less');
+      // console.log('if player gets more than 1000 points, he gets a life. && player points get 1000 points less');
+      this.props.dispatch(updateGame(player.id, playerLifes + 1, playerPunctuation - 1000, player.punctuation_4_total, player.level));
     }
+
+    if (playerTotal > 5000){
+      // console.log('player gets 2 lifes, player total looses 5000');
+      this.props.dispatch(updateGame(player.id, playerLifes + 2, playerPunctuation, player.punctuation_4_total - 5000, player.level));
+    }
+
+    // console.log('show punctuation');
+    const totalCard =  '# Total \n' + '###' + theSubTheme.name + ': ' + subthemeTotalPoints + ' points\n' + '###' + theThemeName + ': ' + themeTotalPoints + ' points\n' + '### player: ' + playerTotalPoints + ' points\n' +  '### lifes: ' + playerLifes + '\n';
+    this.setState({totalCard});
 
   }
 
@@ -131,6 +176,7 @@ class GameContainer extends React.Component {
     let gameData = this.props.gameData;
     let words = gameData.words;
     let actualObject = words[0];
+    // console.log(gameData, words, actualObject)
     this.setState({
       actualObject, 
       subthemeImage: gameData.subtheme_img, 
@@ -232,7 +278,7 @@ class GameContainer extends React.Component {
     } else if (this.state.showTotal){
       return (
         <div className="game-comparer markdown" onClick={() => history.push("/deutsch")}>
-          <Markdown>total</Markdown>
+          <Markdown>{this.state.totalCard}</Markdown>
         </div>
       )
     } else {

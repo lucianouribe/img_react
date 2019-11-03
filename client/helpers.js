@@ -154,6 +154,17 @@ export function deUmlauter(word){
   return word.replace('ä', 'a').replace('ë', 'e').replace('ï', 'i').replace('ö', 'o').replace('ü', 'u')
 }
 
+export function capitalize(word) {
+  return word.charAt(0).toUpperCase() + word.slice(1)
+}
+
+// hilfe words
+export function getDashes(word){
+  word = word.replace('die ', '').replace('das ', '').replace('der ', '')
+  var amount = word.length
+  return '_'.repeat(amount)
+}
+
 export function replaceConsonants(word){
   word = word.replace('die ', '').replace('das ', '').replace('der ', '')
   return word.replace(/[bcdfghjklmnpqrstvwxyz]/gi, '_')
@@ -167,13 +178,10 @@ export function getFirstLetter(word){
   word1 = word1.join('')
   return word1
 }
+// hilfe verbs
 
-export function getDashes(word){
-  word = word.replace('die ', '').replace('das ', '').replace('der ', '')
-  var amount = word.length
-  return '_'.repeat(amount)
+export function getVerbDashes(word){
+  return word.replace(/[a-zA-Z]/gi, '_')
 }
 
-export function capitalize(word) {
-  return word.charAt(0).toUpperCase() + word.slice(1)
-}
+

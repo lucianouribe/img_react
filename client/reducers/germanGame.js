@@ -1,4 +1,4 @@
-const germanGame = ( state = [], action ) => {
+const germanGame = ( state = {}, action ) => {
   let index;
   // console.log('reducer german_game');
   switch(action.type){
@@ -10,17 +10,14 @@ const germanGame = ( state = [], action ) => {
     // case 'ADD_GERMAN_GAME':
     //   return [action.german_game, ...state]
     //   break;
-    // case 'EDIT_GERMAN_GAME':
-    //   console.log('here')
-    //   let allDescripcions = state;
-    //   console.log(allDescripcions)
-    //   index = allDescripcions.findIndex( desc => desc.id === action.german_game.id)
-    //   console.log(action.german_game)
-    //   allDescripcions[index] = action.german_game
-    //   return [...allDescripcions]
+    // case 'UPDATE_GERMAN_GAME':
+    //   let allGermanGames = state;
+    //   index = allGermanGames.findIndex( gg => gg.id === action.game.id)
+    //   allGermanGames[index] = action.game
+    //   return [...allGermanGames]
     //   break;
     // case 'DELETE_GERMAN_GAME':
-    //   index = state.findIndex( desc => desc.id === action.id)
+    //   index = state.findIndex( gg => gg.id === action.id)
     //   return [
     //     ...state.slice(0, index),
     //     ...state.slice(index + 1)

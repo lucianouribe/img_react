@@ -137,19 +137,22 @@ body
           border-radius: 4px
           border: 1px solid $comment
           margin-bottom: 20px
-          @include flexbox()
-
-          input
-            padding: 5px 10px
-            border: none
-            border-radius: 4px
-          button
-            border: none
-            background: $comment
-            min-width: 40px
-            i
-              color: #fff
-              font-size: 1.8rem
+          .comparer
+            @include flexbox()
+            form
+              @include flex(0 0 90%)
+              input
+                padding: 5px 10px
+                border: none
+                border-radius: 4px
+            button
+              @include flex(0 0 10%)
+              border: none
+              background: $comment
+              min-width: 40px
+              i
+                color: #fff
+                font-size: 1.8rem
 
         &.markdown
           strong
@@ -194,11 +197,15 @@ body
             @include flex(0 0 100%)
             max-width: 100%
             width: 100%
-            input
-              font-size: 18px
-              width: 74%
+            form
+              @include flex(0 0 80%)
+              max-width: calc(100% - 40px)
+              input
+                font-size: 18px
+                max-width: 100%
             button
-              max-width: 30px
+              max-width: 40px
+              min-width: 40px
 
           span
             font-size: 20px

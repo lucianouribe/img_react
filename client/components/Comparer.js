@@ -2,7 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { deUmlauter } from '../helpers';
 
-import { updateThemePoints } from '../actions/themes'
 import { updateSubthemePoints } from '../actions/subThemes'
 
 class Comparer extends React.Component {
@@ -22,7 +21,7 @@ class Comparer extends React.Component {
     const correct = 'Richtig!';
     const incorrect = 'Falsch!';
     let result = '';
-    const objective = this.props.objective;
+    let objective = this.props.objective;
     let answer = this.refs.answer.value;
     let message = '';
     let points = 0;
@@ -96,8 +95,77 @@ class Comparer extends React.Component {
   }
 
   handleSubmitVerbs = () => {
-    // nothing yet
+    const correctVerb = 'Richtig!';
+    const incorrectVerb = 'Falsch!';
+    let result = '';
+    let objective = this.props.objective;
+    let answer = this.refs.answer.value;
+    let message = '';
+    let points = 0;
+    console.log('objective', objective)
+    console.log('answer', answer)
+    console.log(answer.toString() === objective.toString())
+    if (answer === objective){
+      result = correctVerb;
+      message = '+10! \n';
+      points = 10;
+    } else {
+      result = incorrectVerb;
+      let answer_pronom = answer.replace(/( .*)$/, '');
+      const objective_pronom = objective.replace(/( .*)$/, '');
+
+      const answer_verb = answer.replace(/^(.* )/, '');
+      const objective_verb = objective.replace(/^(.* )/, '');
+
+      let answerArray = answer_verb.split('');
+      const objectiveArray = objective_verb.split('');
+      let incorrectChar = []
+
+      if (answer_pronom !== objective_pronom){
+        points += -4;
+        message = message + '\n -4 der Pronom';
+        answer_pronom = `**${answer_pronom}**`
+      }
+
+      if (answer_verb !== objective_verb){
+
+        for (let letter of answerArray.entries()) {
+          if ((objectiveArray[letter[0]] !== letter[1])){
+            incorrectChar.push(letter[0])
+            answerArray[letter[0]] = `**${answerArray[letter[0]]}**`
+          }
+        }
+
+        if ( ( deUmlauter(answer_verb).toLowerCase() === deUmlauter(objective_verb).toLowerCase() ) && (answer_verb.toLowerCase() !== objective_verb.toLowerCase()) ) {
+          points += -2;
+          message = message + '\n -2 Umlaut'
+        } 
+        if (deUmlauter(answer_verb).toLowerCase() !== deUmlauter(objective_verb).toLowerCase()) {
+          points += -12;
+          message = message + '\n -12 Falsch Verb!'
+        }
+        answer = answer_pronom + ' ' + answerArray.join('')
+      }
+
+    }
+
+    let theSubTheme;
+    const {subThemes, subthemeId} = this.props;
+    for (const subT of subThemes) {
+      if (subT.id === subthemeId) {
+        theSubTheme = subT;
+      }
+    }
+    const subtheme_points = theSubTheme.points + points;
+
+    this.props.dispatch(updateSubthemePoints(theSubTheme.id, subtheme_points, theSubTheme.level))
+    let cardMessage = this.getCardMessage(result, objective, answer, message, points)
+    // sets the result card to render in the markdown
+    this.props.setResultCard(cardMessage)
+    // changes the view to the results in GameContainer
+    this.props.setResult();
   }
+
   handleSubmitPhrases = () => {
     // nothing yet
   }
@@ -117,6 +185,7 @@ class Comparer extends React.Component {
   }
 
   render() {
+    console.log(this.props.objective)
     return (
       <div className='comparer'>
         <form>

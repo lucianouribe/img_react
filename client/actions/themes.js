@@ -1,4 +1,4 @@
-export const updateThemePoints = (id, points, level) => {
+export const updateWorldPoints = (id, points, level) => {
   // console.log(`this is update theme points with id: ${id} & points ${points}`)
   return(dispatch) => {
     $.ajax({
@@ -7,9 +7,9 @@ export const updateThemePoints = (id, points, level) => {
       dataType: 'JSON',
       data: { theme: { points, level } }
     }).done( theme => {
-      // console.log(`update theme points - ${id} - success`);
+      console.log(`update theme points - ${id} - success`);
       // console.log(theme);
-      // dispatch({ type: 'UPDATE_SUBTHEME_POINTS', theme });
+      // dispatch({ type: 'UPDATE_THEME_POINTS', theme });
     }).fail( data => {
       console.log('update theme points fail')
       console.log(data);

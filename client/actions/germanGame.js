@@ -16,3 +16,21 @@ export const fetchGermanGame = () => {
 
 }
 
+export const updateGame = (id, lifes, punctuation, punctuation_4_total, level) => {
+  // console.log(`this is update game punctuation with id: ${id} & punctuation ${punctuation}`)
+  return(dispatch) => {
+    $.ajax({
+      url: `/api/deutsch/${id}`,
+      type: 'PUT',
+      dataType: 'JSON',
+      data: { game: { lifes, punctuation, punctuation_4_total, level } }
+    }).done( game => {
+      // console.log(`update game points - ${id} - success`);
+      // console.log(game);
+      dispatch({ type: 'GERMAN_GAME', game });
+    }).fail( data => {
+      console.log('update german game points fail')
+      console.log(data);
+    })
+  }
+}

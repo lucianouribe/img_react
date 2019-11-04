@@ -32,11 +32,8 @@ class Comparer extends React.Component {
 
     if (answer === objective){
       result = correct;
-      message = `
-      +5 das Wort
-      +1 der Artikel
-      `;
-      points = 6;
+      message = message + '\n+5 das Wort\n +1 der Artikel\n';
+      points += 6;
     } else {
       result = incorrect;
       // if objective_article includes der die das
@@ -95,6 +92,30 @@ class Comparer extends React.Component {
 
     }
 
+    // hilfe preis!
+    const { hintCounter } = this.props;
+    switch (hintCounter) {
+      case 0:
+          points += 0;
+          message = message
+        break;
+      case 1:
+          points += -1;
+          message = message + '\n -1 Hilfe\n'
+        break;
+      case 2:
+          points += -2;
+          message = message + '\n -2 Hilfe\n'
+        break;
+      case 3:
+          points += -3;
+          message = message + '\n -3 Hilfe\n'
+        break;
+      default:
+          points += 0;
+          message = message
+    }
+
     let theSubTheme;
     const {subThemes, subthemeId} = this.props;
     for (const subT of subThemes) {
@@ -122,8 +143,8 @@ class Comparer extends React.Component {
     let points = 0;
     if (answer === objective){
       result = correctVerb;
-      message = '+10! \n';
-      points = 10;
+      message = message + '\n+10 Konjugation\n';
+      points += 10;
     } else {
       result = incorrectVerb;
       let answer_pronom = answer.replace(/( .*)$/, '');
@@ -161,7 +182,30 @@ class Comparer extends React.Component {
         }
         answer = answer_pronom + ' ' + answerArray.join('')
       }
+    }
 
+    // hilfe preis!
+    const { hintCounter } = this.props;
+    switch (hintCounter) {
+      case 0:
+          points += 0;
+          message = message
+        break;
+      case 1:
+          points += -1;
+          message = message + '\n -1 Hilfe\n'
+        break;
+      case 2:
+          points += -2;
+          message = message + '\n -2 Hilfe\n'
+        break;
+      case 3:
+          points += -3;
+          message = message + '\n -3 Hilfe\n'
+        break;
+      default:
+          points += 0;
+          message = message
     }
 
     let theSubTheme;

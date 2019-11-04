@@ -24,9 +24,7 @@ class GameImage extends React.Component {
 
 
     return (
-      <div className="game-image" style={this.getStyle()}>
-        <span>?</span>
-      </div>
+      <div className="game-image" style={this.getStyle()}></div>
     )
   }
 }

@@ -212,7 +212,8 @@ class GameComparer extends React.Component {
             thematic={this.props.thematic} 
             setIncorrectChar={this.setIncorrectChar} 
             subthemeId={this.props.subthemeId} 
-            resetGame={this.props.resetGame} />
+            resetGame={this.props.resetGame} 
+            hintCounter={this.props.hintCounter} />
         </span>
       </div>
     )

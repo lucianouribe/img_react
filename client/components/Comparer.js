@@ -21,7 +21,7 @@ class Comparer extends React.Component {
     const correct = 'Richtig!';
     const incorrect = 'Falsch!';
     let result = '';
-    let objective = this.props.objective;
+    let objective = this.props.word_type === 'noun' ? this.props.objective : this.props.objective.replace(' ', '').toLowerCase();
     let answer = this.refs.answer.value;
     let message = '';
     let points = 0;
@@ -32,30 +32,30 @@ class Comparer extends React.Component {
 
     if (answer === objective){
       result = correct;
-      message = `
-      +5 das Wort
-      +1 der Artikel
-      `;
-      points = 6;
+      message = message + '\n+5 das Wort\n +1 der Artikel\n';
+      points += 6;
     } else {
       result = incorrect;
-      let answer_article = answer.slice(0, 3);
-      const objective_article = objective.slice(0, 3);
 
-      const answer_word = answer.replace(/^(.){4}/, '');
-      const objective_word = objective.replace(/^(.){4}/, '');
+      let answer_article = answer.slice(0, 3);
+      let objective_article = objective.slice(0, 3);
+
+      let answer_word = this.props.word_type === 'noun' ? answer.replace(/^(.){4}/, '') : answer;
+      let objective_word = this.props.word_type === 'noun' ? objective.replace(/^(.){4}/, '') : objective;
 
       let answerArray = answer_word.split('');
-      const objectiveArray = objective_word.split('');
+      let objectiveArray = objective_word.split('');
       let incorrectChar = []
 
-      if (answer_article !== objective_article){
-        points += -2;
-        message = message + '\n -2 der Artikel\n';
-        answer_article = `**${answer_article}**`
-      } else {
-        points += 1;
-        message = message + '\n +1 der Artikel\n';
+      if (this.props.word_type === 'noun'){
+        if (answer_article !== objective_article){
+          points += -2;
+          message = message + '\n -2 der Artikel\n';
+          answer_article = `**${answer_article}**`
+        } else {
+          points += 1;
+          message = message + '\n +1 der Artikel\n';
+        }
       }
 
       if (answer_word !== objective_word){
@@ -86,9 +86,34 @@ class Comparer extends React.Component {
         points += 5;
         message = message + '\n +5 das Wort\n'
       }
-      answer = answer_article + ' ' + answerArray.join('')
+      const answer_noun = answer_article + ' ' + answerArray.join('');
 
+      answer = this.props.word_type === 'noun' ? answer_noun : answer;
 
+    }
+
+    // hilfe preis!
+    const { hintCounter } = this.props;
+    switch (hintCounter) {
+      case 0:
+          points += 0;
+          message = message
+        break;
+      case 1:
+          points += -1;
+          message = message + '\n -1 Hilfe\n'
+        break;
+      case 2:
+          points += -2;
+          message = message + '\n -2 Hilfe\n'
+        break;
+      case 3:
+          points += -3;
+          message = message + '\n -3 Hilfe\n'
+        break;
+      default:
+          points += 0;
+          message = message
     }
 
     let theSubTheme;
@@ -118,8 +143,8 @@ class Comparer extends React.Component {
     let points = 0;
     if (answer === objective){
       result = correctVerb;
-      message = '+10! \n';
-      points = 10;
+      message = message + '\n+10 Konjugation\n';
+      points += 10;
     } else {
       result = incorrectVerb;
       let answer_pronom = answer.replace(/( .*)$/, '');
@@ -157,7 +182,30 @@ class Comparer extends React.Component {
         }
         answer = answer_pronom + ' ' + answerArray.join('')
       }
+    }
 
+    // hilfe preis!
+    const { hintCounter } = this.props;
+    switch (hintCounter) {
+      case 0:
+          points += 0;
+          message = message
+        break;
+      case 1:
+          points += -1;
+          message = message + '\n -1 Hilfe\n'
+        break;
+      case 2:
+          points += -2;
+          message = message + '\n -2 Hilfe\n'
+        break;
+      case 3:
+          points += -3;
+          message = message + '\n -3 Hilfe\n'
+        break;
+      default:
+          points += 0;
+          message = message
     }
 
     let theSubTheme;
@@ -196,7 +244,6 @@ class Comparer extends React.Component {
   }
 
   render() {
-    console.log(this.props.objective)
     return (
       <div className='comparer'>
         <form>

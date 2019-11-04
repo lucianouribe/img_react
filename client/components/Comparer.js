@@ -39,8 +39,12 @@ class Comparer extends React.Component {
       points = 6;
     } else {
       result = incorrect;
+      // if objective_article includes der die das
       let answer_article = answer.slice(0, 3);
-      const objective_article = objective.slice(0, 3);
+      let objective_article = objective.slice(0, 3);
+      // else
+      // let answer_article = ''
+      // let objective_article = ''
 
       const answer_word = answer.replace(/^(.){4}/, '');
       const objective_word = objective.replace(/^(.){4}/, '');

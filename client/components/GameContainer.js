@@ -6,7 +6,7 @@ import Markdown from 'markdown-to-jsx';
 import GameSubNav from './GameSubNav';
 import GameImage from './GameImage';
 import GameComparer from './GameComparer';
-
+import { deUmlauter } from '../helpers';
 import { updateGame } from '../actions/germanGame'
 import { updateWorldPoints } from '../actions/themes'
 import { updateSubthemePoints } from '../actions/subThemes'
@@ -113,12 +113,11 @@ class GameContainer extends React.Component {
     let theTheme;
     // get theme id!
     for (const t of player.worlds) {
-      if (t.name === theThemeName) {
+      if (deUmlauter(t.name) === theThemeName) {
         theTheme = t;
       }
     }
 
-    // let totalCard = '';
     let subthemeTotalPoints = 0;
     let themeTotalPoints = 0;
     let playerTotalPoints = 0;
@@ -217,38 +216,37 @@ class GameContainer extends React.Component {
         let actualObject = words[actualIndex + 1];
         this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
       } else {
-        this.passPunctuation();
-        // let actualObject = verbs[0];
-        // if (typeof actualObject !== 'undefined'){
-        //   this.setState({actualIndex: 0, actualObject, actualThematic: 'verbs', actual: actual + 1});
-        // } else {
-        //   this.passPunctuation();
-        // }
+        let actualObject = verbs[0];
+        if (typeof actualObject !== 'undefined'){
+          this.setState({actualIndex: 0, actualObject, actualThematic: 'verbs', actual: actual + 1});
+        } else {
+          this.passPunctuation();
+        }
       }
     }
 
-    // if(actualThematic === 'verbs'){
-    //   if(actualIndex + 1 < verbs.length){
-    //     let actualObject = verbs[actualIndex + 1];
-    //     this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
-    //   } else {
-    //     let actualObject = phrases[0];
-    //     if (typeof actualObject !== 'undefined'){
-    //       this.setState({actualIndex: 0, actualObject, actualThematic: 'phrases', actual: actual + 1});
-    //     } else {
-    //       this.passPunctuation();
-    //     }
-    //   }
-    // }
+    if(actualThematic === 'verbs'){
+      if(actualIndex + 1 < verbs.length){
+        let actualObject = verbs[actualIndex + 1];
+        this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
+      } else {
+        let actualObject = phrases[0];
+        if (typeof actualObject !== 'undefined'){
+          this.setState({actualIndex: 0, actualObject, actualThematic: 'phrases', actual: actual + 1});
+        } else {
+          this.passPunctuation();
+        }
+      }
+    }
 
-    // if(actualThematic === 'phrases'){
-    //   if(actualIndex + 1 < phrases.length){
-    //     let actualObject = phrases[actualIndex + 1];
-    //     this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
-    //   } else {
-    //     this.passPunctuation();
-    //   }
-    // }
+    if(actualThematic === 'phrases'){
+      if(actualIndex + 1 < phrases.length){
+        let actualObject = phrases[actualIndex + 1];
+        this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
+      } else {
+        this.passPunctuation();
+      }
+    }
 
   }
 

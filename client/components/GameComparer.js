@@ -59,15 +59,22 @@ class GameComparer extends React.Component {
 
   getLine = (array) => {
     const nominatives = ['ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'Sie'];
-    var nominative = nominatives[Math.floor(Math.random()*nominatives.length)];
+    // pick one personal pronoun
+    const nominative = nominatives[Math.floor(Math.random()*nominatives.length)];
+    const nominativesZweitePersone = ['er', 'sie', 'es', 'man'];
+    const nominativesZweitePerson = nominativesZweitePersone[Math.floor(Math.random()*nominativesZweitePersone.length)];
 
     for (const line of array) {
       if (line.includes(nominative)){
+        console.log(line.includes('er/sie/es'))
         if (line.includes('er/sie/es')){
-          return line.replace('er/sie/es', `${nominative}`)
+          return line.replace('er/sie/es', `${nominativesZweitePerson}`);
+        } else if (line.includes('sie/Sie')){
+          return line.replace('sie/Sie', 'Sie');
         } else {
-          return line
+          return line;
         }
+
       }
     }
   }

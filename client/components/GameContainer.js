@@ -142,17 +142,17 @@ class GameContainer extends React.Component {
     } else {
       if (subthemePoints < 70) {
         // console.log('theme gets 20 points');
-        this.props.dispatch(updateWorldPoints(theTheme.id, theTheme.points + 20, theTheme.level ));
-        themeTotalPoints = 20;
+        this.props.dispatch(updateWorldPoints(theTheme.id, theTheme.points + 10, theTheme.level ));
+        themeTotalPoints = 10;
         // console.log('player wins 15 points');
         if (playerLifes > 0){
-          this.props.dispatch(updateGame(player.id, playerLifes, playerPunctuation + 15, player.punctuation_4_total + subthemePoints, player.level));
-          playerTotalPoints = 15;
+          this.props.dispatch(updateGame(player.id, playerLifes, playerPunctuation + 10, player.punctuation_4_total + subthemePoints, player.level));
+          playerTotalPoints = 10;
         }
       } else {
         // console.log('theme gets 50 points');
-        this.props.dispatch(updateWorldPoints(theTheme.id, theTheme.points + 50, theTheme.level ));
-        themeTotalPoints = 50;
+        this.props.dispatch(updateWorldPoints(theTheme.id, theTheme.points + 25, theTheme.level ));
+        themeTotalPoints = 25;
         // console.log('player wins 15 points');
         this.props.dispatch(updateGame(player.id, playerLifes, playerPunctuation + 15, player.punctuation_4_total + subthemePoints, player.level));
         playerTotalPoints = 15;

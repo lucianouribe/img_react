@@ -21,7 +21,7 @@ class Comparer extends React.Component {
     const correct = 'Richtig!';
     const incorrect = 'Falsch!';
     let result = '';
-    let objective = this.props.objective;
+    let objective = this.props.word_type === 'noun' ? this.props.objective : this.props.objective.replace(' ', '').toLowerCase();
     let answer = this.refs.answer.value;
     let message = '';
     let points = 0;
@@ -36,27 +36,26 @@ class Comparer extends React.Component {
       points += 6;
     } else {
       result = incorrect;
-      // if objective_article includes der die das
+
       let answer_article = answer.slice(0, 3);
       let objective_article = objective.slice(0, 3);
-      // else
-      // let answer_article = ''
-      // let objective_article = ''
 
-      const answer_word = answer.replace(/^(.){4}/, '');
-      const objective_word = objective.replace(/^(.){4}/, '');
+      let answer_word = this.props.word_type === 'noun' ? answer.replace(/^(.){4}/, '') : answer;
+      let objective_word = this.props.word_type === 'noun' ? objective.replace(/^(.){4}/, '') : objective;
 
       let answerArray = answer_word.split('');
-      const objectiveArray = objective_word.split('');
+      let objectiveArray = objective_word.split('');
       let incorrectChar = []
 
-      if (answer_article !== objective_article){
-        points += -2;
-        message = message + '\n -2 der Artikel\n';
-        answer_article = `**${answer_article}**`
-      } else {
-        points += 1;
-        message = message + '\n +1 der Artikel\n';
+      if (this.props.word_type === 'noun'){
+        if (answer_article !== objective_article){
+          points += -2;
+          message = message + '\n -2 der Artikel\n';
+          answer_article = `**${answer_article}**`
+        } else {
+          points += 1;
+          message = message + '\n +1 der Artikel\n';
+        }
       }
 
       if (answer_word !== objective_word){
@@ -87,8 +86,9 @@ class Comparer extends React.Component {
         points += 5;
         message = message + '\n +5 das Wort\n'
       }
-      answer = answer_article + ' ' + answerArray.join('')
+      const answer_noun = answer_article + ' ' + answerArray.join('');
 
+      answer = this.props.word_type === 'noun' ? answer_noun : answer;
 
     }
 
@@ -244,7 +244,6 @@ class Comparer extends React.Component {
   }
 
   render() {
-    console.log(this.props.objective)
     return (
       <div className='comparer'>
         <form>

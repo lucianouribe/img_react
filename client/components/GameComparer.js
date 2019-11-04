@@ -10,7 +10,8 @@ class GameComparer extends React.Component {
 
     this.state = {
       nominative: 'ich',
-      object: ''
+      object: '',
+      word_type: 'noun'
     }
   }
 
@@ -21,6 +22,9 @@ class GameComparer extends React.Component {
 
   getWord = (word) => {
     // if level 3, 5, 7, 9 get plural word
+    if (word.word_type !== 'noun') {
+      this.setState({word_type: 'other'})
+    }
     if (this.props.actualLevel % 2 === 0 || this.props.actualLevel === 1) {
       return `${word.article} ${capitalize(word.noun)}`
     } else {
@@ -124,20 +128,22 @@ class GameComparer extends React.Component {
 
   getHint = () => {
     const { thematic, hintCounter, compareMe } = this.props;
-    let object = this.state.object;
+    let full_dashes = this.state.word_type === 'noun' ? '___ ' : '';
+    let ddd_dashes = this.state.word_type === 'noun' ? 'd__ ' : '';
+    let object = this.state.word_type === 'noun' ? this.state.object : this.state.object.replace(' ', '').toLowerCase();
     if (thematic === 'words'){
       switch (hintCounter) {
         case 0:
-          return `___ ${getDashes(object)}`
+          return `${full_dashes}${getDashes(object)}`
           break;
         case 1:
-          return `d__ ${replaceConsonants(object)}`
+          return `${ddd_dashes}${replaceConsonants(object)}`
           break;
         case 2:
-          return `d__ ${getFirstLetter(object)}`
+          return `${ddd_dashes}${getFirstLetter(object)}`
           break
         case 3:
-          return `d__ ${getFirstLetter(object)} \n(${compareMe.spanish})` 
+          return `${ddd_dashes}${getFirstLetter(object)} \n(${compareMe.spanish})` 
           break;
         default:
           return('Viel Spass!')
@@ -213,7 +219,8 @@ class GameComparer extends React.Component {
             setIncorrectChar={this.setIncorrectChar} 
             subthemeId={this.props.subthemeId} 
             resetGame={this.props.resetGame} 
-            hintCounter={this.props.hintCounter} />
+            hintCounter={this.props.hintCounter} 
+            word_type={this.state.word_type} />
         </span>
       </div>
     )

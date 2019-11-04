@@ -172,8 +172,8 @@ export function replaceConsonants(word){
 
 export function getFirstLetter(word){
   word = word.replace('die ', '').replace('das ', '').replace('der ', '');
-  var word1 = word.replace(/[bcdfghjklmnpqrstvwxyz]/gi, '_').split('');
-  var word2 = word[0];
+  let word1 = word.replace(/[bcdfghjklmnpqrstvwxyz]/gi, '_').split('');
+  let word2 = word[0];
   word1[0] = word2;
   word1 = word1.join('');
   return word1;

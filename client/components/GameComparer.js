@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { replaceConsonants, getFirstLetter, getDashes, capitalize, getVerbDashes } from '../helpers';
+import { replaceConsonants, getFirstLetter, getDashes, capitalize, getVerbDashes, replaceVerbConsonants, getVerbFirstLetter } from '../helpers';
 import Comparer from './Comparer';
 
 class GameComparer extends React.Component {
@@ -66,7 +66,6 @@ class GameComparer extends React.Component {
 
     for (const line of array) {
       if (line.includes(nominative)){
-        console.log(line.includes('er/sie/es'))
         if (line.includes('er/sie/es')){
           return line.replace('er/sie/es', `${nominativesZweitePerson}`);
         } else if (line.includes('sie/Sie')){
@@ -145,16 +144,16 @@ class GameComparer extends React.Component {
     if (thematic === 'verbs'){
       switch (hintCounter) {
         case 0:
-          return '?'
-          break;
-        case 1:
           return `${getVerbDashes(object)}`
           break;
-        case 2:
+        case 1:
           return `${replaceVerbConsonants(object)}`
+          break;
+        case 2:
+          return `${getVerbFirstLetter(object)}`
           break
         case 3:
-          return `${getVerbFirstLetter(object)}`
+            return `${getVerbFirstLetter(object)} \n(${compareMe.spanish})`
           break;
         default:
           return('Viel Spass!')

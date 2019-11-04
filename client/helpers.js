@@ -151,37 +151,50 @@ export function toggleFullScreen() {
 }
 
 export function deUmlauter(word){
-  return word.replace('ä', 'a').replace('ë', 'e').replace('ï', 'i').replace('ö', 'o').replace('ü', 'u')
+  return word.replace('ä', 'a').replace('ë', 'e').replace('ï', 'i').replace('ö', 'o').replace('ü', 'u');
 }
 
 export function capitalize(word) {
-  return word.charAt(0).toUpperCase() + word.slice(1)
+  return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
 // hilfe words
 export function getDashes(word){
-  word = word.replace('die ', '').replace('das ', '').replace('der ', '')
-  var amount = word.length
-  return '_'.repeat(amount)
+  word = word.replace('die ', '').replace('das ', '').replace('der ', '');
+  var amount = word.length;
+  return '_'.repeat(amount);
 }
 
 export function replaceConsonants(word){
-  word = word.replace('die ', '').replace('das ', '').replace('der ', '')
-  return word.replace(/[bcdfghjklmnpqrstvwxyz]/gi, '_')
+  word = word.replace('die ', '').replace('das ', '').replace('der ', '');
+  return word.replace(/[bcdfghjklmnpqrstvwxyz]/gi, '_');
 }
 
 export function getFirstLetter(word){
-  word = word.replace('die ', '').replace('das ', '').replace('der ', '')
-  var word1 = word.replace(/[bcdfghjklmnpqrstvwxyz]/gi, '_').split('')
-  var word2 = word[0]
-  word1[0] = word2
-  word1 = word1.join('')
-  return word1
+  word = word.replace('die ', '').replace('das ', '').replace('der ', '');
+  var word1 = word.replace(/[bcdfghjklmnpqrstvwxyz]/gi, '_').split('');
+  var word2 = word[0];
+  word1[0] = word2;
+  word1 = word1.join('');
+  return word1;
 }
+
 // hilfe verbs
-
 export function getVerbDashes(word){
-  return word.replace(/[a-zA-Z]/gi, '_')
+  word = word.replace(/ich |du |er |sie |es |man |wir |ihr |Sie /, '');
+  return word.replace(/[a-zA-Z]/gi, '_');
 }
 
+export function replaceVerbConsonants(word){
+  word = word.replace(/ich |du |er |sie |es |man |wir |ihr |Sie /, '');
+  return word.replace(/[bcdfghjklmnpqrstvwxyz]/gi, '_');
+}
 
+export function getVerbFirstLetter(word){
+  word = word.replace(/ich |du |er |sie |es |man |wir |ihr |Sie /, '');
+  var word1 = word.replace(/[bcdfghjklmnpqrstvwxyz]/gi, '_').split('');
+  var word2 = word[0];
+  word1[0] = word2;
+  word1 = word1.join('');
+  return word1;
+}

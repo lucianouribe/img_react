@@ -66,7 +66,9 @@ class GameComparer extends React.Component {
 
     for (const line of array) {
       if (line.includes(nominative)){
+        this.setState({nominative});
         if (line.includes('er/sie/es')){
+          this.setState({nominative: nominativesZweitePerson});
           return line.replace('er/sie/es', `${nominativesZweitePerson}`);
         } else if (line.includes('sie/Sie')){
           return line.replace('sie/Sie', 'Sie');
@@ -172,7 +174,6 @@ class GameComparer extends React.Component {
 
   getKeywords = () =>{
     const {actualLevel, thematic, compareMe} = this.props;
-
     switch (thematic) {
       case 'words':
         if (actualLevel % 2 === 0 || this.props.actualLevel === 1) {
@@ -182,7 +183,7 @@ class GameComparer extends React.Component {
         }
         break;
       case 'verbs':
-        return 'verb keywords'
+        return `${this.state.nominative} | ${compareMe.verb_type}`
         break;
       case 'phrases':
         return 'phrase keywords'

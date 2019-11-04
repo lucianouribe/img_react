@@ -115,21 +115,21 @@ class GameComparer extends React.Component {
   }
 
   getHint = () => {
-    const { thematic, hintCounter } = this.props;
+    const { thematic, hintCounter, compareMe } = this.props;
     let object = this.state.object;
     if (thematic === 'words'){
       switch (hintCounter) {
         case 0:
-          return '?'
-          break;
-        case 1:
           return `___ ${getDashes(object)}`
           break;
-        case 2:
+        case 1:
           return `d__ ${replaceConsonants(object)}`
+          break;
+        case 2:
+          return `d__ ${getFirstLetter(object)}`
           break
         case 3:
-          return `d__ ${getFirstLetter(object)}`
+          return `d__ ${getFirstLetter(object)} \n(${compareMe.spanish})` 
           break;
         default:
           return('Viel Spass!')
@@ -204,7 +204,8 @@ class GameComparer extends React.Component {
             setResultCard={this.props.setResultCard} 
             thematic={this.props.thematic} 
             setIncorrectChar={this.setIncorrectChar} 
-            subthemeId={this.props.subthemeId} />
+            subthemeId={this.props.subthemeId} 
+            resetGame={this.props.resetGame} />
         </span>
       </div>
     )

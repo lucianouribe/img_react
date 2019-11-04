@@ -64,7 +64,7 @@ ActiveAdmin.register Word do
     f.inputs 'Words Form' do
       f.input :article,
               as: :select,
-              collection: ['der', 'die', 'das'],
+              collection: ['', 'der', 'die', 'das'],
               include_blank: false
       f.input :noun
       f.input :plural
@@ -72,7 +72,7 @@ ActiveAdmin.register Word do
       f.input :spanish
       f.input :word_type,
               as: :select,
-              collection: ['noun', 'preposition', 'adverb'],
+              collection: ['noun', 'preposition', 'adverb', 'adjektive'],
               include_blank: false
       f.input :theme,
               as: :select,

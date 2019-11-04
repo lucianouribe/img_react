@@ -26,6 +26,10 @@ class Comparer extends React.Component {
     let message = '';
     let points = 0;
 
+    if (answer === 'reset me'){
+      this.props.resetGame()
+    }
+
     if (answer === objective){
       result = correct;
       message = `
@@ -47,8 +51,11 @@ class Comparer extends React.Component {
 
       if (answer_article !== objective_article){
         points += -2;
-        message = message + '\n -2 der Artikel';
+        message = message + '\n -2 der Artikel\n';
         answer_article = `**${answer_article}**`
+      } else {
+        points += 1;
+        message = message + '\n +1 der Artikel\n';
       }
 
       if (answer_word !== objective_word){
@@ -62,18 +69,25 @@ class Comparer extends React.Component {
 
         if ((deUmlauter(answer_word).toLowerCase() === deUmlauter(objective_word).toLowerCase()) && incorrectChar.indexOf(0) === 0){
           points += -1;
-          message = message + '\n -1 Großbuchstabe Substantiv'
-        } 
+          message = message + '\n -1 Großbuchstabe Substantiv\n'
+        }
         if ( ( deUmlauter(answer_word).toLowerCase() === deUmlauter(objective_word).toLowerCase() ) && (answer_word.toLowerCase() !== objective_word.toLowerCase()) ) {
           points += -2;
-          message = message + '\n -2 Umlaut'
-        } 
+          message = message + '\n -2 Umlaut\n'
+        }
         if (deUmlauter(answer_word).toLowerCase() !== deUmlauter(objective_word).toLowerCase()) {
           points += -6;
-          message = message + '\n -6 Falsch Wort!'
+          message = message + '\n -6 Falsch Wort!\n'
+        } else {
+          points += 3;
+          message = message + '\n +3 das Wort\n'
         }
-        answer = answer_article + ' ' + answerArray.join('')
+      } else {
+        points += 5;
+        message = message + '\n +5 das Wort\n'
       }
+      answer = answer_article + ' ' + answerArray.join('')
+
 
     }
 
@@ -98,13 +112,10 @@ class Comparer extends React.Component {
     const correctVerb = 'Richtig!';
     const incorrectVerb = 'Falsch!';
     let result = '';
-    let objective = this.props.objective;
+    let objective = this.props.objective.replace('\r', '');
     let answer = this.refs.answer.value;
     let message = '';
     let points = 0;
-    console.log('objective', objective)
-    console.log('answer', answer)
-    console.log(answer.toString() === objective.toString())
     if (answer === objective){
       result = correctVerb;
       message = '+10! \n';

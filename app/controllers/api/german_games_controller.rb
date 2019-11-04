@@ -13,6 +13,12 @@ class Api::GermanGamesController < ApplicationController
     return @themes
   end
 
+  def reset
+    reset_worlds
+    reset_subthemes
+    reset_player
+  end
+
   def update
     if @game.update(game_params)
       render :json => @game, status: :ok
@@ -22,6 +28,30 @@ class Api::GermanGamesController < ApplicationController
   end
 
   private
+  def reset_worlds
+    World.all.each do |w|
+      w.update_attribute :level,  1
+      w.update_attribute :points,  0
+      w.update_attribute :status,  'open'
+    end
+  end
+
+  def reset_subthemes
+    Subtheme.all.each do |s|
+      s.update_attribute :level,  1
+      s.update_attribute :points,  0
+      s.update_attribute :status,  'open'
+    end
+  end
+
+  def reset_player
+    player = GermanGame.first
+    player.update_attribute :level, 1
+    player.update_attribute :lifes, 3
+    player.update_attribute :punctuation, 0
+    player.update_attribute :punctuation_4_total, 0
+  end
+
   def set_api_game
     @game = GermanGame.find(params[:id])
   end

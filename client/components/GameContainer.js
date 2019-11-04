@@ -62,6 +62,19 @@ class GameContainer extends React.Component {
     }
   }
 
+  resetGame = () => {
+    $.ajax({
+      url: `api/reset`,
+      type: 'PUT',
+    }).done( data => {
+      console.log('reset Game success', data);
+      history.push("/deutsch")
+    }).fail( err => {
+      console.log('reset Game fail', err);
+      history.push("/deutsch")
+    });
+  }
+
   getAmount = (gameData) => {
     let word_length = gameData.words.length
     let verb_length = gameData.verbs.length
@@ -78,7 +91,6 @@ class GameContainer extends React.Component {
   passPunctuation = () => {
     this.setState({showTotal: true});
 
-
     // get subthemes
     let theSubTheme;
     const {subThemes, subthemeId} = this.props;
@@ -89,7 +101,6 @@ class GameContainer extends React.Component {
     }
     // get points of specific subtheme
     const subthemePoints = theSubTheme.points;
-
 
     // get player data
     const player = this.props.germanGame;
@@ -107,7 +118,6 @@ class GameContainer extends React.Component {
       }
     }
 
-
     // let totalCard = '';
     let subthemeTotalPoints = 0;
     let themeTotalPoints = 0;
@@ -117,8 +127,10 @@ class GameContainer extends React.Component {
     // if points are negative player looses one life
     if (subthemePoints < 0) {
       // console.log('player losses one life');
-      this.props.dispatch(updateGame(player.id, playerLifes - 1, playerPunctuation + subthemePoints, player.punctuation_4_total + subthemePoints, player.level));
-      playerTotalPoints = subthemePoints;
+      if (playerLifes - 1 > 0){
+        this.props.dispatch(updateGame(player.id, playerLifes - 1, playerPunctuation + subthemePoints, player.punctuation_4_total + subthemePoints, player.level));
+        playerTotalPoints = subthemePoints;
+      }
       // console.log('subtheme stats reset');
       this.props.dispatch(updateSubthemePoints(theSubTheme.id, 0, theSubTheme.level));
       // console.log('theme gets -20 points');
@@ -134,8 +146,10 @@ class GameContainer extends React.Component {
         this.props.dispatch(updateWorldPoints(theTheme.id, theTheme.points + 20, theTheme.level ));
         themeTotalPoints = 20;
         // console.log('player wins 15 points');
-        this.props.dispatch(updateGame(player.id, playerLifes, playerPunctuation + 15, player.punctuation_4_total + subthemePoints, player.level));
-        playerTotalPoints = 15;
+        if (playerLifes > 0){
+          this.props.dispatch(updateGame(player.id, playerLifes, playerPunctuation + 15, player.punctuation_4_total + subthemePoints, player.level));
+          playerTotalPoints = 15;
+        }
       } else {
         // console.log('theme gets 50 points');
         this.props.dispatch(updateWorldPoints(theTheme.id, theTheme.points + 50, theTheme.level ));
@@ -165,11 +179,20 @@ class GameContainer extends React.Component {
       // console.log('player gets 2 lifes, player total looses 5000');
       this.props.dispatch(updateGame(player.id, playerLifes + 2, playerPunctuation, player.punctuation_4_total - 5000, player.level));
     }
+    // game over, reset player stats
+    if (playerLifes - 1 <= 0){
+      this.resetGame()
+    }
 
     // console.log('show punctuation');
-    const totalCard =  '# Total \n' + '###' + theSubTheme.name + ': ' + subthemeTotalPoints + ' points\n' + '###' + theThemeName + ': ' + themeTotalPoints + ' points\n' + '### player: ' + playerTotalPoints + ' points\n' +  '### lifes: ' + playerLifes + '\n';
-    this.setState({totalCard});
+    let totalCard;
+    if (playerLifes - 1 <= 0){
+      totalCard = '# Game Over!'
+    } else {
+      totalCard =  '# Total \n' + '###' + theSubTheme.name + ': ' + subthemeTotalPoints + ' points\n' + '###' + theThemeName + ': ' + themeTotalPoints + ' points\n' + '### player: ' + playerTotalPoints + ' points\n' +  '### lifes: ' + playerLifes + '\n';
+    }
 
+    this.setState({totalCard});
   }
 
   startGame = () => {
@@ -187,6 +210,7 @@ class GameContainer extends React.Component {
 
   nextGame = () => {
     let {words, verbs, phrases} = this.props.gameData;
+    // console.log(words, verbs, phrases)
     let {actualIndex, actual, actualThematic} = this.state;
     if(actualThematic === 'words'){
       if(actualIndex + 1 < words.length){
@@ -199,7 +223,6 @@ class GameContainer extends React.Component {
         //   this.setState({actualIndex: 0, actualObject, actualThematic: 'verbs', actual: actual + 1});
         // } else {
         //   this.passPunctuation();
-        //   // redirect to url
         // }
       }
     }
@@ -210,7 +233,11 @@ class GameContainer extends React.Component {
     //     this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
     //   } else {
     //     let actualObject = phrases[0];
-    //     this.setState({actualIndex: 0, actualObject, actualThematic: 'phrases', actual: actual + 1});
+    //     if (typeof actualObject !== 'undefined'){
+    //       this.setState({actualIndex: 0, actualObject, actualThematic: 'phrases', actual: actual + 1});
+    //     } else {
+    //       this.passPunctuation();
+    //     }
     //   }
     // }
 
@@ -219,7 +246,7 @@ class GameContainer extends React.Component {
     //     let actualObject = phrases[actualIndex + 1];
     //     this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
     //   } else {
-    //     console.log('time to evaluate results!')
+    //     this.passPunctuation();
     //   }
     // }
 
@@ -245,7 +272,8 @@ class GameContainer extends React.Component {
         hintMagik={this.hintMagik}
         setResult={this.setResult}
         setResultCard={this.setResultCard} 
-        subthemeId={this.props.subthemeId} /> 
+        subthemeId={this.props.subthemeId} 
+        resetGame={this.resetGame} /> 
       )
   }
 

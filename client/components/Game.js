@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { fetchGameData } from '../actions/game';
 
 import GameNav from './GameNav';
-import GameContainer from './GameContainer';
+// import GameContainer from './GameContainer';
+import GameHangman from './GameHangman';
 
 class Game extends React.Component {
 
@@ -29,7 +30,7 @@ class Game extends React.Component {
       return (
         <div id="game">
           <GameNav subthemeId={subtheme.id} />
-          <GameContainer subthemeId={subtheme.id} />
+          <GameHangman subthemeId={subtheme.id} />
         </div>
       )
     } else {

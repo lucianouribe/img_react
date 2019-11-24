@@ -1,9 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { replaceConsonants, getFirstLetter, getDashes, capitalize, getVerbDashes, replaceVerbConsonants, getVerbFirstLetter } from '../helpers';
-import Comparer from './Comparer';
+import { fails } from '../actions/fails'
+import { replaceConsonants, getFirstLetter, getDashes, capitalize, getVerbDashes, replaceVerbConsonants, getVerbFirstLetter, getSolution } from '../helpers';
+// import Comparer from './Comparer';
+import GameKeyBoard from './GameKeyBoard';
 
-class GameComparer extends React.Component {
+class GameLogic extends React.Component {
 
   constructor(props) {
     super(props);
@@ -11,13 +13,17 @@ class GameComparer extends React.Component {
     this.state = {
       nominative: 'ich',
       object: '',
-      word_type: 'noun'
+      word_type: 'noun',
+      letter: '',
+      response: '_',
+      fails: 0
     }
   }
 
   componentDidMount(){
     const object = this.getObject();
     this.setState({object});
+    this.getLetters();
   }
 
   getWord = (word) => {
@@ -131,51 +137,33 @@ class GameComparer extends React.Component {
     }
   }
 
-  getHint = () => {
-    const { thematic, hintCounter, compareMe } = this.props;
-    let full_dashes = this.state.word_type === 'noun' ? '___ ' : '';
-    let ddd_dashes = this.state.word_type === 'noun' ? 'd__ ' : '';
-    let object = this.state.word_type === 'noun' ? this.state.object : this.state.object.replace(' ', '').toLowerCase();
-    if (thematic === 'words'){
-      switch (hintCounter) {
-        case 0:
-          return `${full_dashes}${getDashes(object)}`
-          break;
-        case 1:
-          return `${ddd_dashes}${replaceConsonants(object)}`
-          break;
-        case 2:
-          return `${ddd_dashes}${getFirstLetter(object)}`
-          break
-        case 3:
-          return `${ddd_dashes}${getFirstLetter(object)} \n(${compareMe.spanish})` 
-          break;
-        default:
-          return('Viel Spass!')
+  getLetters = () => {
+    const { letters } = this.props;
+    let lettersArray = Array.from( letters.toLowerCase() );
+    let objectArray = Array.from( this.state.object.toLowerCase() );
+
+    let answerArray = [];
+    var theObject = this.state.object;
+    objectArray.map((item, i) => {
+      let letter = lettersArray.filter(bla => bla === item)
+      if (letter.length > 0) {
+        if (theObject.charAt(i) === letter[0]){
+          answerArray.push(letter);
+        } else {
+          answerArray.push( letter[0].toUpperCase() );
+        }
+      } else {
+        if (item === ' ') {
+          answerArray.push(' ');
+        } else {
+          answerArray.push('_');
+        }
       }
-    }
-    if (thematic === 'verbs'){
-      switch (hintCounter) {
-        case 0:
-          return `${getVerbDashes(object)}`
-          break;
-        case 1:
-          return `${replaceVerbConsonants(object)}`
-          break;
-        case 2:
-          return `${getVerbFirstLetter(object)}`
-          break
-        case 3:
-            return `${getVerbFirstLetter(object)} \n(${compareMe.spanish})`
-          break;
-        default:
-          return('Viel Spass!')
-      }
-    }
-    if (thematic === 'phrases'){
-      return ('phrase hint')
-    }
+    })
+    return answerArray.join('');
   }
+
+
 
   hintMagikChild = () => {
     if (this.props.hintCounter < 3){
@@ -188,19 +176,25 @@ class GameComparer extends React.Component {
     switch (thematic) {
       case 'words':
         if (actualLevel % 2 === 0 || this.props.actualLevel === 1) {
-          return `${compareMe.word_type}`
+          return `${compareMe.word_type} | ${compareMe.spanish}`
         } else {
-          return `${compareMe.word_type} plural`
+          return `${compareMe.word_type} | plural | ${compareMe.spanish}`
         }
         break;
       case 'verbs':
-        return `${this.state.nominative} | ${compareMe.verb_type}`
+        return `${this.state.nominative} | ${compareMe.verb_type} | ${compareMe.spanish}`
         break;
       case 'phrases':
         return 'phrase keywords'
         break;
       default:
         return('Viel Spass!')
+    }
+  }
+
+  getKeyboard = () => {
+    if (this.state.object !== '') {
+      return <GameKeyBoard object={this.state.object} />
     }
   }
 
@@ -213,28 +207,20 @@ class GameComparer extends React.Component {
     return(
       <div className="game-comparer">
         <span className="keywords">{this.getKeywords()}</span>
-        <span className="hint" onClick={() => this.hintMagikChild()}>{this.getHint()}</span>
+        <span className="hint" onClick={() => this.hintMagikChild()} >{this.getLetters()}</span>
         <span className="word-input">
-          <Comparer 
-            submitBtn={this.submitBtn} 
-            objective={this.state.object} 
-            setResult={this.props.setResult} 
-            setResultCard={this.props.setResultCard} 
-            thematic={this.props.thematic} 
-            setIncorrectChar={this.setIncorrectChar} 
-            subthemeId={this.props.subthemeId} 
-            resetGame={this.props.resetGame} 
-            hintCounter={this.props.hintCounter} 
-            word_type={this.state.word_type} />
+          {this.getKeyboard()}
         </span>
       </div>
     )
   }
+
 }
 
 const mapStateToProps = (state) => {
   return {
-    // gameData: state.gameData
+    letters: state.letters,
+    fails: state.fails
   }
 }
-export default connect(mapStateToProps)(GameComparer);
+export default connect(mapStateToProps)(GameLogic);

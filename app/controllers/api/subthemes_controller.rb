@@ -1,6 +1,8 @@
+# require 'pry'
 class Api::SubthemesController < ApplicationController
   before_action :set_theme, only: [:index, :game]
   before_action :set_api_subtheme, only: [:update]
+  # before_action :set_subtheme_status, only: [:index]
 
   def index
     @api_subthemes = Subtheme.where(theme: "#{@theme}").order_by_id
@@ -25,7 +27,29 @@ class Api::SubthemesController < ApplicationController
   end
 
   private
-  
+  # PASS THIS TO ADMIN SUBTHEME
+  def set_subtheme_status
+    # get all themes
+    @worlds = World.all
+    # get all subthemes
+    # @subthemes = Subtheme.all
+    # loop subthemes
+    @worlds.each do |world|
+      subtheme = Subtheme.where(name: world.name).first
+      # binding.pry
+      # @subthemes.each do |subtheme|
+        # check level of subtheme
+        words = Word.where(subtheme: "#{subtheme.id}").where(level: "#{subtheme.level}")
+        verbs = Verb.where(subtheme: "#{subtheme.id}").where(level: "#{subtheme.level}")
+        phrases = Phrase.where(subtheme: "#{subtheme.id}").where(level: "#{subtheme.level}")
+        # check if there are words with this level
+        # check if there are verbs with this level
+        # check if there are phrases with this level
+        # if not, set status to closed
+      # end
+    end
+  end
+
   def set_theme
     get_url
     @theme = @url_path[:theme]

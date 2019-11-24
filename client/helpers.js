@@ -158,6 +158,11 @@ export function capitalize(word) {
   return word.charAt(0).toUpperCase() + word.slice(1);
 }
 
+// solution
+export function getSolution(word, letters) {
+  console.log(word, letters)
+}
+
 // hilfe words
 export function getDashes(word){
   word = word.replace('die ', '').replace('das ', '').replace('der ', '');
@@ -197,4 +202,13 @@ export function getVerbFirstLetter(word){
   word1[0] = word2;
   word1 = word1.join('');
   return word1;
+}
+
+export function getLetter() {
+  const letters = document.querySelectorAll('.keyboard span');
+  for (let letter of letters) {
+    letter.addEventListener('click', function() {
+      return this.innerText;
+    })
+  }
 }

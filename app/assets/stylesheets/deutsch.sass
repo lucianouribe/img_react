@@ -158,6 +158,27 @@ body
                 color: #fff
                 font-size: 1.8rem
 
+          .keyboard
+            @include flexbox()
+            @include flex-wrap(wrap)
+            @include justify-content(center)
+            span
+              width: 30px
+              height: 30px
+              margin: 5px
+              line-height: 30px
+              text-align: center
+              &.unsuccess
+                color: #707070
+                border: 1px solid red
+                border-radius: 50%
+                background: rgba(232, 129, 109, 0.3)
+              &.success
+                color: #707070
+                border: 1px solid green
+                border-radius: 50%
+
+
         &.markdown
           strong
             color: red

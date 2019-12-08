@@ -191,14 +191,16 @@ body
       font-weight: 500
       color: #707070
       text-transform: capitalize
-      .hearts
+      .trophy
         @include flexbox()
         p
-          font-size: 12px
+          font-size: 14px
           line-height: 25px
           margin: 0 3px
       i
-        color: red
+        color: #E8B431
+        font-size: 22px
+        line-height: 16px
 
     .game-image
       width: 100%
@@ -207,6 +209,22 @@ body
       background-size: cover
       background-position: center
       border-radius: 2px
+      &.hang-0
+        background-image: url(asset_path("game/hang-0.jpg"))
+      &.hang-1
+        background-image: url(asset_path("game/hang-1.jpg"))
+      &.hang-2
+        background-image: url(asset_path("game/hang-2.jpg"))
+      &.hang-3
+        background-image: url(asset_path("game/hang-3.jpg"))
+      &.hang-4
+        background-image: url(asset_path("game/hang-4.jpg"))
+      &.hang-5
+        background-image: url(asset_path("game/hang-5.jpg"))
+      &.hang-6
+        background-image: url(asset_path("game/hang-6.jpg"))
+      &.hang-7
+        background-image: url(asset_path("game/hang-7.jpg"))
 
 @media all and (max-width: 769px)
   body

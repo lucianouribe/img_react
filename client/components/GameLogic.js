@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { letters } from '../actions/letters'
 import { fails } from '../actions/fails'
-import { replaceConsonants, getFirstLetter, getDashes, capitalize, getVerbDashes, replaceVerbConsonants, getVerbFirstLetter, getSolution } from '../helpers';
-// import Comparer from './Comparer';
+import { capitalize } from '../helpers';
 import GameKeyBoard from './GameKeyBoard';
 
 class GameLogic extends React.Component {
@@ -14,16 +14,37 @@ class GameLogic extends React.Component {
       nominative: 'ich',
       object: '',
       word_type: 'noun',
-      letter: '',
       response: '_',
-      fails: 0
+      letters: '',
+      fails: 0,
     }
   }
 
   componentDidMount(){
     const object = this.getObject();
     this.setState({object});
-    this.getLetters();
+    this.renderAnswer();
+  }
+
+  componentDidUpdate(){
+    // if true -> evaluate
+    if (this.state.response === this.state.object) {
+      const object = this.getObject();
+      this.setState({object});
+    }
+  }
+
+  getObject = () => {
+    const { compareMe, thematic } = this.props;
+    if (thematic === 'words'){
+      return this.getWord(compareMe)
+    } else if ((thematic === 'verbs') && (typeof compareMe !== 'undefined')) {
+      return this.getVerb(compareMe)
+    } else {
+      if (typeof compareMe !== 'undefined'){
+        return this.getPhrase(compareMe)
+      }
+    }
   }
 
   getWord = (word) => {
@@ -95,82 +116,6 @@ class GameLogic extends React.Component {
     }
   }
 
-  getPhrase = (phrase) => {
-    let phraseArray;
-    switch (this.props.actualLevel) {
-      case 1:
-        phraseArray = phrase.phrase_praesens.split("\n")
-        return this.getLine(phraseArray)
-        break;
-      case 2:
-        phraseArray = phrase.phrase_perfekt.split("\n")
-        return this.getLine(phraseArray)
-        break;
-      case 3:
-        phraseArray = phrase.phrase_futur_i.split("\n")
-        return this.getLine(phraseArray)
-        break
-      case 4:
-        phraseArray = phrase.phrase_praeteritum.split("\n")
-        return this.getLine(phraseArray)
-        break;
-      case 5:
-        phraseArray = phrase.phrase_plusquanperfekt.split("\n")
-        return this.getLine(phraseArray)
-        break;
-      default:
-        phraseArray = phrase.phrase_futur_ii.split("\n")
-        return this.getLine(phraseArray)
-    }
-  }
-
-  getObject = () => {
-    const { compareMe, thematic } = this.props;
-    if (thematic === 'words'){
-      return this.getWord(compareMe)
-    } else if ((thematic === 'verbs') && (typeof compareMe !== 'undefined')) {
-      return this.getVerb(compareMe)
-    } else {
-      if (typeof compareMe !== 'undefined'){
-        return this.getPhrase(compareMe)
-      }
-    }
-  }
-
-  getLetters = () => {
-    const { letters } = this.props;
-    let lettersArray = Array.from( letters.toLowerCase() );
-    let objectArray = Array.from( this.state.object.toLowerCase() );
-
-    let answerArray = [];
-    var theObject = this.state.object;
-    objectArray.map((item, i) => {
-      let letter = lettersArray.filter(bla => bla === item)
-      if (letter.length > 0) {
-        if (theObject.charAt(i) === letter[0]){
-          answerArray.push(letter);
-        } else {
-          answerArray.push( letter[0].toUpperCase() );
-        }
-      } else {
-        if (item === ' ') {
-          answerArray.push(' ');
-        } else {
-          answerArray.push('_');
-        }
-      }
-    })
-    return answerArray.join('');
-  }
-
-
-
-  hintMagikChild = () => {
-    if (this.props.hintCounter < 3){
-      this.props.hintMagik(this.props.hintCounter + 1)
-    }
-  }
-
   getKeywords = () =>{
     const {actualLevel, thematic, compareMe} = this.props;
     switch (thematic) {
@@ -194,20 +139,82 @@ class GameLogic extends React.Component {
 
   getKeyboard = () => {
     if (this.state.object !== '') {
-      return <GameKeyBoard object={this.state.object} />
+      return <GameKeyBoard object={this.state.object} letters={this.state.letters} handlePressedLetters={this.handlePressedLetters} evaluateResponse={this.evaluateResponse} />
     }
   }
 
-  submitBtn = () => {
-    this.props.hintMagik(0)
-    this.props.nextGame();
+  handlePressedLetters = (letter) => {
+    this.setState({ letters: this.state.letters + letter});
+    this.props.dispatch(letters(this.state.letters + letter));
+    // make a script that asigns to each letter already the value of true or false so when clicked it inmediately send to the redux the fail or success of the letter
+    this.evaluateLetter(letter);
+  }
+
+  evaluateLetter = (letter) => {
+    let objectArray = Array.from( this.state.object.toLowerCase().replace('\r', '').replace(' ', '') );
+    // this.props.dispatch(fails(this.props.fails));
+    let check = objectArray.some(ele => ele === letter.toLowerCase());
+    if (!check) {
+      this.setState({ fails: this.state.fails + 1 })
+      this.props.dispatch(fails(this.state.fails + 1));
+      // get loss
+      if(this.state.fails + 1 === 7){
+        console.log('lost!, lets go to the next one!')
+        // this.props.nextGame();
+        // restart in level
+        // loose one life
+          // if no lifes left -> restart previous level
+      }
+    }
+    // get win
+
+      // get 2 points for help
+  }
+
+  evaluateResponse = (response) => {
+    const object = this.state.object.replace('\r', '');
+    this.setState({response});
+    if ( response !== '' && (response === object) ) {
+      this.setState({letters: ''});
+      console.log('pass to next game')
+      this.props.setGamesPassed(this.props.passedGames + 1);
+      this.props.dispatch(fails(0));
+      this.props.nextGame();
+    }
+  }
+
+  renderAnswer = () => {
+    const { letters } = this.state;
+    const object = this.state.object.replace('\r', '');
+
+    let answerArray = [];
+    let objectArray = object.toLowerCase().split('');
+    let lettersArray = letters.toLowerCase().split('');
+
+    objectArray.map((objLetter, i) => {
+      let letter = lettersArray.filter(l => l === objLetter)
+      if (letter.length > 0) {
+        if (object.charAt(i) === letter[0]){
+          answerArray.push(letter);
+        } else {
+          answerArray.push( letter[0].toUpperCase() );
+        }
+      } else {
+        if (objLetter === ' ') {
+          answerArray.push(' ');
+        } else {
+          answerArray.push('_');
+        }
+      }
+    })
+    return answerArray.join('');
   }
 
   render() {
     return(
       <div className="game-comparer">
         <span className="keywords">{this.getKeywords()}</span>
-        <span className="hint" onClick={() => this.hintMagikChild()} >{this.getLetters()}</span>
+        <span className="hint">{this.renderAnswer()}</span>
         <span className="word-input">
           {this.getKeyboard()}
         </span>

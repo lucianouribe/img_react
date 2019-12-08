@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { fetchGameData } from '../actions/game';
+import { fetchGermanGame } from '../actions/germanGame';
 
 import GameNav from './GameNav';
 // import GameContainer from './GameContainer';
@@ -13,6 +14,7 @@ class Game extends React.Component {
   }
 
   componentDidMount(){
+    this.props.dispatch(fetchGermanGame());
     const subtheme = window.location.search.replace("?theme=", "");
     this.props.dispatch(fetchGameData(subtheme));
   }

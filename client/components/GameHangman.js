@@ -5,10 +5,11 @@ import Markdown from 'markdown-to-jsx';
 
 import GameSubNav from './GameSubNav';
 import GameLogic from './GameLogic';
-import { deUmlauter } from '../helpers';
+
 import { updateGame } from '../actions/germanGame'
-import { updateWorldPoints } from '../actions/themes'
 import { updateSubthemePoints } from '../actions/subThemes'
+import { letters } from '../actions/letters'
+import { fails } from '../actions/fails'
 
 class GameHangman extends React.Component {
 
@@ -72,11 +73,6 @@ class GameHangman extends React.Component {
     this.setState({passedGames})
   }
 
-  // pass the punctuation to the user
-  passPunctuation = () => {
-    console.log('pass punctuation')
-  }
-
   startGame = () => {
     let gameData = this.props.gameData;
     let words = gameData.words;
@@ -94,7 +90,7 @@ class GameHangman extends React.Component {
     let {words, verbs, phrases} = this.props.gameData;
     // console.log(words, verbs, phrases)
     let {actualIndex, actual, actualThematic} = this.state;
-    console.log('words', actualIndex, actual, actualThematic, this.props.gameData)
+    // console.log('words', actualIndex, actual, actualThematic, this.props.gameData)
     if(actualThematic === 'words'){
       if(actualIndex + 1 < words.length){
         console.log('there are more words');
@@ -106,7 +102,7 @@ class GameHangman extends React.Component {
           console.log('pass to verbs');
           this.setState({actualIndex: 0, actualObject, actualThematic: 'verbs', actual: actual + 1});
         } else {
-          this.passPunctuation();
+          this.resolveWin();
         }
       }
     }
@@ -124,9 +120,70 @@ class GameHangman extends React.Component {
         //   this.setState({actualIndex: 0, actualObject, actualThematic: 'phrases', actual: actual + 1});
         // } else {
         //   console.log('pass to punctuation');
-          this.passPunctuation();
+          this.resolveWin();
         // }
       }
+    }
+
+  }
+
+  resolveWin = () => {
+    this.setState({showTotal: true, resultMessage: 'Thema Bestanden!'});
+    // get subthemes
+    const theSubTheme = this.getSubtheme();
+
+    // set hearts & close subtheme
+    if (this.state.passedGames > theSubTheme.hearts) {
+      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'closed', this.state.passedGames));
+    } else {
+      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'closed', theSubTheme.hearts));
+    }
+    // get player data
+    const player = this.props.germanGame;
+    const playerLifes = player.lifes;
+    const playerPunctuation = player.punctuation;
+    // win one life
+    this.props.dispatch(updateGame(player.id, playerLifes + 1, playerPunctuation + 1, player.punctuation_4_total + 1, player.level));
+  }
+
+  getSubtheme = () => {
+    let theSubTheme;
+    const {subThemes, subthemeId} = this.props;
+    for (const subT of subThemes) {
+      if (subT.id === subthemeId) {
+        theSubTheme = subT;
+      }
+    }
+    return theSubTheme;
+  }
+
+  resolveDeath = () => {
+    this.setState({showTotal: true, resultMessage: 'Du bist tot!'});
+
+    // get subthemes
+    const theSubTheme = this.getSubtheme();
+
+    // set hearts
+    if (this.state.passedGames > theSubTheme.hearts) {
+      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'open', this.state.passedGames));
+    }
+
+    // get player data
+    const player = this.props.germanGame;
+    const playerLifes = player.lifes;
+    const playerPunctuation = player.punctuation;
+
+    this.props.dispatch(letters(''));
+    this.props.dispatch(fails(0));
+    // loose one life
+    if (playerLifes > 1) {
+      this.props.dispatch(updateGame(player.id, playerLifes - 1, playerPunctuation, player.punctuation_4_total + 1, player.level));
+    } else {
+      this.setState({resultMessage: 'Game Over!'});
+      // this.props.dispatch(updateGame(player.id, 3, 0, 0, 1));
+      // this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'open', 0));
+      // create an action to reset all subthemes and all themes
+      this.resetGame();
     }
 
   }
@@ -139,6 +196,7 @@ class GameHangman extends React.Component {
         actualLevel={actualLevel}
         thematic={actualThematic}
         nextGame={this.nextGame}
+        resolveDeath={this.resolveDeath}
         passedGames={this.state.passedGames}
         setGamesPassed={this.setGamesPassed}
         subthemeId={this.props.subthemeId} 
@@ -165,17 +223,36 @@ class GameHangman extends React.Component {
     }
   }
 
+  result = () => {
+    const {subtheme} = this.props.gameData;
+    if (this.state.passedGames > subtheme.hearts) {
+      return (`
+      ${this.state.resultMessage}\r\n
+      ${subtheme.name}\r\n
+      New Record: ${this.state.passedGames} !!!\r\n
+      Lifes: ${this.props.germanGame.lifes}
+      `)
+    } else {
+      return (`
+      ${this.state.resultMessage}\r\n
+      ${subtheme.name}\r\n
+      Level Record: ${subtheme.hearts}\r\n
+      Current Spree: ${this.state.passedGames}\r\n
+      Lifes: ${this.props.germanGame.lifes}
+    `)
+    }
+  }
+
+  acceptFate = () => {
+    this.setState({showTotal: false});
+    history.push("/deutsch");
+  }
+
   renderGameOrResult = () => {
-    if (this.state.showResult) {
+    if (this.state.showTotal) {
       return (
-        <div className="game-comparer markdown" onClick={() => this.setState({showResult: false})}>
-          <Markdown>{this.state.resultCard}</Markdown>
-        </div>
-      )
-    } else if (this.state.showTotal){
-      return (
-        <div className="game-comparer markdown" onClick={() => history.push("/deutsch")}>
-          <Markdown>{this.state.totalCard}</Markdown>
+        <div className="game-comparer markdown" onClick={() => this.acceptFate()}>
+          <Markdown>{this.result()}</Markdown>
         </div>
       )
     } else {

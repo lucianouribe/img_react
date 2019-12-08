@@ -17,7 +17,7 @@ export const fetchGermanGame = () => {
 }
 
 export const updateGame = (id, lifes, punctuation, punctuation_4_total, level) => {
-  // console.log(`this is update game punctuation with id: ${id} & punctuation ${punctuation}`)
+  // console.log(`this is updateGame with id: ${id}, lifes ${lifes}, punctuation ${punctuation}, punctuation_4_total ${punctuation_4_total}, level ${level}`)
   return(dispatch) => {
     $.ajax({
       url: `/api/deutsch/${id}`,
@@ -25,7 +25,7 @@ export const updateGame = (id, lifes, punctuation, punctuation_4_total, level) =
       dataType: 'JSON',
       data: { game: { lifes, punctuation, punctuation_4_total, level } }
     }).done( game => {
-      // console.log(`update game points - ${id} - success`);
+      // console.log(`updateGame points - ${id} - success`);
       // console.log(game);
       dispatch({ type: 'GERMAN_GAME', game });
     }).fail( data => {

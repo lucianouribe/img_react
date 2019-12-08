@@ -16,7 +16,7 @@ class PlayerStats extends React.Component {
       <div className="player_stats">
         <p>Lifes: {player.lifes}</p>
         <p>Points: {player.punctuation}</p>
-        <p>Total points: {player.punctuation_4_total}</p>
+        <p>Games Played: {player.punctuation_4_total}</p>
         <p>Level: {player.level}</p>
     </div>
     )

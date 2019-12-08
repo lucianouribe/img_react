@@ -18,7 +18,7 @@ class SubWorld extends React.Component {
       backgroundImage: `url(${subtheme.avatar_url})`
     };
     return (
-      <Link to={`/game?theme=${deUmlauter(subtheme.name)}`} className={`world_subtheme ${deUmlauter(subtheme.name)}`}>
+      <Link to={`/game?theme=${deUmlauter(subtheme.name)}`} className={`world_subtheme ${deUmlauter(subtheme.name)} ${subtheme.status}`}>
         <div className='img_container' style={divStyle}>
           <h2><span>{subtheme.name}</span></h2>
         </div>

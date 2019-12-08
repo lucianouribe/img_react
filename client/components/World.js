@@ -11,30 +11,32 @@ class World extends React.Component {
 
   getWorldData = (theme) => {
     const worlds = this.props.germanGame.worlds;
-    // console.log(worlds)
+
     let level;
     let points;
     let status;
-    worlds.map(world => {
-      if(world.name === theme) {
-        level = world.level
-        points = world.points
-        status = world.status
-      }
-    })
-    return(
-      <div className='data_container'>
-        <span className='level_container'>
-          <p>level</p>
-          <h4>{level}</h4>
-        </span>
-        <span className={`status_container ${status}`}></span>
-        <span className='points_container'>
-          <p>punkt</p>
-          <h4>{points}</h4>
-        </span>
-      </div>
-    )
+    if(typeof worlds !== 'undefined') {
+      worlds.map(world => {
+        if(world.name === theme) {
+          level = world.level
+          points = world.points
+          status = world.status
+        }
+      })
+      return(
+        <div className='data_container'>
+          <span className='level_container'>
+            <p>level</p>
+            <h4>{level}</h4>
+          </span>
+          <span className={`status_container ${status}`}></span>
+          <span className='points_container'>
+            <p>punkt</p>
+            <h4>{points}</h4>
+          </span>
+        </div>
+      )
+    }
   }
 
   render() {

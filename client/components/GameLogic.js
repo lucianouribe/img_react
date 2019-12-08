@@ -159,11 +159,8 @@ class GameLogic extends React.Component {
       this.props.dispatch(fails(this.state.fails + 1));
       // get loss
       if(this.state.fails + 1 === 7){
-        console.log('lost!, lets go to the next one!')
-        // this.props.nextGame();
-        // restart in level
-        // loose one life
-          // if no lifes left -> restart previous level
+        // console.log('lost!, lets go to the next one!')
+        this.props.resolveDeath();
       }
     }
     // get win

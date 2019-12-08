@@ -14,7 +14,6 @@ class Deutsch extends React.Component {
     this.props.dispatch(fetchGermanGame());
   }
 
-
   worlds = () => {
     let worldThemes = this.props.germanGame.world_themes;
     if(typeof worldThemes !== 'undefined') {

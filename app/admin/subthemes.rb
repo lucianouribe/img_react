@@ -57,8 +57,8 @@ ActiveAdmin.register Subtheme do
               # collection: Themes.themes,
               collection: Themes.worlds,
               include_blank: false
-      f.input :hearts, input_html: {default_value: 3}
-      f.input :points, input_html: {default_value: 0}
+      f.input :hearts, input_html: {default_value: 0}
+      f.input :points, input_html: {default_value: 10}
       f.input :status,
               as: :select,
               collection: ['open', 'closed', 'won', 'lost'],

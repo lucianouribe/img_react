@@ -136,7 +136,7 @@ class GameHangman extends React.Component {
     if (this.state.passedGames > theSubTheme.hearts) {
       this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'closed', this.state.passedGames));
     } else {
-      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'closed', theSubTheme.hearts));
+      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'closed', theSubTheme.hearts + 1));
     }
     // get player data
     const player = this.props.germanGame;
@@ -165,7 +165,9 @@ class GameHangman extends React.Component {
 
     // set hearts
     if (this.state.passedGames > theSubTheme.hearts) {
-      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'open', this.state.passedGames));
+      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'lost', this.state.passedGames));
+    } else {
+      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'lost', theSubTheme.hearts));
     }
 
     // get player data

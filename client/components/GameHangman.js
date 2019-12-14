@@ -26,7 +26,8 @@ class GameHangman extends React.Component {
       show: true,
       passedGames: 0,
       showTotal: false,
-      totalCard: ''
+      totalCard: '',
+      cardAnswer: []
     }
   }
 
@@ -46,6 +47,10 @@ class GameHangman extends React.Component {
           actual={this.state.actual} />
       )
     }
+  }
+
+  setCardAnswer = (cardAnswer) => {
+    this.setState({cardAnswer});
   }
 
   resetGame = () => {
@@ -203,7 +208,8 @@ class GameHangman extends React.Component {
         setGamesPassed={this.setGamesPassed}
         subthemeId={this.props.subthemeId} 
         resetGame={this.resetGame} 
-        passedGames={this.state.passedGames} /> 
+        passedGames={this.state.passedGames} 
+        setCardAnswer={this.setCardAnswer} /> 
       )
   }
 
@@ -229,20 +235,26 @@ class GameHangman extends React.Component {
   result = () => {
     const {subtheme} = this.props.gameData;
     if (this.state.passedGames > subtheme.hearts) {
-      return (`
-      ${this.state.resultMessage}\r\n
-      ${subtheme.name}\r\n
-      New Record: ${this.state.passedGames} !!!\r\n
-      Lifes: ${this.props.germanGame.lifes}
-      `)
+      return `
+        ${this.state.cardAnswer[0]}\r\n
+        ${this.state.cardAnswer[1]}\r\n
+        \n
+        ${this.state.resultMessage}\r\n
+        ${subtheme.name}\r\n
+        New Record: ${this.state.passedGames} !!!\r\n
+        Lifes: ${this.props.germanGame.lifes}
+      `
     } else {
-      return (`
-      ${this.state.resultMessage}\r\n
-      ${subtheme.name}\r\n
-      Level Record: ${subtheme.hearts}\r\n
-      Current Spree: ${this.state.passedGames}\r\n
-      Lifes: ${this.props.germanGame.lifes}
-    `)
+      return `
+        ${this.state.cardAnswer[0]}\r\n
+        ${this.state.cardAnswer[1]}\r\n
+        \n
+        ${this.state.resultMessage}\r\n
+        ${subtheme.name}\r\n
+        Level Record: ${subtheme.hearts}\r\n
+        Current Spree: ${this.state.passedGames}\r\n
+        Lifes: ${this.props.germanGame.lifes}
+    `
     }
   }
 

@@ -51,18 +51,21 @@ class GameLogic extends React.Component {
   }
 
   getWord = (word) => {
-    const {passedGames} = this.props;
+    const {passedGames, compareMe} = this.props;
     if (word.word_type !== 'noun') {
       this.setState({word_type: 'other'})
     }
     if (passedGames % 2 === 0 || passedGames === 1) {
+      this.props.setCardAnswer([`${word.article} ${capitalize(word.noun)}`, compareMe.spanish]);
       return `${word.article} ${capitalize(word.noun)}`
     } else {
+      this.props.setCardAnswer([`Die ${capitalize(word.plural)}`, compareMe.spanish]);
       return `Die ${capitalize(word.plural)}`
     }
   }
 
   getVerb = (verb) => {
+    const {compareMe} = this.props;
     let verbArray;
     const verbPraes = verb.praesens.split("\n");
     const verbPraet  = verb.praeteritum.split("\n");
@@ -95,6 +98,7 @@ class GameLogic extends React.Component {
     let isFuturII = futur_ii.includes(line) ? 'futur 2' : '';
     // set verb_type state
     this.setState({verb_tense: isPraes + isPraet + isPer + isPlusQuan + isFuturI + isFuturII});
+    this.props.setCardAnswer([line, compareMe.spanish]);
     return line;
   }
 

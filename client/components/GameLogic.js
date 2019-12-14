@@ -87,13 +87,12 @@ class GameLogic extends React.Component {
     // get line
     const line = this.getLine(verbArray);
     // check if line present in one of the arrays
-    let isPraes = verbPraes.includes(line.slice(3)) ? 'präsens' : '';
-    let isPraet = verbPraet.includes(line.slice(3)) ? 'präteritum' : '';
-    let isPer = verbPer.includes(line.slice(3)) ? 'perfekt' : '';
-    let isPlusQuan = verbPlusQuan.includes(line.slice(3)) ? 'plusquanperfekt' : '';
-    let isFuturI = futur_i.includes(line.slice(3)) ? 'futur 1' : '';
-    let isFuturII = futur_ii.includes(line.slice(3)) ? 'futur 2' : '';
-    // let isFuturII = futur_ii.some( ele => ele.includes(line.slice(3)) ) ? 'futur 2' : '';
+    let isPraes = verbPraes.includes(line) ? 'präsens' : '';
+    let isPraet = verbPraet.includes(line) ? 'präteritum' : '';
+    let isPer = verbPer.includes(line) ? 'perfekt' : '';
+    let isPlusQuan = verbPlusQuan.includes(line) ? 'plusquanperfekt' : '';
+    let isFuturI = futur_i.includes(line) ? 'futur 1' : '';
+    let isFuturII = futur_ii.includes(line) ? 'futur 2' : '';
     // set verb_type state
     this.setState({verb_tense: isPraes + isPraet + isPer + isPlusQuan + isFuturI + isFuturII});
     return line;
@@ -127,6 +126,7 @@ class GameLogic extends React.Component {
     switch (thematic) {
       case 'words':
         if (passedGames % 2 === 0 || passedGames === 1) {
+          // return `${compareMe.word_type} | ${compareMe.spanish}`
           return (
             <div>
               <span>{compareMe.word_type}</span>
@@ -134,6 +134,7 @@ class GameLogic extends React.Component {
             </div>
             )
         } else {
+          // return `${compareMe.word_type} | plural | ${compareMe.spanish}`
           return (
           <div>
             <span>plural</span>

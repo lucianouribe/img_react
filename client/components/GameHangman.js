@@ -95,12 +95,12 @@ class GameHangman extends React.Component {
       if(actualIndex + 1 < words.length){
         console.log('there are more words');
         let actualObject = words[actualIndex + 1];
-        this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
+        this.setState({actualIndex: actualIndex + 1, actualObject });
       } else {
         let actualObject = verbs[0];
         if (typeof actualObject !== 'undefined'){
           console.log('pass to verbs');
-          this.setState({actualIndex: 0, actualObject, actualThematic: 'verbs', actual: actual + 1});
+          this.setState({actualIndex: 0, actualObject, actualThematic: 'verbs' });
         } else {
           this.resolveWin();
         }
@@ -111,7 +111,7 @@ class GameHangman extends React.Component {
       if(actualIndex + 1 < verbs.length){
         console.log('there are more verbs');
         let actualObject = verbs[actualIndex + 1];
-        this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1});
+        this.setState({actualIndex: actualIndex + 1, actualObject });
       } else {
         console.log('pass to punctuation');
         // let actualObject = phrases[0];
@@ -202,7 +202,8 @@ class GameHangman extends React.Component {
         passedGames={this.state.passedGames}
         setGamesPassed={this.setGamesPassed}
         subthemeId={this.props.subthemeId} 
-        resetGame={this.resetGame} /> 
+        resetGame={this.resetGame} 
+        passedGames={this.state.passedGames} /> 
       )
   }
 

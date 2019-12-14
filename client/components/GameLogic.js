@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { letters } from '../actions/letters'
 import { fails } from '../actions/fails'
-import { capitalize } from '../helpers';
+import { capitalize, shuffle } from '../helpers';
 import GameKeyBoard from './GameKeyBoard';
 
 class GameLogic extends React.Component {
@@ -14,6 +14,7 @@ class GameLogic extends React.Component {
       nominative: 'ich',
       object: '',
       word_type: 'noun',
+      verb_tense: 'präsens',
       response: '_',
       letters: '',
       fails: 0,
@@ -21,19 +22,21 @@ class GameLogic extends React.Component {
   }
 
   componentDidMount(){
-    const object = this.getObject();
-    this.setState({object});
+    this.newObject();
     this.renderAnswer();
   }
 
   componentDidUpdate(){
-    // if true -> evaluate
-    if (this.state.response === this.state.object) {
-      const object = this.getObject();
-      this.setState({object});
+    if (this.state.response === this.state.object.replace('\r', '')) {
+      this.newObject();
     }
   }
 
+  newObject = () => {
+    const object = this.getObject();
+    this.setState({object});
+  }
+  
   getObject = () => {
     const { compareMe, thematic } = this.props;
     if (thematic === 'words'){
@@ -48,11 +51,11 @@ class GameLogic extends React.Component {
   }
 
   getWord = (word) => {
-    // if level 3, 5, 7, 9 get plural word
+    const {passedGames} = this.props;
     if (word.word_type !== 'noun') {
       this.setState({word_type: 'other'})
     }
-    if (this.props.actualLevel % 2 === 0 || this.props.actualLevel === 1) {
+    if (passedGames % 2 === 0 || passedGames === 1) {
       return `${word.article} ${capitalize(word.noun)}`
     } else {
       return `Die ${capitalize(word.plural)}`
@@ -61,46 +64,50 @@ class GameLogic extends React.Component {
 
   getVerb = (verb) => {
     let verbArray;
-    let verbPrae;
-    let verbPret;
-    let verbPer;
-    switch (this.props.actualLevel) {
-      case 1:
-        verbArray = verb.praesens.split("\n")
-        return this.getLine(verbArray)
-        break;
-        case 2:
-        verbPrae = verb.praesens.split("\n")
-        verbPret = verb.praeteritum.split("\n")
-        verbArray = [verbPrae, verbPret]
-        return this.getLine(verbArray[Math.floor(Math.random()*verbArray.length)])
-        break;
-        case 3:
-          verbArray = verb.futur_i.split("\n")
-          return this.getLine(verbArray)
-          break
-          case 4:
-            verbPer = verb.perfekt.split("\n")
-            return this.getLine(verbArray)
-        break;
-      case 5:
-        verbArray = verb.plusquanperfekt.split("\n")
-        return this.getLine(verbArray)
-        break;
-      default:
-        verbArray = verb.futur_ii.split("\n")
-        return this.getLine(verbArray)
+    const verbPraes = verb.praesens.split("\n");
+    const verbPraet  = verb.praeteritum.split("\n");
+    const verbPer = verb.perfekt.split("\n");
+    const verbPlusQuan = verb.plusquamperfekt.split("\n");
+    const futur_i = verb.futur_i.split("\n");
+    const futur_ii = verb.futur_ii.split("\n");
+    const {passedGames} = this.props;
+    if (passedGames <= 8){
+      verbArray = verbPraes;
+    } else if (passedGames > 8 && passedGames <= 11) {
+      verbArray = [...verbPraes, ...verbPraet];
+    } else if (passedGames > 11 && passedGames <= 14) {
+      verbArray = [...verbPraet, ...verbPer];
+    } else if (passedGames > 14 && passedGames <= 17) {
+      verbArray = [...verbPer, ...verbPlusQuan];
+    } else if (passedGames > 17 && passedGames <= 20) {
+      verbArray = [...verbPlusQuan, ...futur_i];
+    } else {
+      verbArray = [...futur_i, ...futur_ii];
     }
+    // get line
+    const line = this.getLine(verbArray);
+    // check if line present in one of the arrays
+    let isPraes = verbPraes.includes(line.slice(3)) ? 'präsens' : '';
+    let isPraet = verbPraet.includes(line.slice(3)) ? 'präteritum' : '';
+    let isPer = verbPer.includes(line.slice(3)) ? 'perfekt' : '';
+    let isPlusQuan = verbPlusQuan.includes(line.slice(3)) ? 'plusquanperfekt' : '';
+    let isFuturI = futur_i.includes(line.slice(3)) ? 'futur 1' : '';
+    let isFuturII = futur_ii.includes(line.slice(3)) ? 'futur 2' : '';
+    // let isFuturII = futur_ii.some( ele => ele.includes(line.slice(3)) ) ? 'futur 2' : '';
+    // set verb_type state
+    this.setState({verb_tense: isPraes + isPraet + isPer + isPlusQuan + isFuturI + isFuturII});
+    return line;
   }
 
   getLine = (array) => {
+    const shuffledArray = shuffle(array);
     const nominatives = ['ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'Sie'];
     // pick one personal pronoun
     const nominative = nominatives[Math.floor(Math.random()*nominatives.length)];
     const nominativesZweitePersone = ['er', 'sie', 'es', 'man'];
     const nominativesZweitePerson = nominativesZweitePersone[Math.floor(Math.random()*nominativesZweitePersone.length)];
 
-    for (const line of array) {
+    for (const line of shuffledArray) {
       if (line.includes(nominative)){
         this.setState({nominative});
         if (line.includes('er/sie/es')){
@@ -111,23 +118,40 @@ class GameLogic extends React.Component {
         } else {
           return line;
         }
-
       }
     }
   }
 
   getKeywords = () =>{
-    const {actualLevel, thematic, compareMe} = this.props;
+    const {passedGames, thematic, compareMe} = this.props;
     switch (thematic) {
       case 'words':
-        if (actualLevel % 2 === 0 || this.props.actualLevel === 1) {
-          return `${compareMe.word_type} | ${compareMe.spanish}`
+        if (passedGames % 2 === 0 || passedGames === 1) {
+          return (
+            <div>
+              <span>{compareMe.word_type}</span>
+              <span>{compareMe.spanish}</span>
+            </div>
+            )
         } else {
-          return `${compareMe.word_type} | plural | ${compareMe.spanish}`
+          return (
+          <div>
+            <span>plural</span>
+            <span>{compareMe.word_type}</span>
+            <span>{compareMe.spanish}</span>
+          </div>
+          )
         }
         break;
       case 'verbs':
-        return `${this.state.nominative} | ${compareMe.verb_type} | ${compareMe.spanish}`
+        return (
+          <div>
+            <span>{this.state.nominative}</span>
+            <span>{this.state.verb_tense}</span>
+            <span>{compareMe.verb_type}</span>
+            <span>{compareMe.spanish}</span>
+          </div>
+        )
         break;
       case 'phrases':
         return 'phrase keywords'

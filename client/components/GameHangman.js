@@ -59,10 +59,10 @@ class GameHangman extends React.Component {
       type: 'PUT',
     }).done( data => {
       console.log('reset Game success', data);
-      history.push("/deutsch")
+      history.push('/deutsch');
     }).fail( err => {
       console.log('reset Game fail', err);
-      history.push("/deutsch")
+      history.push('/deutsch');
     });
   }
 
@@ -260,7 +260,7 @@ class GameHangman extends React.Component {
 
   acceptFate = () => {
     this.setState({showTotal: false});
-    history.push("/deutsch");
+    history.push(`/subthemes?theme=${this.props.gameData.subtheme.theme}`);
   }
 
   renderGameOrResult = () => {

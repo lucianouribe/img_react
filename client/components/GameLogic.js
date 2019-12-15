@@ -13,7 +13,6 @@ class GameLogic extends React.Component {
     this.state = {
       nominative: 'ich',
       object: '',
-      word_type: 'noun',
       verb_tense: 'präsens',
       response: '_',
       letters: '',
@@ -52,15 +51,22 @@ class GameLogic extends React.Component {
 
   getWord = (word) => {
     const {passedGames, compareMe} = this.props;
-    if (word.word_type !== 'noun') {
-      this.setState({word_type: 'other'})
-    }
     if (passedGames % 2 === 0 || passedGames === 1) {
-      this.props.setCardAnswer([`${word.article} ${capitalize(word.noun)}`, compareMe.spanish]);
-      return `${word.article} ${capitalize(word.noun)}`
+      if (word.word_type !== 'noun') {
+        this.props.setCardAnswer([`${capitalize(word.noun)}`, compareMe.spanish]);
+        return `${capitalize(word.noun)}`
+      } else {
+        this.props.setCardAnswer([`${word.article} ${capitalize(word.noun)}`, compareMe.spanish]);
+        return `${word.article} ${capitalize(word.noun)}`
+      }
     } else {
-      this.props.setCardAnswer([`Die ${capitalize(word.plural)}`, compareMe.spanish]);
-      return `Die ${capitalize(word.plural)}`
+      if (word.word_type !== 'noun') {
+        this.props.setCardAnswer([`${capitalize(word.noun)}`, compareMe.spanish]);
+        return `${capitalize(word.noun)}`
+      } else {
+        this.props.setCardAnswer([`Die ${capitalize(word.plural)}`, compareMe.spanish]);
+        return `Die ${capitalize(word.plural)}`
+      }
     }
   }
 
@@ -130,7 +136,6 @@ class GameLogic extends React.Component {
     switch (thematic) {
       case 'words':
         if (passedGames % 2 === 0 || passedGames === 1) {
-          // return `${compareMe.word_type} | ${compareMe.spanish}`
           return (
             <div>
               <span>{compareMe.word_type}</span>
@@ -138,13 +143,12 @@ class GameLogic extends React.Component {
             </div>
             )
         } else {
-          // return `${compareMe.word_type} | plural | ${compareMe.spanish}`
           return (
-          <div>
-            <span>plural</span>
-            <span>{compareMe.word_type}</span>
-            <span>{compareMe.spanish}</span>
-          </div>
+            <div>
+              { compareMe.word_type !== 'noun' ? null : <span>plural</span> }
+              <span>{compareMe.word_type}</span>
+              <span>{compareMe.spanish}</span>
+            </div>
           )
         }
         break;
@@ -152,8 +156,8 @@ class GameLogic extends React.Component {
         return (
           <div>
             <span>{this.state.nominative}</span>
-            <span>{this.state.verb_tense}</span>
-            <span>{compareMe.verb_type}</span>
+            {this.state.verb_tense === '' ? null : <span>{this.state.verb_tense}</span>}
+            {compareMe.verb_type === 'regular' ? null : <span>{compareMe.verb_type}</span>}
             <span>{compareMe.spanish}</span>
           </div>
         )

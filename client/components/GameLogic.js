@@ -204,6 +204,7 @@ class GameLogic extends React.Component {
       this.setState({letters: ''});
       console.log('pass to next game')
       this.props.setGamesPassed(this.props.passedGames + 1);
+      this.setState({fails: 0});
       this.props.dispatch(fails(0));
       this.props.nextGame();
     }

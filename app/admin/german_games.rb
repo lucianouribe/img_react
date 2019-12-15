@@ -3,7 +3,7 @@ ActiveAdmin.register GermanGame do
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
-permit_params :lifes, :punctuation, :punctuation_4_total, :level, :user_id, :themes
+permit_params :lifes, :punctuation, :punctuation_4_total, :level, :user_id
 #
 # or
 #

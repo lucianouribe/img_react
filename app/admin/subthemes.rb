@@ -10,17 +10,17 @@ ActiveAdmin.register Subtheme do
     link_to "All Subthemes", admin_subthemes_path
   end
 
-  permit_params :name, :theme, :hearts, :points, :status, :level, :german_game_id, :image
+  permit_params :name, :theme, :best_spree, :coins, :status, :games_lost, :german_game_id, :image
 
   index do
     selectable_column
     column :id
     column :name
     column :theme
-    column :hearts
-    column :points
+    column :best_spree
+    column :coins
     column :status
-    column :level
+    column :games_lost
     column :german_game_id
     column 'Image', sortable: :image_file_name do |subtheme| 
       image_tag(subtheme.image.url, width: '64') 
@@ -36,10 +36,10 @@ ActiveAdmin.register Subtheme do
       row :id
       row :name
       row :theme
-      row :hearts
-      row :points
+      row :best_spree
+      row :coins
       row :status
-      row :level
+      row :games_lost
       row :german_game_id
       row 'Image', sortable: :image_file_name do |subtheme| 
         image_tag(subtheme.image.url, width: '64') 
@@ -57,13 +57,13 @@ ActiveAdmin.register Subtheme do
               # collection: Themes.themes,
               collection: Themes.worlds,
               include_blank: false
-      f.input :hearts, input_html: {default_value: 0}
-      f.input :points, input_html: {default_value: 10}
+      f.input :best_spree, input_html: {default_value: 0}
+      f.input :coins, input_html: {default_value: 10}
       f.input :status,
               as: :select,
               collection: ['open', 'closed', 'won', 'lost'],
               include_blank: false
-      f.input :level, input_html: {default_value: 1}
+      f.input :games_lost, input_html: {default_value: 1}
       f.input :german_game_id,
               as: :select,
               collection: GermanGame.all.map {|game| "#{game.id}"},

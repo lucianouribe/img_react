@@ -16,16 +16,16 @@ export const fetchSubThemes = (theme) => {
 
 }
 
-export const updateSubthemePoints = (id, points, status, hearts) => {
-  // console.log(`this is updateSubthemePoints with id: ${id}, points ${points}, status ${status} & hearts ${hearts}`)
+export const updateSubthemePoints = (id, coins, status, best_spree) => {
+  // console.log(`this is updateSubthemePoints with id: ${id}, coins ${coins}, status ${status} & best_spree ${best_spree}`)
   return(dispatch) => {
     $.ajax({
       url: `/api/subthemes/${id}`,
       type: 'PUT',
       dataType: 'JSON',
-      data: { subtheme: { points, status, hearts } }
+      data: { subtheme: { coins, status, best_spree } }
     }).done( subtheme => {
-      // console.log(`update subtheme points - ${id} - success`);
+      // console.log(`update subtheme coins - ${id} - success`);
       // console.log(subtheme);
       dispatch({ type: 'UPDATE_SUBTHEME_POINTS', subtheme });
     }).fail( data => {

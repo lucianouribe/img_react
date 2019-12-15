@@ -42,7 +42,7 @@ class GameHangman extends React.Component {
       return(
         <GameSubNav 
           subthemeName={subthemeName}
-          subthemeHearts={this.state.passedGames}
+          subthemeBest={this.state.passedGames}
           amount={amount}
           actual={this.state.actual} />
       )
@@ -100,12 +100,12 @@ class GameHangman extends React.Component {
       if(actualIndex + 1 < words.length){
         console.log('there are more words');
         let actualObject = words[actualIndex + 1];
-        this.setState({actualIndex: actualIndex + 1, actualObject });
+        this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1 });
       } else {
         let actualObject = verbs[0];
         if (typeof actualObject !== 'undefined'){
           console.log('pass to verbs');
-          this.setState({actualIndex: 0, actualObject, actualThematic: 'verbs' });
+          this.setState({actualIndex: 0, actualObject, actualThematic: 'verbs', actual: actual + 1 });
         } else {
           this.resolveWin();
         }
@@ -116,7 +116,7 @@ class GameHangman extends React.Component {
       if(actualIndex + 1 < verbs.length){
         console.log('there are more verbs');
         let actualObject = verbs[actualIndex + 1];
-        this.setState({actualIndex: actualIndex + 1, actualObject });
+        this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1 });
       } else {
         console.log('pass to punctuation');
         // let actualObject = phrases[0];
@@ -139,9 +139,9 @@ class GameHangman extends React.Component {
 
     // set best_spree & close subtheme
     if (this.state.passedGames > theSubTheme.best_spree) {
-      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'closed', this.state.passedGames));
+      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'closed', this.state.passedGames + 1, theSubTheme.games_lost));
     } else {
-      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'closed', theSubTheme.best_spree + 1));
+      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'closed', theSubTheme.best_spree + 1, theSubTheme.games_lost));
     }
     // get player data
     const player = this.props.germanGame;
@@ -170,9 +170,9 @@ class GameHangman extends React.Component {
 
     // set best_spree
     if (this.state.passedGames > theSubTheme.best_spree) {
-      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'lost', this.state.passedGames));
+      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'lost', this.state.passedGames + 1, theSubTheme.games_lost + 1 ));
     } else {
-      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'lost', theSubTheme.best_spree));
+      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'lost', theSubTheme.best_spree, theSubTheme.games_lost + 1));
     }
 
     // get player data

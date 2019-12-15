@@ -39,6 +39,6 @@ class Api::SubthemesController < ApplicationController
   end
 
   def api_subtheme_params
-    params.require(:subtheme).permit(:coins, :status, :best_spree)
+    params.require(:subtheme).permit(:coins, :status, :best_spree, :games_lost)
   end
 end

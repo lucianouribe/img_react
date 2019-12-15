@@ -38,9 +38,10 @@ class Api::GermanGamesController < ApplicationController
 
   def reset_subthemes
     Subtheme.all.each do |s|
-      s.update_attribute :coins,  10
+      s.update_attribute :coins,  8
       s.update_attribute :status,  'open'
       s.update_attribute :best_spree,  0
+      s.update_attribute :games_lost,  0
     end
   end
 

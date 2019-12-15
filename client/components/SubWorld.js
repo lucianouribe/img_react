@@ -28,12 +28,12 @@ class SubWorld extends React.Component {
             <h4>{subtheme.best_spree}</h4>
           </span>
           <span className={`status_container`}>
-            <p>won</p>
-            <h4>{subtheme.level}</h4>     
+            <p>lost</p>
+            <h4>{subtheme.games_lost}</h4>     
           </span>
           <span className='points_container'>
-            <p>lost</p>
-            <h4>{subtheme.points}</h4>
+            <p>coins</p>
+            <h4>{subtheme.coins}</h4>
           </span>
         </div>
       </Link>

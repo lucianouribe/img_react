@@ -10,9 +10,9 @@ class Api::SubthemesController < ApplicationController
   def game
     subtheme = Subtheme.where(name: @theme).first
     subtheme.img_url = subtheme.image.url
-    @words = Word.where(subtheme: "#{subtheme.id}").where(level: "#{subtheme.level}").shuffle.sample(8)
-    @verbs = Verb.where(subtheme: "#{subtheme.id}").where(level: "#{subtheme.level}").shuffle.sample(8)
-    @phrases = Phrase.where(subtheme: "#{subtheme.id}").where(level: "#{subtheme.level}").shuffle.sample(8)
+    @words = Word.where(subtheme: "#{subtheme.id}").shuffle.sample(8)
+    @verbs = Verb.where(subtheme: "#{subtheme.id}").shuffle.sample(8)
+    @phrases = Phrase.where(subtheme: "#{subtheme.id}").shuffle.sample(8)
     render json: { words: @words, verbs: @verbs, phrases: @phrases, subtheme: subtheme, subtheme_img: subtheme.img_url}
   end
   
@@ -39,6 +39,6 @@ class Api::SubthemesController < ApplicationController
   end
 
   def api_subtheme_params
-    params.require(:subtheme).permit(:points, :status, :hearts)
+    params.require(:subtheme).permit(:coins, :status, :best_spree)
   end
 end

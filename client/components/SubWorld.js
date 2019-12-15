@@ -25,7 +25,7 @@ class SubWorld extends React.Component {
         <div className='data_container'>
           <span className='level_container'>
             <p>best</p>
-            <h4>{subtheme.hearts}</h4>
+            <h4>{subtheme.best_spree}</h4>
           </span>
           <span className={`status_container`}>
             <p>won</p>

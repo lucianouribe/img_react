@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191012161117) do
+ActiveRecord::Schema.define(version: 20191215131102) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -153,10 +153,10 @@ ActiveRecord::Schema.define(version: 20191012161117) do
   create_table "subthemes", force: :cascade do |t|
     t.string "name"
     t.string "theme"
-    t.integer "hearts"
-    t.integer "points"
+    t.integer "best_spree"
+    t.integer "coins"
     t.string "status"
-    t.integer "level"
+    t.integer "games_lost"
     t.bigint "german_game_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

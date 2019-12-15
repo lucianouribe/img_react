@@ -137,11 +137,11 @@ class GameHangman extends React.Component {
     // get subthemes
     const theSubTheme = this.getSubtheme();
 
-    // set hearts & close subtheme
-    if (this.state.passedGames > theSubTheme.hearts) {
+    // set best_spree & close subtheme
+    if (this.state.passedGames > theSubTheme.best_spree) {
       this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'closed', this.state.passedGames));
     } else {
-      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'closed', theSubTheme.hearts + 1));
+      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'closed', theSubTheme.best_spree + 1));
     }
     // get player data
     const player = this.props.germanGame;
@@ -168,11 +168,11 @@ class GameHangman extends React.Component {
     // get subthemes
     const theSubTheme = this.getSubtheme();
 
-    // set hearts
-    if (this.state.passedGames > theSubTheme.hearts) {
+    // set best_spree
+    if (this.state.passedGames > theSubTheme.best_spree) {
       this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'lost', this.state.passedGames));
     } else {
-      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'lost', theSubTheme.hearts));
+      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'lost', theSubTheme.best_spree));
     }
 
     // get player data
@@ -234,7 +234,7 @@ class GameHangman extends React.Component {
 
   result = () => {
     const {subtheme} = this.props.gameData;
-    if (this.state.passedGames > subtheme.hearts) {
+    if (this.state.passedGames > subtheme.best_spree) {
       return `
         ${this.state.cardAnswer[0]}\r\n
         ${this.state.cardAnswer[1]}\r\n
@@ -251,7 +251,7 @@ class GameHangman extends React.Component {
         \n
         ${this.state.resultMessage}\r\n
         ${subtheme.name}\r\n
-        Level Record: ${subtheme.hearts}\r\n
+        Level Record: ${subtheme.best_spree}\r\n
         Current Spree: ${this.state.passedGames}\r\n
         Lifes: ${this.props.germanGame.lifes}
     `

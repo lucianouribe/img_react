@@ -76,16 +76,16 @@ class GameLogic extends React.Component {
     const {passedGames} = this.props;
     if (passedGames <= 8){
       verbArray = verbPraes;
-    } else if (passedGames > 8 && passedGames <= 11) {
+    } else if (passedGames > 8 && passedGames <= 10) {
       verbArray = [...verbPraes, ...verbPraet];
-    } else if (passedGames > 11 && passedGames <= 14) {
+    } else if (passedGames > 10 && passedGames <= 12) {
       verbArray = [...verbPraet, ...verbPer];
-    } else if (passedGames > 14 && passedGames <= 17) {
-      verbArray = [...verbPer, ...verbPlusQuan];
-    } else if (passedGames > 17 && passedGames <= 20) {
-      verbArray = [...verbPlusQuan, ...futur_i];
+    } else if (passedGames > 12 && passedGames <= 14) {
+      verbArray = [...verbPer, ...futur_i];
+    } else if (passedGames > 14 && passedGames <= 16) {
+      verbArray = [...futur_i, ...verbPlusQuan];
     } else {
-      verbArray = [...futur_i, ...futur_ii];
+      verbArray = [...verbPlusQuan, ...futur_ii];
     }
     // get line
     const line = this.getLine(verbArray);

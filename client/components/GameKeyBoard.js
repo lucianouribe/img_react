@@ -34,4 +34,10 @@ class GameKeyBoard extends React.Component {
 
 }
 
-export default connect(null)(GameKeyBoard);
+const mapStateToProps = (state) => {
+  return {
+    letters: state.letters
+  }
+}
+
+export default connect(mapStateToProps)(GameKeyBoard);

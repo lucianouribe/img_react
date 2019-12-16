@@ -10,6 +10,7 @@ import { updateGame } from '../actions/germanGame'
 import { updateSubthemePoints } from '../actions/subThemes'
 import { letters } from '../actions/letters'
 import { fails } from '../actions/fails'
+import { shuffle } from '../helpers';
 
 class GameHangman extends React.Component {
 
@@ -27,7 +28,9 @@ class GameHangman extends React.Component {
       passedGames: 0,
       showTotal: false,
       totalCard: '',
-      cardAnswer: []
+      cardAnswer: [],
+      coins: 0,
+      objective: ''
     }
   }
 
@@ -41,7 +44,7 @@ class GameHangman extends React.Component {
 
       return(
         <GameSubNav 
-          subthemeName={subthemeName}
+          subthemeName={subtheme.name}
           subthemeBest={this.state.passedGames}
           amount={amount}
           actual={this.state.actual} />
@@ -87,6 +90,7 @@ class GameHangman extends React.Component {
       actualObject, 
       subthemeImage: gameData.subtheme_img, 
       actualLevel: gameData.subtheme.level,
+      coins: gameData.subtheme.coins,
       show: false
     });
   }
@@ -94,18 +98,18 @@ class GameHangman extends React.Component {
   nextGame = () => {
     let {words, verbs, phrases} = this.props.gameData;
     // console.log(words, verbs, phrases)
-    let {actualIndex, actual, actualThematic} = this.state;
+    let {actualIndex, actual, actualThematic, coins } = this.state;
     // console.log('words', actualIndex, actual, actualThematic, this.props.gameData)
     if(actualThematic === 'words'){
       if(actualIndex + 1 < words.length){
         console.log('there are more words');
         let actualObject = words[actualIndex + 1];
-        this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1 });
+        this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1, coins: coins + 1  });
       } else {
         let actualObject = verbs[0];
         if (typeof actualObject !== 'undefined'){
           console.log('pass to verbs');
-          this.setState({actualIndex: 0, actualObject, actualThematic: 'verbs', actual: actual + 1 });
+          this.setState({actualIndex: 0, actualObject, actualThematic: 'verbs', actual: actual + 1, coins: coins + 1 });
         } else {
           this.resolveWin();
         }
@@ -116,7 +120,7 @@ class GameHangman extends React.Component {
       if(actualIndex + 1 < verbs.length){
         console.log('there are more verbs');
         let actualObject = verbs[actualIndex + 1];
-        this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1 });
+        this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1, coins: coins + 1 });
       } else {
         console.log('pass to punctuation');
         // let actualObject = phrases[0];
@@ -135,13 +139,13 @@ class GameHangman extends React.Component {
   resolveWin = () => {
     this.setState({showTotal: true, resultMessage: 'Thema Bestanden!'});
     // get subthemes
-    const theSubTheme = this.getSubtheme();
+    const {subtheme} = this.props.gameData;
 
     // set best_spree & close subtheme
-    if (this.state.passedGames > theSubTheme.best_spree) {
-      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'closed', this.state.passedGames + 1, theSubTheme.games_lost));
+    if (this.state.passedGames > subtheme.best_spree) {
+      this.props.dispatch(updateSubthemePoints(subtheme.id, this.state.coins + 1, 'closed', this.state.passedGames + 1, subtheme.games_lost));
     } else {
-      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'closed', theSubTheme.best_spree + 1, theSubTheme.games_lost));
+      this.props.dispatch(updateSubthemePoints(subtheme.id, this.state.coins + 1, 'closed', subtheme.best_spree + 1, subtheme.games_lost));
     }
     // get player data
     const player = this.props.germanGame;
@@ -151,28 +155,17 @@ class GameHangman extends React.Component {
     this.props.dispatch(updateGame(player.id, playerLifes + 1, playerPunctuation + 1, player.punctuation_4_total + 1, player.level));
   }
 
-  getSubtheme = () => {
-    let theSubTheme;
-    const {subThemes, subthemeId} = this.props;
-    for (const subT of subThemes) {
-      if (subT.id === subthemeId) {
-        theSubTheme = subT;
-      }
-    }
-    return theSubTheme;
-  }
-
   resolveDeath = () => {
     this.setState({showTotal: true, resultMessage: 'Du bist tot!'});
 
     // get subthemes
-    const theSubTheme = this.getSubtheme();
+    const {subtheme} = this.props.gameData;
 
     // set best_spree
-    if (this.state.passedGames > theSubTheme.best_spree) {
-      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'lost', this.state.passedGames + 1, theSubTheme.games_lost + 1 ));
+    if (this.state.passedGames > subtheme.best_spree) {
+      this.props.dispatch(updateSubthemePoints(subtheme.id, 8, 'lost', this.state.passedGames + 1, subtheme.games_lost + 1 ));
     } else {
-      this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'lost', theSubTheme.best_spree, theSubTheme.games_lost + 1));
+      this.props.dispatch(updateSubthemePoints(subtheme.id, 8, 'lost', subtheme.best_spree, subtheme.games_lost + 1));
     }
 
     // get player data
@@ -187,9 +180,6 @@ class GameHangman extends React.Component {
       this.props.dispatch(updateGame(player.id, playerLifes - 1, playerPunctuation, player.punctuation_4_total + 1, player.level));
     } else {
       this.setState({resultMessage: 'Game Over!'});
-      // this.props.dispatch(updateGame(player.id, 3, 0, 0, 1));
-      // this.props.dispatch(updateSubthemePoints(theSubTheme.id, 10, 'open', 0));
-      // create an action to reset all subthemes and all themes
       this.resetGame();
     }
 
@@ -209,8 +199,48 @@ class GameHangman extends React.Component {
         subthemeId={this.props.subthemeId} 
         resetGame={this.resetGame} 
         passedGames={this.state.passedGames} 
-        setCardAnswer={this.setCardAnswer} /> 
+        setCardAnswer={this.setCardAnswer} 
+        selectedObject={this.selectedObject} /> 
       )
+  }
+
+  renderCoins = () =>{
+    return (
+      <div className="coins">
+        <span>{this.state.coins}</span>
+      </div>
+    )
+  }
+
+  renderHelp = () => {
+    return (<i className='get-help fa fa-question-circle' onClick={() => this.getHelp()}></i>)
+  }
+
+  getHelp = () => {
+    // get word objective
+    const { coins, objective } = this.state;
+    if (coins >= 2) {
+      this.setState({coins: coins - 2});
+      let usedLetters = this.props.letters;
+      let abecedary = 'ABCDEFGHIJKLMNOPQRSTUVWXYZßÄÖÜ'.split('').map( (letter) => {
+          if (usedLetters.indexOf(letter) === -1) {
+            return letter
+          }
+      })
+      let selectedLetter = shuffle(abecedary).join('').charAt(0);
+
+      this.props.dispatch(letters(usedLetters + selectedLetter));
+      // make game logic this.state.letters to reflect change
+      if (objective.toLowerCase().indexOf(selectedLetter.toLowerCase()) > -1){
+        jQuery(`.keyboard span:contains(${selectedLetter})`).click()
+      }
+      // on pass game force keyboard cleanup
+    }
+
+  }
+
+  selectedObject = (objective) => {
+    this.setState({objective})
   }
 
   swapViews = () => {
@@ -224,6 +254,8 @@ class GameHangman extends React.Component {
       return(
         <div>
           {this.gameSubNav()}
+          {this.renderCoins()}
+          {this.renderHelp()}
           <div className={`game-image hang-${this.props.fails}`}></div>
           {this.gameLogic()}
         </div>
@@ -289,6 +321,7 @@ const mapStateToProps = (state) => {
     gameData: state.gameData,
     subThemes: state.subThemes,
     germanGame: state.germanGame,
+    letters: state.letters,
     fails: state.fails
   }
 }

@@ -120,6 +120,38 @@ body
           font-size: 7rem
           margin: 0
           text-transform: capitalize
+      .coins
+        position: absolute
+        width: calc(100% - 66px)
+        max-width: 470px
+        @include flexbox()
+        @include justify-content(end)
+        span
+          width: 46px
+          height: 20px
+          padding: 5px
+          margin-top: 10px
+          margin-right: 6px
+          background-image: url(asset_path("game/coin.svg"))
+          background-position: left
+          background-repeat: no-repeat
+          background-size: contain
+          color: #fff
+          font-size: 16px
+          font-weight: 700
+          line-height: 22px
+          text-align: right
+      .get-help
+        position: absolute
+        width: 26px
+        height: 26px
+        margin-top: 10px
+        margin-left: 10px
+        border-radius: 50%
+        color: #e8b431
+        font-size: 30px
+        background: #BD9501
+
       .game-comparer
         @include flexbox()
         @include align-items(center)

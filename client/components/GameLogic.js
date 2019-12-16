@@ -26,14 +26,14 @@ class GameLogic extends React.Component {
   }
 
   componentDidUpdate(){
-    if (this.state.response === this.state.object.replace('\r', '')) {
-      this.newObject();
-    }
+    if (this.props.letters !== this.state.letters) {this.setState({letters: this.props.letters})};
+    if (this.state.response === this.state.object.replace('\r', '')) {this.newObject()};
   }
 
   newObject = () => {
     const object = this.getObject();
     this.setState({object});
+    this.props.selectedObject(object);
   }
   
   getObject = () => {
@@ -172,43 +172,42 @@ class GameLogic extends React.Component {
 
   getKeyboard = () => {
     if (this.state.object !== '') {
-      return <GameKeyBoard object={this.state.object} letters={this.state.letters} handlePressedLetters={this.handlePressedLetters} evaluateResponse={this.evaluateResponse} />
+      return (
+        <GameKeyBoard 
+          object={this.state.object} 
+          letters={this.state.letters} 
+          handlePressedLetters={this.handlePressedLetters} 
+          evaluateResponse={this.evaluateResponse} />
+      )
     }
   }
 
   handlePressedLetters = (letter) => {
     this.setState({ letters: this.state.letters + letter});
     this.props.dispatch(letters(this.state.letters + letter));
-    // make a script that asigns to each letter already the value of true or false so when clicked it inmediately send to the redux the fail or success of the letter
     this.evaluateLetter(letter);
   }
 
   evaluateLetter = (letter) => {
     let objectArray = Array.from( this.state.object.toLowerCase().replace('\r', '').replace(' ', '') );
-    // this.props.dispatch(fails(this.props.fails));
     let check = objectArray.some(ele => ele === letter.toLowerCase());
     if (!check) {
       this.setState({ fails: this.state.fails + 1 })
       this.props.dispatch(fails(this.state.fails + 1));
-      // get loss
       if(this.state.fails + 1 === 7){
-        // console.log('lost!, lets go to the next one!')
         this.props.resolveDeath();
       }
     }
-    // get win
-
-      // get 2 points for help
   }
 
   evaluateResponse = (response) => {
     const object = this.state.object.replace('\r', '');
     this.setState({response});
     if ( response !== '' && (response === object) ) {
-      this.setState({letters: ''});
       console.log('pass to next game')
       this.props.setGamesPassed(this.props.passedGames + 1);
-      this.setState({fails: 0});
+      this.setState({letters: '', fails: 0});
+      this.props.dispatch(letters(''));
       this.props.dispatch(fails(0));
       this.props.nextGame();
     }

@@ -143,7 +143,7 @@ class GameHangman extends React.Component {
 
     // set best_spree & close subtheme
     if (this.state.passedGames > subtheme.best_spree) {
-      this.props.dispatch(updateSubthemePoints(subtheme.id, this.state.coins + 1, 'closed', this.state.passedGames + 1, subtheme.games_lost));
+      this.props.dispatch(updateSubthemePoints(subtheme.id, this.state.coins + 1, 'closed', this.state.passedGames, subtheme.games_lost));
     } else {
       this.props.dispatch(updateSubthemePoints(subtheme.id, this.state.coins + 1, 'closed', subtheme.best_spree + 1, subtheme.games_lost));
     }
@@ -163,7 +163,7 @@ class GameHangman extends React.Component {
 
     // set best_spree
     if (this.state.passedGames > subtheme.best_spree) {
-      this.props.dispatch(updateSubthemePoints(subtheme.id, 8, 'lost', this.state.passedGames + 1, subtheme.games_lost + 1 ));
+      this.props.dispatch(updateSubthemePoints(subtheme.id, 6, 'lost', this.state.passedGames + 1, subtheme.games_lost + 1 ));
     } else {
       this.props.dispatch(updateSubthemePoints(subtheme.id, 8, 'lost', subtheme.best_spree, subtheme.games_lost + 1));
     }
@@ -220,7 +220,7 @@ class GameHangman extends React.Component {
     // get word objective
     const { coins, objective } = this.state;
     if (coins >= 2) {
-      this.setState({coins: coins - 2});
+      this.setState({coins: coins - 3});
       let usedLetters = this.props.letters;
       let abecedary = 'ABCDEFGHIJKLMNOPQRSTUVWXYZßÄÖÜ'.split('').map( (letter) => {
           if (usedLetters.indexOf(letter) === -1) {

@@ -28,6 +28,7 @@ class GameLogic extends React.Component {
   componentDidUpdate(){
     if (this.props.letters !== this.state.letters) {this.setState({letters: this.props.letters})};
     if (this.state.response === this.state.object.replace('\r', '')) {this.newObject()};
+    if (this.props.letters === 'AÄGV'){this.props.resetGame()};
   }
 
   newObject = () => {

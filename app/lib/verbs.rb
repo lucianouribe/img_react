@@ -1,12 +1,13 @@
 module Verbs
   def self.verb_type
     {
-      'regular' => 'regular',
-      'irregular' => 'irregular',
+      'regelmäßiges' => 'regelmäßiges',
+      'starkes' => 'starkes',
       'modal' => 'modal',
       'auxiliary' => 'auxiliary',
       'dativ' => 'dativ',
       'reflexiv' => 'reflexiv',
+      'expression' => 'expression',
     }
   end
 end

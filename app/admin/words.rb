@@ -72,7 +72,7 @@ ActiveAdmin.register Word do
       f.input :spanish
       f.input :word_type,
               as: :select,
-              collection: ['noun', 'preposition', 'adverb', 'adjektive'],
+              collection: ['noun', 'preposition', 'adverb', 'adjektive', 'expression'],
               include_blank: false
       f.input :theme,
               as: :select,

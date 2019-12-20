@@ -123,14 +123,24 @@ class GameHangman extends React.Component {
         this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1, coins: coins + 1 });
       } else {
         console.log('pass to punctuation');
-        // let actualObject = phrases[0];
-        // if (typeof actualObject !== 'undefined'){
-        //   console.log('pass to phrases');
-        //   this.setState({actualIndex: 0, actualObject, actualThematic: 'phrases', actual: actual + 1});
-        // } else {
-        //   console.log('pass to punctuation');
+        let actualObject = phrases[0];
+        if (typeof actualObject !== 'undefined'){
+          console.log('pass to phrases');
+          this.setState({actualIndex: 0, actualObject, actualThematic: 'phrases', actual: actual + 1});
+        } else {
+          console.log('pass to punctuation');
           this.resolveWin();
-        // }
+        }
+      }
+    }
+
+    if (actualThematic === 'phrases') {
+      if(actualIndex + 1 < phrases.length){
+        console.log('there are more phrases');
+        let actualObject = phrases[actualIndex + 1];
+        this.setState({actualIndex: actualIndex + 1, actualObject, actual: actual + 1, coins: coins + 1 });
+      } else {
+        this.resolveWin();
       }
     }
 

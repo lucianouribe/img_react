@@ -28,7 +28,7 @@ class GameLogic extends React.Component {
   componentDidUpdate(){
     if (this.props.letters !== this.state.letters) {this.setState({letters: this.props.letters})};
     if (this.state.response === this.state.object.replace('\r', '')) {this.newObject()};
-    if (this.props.letters === 'AÄGV'){this.props.resetGame()};
+    if (this.props.letters === 'AÄUÜ'){this.props.resetGame()};
   }
 
   newObject = () => {
@@ -111,6 +111,48 @@ class GameLogic extends React.Component {
     return line;
   }
 
+  getPhrase = (phrase) => {
+    const {compareMe} = this.props;
+    let phraseArray;
+    const phrasePraes = phrase.phrase_praesens.split("\n");
+    const phrasePraet  = phrase.phrase_praeteritum.split("\n");
+    const phrasePer = phrase.phrase_perfekt.split("\n");
+    const phrasePlusQuan = phrase.phrase_plusquamperfekt.split("\n");
+    const futur_i = phrase.phrase_futur_i.split("\n");
+    const futur_ii = phrase.phrase_futur_ii.split("\n");
+    const {passedGames} = this.props;
+    if (passedGames <= 20){
+      phraseArray = phrasePraes;
+    } else if (passedGames > 20 && passedGames <= 22) {
+      phraseArray = [...phrasePraes, ...phrasePer];
+    } else if (passedGames > 22 && passedGames <= 24) {
+      phraseArray = [...phrasePer, ...phrasePraet];
+    } else if (passedGames > 24 && passedGames <= 26) {
+      phraseArray = [...phrasePraet, ...futur_i];
+    } else if (passedGames > 26 && passedGames <= 28) {
+      phraseArray = [...futur_i, ...phrasePlusQuan];
+    } else if (passedGames > 28 && passedGames <= 30) {
+      phraseArray = [...phrasePlusQuan, ...futur_ii];
+    } else {
+      phraseArray = [...phrasePraes, ...phrasePraet, ...phrasePer, ...futur_i];
+    }
+    // get line
+    const line = this.getLine(phraseArray);
+    // check if line present in one of the arrays
+    let isPraes = phrasePraes.includes(line) ? 'präsens' : '';
+    let isPraet = phrasePraet.includes(line) ? 'präteritum' : '';
+    let isPer = phrasePer.includes(line) ? 'perfekt' : '';
+    let isPlusQuan = phrasePlusQuan.includes(line) ? 'plusquanperfekt' : '';
+    let isFuturI = futur_i.includes(line) ? 'futur 1' : '';
+    let isFuturII = futur_ii.includes(line) ? 'futur 2' : '';
+    // set phrase_type state
+    this.setState({phrase_tense: isPraes + isPraet + isPer + isPlusQuan + isFuturI + isFuturII});
+    this.props.setCardAnswer([line, compareMe.spanish]);
+    return line;
+  }
+
+
+
   getLine = (array) => {
     const shuffledArray = shuffle(array);
     const nominatives = ['ich', 'du', 'er', 'sie', 'es', 'wir', 'ihr', 'Sie'];
@@ -160,13 +202,20 @@ class GameLogic extends React.Component {
           <div>
             <span>{this.state.nominative}</span>
             {this.state.verb_tense === '' ? null : <span>{this.state.verb_tense}</span>}
-            {compareMe.verb_type === 'regular' ? null : <span>{compareMe.verb_type}</span>}
+            {compareMe.verb_type === 'regelmäßiges' ? null : <span>{compareMe.verb_type}</span>}
             <span>{compareMe.spanish}</span>
           </div>
         )
         break;
       case 'phrases':
-        return 'phrase keywords'
+        return (
+          <div>
+            <span>{this.state.nominative}</span>
+            {this.state.phrase_tense === '' ? null : <span>{this.state.phrase_tense}</span>}
+            {compareMe.phrase_type === 'simple' ? null : <span>{compareMe.phrase_type}</span>}
+            <span>{compareMe.spanish}</span>
+          </div>
+        )
         break;
       default:
         return('Viel Spass!')

@@ -11,8 +11,8 @@ class Api::SubthemesController < ApplicationController
     get_subtheme
     @subtheme.img_url = @subtheme.image.url
     @words = Word.where(subtheme: "#{@subtheme.id}").shuffle.sample(8)
-    @verbs = Verb.where(subtheme: "#{@subtheme.id}").shuffle.sample(8)
-    @phrases = Phrase.where(subtheme: "#{@subtheme.id}").shuffle.sample(8)
+    @verbs = Verb.where(subtheme: "#{@subtheme.id}").shuffle.sample(12)
+    @phrases = Phrase.where(subtheme: "#{@subtheme.id}").shuffle.sample(12)
     render json: { words: @words, verbs: @verbs, phrases: @phrases, subtheme: @subtheme, subtheme_img: @subtheme.img_url}
   end
   

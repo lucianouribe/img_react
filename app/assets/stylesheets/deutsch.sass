@@ -1,9 +1,6 @@
 body
   #deutsch,
   #world_subthemes
-
-
-
     .worlds-container
       @include flexbox()
       @include flex-wrap(wrap)
@@ -190,9 +187,7 @@ body
 
         .word-input
           @include flex(0 0 90%)
-          border-radius: 4px
-          border: 1px solid $comment
-          margin-bottom: 20px
+          margin-bottom: 8px
           .comparer
             @include flexbox()
             form
@@ -217,7 +212,8 @@ body
             span
               width: 30px
               height: 30px
-              margin: 5px
+              margin-rigth: 5px
+              margin-top: 5px
               line-height: 30px
               text-align: center
               border: 1px solid transparent
@@ -260,7 +256,7 @@ body
       background-repeat: no-repeat
       background-size: cover
       background-position: center
-      border-radius: 2px
+      border-radius: 4px
       &.hang-0
         background-image: url(asset_path("game/hang-0.jpg"))
       &.hang-1

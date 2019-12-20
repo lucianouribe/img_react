@@ -8,12 +8,12 @@ class Api::SubthemesController < ApplicationController
   end
 
   def game
-    subtheme = Subtheme.where(name: @theme).first
-    subtheme.img_url = subtheme.image.url
-    @words = Word.where(subtheme: "#{subtheme.id}").shuffle.sample(8)
-    @verbs = Verb.where(subtheme: "#{subtheme.id}").shuffle.sample(8)
-    @phrases = Phrase.where(subtheme: "#{subtheme.id}").shuffle.sample(8)
-    render json: { words: @words, verbs: @verbs, phrases: @phrases, subtheme: subtheme, subtheme_img: subtheme.img_url}
+    get_subtheme
+    @subtheme.img_url = @subtheme.image.url
+    @words = Word.where(subtheme: "#{@subtheme.id}").shuffle.sample(8)
+    @verbs = Verb.where(subtheme: "#{@subtheme.id}").shuffle.sample(8)
+    @phrases = Phrase.where(subtheme: "#{@subtheme.id}").shuffle.sample(8)
+    render json: { words: @words, verbs: @verbs, phrases: @phrases, subtheme: @subtheme, subtheme_img: @subtheme.img_url}
   end
   
   def update
@@ -32,6 +32,17 @@ class Api::SubthemesController < ApplicationController
   
   def get_url
     @url_path = request.query_parameters
+  end
+
+  def get_subtheme
+    @subtheme = Subtheme.where(name: @theme).first
+    if @subtheme.blank?
+      'aeiou'.each_char do |c|
+        um = c.gsub('a', 'ä').gsub('e', 'ë').gsub('i', 'ï').gsub('o', 'ö').gsub('u', 'ü')
+        umlauted = @theme.gsub(c, um)
+        @subtheme = Subtheme.where(name: umlauted).first
+      end
+    end
   end
 
   def set_api_subtheme

@@ -9,10 +9,11 @@ body
       @include flex-wrap(wrap)
       @include justify-content(space-between)
       position: fixed
-      top: 180px
+      top: 140px
       right: 0
       left: 0
-      height: calc(96vh - 180px)
+      z-index: 5
+      height: calc(96vh - 140px)
       padding: 0 30px
       overflow: hidden
       overflow-y: scroll
@@ -122,7 +123,7 @@ body
           text-transform: capitalize
       .coins
         position: absolute
-        width: calc(100% - 66px)
+        width: calc(100% - 32px)
         max-width: 470px
         @include flexbox()
         @include justify-content(end)
@@ -219,15 +220,15 @@ body
               margin: 5px
               line-height: 30px
               text-align: center
+              border: 1px solid transparent
+              border-radius: 50%
               &.unsuccess
                 color: #707070
                 border: 1px solid red
-                border-radius: 50%
                 background: rgba(232, 129, 109, 0.3)
               &.success
                 color: #707070
                 border: 1px solid green
-                border-radius: 50%
 
 
         &.markdown
@@ -282,6 +283,10 @@ body
     #game
       .game-container
         margin-top: 15px
+        position: absolute
+        top: 0
+        left: 10px
+        right: 10px
         .start-me 
           height: 300px
           h1

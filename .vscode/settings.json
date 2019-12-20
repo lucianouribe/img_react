@@ -6,5 +6,9 @@
     "plusquanperfekt",
     "praesens",
     "praeteritum"
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "titleBar.activeBackground": "#ff6949",
+    "titleBar.activeForeground": "#555555"
+  }
 }

@@ -17,9 +17,9 @@ ActiveAdmin.register Phrase do
     column :id
     column :phrase_praesens
     column :phrase_praeteritum
-    column :phrase_futur_i
     column :phrase_perfekt
     column :phrase_plusquamperfekt
+    column :phrase_futur_i
     column :phrase_futur_ii
     column :phrase_ch
     column :example
@@ -42,9 +42,9 @@ ActiveAdmin.register Phrase do
     attributes_table do
       row :phrase_praesens
       row :phrase_praeteritum
-      row :phrase_futur_i
       row :phrase_perfekt
       row :phrase_plusquamperfekt
+      row :phrase_futur_i
       row :phrase_futur_ii
       row :phrase_ch
       row :example
@@ -70,9 +70,9 @@ ActiveAdmin.register Phrase do
               include_blank: false
       f.input :phrase_praesens
       f.input :phrase_praeteritum
-      f.input :phrase_futur_i
       f.input :phrase_perfekt
       f.input :phrase_plusquamperfekt
+      f.input :phrase_futur_i
       f.input :phrase_futur_ii
       f.input :phrase_ch
       f.input :example

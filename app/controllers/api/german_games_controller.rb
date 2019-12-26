@@ -3,13 +3,17 @@ class Api::GermanGamesController < ApplicationController
 
   def index
     @german_game = current_user.german_game
-    @worlds = World.all
+    @worlds = World.where(status: "open")
     getWorldTheme
   end
 
   def getWorldTheme
     @themes = []
-    World.all.each {|t| @themes << [t.name, t.image.url, t.id]}
+    World.all.order_by_id.each do |t| 
+      unless t.status == 'closed' 
+        @themes << [t.name, t.image.url, t.id] 
+      end
+    end
     return @themes
   end
 
@@ -32,7 +36,7 @@ class Api::GermanGamesController < ApplicationController
     World.all.each do |w|
       w.update_attribute :level,  1
       w.update_attribute :points,  0
-      w.update_attribute :status,  'open'
+      # w.update_attribute :status,  'open'
     end
   end
 

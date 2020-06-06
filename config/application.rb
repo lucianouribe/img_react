@@ -24,6 +24,16 @@ module ReactWebsite
     # -- all .rb files in that directory are automatically loaded.
     config.eager_load_paths << "#{config.root}/lib"
 
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+                 headers: :any,
+                 expose: ['uid'],
+                 methods: [:get, :post, :options, :delete, :put]
+      end
+    end
+
     # config.action_dispatch.default_headers = {
     #   'X-Frame-Options' => 'DENY',
     # }

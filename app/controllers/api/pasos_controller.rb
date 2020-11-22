@@ -6,6 +6,11 @@ class Api::PasosController < ApplicationController
     @api_pasos = @api_proyecto.pasos.order_by_id.all
   end
 
+  def desktop_pasos
+    @api_proyecto = Proyecto.find(params[:proyecto_id])
+    render json: @api_proyecto.pasos
+  end
+
   def set_last_id
     @paso = Paso.all.maximum(:id)
     render :set_last_id, status: :ok

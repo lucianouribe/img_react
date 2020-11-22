@@ -30,3 +30,6 @@ client/components/TrisixtiH.js
 client/components/Slider.js
 client/components/Panoramicos.js
 .vscode/settings.json
+.eslintrc.js
+.ruby-gemset
+.ruby-version

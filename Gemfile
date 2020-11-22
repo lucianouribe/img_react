@@ -1,3 +1,4 @@
+ruby '2.3.1'
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
@@ -28,6 +29,7 @@ gem "sentry-raven"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'activeadmin'
+gem 'rack-cors'
 
 group :development, :test do
   gem 'pry'

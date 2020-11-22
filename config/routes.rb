@@ -28,6 +28,10 @@ Rails.application.routes.draw do
     get 'set_last_id', to: 'pasos#set_last_id'
     get 'set_last_procom_id', to: 'procoms#set_last_procom_id'
 
+    get 'de_proyectos', to: 'proyectos#desktop_proyectos'
+    get 'de_pasos', to: 'pasos#desktop_pasos'
+    get 'topics', to: 'proyectos#topics'
+
     post 'contact', to: 'contacts#create'
     get 'users/info'
     post 'translator', to: 'translators#translate'

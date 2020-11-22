@@ -28,6 +28,7 @@ gem "sentry-raven"
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'activeadmin'
+gem 'rack-cors'
 
 group :development, :test do
   gem 'pry'

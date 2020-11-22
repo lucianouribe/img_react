@@ -27,6 +27,13 @@ module ReactWebsite
     # config.action_dispatch.default_headers = {
     #   'X-Frame-Options' => 'DENY',
     # }
-
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*',
+                 headers: :any,
+                 methods: [:get, :post, :options, :delete, :put]
+      end
+    end
   end
 end

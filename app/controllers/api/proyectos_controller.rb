@@ -71,6 +71,15 @@ class Api::ProyectosController < ApplicationController
 
   end
 
+  def desktop_create
+    @api_proyecto = Proyecto.new(api_proyecto_de_params)
+    if @api_proyecto.save
+      render json: @api_proyecto, status: :created
+    else
+      render json: @api_proyecto.errors, status: :unprocessable_entity
+    end
+  end
+
   def update
     if @api_proyecto.update(api_proyecto_params)
       render :show, status: :ok
@@ -91,5 +100,9 @@ class Api::ProyectosController < ApplicationController
 
     def api_proyecto_params
       params.require(:proyecto).permit(:name, :topic, :subtopic, :difficulty, :orden, :user_id)
+    end
+
+    def api_proyecto_de_params
+      params.require(:proyecto).permit(:name, :topic, :subtopic, :difficulty, :user_id)
     end
 end

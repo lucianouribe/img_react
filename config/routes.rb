@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     resources :carrusels
     resources :descripcions
     
-    resources :proyectos do
+    resources :proyectos, except: [:desktop_create] do
       resources :pasos, except: [:set_last_id]
     end
 
@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     get 'set_last_procom_id', to: 'procoms#set_last_procom_id'
 
     get 'de_proyectos', to: 'proyectos#desktop_proyectos'
+    post 'de_proyecto_create', to: 'proyectos#desktop_create'
     get 'de_pasos', to: 'pasos#desktop_pasos'
     put 'de_paso_update', to: 'pasos#desktop_paso_update'
     get 'topics', to: 'proyectos#topics'

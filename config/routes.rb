@@ -30,6 +30,7 @@ Rails.application.routes.draw do
 
     get 'de_proyectos', to: 'proyectos#desktop_proyectos'
     get 'de_pasos', to: 'pasos#desktop_pasos'
+    put 'de_paso_update', to: 'pasos#desktop_paso_update'
     get 'topics', to: 'proyectos#topics'
 
     post 'contact', to: 'contacts#create'

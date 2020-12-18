@@ -1,15 +1,16 @@
 class Api::PasosController < ApplicationController
-  before_action :set_api_proyecto, except: [:set_last_id, :desktop_paso_update]
+  # before_action :set_api_proyecto, except: [:set_last_id, :desktop_paso_update]
+  before_action :set_api_proyecto, except: [:set_last_id]
   before_action :set_api_paso, only: [:show, :edit, :update, :destroy]
 
   def index
     @api_pasos = @api_proyecto.pasos.order_by_id.all
   end
 
-  def desktop_pasos
-    @api_proyecto = Proyecto.find(params[:proyecto_id])
-    render json: @api_proyecto.pasos
-  end
+  # def desktop_pasos
+  #   @api_proyecto = Proyecto.find(params[:proyecto_id])
+  #   render json: @api_proyecto.pasos
+  # end
 
   def set_last_id
     @paso = Paso.all.maximum(:id)
@@ -55,15 +56,15 @@ class Api::PasosController < ApplicationController
     end
   end
 
-  def desktop_paso_update
-    proyecto = Proyecto.find(params[:proyecto_id])
-    paso = proyecto.pasos.find(params[:id])
-    if paso.update(api_paso_de_params)
-      render json: paso, status: :ok
-    else
-      render json: paso.errors, status: :unprocessable_entity
-    end
-  end
+  # def desktop_paso_update
+  #   proyecto = Proyecto.find(params[:proyecto_id])
+  #   paso = proyecto.pasos.find(params[:id])
+  #   if paso.update(api_paso_de_params)
+  #     render json: paso, status: :ok
+  #   else
+  #     render json: paso.errors, status: :unprocessable_entity
+  #   end
+  # end
 
   def destroy
     if @api_paso[:image_link] != 'undefined'
@@ -90,8 +91,8 @@ class Api::PasosController < ApplicationController
     params.require(:paso).permit(:step, :orden, :estilo, :procom_link, :video_link, :image_link )
   end
 
-  def api_paso_de_params
-    params.require(:paso).permit(:step )
-  end
+  # def api_paso_de_params
+  #   params.require(:paso).permit(:step )
+  # end
 
 end

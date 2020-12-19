@@ -32,14 +32,6 @@ Rails.application.routes.draw do
     get 'set_last_id', to: 'pasos#set_last_id'
     get 'set_last_procom_id', to: 'procoms#set_last_procom_id'
 
-    # get 'de_proyectos', to: 'proyectos#desktop_proyectos'
-    # post 'de_proyecto_create', to: 'proyectos#desktop_create'
-    # delete 'de_proyecto_destroy', to: 'proyectos#desktop_destroy'
-
-    # get 'de_pasos', to: 'pasos#desktop_pasos'
-    # put 'de_paso_update/:id', to: 'pasos#desktop_paso_update'
-    
-
     post 'contact', to: 'contacts#create'
     get 'users/info'
     post 'translator', to: 'translators#translate'

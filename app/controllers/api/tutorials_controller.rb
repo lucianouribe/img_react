@@ -59,7 +59,7 @@ class Api::TutorialsController < ApplicationController
 
   def update
     if @api_proyecto.update(api_proyecto_params)
-      render :show, status: :ok
+      render json: @api_proyecto, status: :ok
     else
       render json: @api_proyecto.errors, status: :unprocessable_entity
     end
@@ -69,12 +69,6 @@ class Api::TutorialsController < ApplicationController
     @api_proyecto.destroy
     head :no_content
   end
-
-  # def desktop_destroy
-  #   puts "PARMS!!!!!!!!!!!!!!!!!!!!! #{params}"
-  #   # @api_proyecto.destroy
-  #   head :no_content
-  # end
 
   private
     def set_api_proyecto

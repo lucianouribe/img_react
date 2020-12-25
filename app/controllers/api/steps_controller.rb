@@ -49,21 +49,11 @@ class Api::StepsController < ApplicationController
     end
   end
 
-  # def update
-  #   if @api_paso.update(api_paso_params)
-  #     render :show, status: :ok
-  #   else
-  #     render json: @api_paso.errors, status: :unprocessable_entity
-  #   end
-  # end
-
   def update
-    proyecto = Proyecto.find(params[:proyecto_id])
-    paso = proyecto.pasos.find(params[:id])
-    if paso.update(api_paso_params)
-      render json: paso, status: :ok
+    if @api_paso.update(api_paso_params)
+      render json: @api_paso
     else
-      render json: paso.errors, status: :unprocessable_entity
+      render json: @api_paso.errors, status: :unprocessable_entity
     end
   end
 
@@ -93,7 +83,7 @@ class Api::StepsController < ApplicationController
   # end
 
   def api_paso_params
-    params.require(:paso).permit(:step )
+    params.require(:paso).permit(:step)
   end
 
 end

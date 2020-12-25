@@ -43,7 +43,7 @@ class Api::StepsController < ApplicationController
 
     sleep 0.3
     if @api_paso.save
-      render :show, status: :created
+      render json: @api_paso
     else
       render json: @api_paso.errors, status: :unprocessable_entity
     end

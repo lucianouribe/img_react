@@ -1,20 +1,12 @@
 class Api::StepsController < ApplicationController
-  before_action :set_api_proyecto, except: [:set_last_id, :desktop_paso_update]
+  before_action :set_api_proyecto
   before_action :set_api_paso, only: [:show, :edit, :update, :destroy]
-
-  # def index
-  #   @api_pasos = @api_proyecto.pasos.order_by_id.all
-  # end
 
   def index
     @api_proyecto = Proyecto.find(params[:proyecto_id])
     render json: @api_proyecto.pasos
   end
 
-  # def set_last_id
-  #   @paso = Paso.all.maximum(:id)
-  #   render :set_last_id, status: :ok
-  # end
 
   def show
   end
@@ -58,10 +50,10 @@ class Api::StepsController < ApplicationController
   end
 
   def destroy
-    if @api_paso[:image_link] != 'undefined'
-      image_to_delete = @api_paso[:image_link]
-      Paso.delete_me(image_to_delete)
-    end
+    # if @api_paso[:image_link] != 'undefined'
+    #   image_to_delete = @api_paso[:image_link]
+    #   Paso.delete_me(image_to_delete)
+    # end
     @api_paso.destroy
     head :no_content
   end

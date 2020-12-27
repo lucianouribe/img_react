@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20191215183748) do
+ActiveRecord::Schema.define(version: 20201227095059) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,10 +72,10 @@ ActiveRecord::Schema.define(version: 20191215183748) do
   end
 
   create_table "german_games", force: :cascade do |t|
-    t.integer "lifes"
-    t.integer "punctuation"
-    t.integer "punctuation_4_total"
-    t.integer "level"
+    t.integer "lifes", default: 3
+    t.integer "punctuation", default: 0
+    t.integer "punctuation_4_total", default: 0
+    t.integer "level", default: 1
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -164,6 +164,28 @@ ActiveRecord::Schema.define(version: 20191215183748) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.index ["german_game_id"], name: "index_subthemes_on_german_game_id"
+  end
+
+  create_table "subtopics", force: :cascade do |t|
+    t.string "name"
+    t.bigint "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
+    t.index ["topic_id"], name: "index_subtopics_on_topic_id"
+  end
+
+  create_table "topics", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "image_file_name"
+    t.string "image_content_type"
+    t.integer "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "translators", id: :serial, force: :cascade do |t|
@@ -255,4 +277,5 @@ ActiveRecord::Schema.define(version: 20191215183748) do
   add_foreign_key "pasos", "proyectos"
   add_foreign_key "procoms", "pasos"
   add_foreign_key "subthemes", "german_games"
+  add_foreign_key "subtopics", "topics"
 end

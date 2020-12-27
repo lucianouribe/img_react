@@ -16,23 +16,33 @@ class Api::TutorialsController < ApplicationController
   end
 
   def topics
-    proyectos = Proyecto.all
-    temp_topics = []
+    # proyectos = Proyecto.all
+    # temp_topics = []
+    # @topics = []
+    # proyectos.each do |proyecto|
+    #   if !temp_topics.include? proyecto.topic
+    #     temp_topics << proyecto.topic
+    #   end
+    # end
+    # temp_topics.each do |el|
+    #   proy = Proyecto.where(topic: el)
+    #   temp_subtopics = []
+    #   proy.each do |po|
+    #     if !temp_subtopics.include? po.subtopic
+    #       temp_subtopics << po.subtopic
+    #     end
+    #   end
+    #   @topics << { name: el, subtopic: temp_subtopics }
+    # end
+
     @topics = []
-    proyectos.each do |proyecto|
-      if !temp_topics.include? proyecto.topic
-        temp_topics << proyecto.topic
-      end
-    end
-    temp_topics.each do |el|
-      proy = Proyecto.where(topic: el)
+    topics = Topic.all
+    topics.each do |topic|
       temp_subtopics = []
-      proy.each do |po|
-        if !temp_subtopics.include? po.subtopic
-          temp_subtopics << po.subtopic
-        end
+      topic.subtopic.each do |subtopic|
+        temp_subtopics << subtopic.name
       end
-      @topics << { name: el, subtopic: temp_subtopics }
+      @topics << { name: topic.name, subtopic: temp_subtopics }
     end
     render json: @topics
   end

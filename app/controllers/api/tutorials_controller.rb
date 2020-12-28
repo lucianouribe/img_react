@@ -40,9 +40,9 @@ class Api::TutorialsController < ApplicationController
     topics.each do |topic|
       temp_subtopics = []
       topic.subtopic.each do |subtopic|
-        temp_subtopics << subtopic.name
+        temp_subtopics << {name: subtopic.name, url: subtopic.subtopic_url}
       end
-      @topics << { name: topic.name, subtopic: temp_subtopics }
+      @topics << { name: topic.name, topic_image: topic.topic_url, subtopic: temp_subtopics }
     end
     render json: @topics
   end

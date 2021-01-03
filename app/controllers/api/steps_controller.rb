@@ -5,7 +5,7 @@ class Api::StepsController < ApplicationController
 
   def index
     @api_proyecto = Proyecto.find(params[:proyecto_id])
-    render json: @api_proyecto.pasos
+    render json: @api_proyecto.pasos.order_by_id.all
   end
 
 

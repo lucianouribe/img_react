@@ -16,6 +16,7 @@ Rails.application.routes.draw do
 
     resources :carrusels
     resources :descripcions
+    resources :books
     
     resources :proyectos, except: [:desktop_create] do
       resources :pasos, except: [:set_last_id]

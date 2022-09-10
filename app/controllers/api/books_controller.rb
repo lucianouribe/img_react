@@ -1,9 +1,10 @@
 class Api::BooksController < ApplicationController
-  before_action :set_tag, except: [:index, :new, :create]
+  before_action :set_tag, :evaluate_token, except: [:index, :new, :create]
+  before_action :evaluate_token
   skip_before_action :verify_authenticity_token
 
   def index
-    @book = Book.all
+    @book = Book.order_by_id.all
     render json: @book
   end
 
@@ -44,9 +45,22 @@ class Api::BooksController < ApplicationController
   def set_tag
     @book = Book.find(params[:id])
   end
+
+  def evaluate_token
+    token = request.headers["Token"]
+    array = []
+    token.chars.unshift('x').unshift('x').each_with_index do |x,index|
+      if index % 3 == 0
+        array << x
+      end
+    end
+    cleaned_token = array.join()
+    unless cleaned_token.include? 'NhoyJM0g7'
+      render status: 400, json: { success: false, message: 'something smells fishy here' }.reject { |k,v| k != :success && v.blank? }
+    end
+  end
   
   def book_params
-    # binding.pry
     params.require(:book).permit(:title, :author, :language, :pages, :book_date, :score, :mood, :synopsis, :comment)
   end
 

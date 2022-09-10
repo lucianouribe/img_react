@@ -49,14 +49,18 @@ class Api::BooksController < ApplicationController
   def evaluate_token
     token = request.headers["Token"]
     array = []
-    token.chars.unshift('x').unshift('x').each_with_index do |x,index|
-      if index % 3 == 0
-        array << x
-      end
-    end
-    cleaned_token = array.join()
-    unless cleaned_token.include? 'NhoyJM0g7'
+    if token.blank?
       render status: 400, json: { success: false, message: 'something smells fishy here' }.reject { |k,v| k != :success && v.blank? }
+    else
+      token.chars.unshift('x').unshift('x').each_with_index do |x,index|
+        if index % 3 == 0
+          array << x
+        end
+      end
+      cleaned_token = array.join()
+      unless cleaned_token.include? 'NhoyJM0g7'
+        render status: 400, json: { success: false, message: 'something smells fishy here' }.reject { |k,v| k != :success && v.blank? }
+      end
     end
   end
   

@@ -3,7 +3,7 @@ class Proyecto < ApplicationRecord
   # self.primary_key = "id"
   # belongs_to :user
   def self.order_by_id
-    Proyecto.order("id ASC")
+    Proyecto.order("id DESC")
     # cuando se pueda cambiar el orden de verdad, este sera Proyecto.order('order ASC')
   end
 end

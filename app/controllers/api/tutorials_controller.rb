@@ -4,11 +4,11 @@ class Api::TutorialsController < ApplicationController
 
   def index
     if params[:topic].present? & params[:subtopic].present?
-      @api_proyectos = Proyecto.where(topic: params[:topic]).where(subtopic: params[:subtopic])
+      @api_proyectos = Proyecto.order_by_id.where(topic: params[:topic]).where(subtopic: params[:subtopic])
     elsif params[:topic].present?
-      @api_proyectos = Proyecto.where(topic: params[:topic])
+      @api_proyectos = Proyecto.order_by_id.where(topic: params[:topic])
     elsif params[:subtopic].present?
-      @api_proyectos = Proyecto.where(subtopic: params[:subtopic])
+      @api_proyectos = Proyecto.order_by_id.where(subtopic: params[:subtopic])
     else
       @api_proyectos = Proyecto.order_by_id.all
     end
